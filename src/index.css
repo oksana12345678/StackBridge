@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  --main-font: "Roboto", sans-serif;
+
+  --primary-black-color: rgb(47, 47, 47);
+  --primary-white-color: rgb(255, 255, 255);
+  --primary-blue-color: rgb(64, 123, 255);
+  --secondary-light-blue-color: rgb(236, 242, 255);
+  --red-accent-color: rgb(239, 80, 80);
+  --orange-accent-color: rgb(255, 157, 67);
+  --light-blue-text: rgb(158, 187, 255);
+
+  --font-size-base: 16px;
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+
+  color-scheme: light dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: primary-text-color;
+  font-family: --main-font;
+  font-weight: --font-weight-bold;
+}
+
+button {
+  font-family: --main-font;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 18px;
+  font-weight: --font-weight-medium;
+  font-family: inherit;
+  background-color: --bg-button-and-text-blue-color;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  transition: border-color 0.25s;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
