@@ -17,6 +17,10 @@
   box-shadow: 0px 4px 14px 0px #407bff8a;
 }
 
+.button:focus {
+  outline: none;
+}
+
 @media screen and (min-width: 768px) {
   .button {
     width: 160px;
