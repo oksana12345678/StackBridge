@@ -1,0 +1,33 @@
+.trackerContainer {
+    padding: 20px;
+    background-color: #f0f4f7;
+    border-radius: 8px;
+}
+
+.trackerBenefits {
+    margin-top: 20px;
+}
+
+.benefitItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.benefitItem .icon {
+    margin-right: 10px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

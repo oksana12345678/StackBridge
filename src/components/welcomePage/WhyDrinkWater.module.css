@@ -1,0 +1,15 @@
+.whyDrinkWater {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e2f1f8;
+    border-radius: 8px;
+}
+
+.whyDrinkWater ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.whyDrinkWater li {
+    margin-bottom: 10px;
+}
