@@ -1,7 +1,21 @@
 .container {
-  max-width: 95%;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 280px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 704px;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1216px;
+  }
 }
