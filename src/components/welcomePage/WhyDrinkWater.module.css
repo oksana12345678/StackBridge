@@ -1,19 +1,15 @@
 .whyDrinkWater {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f1f7ff;
-    /* Светлый фон */
+    background-color: var(--secondary-light-blue-color);
     border-radius: 8px;
-    /* Скругленные углы */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    /* Легкая тень */
 }
 
 .whyDrinkWater h3 {
     font-size: 24px;
     font-weight: bold;
-    color: #2b2b2b;
-    /* Основной текстовый цвет */
+    color: var(--primary-black-color);
     margin-bottom: 20px;
 }
 
@@ -25,7 +21,6 @@
 .whyDrinkWater li {
     font-size: 16px;
     color: #2b2b2b;
-    /* Основной текстовый цвет */
     margin-bottom: 10px;
     position: relative;
     padding-left: 20px;
@@ -35,7 +30,7 @@
     content: '•';
     position: absolute;
     left: 0;
-    color: #007bff;
+    color: var(--primary-blue-color);
     /* Цвет точки перед элементами списка */
     font-size: 20px;
     line-height: 1;

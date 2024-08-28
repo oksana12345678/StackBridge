@@ -1,18 +1,31 @@
-.trackerContainer {
+.trackerWelcomeContainer {
     padding: 20px;
-    background-color: #f7faff;
-    /* Светлый фон для контейнера */
+    background-color: var(--primary-white-color);
     border-radius: 8px;
-    /* Скругленные углы */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    /* Тень для объема */
+    color: var(--primary-black-color);
+}
+
+.trackerWelcomeTitle{
+    padding-bottom: 16px;
+    font-weight: var(--font-weight-bold);
+}
+
+.trackerWelcomeSecondTitle{
+    padding-bottom: 16px;
+    font-weight: var(--font-weight-regular);
+}
+
+.trackerWelcomeThirdTitle{
+    font-weight: var(--font-weight-medium);
 }
 
 .trackerBenefits {
     margin-top: 20px;
+    margin-bottom: 20px;
     list-style: none;
     padding-left: 0;
 }
