@@ -1,14 +1,16 @@
 .section {
-  padding-top: 3rem;
+  padding-top: 24px;
   padding-bottom: 5rem;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 768px) {
   .section {
-    padding-top: 5rem;
+    padding-top: 40px;
   }
 }
 
-.home-section {
-  padding-top: 10rem;
+@media screen and (min-width: 1440px) {
+  .section {
+    padding-top: 80px;
+  }
 }
