@@ -1,12 +1,16 @@
 import Modal from "react-modal";
 import css from "./ModalWrapper.module.css";
+import { useSelector } from "react-redux";
+import { selectIsModalOpen } from "../../../redux/modalWindow/selectors";
 
 Modal.setAppElement(document.getElementById("root"));
 
-const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
+const ModalWrapper = ({ closeModal, children }) => {
+  const isModalOpen = useSelector(selectIsModalOpen);
+
   return (
     <Modal
-      isOpen={modalIsOpen}
+      isOpen={isModalOpen}
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
