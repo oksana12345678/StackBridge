@@ -23,6 +23,10 @@
   background-color: #ffffff;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .close-button {
   position: absolute;
   top: 24px;

@@ -1,10 +1,21 @@
+import { useEffect } from "react";
 import Modal from "react-modal";
 import css from "./ModalWrapper.module.css";
 
 Modal.setAppElement(document.getElementById("root"));
 
 const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
-  // scroll
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.classList.add(css['no-scroll']);
+    } else {
+      document.body.classList.remove(css['no-scroll']);
+    }
+    return () => {
+      document.body.classList.remove(css['no-scroll']);
+    };
+  }, [modalIsOpen]);
+
   return (
     <Modal
       isOpen={modalIsOpen}
