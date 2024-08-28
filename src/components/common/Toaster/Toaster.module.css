@@ -1,0 +1,11 @@
+.close-btn {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.close-icon {
+  color: var(--primary-black-color);
+  width: 25px;
+  height: 25px;
+}
