@@ -1,0 +1,25 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-outline" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.3333" d="M31.333 16c0 8.468-6.865 15.333-15.333 15.333s-15.333-6.865-15.333-15.333c0-8.468 6.865-15.333 15.333-15.333s15.333 6.865 15.333 15.333z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.3333" d="M20.001 9.436c0 1.088-0.421 2.132-1.172 2.901s-1.768 1.202-2.829 1.202c-1.061 0-2.079-0.432-2.829-1.202s-1.172-1.813-1.172-2.901c0-1.088 0.421-2.132 1.172-2.901s1.768-1.202 2.829-1.202c1.061 0 2.079 0.432 2.829 1.202s1.172 1.813 1.172 2.901zM8 24.881c0.034-2.153 0.892-4.205 2.389-5.715s3.512-2.356 5.611-2.356c2.099 0 4.115 0.846 5.611 2.356s2.355 3.562 2.389 5.715c-2.51 1.18-5.239 1.789-8 1.785-2.855 0-5.564-0.639-8-1.785z"></path>
+</symbol>
+</defs>
+</svg>
+
+
+<!-- <svg width="28.000000" height="28.000000" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip139_573">
+			<rect id="user/outline" width="28.000000" height="28.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="user/outline" width="28.000000" height="28.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip139_573)">
+		<circle id="Ellipse 12" cx="14.000000" cy="14.000000" r="13.500000" stroke="#2F2F2F" stroke-opacity="1.000000" stroke-width="1.000000"/>
+		<path id="Vector" d="M16.4752 10.7947C15.8187 11.4679 14.9283 11.8461 14 11.8461C13.0717 11.8461 12.1813 11.4679 11.5248 10.7947C10.8683 10.1215 10.4995 9.20847 10.4995 8.25641C10.4995 7.30435 10.8683 6.39127 11.5248 5.71808C12.1813 5.04486 13.0717 4.66666 14 4.66666C14.9283 4.66666 15.8187 5.04486 16.4752 5.71808C17.1317 6.39127 17.5005 7.30435 17.5005 8.25641C17.5005 9.20847 17.1317 10.1215 16.4752 10.7947ZM9.09021 16.7704C10.3997 15.4492 12.1631 14.7088 14 14.7088C15.8369 14.7088 17.6003 15.4492 18.9098 16.7704C20.2194 18.0915 20.97 19.8875 21 21.7711C18.804 22.8037 16.4159 23.3367 14 23.3333C11.5021 23.3333 9.1311 22.7743 7 21.7711C7.03003 19.8875 7.78064 18.0915 9.09021 16.7704Z" stroke="#2F2F2F" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round"/>
+	</g>
+</svg> -->
