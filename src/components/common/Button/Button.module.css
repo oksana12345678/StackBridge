@@ -1,0 +1,25 @@
+.button {
+  width: 100%;
+  padding: 8px 30px;
+  background-color: var(--primary-blue-color);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  font-size: var(--font-size-base);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+  border: none;
+  color: var(--primary-white-color);
+  cursor: pointer;
+}
+
+.button:hover {
+  box-shadow: 0px 4px 14px 0px #407bff8a;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 160px;
+    border: 10px 30px;
+  }
+}

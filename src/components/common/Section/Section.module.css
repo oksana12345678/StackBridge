@@ -1,0 +1,14 @@
+.section {
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+
+@media screen and (min-width: 500px) {
+  .section {
+    padding-top: 5rem;
+  }
+}
+
+.home-section {
+  padding-top: 10rem;
+}
