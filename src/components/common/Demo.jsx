@@ -35,6 +35,7 @@ const Demo = () => {
         toasterIsOpen={toasterIsOpen}
         closeToaster={closeToaster}
         message="Будь-яке повідомлення"
+        type="error"
       />
     </div>
   );
