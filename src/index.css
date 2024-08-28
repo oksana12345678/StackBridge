@@ -64,6 +64,8 @@ h1 {
   font-family: var(--main-font);
   font-weight: var(--font-weight-bold);
 }
+
+
 button {
   font-family: var(--main-font);
   border-radius: 10px;
