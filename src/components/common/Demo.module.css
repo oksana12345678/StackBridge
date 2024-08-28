@@ -1,4 +1,5 @@
 .buttons-container {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }

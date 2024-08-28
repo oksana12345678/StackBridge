@@ -26,8 +26,8 @@ const Demo = () => {
 
   return (
     <div className={css["buttons-container"]}>
-      <Button onClick={openModal}>ОБГОРТКА МОДАЛОК</Button>
-      <Button onClick={openToaster}>ТОСТЕР</Button>
+      <Button onClick={openModal}>Modal</Button>
+      <Button onClick={openToaster}>Toaster</Button>
       <ModalWrapper modalIsOpen={modalIsOpen} closeModal={closeModal}>
         Усередені будь-що
       </ModalWrapper>
