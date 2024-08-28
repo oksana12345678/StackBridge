@@ -4,6 +4,7 @@ import css from "./ModalWrapper.module.css";
 Modal.setAppElement(document.getElementById("root"));
 
 const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
+  // scroll 
   return (
     <Modal
       isOpen={modalIsOpen}
