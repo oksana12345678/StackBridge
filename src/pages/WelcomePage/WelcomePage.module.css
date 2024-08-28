@@ -1,9 +1,11 @@
 .welcomeContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction:column ;
+    justify-content: space-between;
     align-items: center;
-    padding: 40px 20px;
+    padding: 40px;
     background-color: var(--primary-white-color);
+    margin: 0 auto;
 }
 
 .welcomeContent {
@@ -16,12 +18,12 @@
 
 .trackerSection {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 16px;
 }
 
 .whyDrinkSection {
     flex: 1;
-    margin-left: 20px;
+    margin-left: 16px;
 }
 
 .backgroundElement {
