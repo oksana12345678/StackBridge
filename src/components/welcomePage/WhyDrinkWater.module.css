@@ -11,8 +11,8 @@
 }
 
 .whyDrinkWater h3 {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
     color: var(--primary-black-color);
     margin-bottom: 20px;
 }
@@ -23,7 +23,8 @@
 }
 
 .whyDrinkWater li {
-    font-size: 16px;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
     color: #2b2b2b;
     margin-bottom: 10px;
     position: relative;
