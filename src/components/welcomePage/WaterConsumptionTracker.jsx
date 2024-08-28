@@ -1,12 +1,12 @@
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import styles from './WaterConsumptionTracker.module.css';
 
 const WaterConsumptionTracker = () => {
-  const history = useHistory();
+//   const history = useHistory();
 
-  const handleTryTrackerClick = () => {
-    history.push('/signup');
-  };
+//   const handleTryTrackerClick = () => {
+//     history.push('/signup');
+//   };
 
   return (
     <div className={styles.trackerContainer}>
@@ -26,7 +26,7 @@ const WaterConsumptionTracker = () => {
           <span>Personal rate setting</span>
         </div>
       </div>
-      <button onClick={handleTryTrackerClick}>Try tracker</button>
+      {/* <button onClick={handleTryTrackerClick}>Try tracker</button> */}
     </div>
   );
 };

@@ -1,33 +1,52 @@
 .trackerContainer {
     padding: 20px;
-    background-color: #f0f4f7;
+    background-color: #f7faff;
+    /* Светлый фон для контейнера */
     border-radius: 8px;
+    /* Скругленные углы */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    /* Тень для объема */
 }
 
 .trackerBenefits {
     margin-top: 20px;
+    list-style: none;
+    padding-left: 0;
 }
 
 .benefitItem {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    font-size: 16px;
+    color: #2b2b2b;
+    /* Основной текстовый цвет */
 }
 
 .benefitItem .icon {
     margin-right: 10px;
+    font-size: 20px;
+    color: #007bff;
+    /* Цвет иконок */
 }
 
 button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #007bff;
+    /* Основной цвет кнопки */
     color: white;
+    /* Цвет текста на кнопке */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
     background-color: #0056b3;
+    /* Цвет кнопки при наведении */
 }
