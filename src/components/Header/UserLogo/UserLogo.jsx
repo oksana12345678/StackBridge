@@ -11,9 +11,12 @@ import arrowup from "../../../Icons/arrow-up.svg";
 import { userLogoModal } from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
 import UserLogoPopUp from "../UserLogoPopUp/UserLogoPopUp";
+import { useRef } from "react";
 
 export const UserLogo = () => {
   // const userProfile = useSelector(selectUsers);
+  const buttonNode = useRef();
+
   const dispatch = useDispatch();
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
 
@@ -43,7 +46,11 @@ export const UserLogo = () => {
   // };
 
   return (
-    <div onClick={onClickOpenUserLogoModal} className={css.open}>
+    <div
+      onClick={onClickOpenUserLogoModal}
+      className={css.open}
+      ref={buttonNode}
+    >
       <button className={css.button} aria-label="User Logo">
         <p>david</p>
 
@@ -58,9 +65,7 @@ export const UserLogo = () => {
         </svg>
       </button>
 
-      {isUserLogoModalOpen && (
-        <UserLogoPopUp isModalOpen={isUserLogoModalOpen} />
-      )}
+      {isUserLogoModalOpen && <UserLogoPopUp />}
     </div>
   );
 };
