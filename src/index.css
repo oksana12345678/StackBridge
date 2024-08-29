@@ -16,7 +16,7 @@
   --font-weight-medium: 500;
   --font-weight-regular: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,6 +64,7 @@ h1 {
   font-family: var(--main-font);
   font-weight: var(--font-weight-bold);
 }
+
 button {
   font-family: var(--main-font);
   border-radius: 10px;
@@ -72,8 +73,8 @@ button {
   font-weight: var(--font-weight-medium);
   background-color: var(--bg-button-and-text-blue-color);
   cursor: pointer;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   transition: border-color 0.25s;
+  padding: 0;
 }
 
 button:focus,

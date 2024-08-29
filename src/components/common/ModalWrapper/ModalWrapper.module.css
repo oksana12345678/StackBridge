@@ -15,7 +15,6 @@
     max-width: 280px;
   }
 }
-/* А ШИРИНА ДЛЯ ІНШИХ ПЕРЕЛОМІВ БУДЕ ПО ІДЕї КОНТЕНТОМ УСЕРЕДИНІ СТВОРЮВАТИСЯ */
 
 .modal {
   position: relative;
@@ -24,22 +23,31 @@
   background-color: #ffffff;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .close-button {
   position: absolute;
   top: 24px;
   right: 12px;
-  width: 24px;
-  height: 24px;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   background-color: transparent;
   box-shadow: none;
+  outline: none;
+}
+
+.close-button:active {
+  outline: none;
 }
 
 .close-icon {
-  width: 12px;
-  height: 12px;
-  color: #407bff;
+  width: 24px;
+  height: 24px;
+  fill: var(--primary-blue-color);
+  stroke: var(--primary-blue-color);
 }

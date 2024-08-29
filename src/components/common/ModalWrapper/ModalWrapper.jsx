@@ -3,10 +3,10 @@ import css from "./ModalWrapper.module.css";
 
 Modal.setAppElement(document.getElementById("root"));
 
-const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
+const ModalWrapper = ({ isModalOpen, closeModal, children }) => {
   return (
     <Modal
-      isOpen={modalIsOpen}
+      isOpen={isModalOpen}
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
