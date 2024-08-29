@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { NavLink } from "react-router-dom";
 import { useId } from "react";
 import * as Yup from "yup";
 // import toast from "react-hot-toast";
@@ -75,7 +76,12 @@ export default function SignUpForm() {
           </div>
         </Form>
       </Formik>
-      <p className={css.p}>Sign in</p>
+      <nav className={css.nav}>
+        <NavLink to="/signin" className={css.link}>
+          Sign in
+        </NavLink>
+      </nav>
+
     </div>
   );
 }

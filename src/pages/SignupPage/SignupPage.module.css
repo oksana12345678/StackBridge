@@ -1,33 +1,36 @@
 .div {
   display: flex;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  
+ background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
 }
+
+
 
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
   .div {
     width: 320px;
-    /* background-image: ("../../Images/signIn-signUp/backgr_signup_750.png");
-    background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); */
+  background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
+
   }
 }
 /* tablet 750**************************** */
 @media screen and (min-width: 768px) {
-  .container {
+  .div {
     width: 768px;
-    /* background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); */
+  background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
   }
 }
 /* note 1440 **********************************/
 @media screen and (min-width: 1440px) {
-  .container {
+  .div{
     width: 1440px;
     align-items: right;
     justify-content: right;
-    /* background-image: ("../../Images/signIn-signUp/Background_auth-1440.png"); */
+   background-image: ("../../Images/signIn-signUp/Background_auth-1440.png"); 
   }
 }
 
