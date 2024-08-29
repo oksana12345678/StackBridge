@@ -1,6 +1,5 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import css from "./UserLogoPopUp.module.css";
-import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
@@ -11,21 +10,31 @@ const UserLogoPopUp = () => {
 
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
 
-  const closeAllModal = () => {
-    dispatch(closeModal());
-  };
+  useEffect(() => {
+    const closeAllModal = () => {
+      dispatch(closeModal());
+    };
+    const handleClickOutside = (event) => {
+      if (node.current && !node.current.contains(event.target)) {
+        closeAllModal();
+      }
+    };
+
+    if (isUserLogoModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isUserLogoModalOpen, dispatch]);
 
   return (
-    <Modal
-      isOpen={isUserLogoModalOpen}
-      onRequestClose={closeAllModal}
-      shouldCloseOnOverlayClick={true}
-      ariaHideApp={false}
-      className={css.modal}
-      overlayClassName={css.backdrop}
-    >
-      <div className={css.LogoModal} ref={node}>
-        <ul className={css.list}>
+    <div className={css.backdrop}>
+      {isUserLogoModalOpen && (
+        <ul className={css.list} ref={node}>
           <li>
             <button className={css.LogoModalBtn}>
               <svg
@@ -67,8 +76,8 @@ const UserLogoPopUp = () => {
             </button>
           </li>
         </ul>
-      </div>
-    </Modal>
+      )}
+    </div>
   );
 };
 
