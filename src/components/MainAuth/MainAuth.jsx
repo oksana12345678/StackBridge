@@ -1,9 +1,9 @@
-import s from "./MainAut.module.css";
+import css from "./MainAuth.module.css";
 
 const MainAuth = ({ children }) => {
   return (
     <main>
-      <section className={s.sectionMain}>
+      <section className={css.sectionMain}>
         <div className="container">{children}</div>
       </section>
     </main>

@@ -28,7 +28,7 @@ function App() {
           <Route
             path="/signin"
             element={
-              <RestrictedRoute redirectTo="/home" component={SigninPage} />
+              <RestrictedRoute redirectTo="/home" component={<SigninPage/>} />
             }
           />
         </Route>
