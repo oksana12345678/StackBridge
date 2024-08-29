@@ -1,4 +1,4 @@
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './WaterConsumptionTracker.module.css';
 import CalendarIcon from '../../Images/welcome-page/Calendar.svg';
 import StatsIcon from '../../Images/welcome-page/Statistics.svg';
@@ -7,11 +7,11 @@ import SettingsIcon from '../../Images/welcome-page/Setting.svg';
 
 
 const WaterConsumptionTracker = () => {
-  // const history = useHistory();
+  const navigate = useNavigate();
 
-  // const handleTryTrackerClick = () => {
-  //   history.push('/signup');
-  // };
+  const handleTryTrackerClick = () => {
+      navigate('/signup');
+  };
 
   return (
     <div className={styles.trackerWelcomeContainer}>
@@ -32,7 +32,7 @@ const WaterConsumptionTracker = () => {
           <span>Personal rate setting</span>
         </div>
       </div>
-      <button>Try tracker</button>
+      <button onClick={handleTryTrackerClick}>Try tracker</button>
     </div>
   );
 };

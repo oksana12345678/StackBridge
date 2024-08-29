@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin: 0 auto;
 }
 
@@ -36,12 +36,12 @@
     flex-basis: 48%;
     flex: 1;
     margin-right: 20px;
-    max-width: 48%;
+    max-width: 494px;
 }
 
 .whyDrinkSection {
     flex: 1;
     margin-left: 20px;
-    max-width: 48%;
+    max-width: 439px;
 }
 

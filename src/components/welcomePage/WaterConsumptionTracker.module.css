@@ -58,7 +58,7 @@
     color: var(--primary-black-color);
 }
 
-/* button {
+ button {
     width: 100%;
     max-width: 384px;
     height: 44px;
@@ -79,4 +79,4 @@
 
 button:hover {
     background-color: var(--orange-accent-color);
-} */
+} 
