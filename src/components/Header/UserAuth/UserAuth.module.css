@@ -1,0 +1,36 @@
+.link {
+  position: relative;
+  font-size: 16px;
+  line-height: calc(20 / 16);
+  color: var(--primary-blue-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link:hover {
+  color: var(--orange-accent-color);
+  transition: color 0.3s ease;
+}
+.link:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--orange-accent-color);
+  transition: width 0.3s ease;
+}
+.link:hover:before {
+  width: 60%;
+}
+
+svg {
+  margin-left: 8px;
+  width: 28px;
+  height: 28px;
+  fill: var(--primary-white-color);
+  stroke: var(--primary-black-color);
+}

@@ -18,18 +18,51 @@ const NotFoundPage = lazy(() =>
   import("./pages/NotFoundPage/NotFoundPage.jsx")
 );
 
+// import { useState, lazy, Suspense, useEffect } from "react";
+// import RestrictedRoute from "./RestrictedRoute.jsx";
+// const SignUpPage = lazy(() => import("./pages/SignupPage/SignupPage"));
+
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { getCurrentUserInfo } from "./redux/service/user/getCurrentInfo/fetchCurrentUserData";
+
+
 function App() {
-  const dispatch = useDispatch();
 
-  const isRefreshing = useSelector(selectIsRefreshing);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
 
-  if (isRefreshing) return <Loader />;
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const getUserInfo = await dispatch(getCurrentUserInfo()).unwrap();
+  //       console.log(getUserInfo);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchUserInfo();
+  // }, [dispatch]);
+
 
   return (
+
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route path="/welcome" />
+        <Route path="/home" />
+        <Route path="/signup" element={<SignUpPage />} />
+
+        {/* <Route
+          path="/signup"
+          element={
+            <RestrictedRoute component={<SignUpPage />} redirectTo="/" />
+          }
+        /> */}
+        <Route path="/signin" />
+      </Route>
+    </Routes>
+
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
@@ -64,6 +97,7 @@ function App() {
         </Routes>
       </Suspense>
     </>
+
   );
 }
 
