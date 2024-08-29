@@ -1,9 +1,9 @@
-import { useEffect } from "react";
 import Modal from "react-modal";
 import css from "./ModalWrapper.module.css";
 import clsx from "clsx";
 
 Modal.setAppElement(document.getElementById("root"));
+
 
 const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLogout=false, children }) => {
   useEffect(() => {
@@ -17,9 +17,10 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
     };
   }, [modalIsOpen]);
 
+
   return (
     <Modal
-      isOpen={modalIsOpen}
+      isOpen={isModalOpen}
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
@@ -29,6 +30,7 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
 
     >
       {children}
+
 
       <button className={clsx(css["close-button"],buttonClassLogout && css["button-class-logout"])} onClick={closeModal}>
         {/* ЦЕ ЧОМУСЬ НЕ ПРАЦЮЄ, ТОМУ ПОКИ ВАРІНТ НИЖЧЕ */}
@@ -50,6 +52,7 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
           />
         </svg>
       </button>
+
     </Modal>
   );
 };

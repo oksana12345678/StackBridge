@@ -1,13 +1,12 @@
-import { RouterLink, HeaderIcon } from './UserAuth.styled';
-import user from '../../../Icons/user_outline.svg';
+import css from "./UserAuth.module.css";
+import user from "../../../Icons/user_outline.svg";
+import { Link } from "react-router-dom";
 
 export const UserAuth = () => (
-  <RouterLink to="/login">
+  <Link className={css.link} to="/login">
     Sign in
-    <HeaderIcon>
-      <svg>
-        <use href={user + '#icon-outline'}></use>
-      </svg>
-    </HeaderIcon>
-  </RouterLink>
+    <svg>
+      <use href={user + "#icon-outline"}></use>
+    </svg>
+  </Link>
 );
