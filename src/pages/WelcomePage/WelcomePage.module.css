@@ -1,17 +1,81 @@
+/* Базові стилі для мобільних пристроїв (320px і вище) */
 .welcomeContainer {
     display: flex;
-    flex-direction:column ;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
     background-color: transparent;
     min-height: 100vh;
     margin: 0 auto;
-    margin-top: 49px;
-    max-width: 1014px;
+    margin-top: 20px;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+    /* Максимальна ширина 100% для мобільних пристроїв */
 }
 
 .backgroundElement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('src/Images/welcome-page/Mobile.png') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+.welcomeContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+}
+
+.trackerSection,
+.whyDrinkSection {
+    flex-basis: 100%;
+    flex: none;
+    margin: 0 0 16px 0;
+    width: 100%;
+}
+
+/* Перелом 768px і вище (планшети) */
+@media screen and (min-width: 768px) {
+    .welcomeContainer {
+        margin-top: 40px;
+        padding: 30px;
+    }
+
+    .welcomeContent {
+        flex-direction: row;
+        /* Ряд для планшетів і вище */
+        align-items: flex-start;
+    }
+
+    .trackerSection,
+    .whyDrinkSection {
+        flex-basis: 48%;
+        flex: 1;
+        margin: 0 10px;
+        max-width: 48%;
+        /* Максимальна ширина 48% */
+    }
+}
+
+/* Перелом 1440px і вище (десктопи) */
+@media screen and (min-width: 1440px) {
+    .welcomeContainer {
+        margin-top: 49px;
+        padding: 20px;
+        max-width: 1014px;
+    }
+
+    .backgroundElement {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,26 +86,20 @@
     z-index: -1;
 }
 
-.welcomeContent {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 0 auto;
-}
+    .welcomeContent {
+        max-width: 1200px;
+    }
 
-.trackerSection {
-    flex-basis: 48%;
-    flex: 1;
-    margin-right: 20px;
-    max-width: 494px;
-}
+    .trackerSection {
+        flex-basis: 48%;
+        flex: 1;
+        margin-right: 20px;
+        max-width: 494px;
+    }
 
-.whyDrinkSection {
-    flex: 1;
-    margin-left: 20px;
-    max-width: 439px;
+    .whyDrinkSection {
+        flex: 1;
+        margin-left: 20px;
+        max-width: 439px;
+    }
 }
-
