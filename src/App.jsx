@@ -1,24 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import { lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useAuth } from "./hooks/userAuth.js";
-import { refreshUser } from "./redux/auth/operations.js";
-import RestrictedRoute from "./components/Route/RegisteredRoute/RegisteredRoute.jsx";
-import Loader from "./components/Loader/Loader.jsx";
 
-const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage.jsx"));
+// import { useState, lazy, Suspense, useEffect } from "react";
+// import RestrictedRoute from "./RestrictedRoute.jsx";
+// const SignUpPage = lazy(() => import("./pages/SignupPage/SignupPage"));
+
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { getCurrentUserInfo } from "./redux/service/user/getCurrentInfo/fetchCurrentUserData";
+
+
+function App() {
 
 function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-  return isRefreshing ? (
-    <Loader />
-  ) : (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -34,6 +31,7 @@ function App() {
         </Route>
       </Routes>
     </>
+
   );
 }
 
