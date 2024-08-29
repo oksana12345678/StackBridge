@@ -1,7 +1,24 @@
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { getCurrentUserInfo } from "./redux/service/user/getCurrentInfo/fetchCurrentUserData";
 
 function App() {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const getUserInfo = await dispatch(getCurrentUserInfo()).unwrap();
+  //       console.log(getUserInfo);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchUserInfo();
+  // }, [dispatch]);
+
   return (
     <>
       <Routes>
