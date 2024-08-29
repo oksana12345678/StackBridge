@@ -51,3 +51,8 @@
   fill: var(--primary-blue-color);
   stroke: var(--primary-blue-color);
 }
+
+.button-class-logout{
+  top: 36px;
+  right: 24px;
+}

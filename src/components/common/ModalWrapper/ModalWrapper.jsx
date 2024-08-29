@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import Modal from "react-modal";
 import css from "./ModalWrapper.module.css";
+import clsx from "clsx";
 
 Modal.setAppElement(document.getElementById("root"));
 
-const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
+const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLogout=false, children }) => {
   useEffect(() => {
     if (modalIsOpen) {
       document.body.classList.add(css['no-scroll']);
@@ -22,12 +23,14 @@ const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
+      style={customStyles}
       className={css.modal}
       overlayClassName={css.backdrop}
+
     >
       {children}
 
-      <button className={css["close-button"]} onClick={closeModal}>
+      <button className={clsx(css["close-button"],buttonClassLogout && css["button-class-logout"])} onClick={closeModal}>
         {/* ЦЕ ЧОМУСЬ НЕ ПРАЦЮЄ, ТОМУ ПОКИ ВАРІНТ НИЖЧЕ */}
         {/* <svg className={css["close-icon"]} width="24" height="24">
           <use href="../../../Icons/sprite.svg#close-cross"></use>
