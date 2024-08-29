@@ -1,32 +1,35 @@
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-// import { useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import { getCurrentUserInfo } from "./redux/service/user/getCurrentInfo/fetchCurrentUserData";
+import {  useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useAuth } from "./hooks/userAuth.js";
+import { refreshUser } from "./redux/auth/operations.js";
+import RestrictedRoute from "./components/Route/RegisteredRoute/RegisteredRoute.jsx";
+import Loader from "./components/Loader/Loader.jsx";
+import SigninPage from "./pages/SignInPage/SignInPage.jsx";
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-  // useEffect(() => {
-  //   const fetchUserInfo = async () => {
-  //     try {
-  //       const getUserInfo = await dispatch(getCurrentUserInfo()).unwrap();
-  //       console.log(getUserInfo);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchUserInfo();
-  // }, [dispatch]);
-
-  return (
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/welcome" />
           <Route path="/home" />
           <Route path="/signup" />
-          <Route path="/signin" />
+          <Route
+            path="/signin"
+            element={
+              <RestrictedRoute redirectTo="/home" component={<SigninPage />} />
+            }
+          />
         </Route>
       </Routes>
     </>

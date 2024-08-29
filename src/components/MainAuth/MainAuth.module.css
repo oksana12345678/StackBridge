@@ -1,0 +1,38 @@
+.sectionMain {
+    padding-top: 24px;
+    padding-bottom: 196px;
+    background-image: image-set(
+      url(../../Images/signIn-signUp/back/mobile/back_mobile@1x.png) 1x,
+      url(../../images/signIn-signUp/back/mobile/back_mobile@2x.png) 2x
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .sectionMain {
+      padding-top: 40px;
+      padding-bottom: 172px;
+      background-image: image-set(
+        url(../../images/signIn-signUp/back/tablet/back_tablet@1x.png) 1x,
+        url(../../images/signIn-signUp/back/tablet/back_tablet@2x.png) 2x
+      );
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    .sectionMain {
+      padding-top: 108px;
+      padding-bottom: 196px;
+      background-image: image-set(
+        url(../../images/signIn-signUp/back/desktop/back_desktop@1x.png) 1x,
+        url(../../images/signIn-signUp/back/desktop/back_desktop@2x.png) 2x
+      );
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: top;
+    }
+  }
