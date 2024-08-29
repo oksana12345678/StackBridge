@@ -26,15 +26,7 @@ const NotFoundPage = lazy(() =>
 // import { useEffect } from "react";
 // import { getCurrentUserInfo } from "./redux/service/user/getCurrentInfo/fetchCurrentUserData";
 
-
 function App() {
-
-
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
-    
-
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -49,25 +41,7 @@ function App() {
   //   fetchUserInfo();
   // }, [dispatch]);
 
-
   return (
-
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route path="/welcome" />
-        <Route path="/home" />
-        <Route path="/signup" element={<SignUpPage />} />
-
-        {/* <Route
-          path="/signup"
-          element={
-            <RestrictedRoute component={<SignUpPage />} redirectTo="/" />
-          }
-        /> */}
-        <Route path="/signin" />
-      </Route>
-    </Routes>
-
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
@@ -76,34 +50,32 @@ function App() {
             <Route
               path="/signup"
               element={
-                <RestrictedRoute>
-                  <SignupPage />
-                </RestrictedRoute>
+                <RestrictedRoute
+                  redirectTo="/home"
+                  component={<SignupPage />}
+                />
               }
             />
             <Route
               path="/signin"
               element={
-                <RestrictedRoute>
-                  <SigninPage />
-                </RestrictedRoute>
+                <RestrictedRoute
+                  redirectTo="/home"
+                  component={<SigninPage />}
+                />
               }
             />
             <Route
               path="/home"
               element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
+                <PrivateRoute redirectTo="/signin" component={<HomePage />} />
               }
             />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </Suspense>
->
     </>
-
   );
 }
 
