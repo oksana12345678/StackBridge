@@ -30,6 +30,11 @@ const NotFoundPage = lazy(() =>
 function App() {
 
 
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+    
+
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -96,6 +101,7 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
+>
     </>
 
   );
