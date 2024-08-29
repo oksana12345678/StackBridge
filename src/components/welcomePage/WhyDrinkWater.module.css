@@ -36,5 +36,10 @@
     position: absolute;
     left: 0;
     color: var(--primary-blue-color);
-    font-size: 20px;
+    font-size: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%
 }

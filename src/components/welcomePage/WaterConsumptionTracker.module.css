@@ -45,11 +45,17 @@
     gap: 16px;
 }
 
-.benefitItem .icon {
-    margin-right: 10px;
-    font-size: 20px;
-    color: #007bff;
-    /* Цвет иконок */
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.benefitItem span {
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-black-color);
 }
 
 /* button {
