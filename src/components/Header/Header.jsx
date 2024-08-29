@@ -1,13 +1,19 @@
-import { HeaderContainer } from './Header.styled';
-import { HeaderLogo } from './HeaderLogo/HeaderLogo';
-import { UserAuth } from './UserAuth/UserAuth';
-import { UserLogo } from './UserLogo/UserLogo';
+import { useSelector } from "react-redux";
+import css from "./Header.module.css";
+import { HeaderLogo } from "./HeaderLogo/HeaderLogo";
+import { UserAuth } from "./UserAuth/UserAuth";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { UserLogo } from "./UserLogo/UserLogo";
 
-export const Header = ({ isAuthenticated }) => {
+const Header = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <HeaderContainer className="container">
-      <HeaderLogo isAuthenticated={isAuthenticated} />
-      {isAuthenticated ? <UserLogo /> : <UserAuth />}
-    </HeaderContainer>
+    <header className={css.header}>
+      <div className={css.container}>
+        <HeaderLogo />
+        {isLoggedIn ? <UserLogo /> : <UserAuth />}
+      </div>
+    </header>
   );
 };
+export default Header;
