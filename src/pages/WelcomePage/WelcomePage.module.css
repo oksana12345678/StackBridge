@@ -6,8 +6,9 @@
     padding: 20px;
     background-color: transparent;
     min-height: 100vh;
-    width: 100%;
     margin: 0 auto;
+    margin-top: 49px;
+    max-width: 1014px;
 }
 
 .backgroundElement {
@@ -27,15 +28,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .trackerSection {
+    flex-basis: 48%;
     flex: 1;
-    margin-right: 16px;
+    margin-right: 20px;
+    max-width: 48%;
 }
 
 .whyDrinkSection {
     flex: 1;
-    margin-left: 16px;
+    margin-left: 20px;
+    max-width: 48%;
 }
 

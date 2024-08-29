@@ -1,6 +1,7 @@
 // import { useHistory } from 'react-router-dom';
 import styles from './WaterConsumptionTracker.module.css';
 
+
 const WaterConsumptionTracker = () => {
   // const history = useHistory();
 

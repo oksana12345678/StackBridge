@@ -14,7 +14,6 @@ const WelcomePage = () => {
           <WhyDrinkWater />
         </div>
       </div>
-      <img className={styles.backgroundElement} src="path_to_your_background_image" alt="Background" />
     </div>
   );
 };

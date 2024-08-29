@@ -7,7 +7,7 @@
     flex-basis: 48%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .whyDrinkWater h3 {
@@ -37,5 +37,4 @@
     left: 0;
     color: var(--primary-blue-color);
     font-size: 20px;
-    line-height: 1;
 }

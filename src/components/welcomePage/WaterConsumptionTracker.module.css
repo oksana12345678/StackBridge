@@ -1,11 +1,10 @@
 .trackerWelcomeContainer {
     padding: 20px;
-    background-color: var(--primary-white-color);
+    background-color: transparent;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     color: var(--primary-black-color);
     flex-basis: 48%;
     display: flex;
@@ -19,7 +18,7 @@
 }
 
 .trackerWelcomeSecondTitle{
-    padding-bottom: 16px;
+    padding-bottom: 24px;
     font-weight: var(--font-weight-regular);
 }
 
@@ -28,8 +27,8 @@
 }
 
 .trackerBenefits {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 12px;
+    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -44,7 +43,6 @@
     font-size: 16px;
     color: #2b2b2b;
     gap: 16px;
-    /* Основной текстовый цвет */
 }
 
 .benefitItem .icon {
@@ -54,20 +52,25 @@
     /* Цвет иконок */
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    /* Основной цвет кнопки */
+/* button {
+    width: 100%;
+    max-width: 384px;
+    height: 44px;
+    background-color: var(--primary-blue-color);
+    border-radius: 8px;
     color: white;
-    /* Цвет текста на кнопке */
-    border: none;
-    border-radius: 5px;
+    text-align: center;
+    line-height: 44px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
-    /* Цвет кнопки при наведении */
-}
+    background-color: var(--orange-accent-color);
+} */
