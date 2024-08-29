@@ -3,10 +3,9 @@
     flex-direction:column ;
     justify-content: space-between;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
     background-color: var(--primary-white-color);
-    margin: 0 auto;
-    width: 1014px;
+    min-height: 100vh;
 }
 
 .welcomeContent {
