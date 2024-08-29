@@ -1,3 +1,4 @@
+
 // import clsx from "clsx";
 // import Image from "next/image";
 import SignUpForm from "../../components/SignUpForm/SignUpForm.jsx";
@@ -11,3 +12,4 @@ export default function RegisterPage() {
     </div>
   );
 }
+
