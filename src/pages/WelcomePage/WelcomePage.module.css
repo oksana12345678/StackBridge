@@ -6,6 +6,8 @@
     padding: 20px;
     background-color: var(--primary-white-color);
     min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .welcomeContent {
