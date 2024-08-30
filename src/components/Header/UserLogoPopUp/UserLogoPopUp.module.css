@@ -2,16 +2,32 @@
   .backdrop {
     position: absolute;
     width: 118px;
-    height: 88px;
+    padding: 16px;
     top: 7%;
     right: 3%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     background-color: var(--primary-white-color);
-
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .isOpen {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  .isClosing {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
   }
   .list {
     display: flex;
@@ -19,7 +35,8 @@
     align-items: flex-start;
     gap: 16px;
   }
-  .icon {
+  .icons {
+    color: var(--primary-blue-color);
     margin: 0;
     margin-right: 8px;
   }
@@ -32,7 +49,7 @@
     background-color: white;
     border: none;
     cursor: pointer;
-    color: #407bff;
+    color: var(--primary-blue-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

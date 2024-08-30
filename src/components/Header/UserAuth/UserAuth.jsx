@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export const UserAuth = () => (
   <NavLink className={css.link} to="/signin">
     Sign in
-    <svg>
+    <svg className={css.icon}>
       <use href={user + "#icon-outline"}></use>
     </svg>
   </NavLink>
