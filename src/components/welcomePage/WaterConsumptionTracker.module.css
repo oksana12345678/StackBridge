@@ -15,15 +15,18 @@
 .trackerWelcomeTitle{
     padding-bottom: 16px;
     font-weight: var(--font-weight-bold);
+    line-height: 1.14;
 }
 
 .trackerWelcomeSecondTitle{
     padding-bottom: 24px;
     font-weight: var(--font-weight-regular);
+    line-height: 1.25;
 }
 
 .trackerWelcomeThirdTitle{
     font-weight: var(--font-weight-medium);
+    line-height: 1.11;
 }
 
 .trackerBenefits {
@@ -39,42 +42,39 @@
 .benefitItem {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     font-size: 16px;
     color: #2b2b2b;
-    gap: 16px;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    color: var(--primary-black-color);
+    line-height: 1.25;
+
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
 }
 
-.benefitItem span {
-    font-size: 18px;
-    font-weight: var(--font-weight-medium);
-    color: var(--primary-black-color);
-}
-
- button {
+.trackerWelcomeContainer button {
     width: 100%;
-    max-width: 384px;
-    height: 44px;
-    background-color: var(--primary-blue-color);
-    border-radius: 8px;
-    color: white;
+    max-width: 280px;
+    height: 36px;
+    background: var(--primary-blue-color);
+    border-radius: 10px;
+    color: var(--primary-white-color);
     text-align: center;
     line-height: 44px;
-    font-weight: bold;
-    margin-top: 20px;
-    padding: 10px 30px;
+    font-weight: var(--font-weight-medium);
+    padding: 8px 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 }
 
 button:hover {
