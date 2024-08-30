@@ -12,7 +12,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.23;
-  color: #2F2F2F;
+  color: #2f2f2f;
 }
 
 .signinPageForm {
@@ -38,7 +38,7 @@ input {
   border-radius: 6px;
   padding: 12px 10px;
   border: 1px solid #d7e3ff;
-  
+  outline: none;
 }
 
 input:hover,
@@ -48,6 +48,8 @@ input:active {
   border-radius: 6px;
   padding: 12px 10px;
   background-color: transparent;
+  color: #407bff;
+  
 }
 
 input::placeholder {
