@@ -4,7 +4,11 @@ import { signinInputs } from "./SignInFormData.js";
 import { useForm } from "react-hook-form";
 
 const SignInForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -35,8 +39,6 @@ const SignInForm = () => {
           Sign up
         </Link>
       </form>
-
-      <div className={css.signinPageBottle}></div>
     </div>
   );
 };

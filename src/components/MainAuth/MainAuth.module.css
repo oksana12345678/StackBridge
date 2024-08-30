@@ -1,70 +1,109 @@
-
-.sectionMain {
-  padding-top: 24px;
-  padding-bottom: 196px;
-  background-image: image-set(
-    url(../../Images/signIn-signUp/back/mobile/back_mobile@1x.png) 1x,
-    url(../../images/signIn-signUp/back/mobile/back_mobile@2x.png) 2x
-  );
+.bottle {
+  background-image: url("../../Images/signIn-signUp/bottle/mobile/bottle_mobile@1x.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  width: 280px;
+  height: 210px;
+  left: 20px;
+  top: 450px;
+  z-index: -1;
 }
 
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .bottle {
+    background-image: url("../../Images/signIn-signUp/bottle/mobile/bottle_mobile@2x.png");
+  }
 }
 
-.container {
-  max-width: 320px;
-  padding-left: 20px;
-  padding-right: 20px;
+.bubbles {
+  background-image: url("../../Images/signIn-signUp/back/mobile/back_mobile@1x.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  width: 327.22px;
+  height: 841.7px;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
 
-/* img {
-  display: block;
-  max-width: 100%;
-} */
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .bubbles {
+    background-image: url("../../Images/signIn-signUp/back/mobile/back_mobile@2x.png");
+  }
+}
 
 @media screen and (min-width: 768px) {
-  .sectionMain {
-    padding-top: 40px;
-    padding-bottom: 172px;
-    background-image: image-set(
-      url(../../images/signIn-signUp/back/tablet/back_tablet@1x.png) 1x,
-      url(../../images/signIn-signUp/back/tablet/back_tablet@2x.png) 2x
-    );
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+  .bottle {
+    background-image: url("../../Images/signIn-signUp/bottle/tablet/bottle_tablet@1x.png");
+    width: 736px;
+    height: 548px;
+    left: 112px;
+    top: 116px;
   }
 
-  .container {
-    max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bottle {
+      background-image: url("../../Images/signIn-signUp/bottle/tablet/bottle_tablet@2x.png");
+    }
+  }
+
+  .bubbles {
+    background-image: url("../../Images/signIn-signUp/back/tablet/back_tablet@1x.png");
+    width: 768px;
+    height: 680px;
+    left: 0;
+    top: 0;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bubbles {
+      background-image: url("../../Images/signIn-signUp/back/tablet/back_tablet@2x.png");
+    }
   }
 }
+
 @media screen and (min-width: 1440px) {
-  .sectionMain {
-    padding-top: 215px;
-    padding-bottom: 196px;
-    background-image: image-set(
-      url(../../images/signIn-signUp/back/desktop/back_desktop@1x.png) 1x,
-      url(../../images/signIn-signUp/back/desktop/back_desktop@2x.png) 2x
-    );
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top;
+  .bottle {
+    background-image: url("../../Images/signIn-signUp/bottle/desktop/bottle_desktop@1x.png");
+    width: 916px;
+    height: 680px;
+    left: -51px;
+    top: 80px;
   }
 
-  .container {
-    max-width: 1440px;
-    padding-left: 90px;
-    padding-right: 90px;
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bottle {
+      background-image: url("../../Images/signIn-signUp/bottle/desktop/bottle_desktop@2x.png");
+    }
+  }
+
+  .bubbles {
+    background-image: url("../../Images/signIn-signUp/back/desktop/back_desktop@1x.png");
+    width: 1404px;
+    height: 582px;
+    left: 18px;
+    top: 109px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bubbles {
+      background-image: url("../../Images/signIn-signUp/back/desktop/back_desktop@2x.png");
+    }
   }
 }

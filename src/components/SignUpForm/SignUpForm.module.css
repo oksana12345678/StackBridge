@@ -1,5 +1,5 @@
 .form_box {
-  color: #2F2F2F;
+  color: #2f2f2f;
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -11,13 +11,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.23;
-  color: #2F2F2F;
+  color: #2f2f2f;
 }
 .link {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
-  color: #407BFF;
+  color: #407bff;
 }
 .form {
   background-color: transparent;
@@ -52,7 +52,7 @@
   box-shadow: none;
 }
 .err {
-  border-color: #EF5050;
+  border-color: #ef5050;
 }
 
 .fieldStyle {
@@ -74,12 +74,12 @@
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   padding: 12px 10px;
-    background-color: transparent;
+  background-color: transparent;
 }
 
-.field::placeholder{
+.field::placeholder {
   color: #d7e3ff;
-background-color: #ffffff;
+  background-color: #ffffff;
 }
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
@@ -89,12 +89,12 @@ background-color: #ffffff;
     margin-right: auto;
     margin-left: auto;
     justify-content: center;
-    align-items:left
+    align-items: left;
   }
   .field {
     width: 100%;
   }
-  .btn{
+  .btn {
     width: 100%;
   }
 }
