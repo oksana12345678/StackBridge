@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
+    "clx": "^1.0.0",
     "formik": "^2.4.6",
     "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",
