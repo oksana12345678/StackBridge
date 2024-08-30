@@ -3,43 +3,59 @@ import { NavLink } from "react-router-dom";
 import { useId } from "react";
 import * as Yup from "yup";
 // import toast from "react-hot-toast";
-// import { useDispatch } from "react-redux";
-// import { register } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
+import fieldEye from "./fieldEye";
 
 export default function SignUpForm() {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   const validationControl = Yup.object().shape({
-//     email: Yup.string()
-//       .min(3, "Too Short!")
-//       .max(50, "Too Long!")
-//       .required("Required"),
-//     password: Yup.string()
-//       .min(5, "Too short")
-//       .max(18, "Too long")
-//       .required("Required"),
-//   });
+  //   const validationControl = Yup.object().shape({
+  //     email: Yup.string()
+  //       .min(3, "Too Short!")
+  //       .max(50, "Too Long!")
+  //       .required("Required"),
+  //     password: Yup.string()
+  //       .min(5, "Too short")
+  //       .max(18, "Too long")
+  //       .required("Required"),
+  //   });
 
-//   const handleSubmit = (values, actions) => {
-//     dispatch(register(values))
-//       .unwrap()
-//       .then((data) => console.log(data))
-//       .catch((err) => console.log(err));
-
-//     actions.resetForm();
-//   };
+  const handleSubmit = (values, actions) => {
+    // dispatch(register(values))
+    //   .unwrap()
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
+    const { email, password } = values;
+    dispatch(
+      register({
+        email,
+        password,
+       
+      })
+    );
+    actions.resetForm();
+    
+  };
 
   return (
     <div className={css.form_box}>
       <h2 className={css.title}>Sign Up</h2>
       <Formik
         initialValues={{
-          name: "",
           email: "",
           password: "",
+          repeatPassword: "",
         }}
-        //   onSubmit={handleSubmit}
+        validate={(values) => {
+          const errors = {};
+          if (values.password !== values.repeatPassword) {
+            errors.repeatPassword = "Password don't match";
+          }
+          return errors;
+        }}
+        onSubmit={(handleSubmit)}
       >
         <Form className={css.form} autoComplete="off">
           <div className={css.fialdStyle}>
@@ -61,15 +77,16 @@ export default function SignUpForm() {
                 placeholder="Password"
               />
             </label>
-            <label className={css.label}>
-              Repeat password
+            <div>
+              <label className={css.label}>Repeat password</label>
               <Field
                 type="password"
-                name="passwordRepeat"
+                name="repeatPassword"
                 placeholder="Repeat password"
                 className={css.field}
               />
-            </label>
+              <ErrorMessage name="repeatPassword" component="span" />
+            </div>
             <button type="submit" className={css.btn}>
               Sign Up
             </button>
@@ -81,7 +98,6 @@ export default function SignUpForm() {
           Sign in
         </NavLink>
       </nav>
-
     </div>
   );
 }

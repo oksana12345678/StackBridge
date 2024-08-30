@@ -3,34 +3,53 @@
   /* background-repeat: no-repeat;
   background-position: center;
   background-size: cover; */
-  
- background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
+  background-repeat: no-repeat;
+margin-left: auto;
+margin-right: auto;
+    justify-content: center;
+    /* align-items: center; */
 }
 
-
+    .container{
+display: flex;
+  }
 
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
   .div {
-    width: 320px;
-  background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
+    min-width: 280px;
+  background-image:  url("../../../public/Images/SIgnUp-SignIn/backgrnd350.png"); 
+  background-position: center 64px;
+ 
+  }
+  .container{
 
   }
 }
 /* tablet 750**************************** */
 @media screen and (min-width: 768px) {
-  .div {
-    width: 768px;
-  background-image: ("../../Images/signIn-signUp/backgr_signup_750.png"); 
+  .div {    
+  background-image:  url("../../../public/Images/SIgnUp-SignIn/Backgrnd750.png"); 
+    background-position-y: 26px;
+
+background-position-x: center;
+object-fit: none;
+
+  }
+    .container{      
+    justify-content: left;
+    width: 704px;
   }
 }
 /* note 1440 **********************************/
 @media screen and (min-width: 1440px) {
   .div{
-    width: 1440px;
-    align-items: right;
+   background-image:  url("../../../public/Images/SIgnUp-SignIn/Backgrnd1440.png"); 
+  }
+      .container{   
+        width: 1216px;   
     justify-content: right;
-   background-image: ("../../Images/signIn-signUp/Background_auth-1440.png"); 
+    width: 1216px;
   }
 }
 
