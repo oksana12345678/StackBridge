@@ -105,8 +105,8 @@ input::placeholder {
   width: 100%;
   height: 210px;
   background-image: image-set(
-    url(../../../Images/signIn-signUp/bottle/mobile/bottle_mobile@1x.png) 1x,
-    url(../../../Images/signIn-signUp/bottle/mobile/bottle_mobile@2x.png) 2x
+    url(../../Images/signIn-signUp/bottle/mobile/bottle_mobile@1x.png) 1x,
+    url(../../Images/signIn-signUp/bottle/mobile/bottle_mobile@2x.png) 2x
   );
 
   background-repeat: no-repeat;
@@ -143,8 +143,8 @@ input::placeholder {
     width: 516px;
     height: 548px;
     background-image: image-set(
-      url(../../../Images/signIn-signUp/bottle/tablet/bottle_tablet@1x.png) 1x,
-      url(../../../Images/signIn-signUp/bottle/tablet/bottle_tablet@2x.png) 2x
+      url(../../Images/signIn-signUp/bottle/tablet/bottle_tablet@1x.png) 1x,
+      url(../../Images/signIn-signUp/bottle/tablet/bottle_tablet@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-size: cover;
@@ -166,8 +166,8 @@ input::placeholder {
     width: 916px;
     height: 680px;
     background-image: image-set(
-      url(../../../Images/signIn-signUp/bottle/desktop/bottle_desktop@1x.png) 1x,
-      url(../../../Images/signIn-signUp/bottle/desktop/bottle_desktop@2x.png) 2x
+      url(../../Images/signIn-signUp/bottle/desktop/bottle_desktop@1x.png) 1x,
+      url(../../Images/signIn-signUp/bottle/desktop/bottle_desktop@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-size: cover;
