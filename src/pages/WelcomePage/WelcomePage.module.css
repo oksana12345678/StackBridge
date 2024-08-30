@@ -1,14 +1,13 @@
-/* Базові стилі для мобільних пристроїв (320px і вище) */
 .welcomeContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 20px ;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: transparent;
     min-height: 100vh;
     margin: 0 auto;
-    padding-top: 20px;
     max-width: 100%;
     min-height: 100vh;
     position: relative;
