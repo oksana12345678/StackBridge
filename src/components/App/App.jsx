@@ -33,7 +33,9 @@ function App() {
   }, [dispatch, token, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <b>
+      <Loader />
+    </b>
   ) : (
     <>
       <Suspense fallback={<Loader />}>
@@ -64,6 +66,7 @@ function App() {
                 <PrivateRoute redirectTo="/signin" component={<HomePage />} />
               }
             />
+
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
