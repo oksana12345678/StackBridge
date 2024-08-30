@@ -1,6 +1,14 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "engines": {
-    "node": ">=18.x"
-  }
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
 }
