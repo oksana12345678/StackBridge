@@ -6,7 +6,8 @@
   position: absolute;
   width: 280px;
   height: 210px;
-  left: 20px;
+  left: 50%;
+  transform: translate(-50%);
   top: 450px;
   z-index: -1;
 }
@@ -27,7 +28,8 @@
   position: absolute;
   width: 327.22px;
   height: 841.7px;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%);
   top: 0;
   z-index: -1;
 }
@@ -46,6 +48,7 @@
     width: 736px;
     height: 548px;
     left: 112px;
+    transform: translate(0);
     top: 116px;
   }
 
@@ -61,7 +64,6 @@
     background-image: url("../../Images/signIn-signUp/back/tablet/back_tablet@1x.png");
     width: 768px;
     height: 680px;
-    left: 0;
     top: 0;
   }
 
@@ -95,7 +97,6 @@
     background-image: url("../../Images/signIn-signUp/back/desktop/back_desktop@1x.png");
     width: 1404px;
     height: 582px;
-    left: 18px;
     top: 109px;
   }
 
