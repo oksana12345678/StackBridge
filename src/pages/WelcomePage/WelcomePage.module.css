@@ -46,10 +46,12 @@
         max-width: 100%;
         padding-left: 32px;
         padding-right: 32px;
+        padding-top: 104px;
     }
 
     .backgroundElement {
-    background: url('src/Images/welcome-page/Tablet.png') no-repeat center center;
+    background: url('src/Images/welcome-page/Tablet.png') no-repeat center top;
+    background-size: cover;
 }
 
     .welcomeContent {
@@ -61,14 +63,11 @@
     .whyDrinkSection {
         flex-basis: 48%;
         flex: 1;
-        margin: 0 10px;
-        max-width: 48%;
-        /* Максимальна ширина 48% */
     }
 }
 
 /* Перелом 1440px і вище (десктопи) */
-@media screen and (min-width: 1440px) {
+/* @media screen and (min-width: 1440px) {
     .welcomeContainer {
         margin-top: 49px;
         padding: 20px;
@@ -77,6 +76,7 @@
 
     .backgroundElement {
     background: url('src/Images/welcome-page/Desktop.png') no-repeat center center;
+
 }
 
     .welcomeContent {
@@ -95,4 +95,4 @@
         margin-left: 20px;
         max-width: 439px;
     }
-}
+} */

@@ -1,13 +1,11 @@
 .trackerWelcomeContainer {
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: var(--primary-black-color);
-    flex-basis: 48%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
+    flex-basis: 48%;
+    color: var(--primary-black-color);
+    background-color: transparent;
 }
 
 .trackerWelcomeTitle{
@@ -22,7 +20,6 @@
     padding-bottom: 24px;
     font-weight: var(--font-weight-regular);
     line-height: 1.25;
-    max-width: 197px;
 }
 
 .trackerWelcomeThirdTitle{
@@ -84,12 +81,35 @@ button:hover {
 
 @media screen and (min-width: 768px) {
 
-    .trackerWelcomeContainer{
-        padding: 0 16px;
-        max-width: 704px;
+    .trackerWelcomeContainer {
+        margin-bottom: 60px;
     }
+
     .trackerWelcomeTitle{
         font-size: 36px;
         line-height: 1.16;
+    }
+
+    .trackerWelcomeSecondTitle {
+        font-size: 26px;
+        line-height: 1.23;
+    }
+
+    .trackerBenefits{
+    flex-direction: row;
+    gap: 16px;
+    }
+
+    .benefitItem{
+        width: 224px;
+    }
+
+    .icon {
+    width: 40px;
+    height: 40px;
+    }
+
+    .trackerWelcomeContainer button{
+        max-width: 336px;
     }
 }
