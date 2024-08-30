@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import css from "./SignInForm.module.css";
-import { signinInputs } from "./SignInFormData";
+import { signinInputs } from "./SignInFormData.js";
 import { useForm } from "react-hook-form";
 
 const SignInForm = () => {
@@ -25,7 +25,7 @@ const SignInForm = () => {
           />
         ))}
 
-        <button className={css.signinPageButton} name="Signin" type="submit">
+        <button className={css.signinPageButton} type="submit">
           Sign In
         </button>
         <Link className={css.signinPageLink} to={"/forgot-password"}>

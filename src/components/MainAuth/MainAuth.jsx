@@ -4,7 +4,7 @@ const MainAuth = ({ children }) => {
   return (
     <main>
       <section className={css.sectionMain}>
-        <div className="container">{children}</div>
+        <div className={css.container}>{children}</div>
       </section>
     </main>
   );

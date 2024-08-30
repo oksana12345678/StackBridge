@@ -1,38 +1,70 @@
+
 .sectionMain {
-    padding-top: 24px;
-    padding-bottom: 196px;
+  padding-top: 24px;
+  padding-bottom: 196px;
+  background-image: image-set(
+    url(../../Images/signIn-signUp/back/mobile/back_mobile@1x.png) 1x,
+    url(../../images/signIn-signUp/back/mobile/back_mobile@2x.png) 2x
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.container {
+  max-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* img {
+  display: block;
+  max-width: 100%;
+} */
+
+@media screen and (min-width: 768px) {
+  .sectionMain {
+    padding-top: 40px;
+    padding-bottom: 172px;
     background-image: image-set(
-      url(../../Images/signIn-signUp/back/mobile/back_mobile@1x.png) 1x,
-      url(../../images/signIn-signUp/back/mobile/back_mobile@2x.png) 2x
+      url(../../images/signIn-signUp/back/tablet/back_tablet@1x.png) 1x,
+      url(../../images/signIn-signUp/back/tablet/back_tablet@2x.png) 2x
     );
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
   }
-  
-  @media screen and (min-width: 768px) {
-    .sectionMain {
-      padding-top: 40px;
-      padding-bottom: 172px;
-      background-image: image-set(
-        url(../../images/signIn-signUp/back/tablet/back_tablet@1x.png) 1x,
-        url(../../images/signIn-signUp/back/tablet/back_tablet@2x.png) 2x
-      );
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: top;
-    }
+
+  .container {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
-  @media screen and (min-width: 1440px) {
-    .sectionMain {
-      padding-top: 108px;
-      padding-bottom: 196px;
-      background-image: image-set(
-        url(../../images/signIn-signUp/back/desktop/back_desktop@1x.png) 1x,
-        url(../../images/signIn-signUp/back/desktop/back_desktop@2x.png) 2x
-      );
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: top;
-    }
+}
+@media screen and (min-width: 1440px) {
+  .sectionMain {
+    padding-top: 215px;
+    padding-bottom: 196px;
+    background-image: image-set(
+      url(../../images/signIn-signUp/back/desktop/back_desktop@1x.png) 1x,
+      url(../../images/signIn-signUp/back/desktop/back_desktop@2x.png) 2x
+    );
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
   }
+
+  .container {
+    max-width: 1440px;
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+}

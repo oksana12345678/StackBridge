@@ -12,6 +12,7 @@
   "dependencies": {
     "@mui/material": "^6.0.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "@rollup/rollup-win32-x64-msvc": "^4.21.2",
     "axios": "^1.7.5",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
