@@ -9,7 +9,6 @@
     min-height: 100vh;
     margin: 0 auto;
     max-width: 100%;
-    min-height: 100vh;
     position: relative;
 }
 
@@ -34,22 +33,19 @@
     width: 100%;
 }
 
-.trackerSection{
-    margin: 0 0 40px 0;
-}
-
 .trackerSection,
 .whyDrinkSection {
     flex-basis: 100%;
     flex: none;
     width: 100%;
+    margin: 0 0 40px 0;
 }
 
-/* Перелом 768px і вище (планшети) */
 @media screen and (min-width: 768px) {
     .welcomeContainer {
-        margin-top: 40px;
-        padding: 30px;
+        max-width: 100%;
+        padding-left: 32px;
+        padding-right: 32px;
     }
 
     .backgroundElement {
@@ -57,8 +53,7 @@
 }
 
     .welcomeContent {
-        flex-direction: row;
-        /* Ряд для планшетів і вище */
+        max-width: 100%;
         align-items: flex-start;
     }
 
