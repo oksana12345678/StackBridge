@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 16px;
+    padding: 20px ;
     background-color: transparent;
     min-height: 100vh;
     margin: 0 auto;
@@ -35,11 +35,14 @@
     width: 100%;
 }
 
+.trackerSection{
+    margin: 0 0 40px 0;
+}
+
 .trackerSection,
 .whyDrinkSection {
     flex-basis: 100%;
     flex: none;
-    margin: 0 0 16px 0;
     width: 100%;
 }
 
