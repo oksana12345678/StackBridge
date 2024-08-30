@@ -1,5 +1,11 @@
+import HomePageWrapper from "../../components/HomePageWrapper/HomePageWrapper.jsx";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <HomePageWrapper />
+    </>
+  );
 };
 
 export default HomePage;

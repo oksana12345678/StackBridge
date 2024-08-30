@@ -1,0 +1,119 @@
+.homePageWrapper {
+  padding: 24px 20px;
+}
+
+.bottle {
+  background-image: url("../../Images/home-bottles/Mobile-Bottle-home-screen@1x.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  width: 280px;
+  height: 208px;
+  left: 20px;
+  top: 162px;
+}
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .bottle {
+    background-image: url("../../Images/home-bottles/Mobile-Bottle-home-screen@2x.png");
+  }
+}
+
+.bubbles {
+  background-image: url("../../Images/main-bg/back_mobile@1x.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+  width: 327.22px;
+  height: 1309.31px;
+  left: 0;
+  top: 108px;
+}
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .bubbles {
+    background-image: url("../../Images/main-bg/back_mobile@2x.png");
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .homePageWrapper {
+    padding: 40px 32px;
+  }
+
+  .bottle {
+    background-image: url("../../Images/home-bottles/Tablet-Bottle-Home-Screen@1x.png");
+    width: 518px;
+    height: 386px;
+    left: 125px;
+    top: 104px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bottle {
+      background-image: url("../../Images/home-bottles/Tablet-Bottle-Home-Screen@2x.png");
+    }
+  }
+
+  .bubbles {
+    background-image: url("../../Images/main-bg/back_tablet@1x.png");
+    width: 768px;
+    height: 1280px;
+    left: 0;
+    top: 88px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bubbles {
+      background-image: url("../../Images/main-bg/back_tablet@2x.png");
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .homePageWrapper {
+    padding: 52px 112px;
+  }
+
+  .bottle {
+    background-image: url("../../Images/home-bottles/Desk-Botle-Home-screen@1x.png");
+    width: 738px;
+    height: 548px;
+    left: 38.67px;
+    top: 82px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bottle {
+      background-image: url("../../Images/home-bottles/Desk-Botle-Home-screen@2x.png");
+    }
+  }
+
+  .bubbles {
+    background-image: url("../../Images/main-bg/back_desktop@1x.png");
+    width: 1404px;
+    height: 582px;
+    left: 9px;
+    top: 118px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bubbles {
+      background-image: url("../../Images/main-bg/back_desktop@2x.png");
+    }
+  }
+}
