@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import css from "./UserLogoPopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../../redux/modalWindow/slice";
+import { closeModal, logOutModal } from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
 
 const UserLogoPopUp = () => {
@@ -58,7 +58,7 @@ const UserLogoPopUp = () => {
             </button>
           </li>
           <li>
-            <button className={css.LogoModalBtn}>
+            <button className={css.LogoModalBtn} onClick={dispatch(logOutModal())}>
               <svg
                 className={css.icon}
                 xmlns="http://www.w3.org/2000/svg"
