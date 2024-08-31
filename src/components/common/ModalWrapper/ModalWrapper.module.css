@@ -15,7 +15,7 @@
   padding: 24px 12px;
   border-radius: 10px;
   background-color: #ffffff;
-  overflow: hidden;
+  overflow: auto;
   max-height: 95%;
 }
 
