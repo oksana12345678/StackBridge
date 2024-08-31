@@ -1,12 +1,48 @@
 .signinPageWraper {
+  padding: 24px 20px;
   color: #2f2f2f;
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  width: 100%;
+}
+
+.eyeBtn {
+  position: absolute;
+  border: none;
+  top: calc(50% + 34px);
+  right: 4%;
+  cursor: pointer;
+  color: grey;
+  width: 16px;
+  height: 16px;
+  border-radius: 30px;
+  border: transparent;
+  outline-color: none;
+}
+
+.faEye {
+  stroke: none;
+  transform: translateY(20%);
+  top: calc(50% + 42px);
+  margin-left: -15px;
+  width: 28px;
+  height: 28px;
+  fill: #407bff;
+  outline-color: none;
+}
+
+.faEyeSlash {
+  transform: translateY(20%);
+  top: calc(50% + 42px);
+  margin-left: -15px;
+  width: 28px;
+  height: 28px;
+  fill: #407bff;
 }
 
 .signinPageTitle {
+  margin-bottom: 16px;
   text-align: left;
   font-size: 26px;
   font-style: normal;
@@ -15,17 +51,31 @@
   color: #2f2f2f;
 }
 
-.signinPageForm {
+.form {
+  position: relative;
+  row-gap: 16px;
   display: flex;
-  gap: 20px;
   flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 16px;
-  width: 100%;
+  border-radius: 5px;
+  width: 280px;
 }
 
-.error {
-  border-color: #ef5050;
+.label {
+  color: black;
+  position: relative;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.inputError{
+  color: #ef5050;
+  border-color:#ef5050;
+  
+}
+
+.errorMsg {
+  color: #ef5050;
 }
 
 input {
@@ -45,11 +95,11 @@ input:hover,
 input:focus,
 input:active {
   border: 1px solid #d7e3ff;
+  border-color: none;
   border-radius: 6px;
   padding: 12px 10px;
   background-color: transparent;
   color: #407bff;
-  
 }
 
 input::placeholder {
@@ -58,6 +108,7 @@ input::placeholder {
 }
 
 .signinPageButton {
+  margin-bottom: 16px;
   display: flex;
   padding: 10px 30px;
   justify-content: center;
@@ -101,24 +152,15 @@ input::placeholder {
   color: var(--orange-accent-color, rgb(255, 157, 67));
 }
 
-.signinPageBottle {
-  width: 100%;
-  height: 210px;
-  background-image: image-set(
-    url(../../Images/signIn-signUp/bottle/mobile/bottle_mobile@1x.png) 1x,
-    url(../../Images/signIn-signUp/bottle/mobile/bottle_mobile@2x.png) 2x
-  );
-
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
-  position: relative;
-  top: 66px;
-  z-index: -1;
-}
-
 @media screen and (min-width: 768px) {
+  .form {
+    top: 0;
+    left: 0;
+    width: 336px;
+  }
+
   .signinPageWraper {
+    padding: 40px 32px;
     position: relative;
   }
 
@@ -138,42 +180,27 @@ input::placeholder {
     font-size: 18px;
     line-height: 1.33;
   }
-
-  .signinPageBottle {
-    width: 516px;
-    height: 548px;
-    background-image: image-set(
-      url(../../Images/signIn-signUp/bottle/tablet/bottle_tablet@1x.png) 1x,
-      url(../../Images/signIn-signUp/bottle/tablet/bottle_tablet@2x.png) 2x
-    );
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center bottom;
-    position: absolute;
-    top: 0;
-    left: 193px;
-  }
 }
 
 @media screen and (min-width: 1440px) {
-  .signinPageForm {
-    width: 384px;
-    margin-left: 822px;
-    margin-right: 198px;
+  .signinPageWraper {
+    padding: 162px 0;
   }
 
-  .signinPageBottle {
-    width: 916px;
-    height: 680px;
-    background-image: image-set(
-      url(../../Images/signIn-signUp/bottle/desktop/bottle_desktop@1x.png) 1x,
-      url(../../Images/signIn-signUp/bottle/desktop/bottle_desktop@2x.png) 2x
-    );
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center bottom;
-    position: absolute;
-    top: -141px;
-    left: -155px;
+  .signinPageForm {
+    width: 384px;
+    margin-top: 0;
+    margin-right: 0;
+  }
+
+  .signinPageWraper {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  .form {
+    width: 384px;
+    margin-right: 0;
   }
 }

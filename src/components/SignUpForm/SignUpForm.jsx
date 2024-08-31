@@ -8,27 +8,27 @@ import * as Yup from "yup";
 import css from "./SignUpForm.module.css";
 
 export default function SignUpForm() {
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
-//   const validationControl = Yup.object().shape({
-//     email: Yup.string()
-//       .min(3, "Too Short!")
-//       .max(50, "Too Long!")
-//       .required("Required"),
-//     password: Yup.string()
-//       .min(5, "Too short")
-//       .max(18, "Too long")
-//       .required("Required"),
-//   });
+  //   const validationControl = Yup.object().shape({
+  //     email: Yup.string()
+  //       .min(3, "Too Short!")
+  //       .max(50, "Too Long!")
+  //       .required("Required"),
+  //     password: Yup.string()
+  //       .min(5, "Too short")
+  //       .max(18, "Too long")
+  //       .required("Required"),
+  //   });
 
-//   const handleSubmit = (values, actions) => {
-//     dispatch(register(values))
-//       .unwrap()
-//       .then((data) => console.log(data))
-//       .catch((err) => console.log(err));
+  //   const handleSubmit = (values, actions) => {
+  //     dispatch(register(values))
+  //       .unwrap()
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
 
-//     actions.resetForm();
-//   };
+  //     actions.resetForm();
+  //   };
 
   return (
     <div className={css.form_box}>
@@ -81,7 +81,6 @@ export default function SignUpForm() {
           Sign in
         </NavLink>
       </nav>
-
     </div>
   );
 }
