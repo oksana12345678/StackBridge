@@ -1,4 +1,4 @@
-.signinPageWraper {
+.signinPageWrapper {
   padding: 24px 20px;
   color: #2f2f2f;
   background-color: transparent;
@@ -68,10 +68,9 @@
   line-height: 1.33;
 }
 
-.inputError{
+.inputError {
   color: #ef5050;
-  border-color:#ef5050;
-  
+  border-color: #ef5050;
 }
 
 .errorMsg {
@@ -159,7 +158,7 @@ input::placeholder {
     width: 336px;
   }
 
-  .signinPageWraper {
+  .signinPageWrapper {
     padding: 40px 32px;
     position: relative;
   }
@@ -183,7 +182,7 @@ input::placeholder {
 }
 
 @media screen and (min-width: 1440px) {
-  .signinPageWraper {
+  .signinPageWrapper {
     padding: 162px 0;
   }
 
@@ -193,7 +192,7 @@ input::placeholder {
     margin-right: 0;
   }
 
-  .signinPageWraper {
+  .signinPageWrapper {
     display: flex;
     justify-content: flex-start;
     flex-direction: row-reverse;
