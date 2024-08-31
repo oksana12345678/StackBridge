@@ -19,7 +19,6 @@
   max-height: 95%;
 }
 
-
 @media screen and (max-width: 767px) {
   .modal {
     max-width: 280px;
