@@ -12,12 +12,14 @@ import { PiUploadSimple } from "react-icons/pi";
 import { IoMdRadioButtonOn } from "react-icons/io";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import userPic from "../../../../public/userPic.png"
 import * as Yup from "yup";
 import css from "./SettingModal.module.css";
 
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
 
+  const defaultAvatar = userPic;
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -86,7 +88,7 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img src="https://via.placeholder.com/15" alt="avatar" />
+                  <img src={defaultAvatar} alt="avatar" />
                 </div>
                 <div>
                   <button className={css["upload-button"]}>
