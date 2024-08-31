@@ -29,7 +29,7 @@ export const logIn = createAsyncThunk(
   "auth/signin",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/signin", credentials);
+      const response = await axios.post("https://watertracker-app.onrender.com/auth/signin", credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {

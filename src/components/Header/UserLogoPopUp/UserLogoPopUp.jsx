@@ -51,8 +51,10 @@ const UserLogoPopUp = () => {
   }, [isUserLogoModalOpen, dispatch]);
 
   return (
+  <>
+  {
     (isVisible || isClosing) && (
-      <>
+
       <div
         className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
           isClosing ? css.isClosing : ""
@@ -67,16 +69,18 @@ const UserLogoPopUp = () => {
             </button>
           </li>
           <li>
-            <button className={css.LogoModalBtn}  onClick={()=>dispatch(logOutModal())}>
+            <button className={css.LogoModalBtn}  onClick={()=>{setIsVisible(false); setIsClosing(false);setIsOpening(false);dispatch(logOutModal())}}>
               <IoLogOutOutline className={css.icons} />
               Log out
             </button>
           </li>
         </ul>
       </div>
-      <UserLogoutModal/>
-      </>
-    )
+
+
+    )}
+    <UserLogoutModal/>
+  </>
   );
 };
 
