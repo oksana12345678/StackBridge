@@ -93,6 +93,7 @@ const SignInForm = () => {
                 className={`${css.input} ${
                   errors.password && touched.password ? css.inputError : ""
                 }`}
+                
               />
               <button
                 className={css.eyeBtn}
@@ -104,7 +105,7 @@ const SignInForm = () => {
                 {showPassword ? (
                   <FaEye className={css.faEye} />
                 ) : (
-                  <FaEyeSlash className={css.faEye} />
+                  <FaEyeSlash  className={css.faEye} />
                 )}
               </button>
             </div>
