@@ -52,10 +52,13 @@
 .btn:active {
   box-shadow: none;
 }
-.err {
-  border-color: #ef5050;
+.msgErr {
+  color: #ef5050;
 }
-
+.errField{
+  color: #ef5050;
+  border: 1px solid #ef5050;
+}
 .fialdStyle {
   display: block;
 }
