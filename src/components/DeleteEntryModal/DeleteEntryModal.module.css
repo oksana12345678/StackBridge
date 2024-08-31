@@ -13,6 +13,7 @@
   justify-content: space-between;
   font-size: 18px;
   line-height: 1.33;
+  align-self: flex-end;
 }
 
 .title{
@@ -58,11 +59,12 @@
 @media screen and (max-width: 768px) {
   .modal{
     width: 232px;
-    height: 196px;
+    height: 216px;
   }
   .modalButtons{
     flex-direction: column-reverse;
     gap: 24px;
+    align-self: auto;
     font-size: 16px;
     line-height: 1.25;
   }

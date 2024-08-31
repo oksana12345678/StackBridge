@@ -13,9 +13,9 @@ const modalSlice = createSlice({
       state.isModalOpen = true;
     },
     closeModal: (state) => {
-      // state.isModalOpen = false;
+      state.isModalOpen = false;
       // state.settingModalOpen = false;
-      // state.logOutModal = false;
+      state.logOutModal = false;
       state.isUserLogoModalOpen = false;
     },
     settingModalOpen: (state) => {
