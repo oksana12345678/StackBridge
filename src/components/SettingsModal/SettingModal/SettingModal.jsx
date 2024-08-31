@@ -177,7 +177,7 @@ const SettingModal = () => {
                         id={nameInputId}
                         type="text"
                         name="name"
-                        placeholder="Kateryna"
+                        placeholder="name"
                       />
                     </div>
                     <ErrorMessage
@@ -201,7 +201,7 @@ const SettingModal = () => {
                         id={emailInputId}
                         type="email"
                         name="email"
-                        placeholder="kot41901@gmail.com"
+                        placeholder="email"
                       />
                     </div>
                     <ErrorMessage
