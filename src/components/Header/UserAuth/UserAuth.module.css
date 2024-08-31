@@ -28,10 +28,9 @@
 }
 
 .icon {
-  width: 16px;
+  width: 20px;
   height: 20px;
-  fill: var(--primary-white-color);
-  stroke: var(--primary-black-color);
+  color: var(--primary-black-color);
 }
 .iconContainer {
   width: 28px;
