@@ -10,8 +10,10 @@
   position: absolute;
   width: 280px;
   height: 208px;
-  left: 20px;
+  left: 50%;
+  transform: translate(-50%);
   top: 162px;
+  z-index: -1;
 }
 
 @media (min-device-pixel-ratio: 2),
@@ -30,8 +32,10 @@
   position: absolute;
   width: 327.22px;
   height: 1309.31px;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%);
   top: 108px;
+  z-index: -1;
 }
 
 @media (min-device-pixel-ratio: 2),
@@ -52,6 +56,7 @@
     width: 518px;
     height: 386px;
     left: 125px;
+    transform: translate(0);
     top: 104px;
   }
 
@@ -67,7 +72,6 @@
     background-image: url("../../Images/main-bg/back_tablet@1x.png");
     width: 768px;
     height: 1280px;
-    left: 0;
     top: 88px;
   }
 
@@ -105,7 +109,6 @@
     background-image: url("../../Images/main-bg/back_desktop@1x.png");
     width: 1404px;
     height: 582px;
-    left: 9px;
     top: 118px;
   }
 

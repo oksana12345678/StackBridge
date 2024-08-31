@@ -17,9 +17,11 @@ const validationSchema = Yup.object({
 });
 
 const SignInForm = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     dispatch(
@@ -33,6 +35,7 @@ const SignInForm = () => {
 
   return (
     <div className={css.signinPageWraper}>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -99,6 +102,7 @@ const SignInForm = () => {
         )}
       </Formik>
       <div className={css.signinPageBottle}></div>
+
     </div>
   );
 };
