@@ -354,38 +354,3 @@ const SettingModal = () => {
 };
 
 export default SettingModal;
-
-// GIT PULL
-// NEW BRANCH
-// FIX NOT CLOSABLE MODAL
-// SUBMIT PULL REQUEST
-// WRITE TO LYOSHA ABOUT REDUX + TASKS HE NEEDS TO DO + SOME REMARKS ABOUT ICONS ETC
-
-// REGISTER
-// ПЕРЕЗАВАНТАЖИТИ СТОРІНКУ ДЛЯ РЕФРЕШУ ЮЗЕРА
-// ДОДАТИ ДО РІДАКСУ ДАНІ, ЩО Я ХОЧУ ОБИРАТИ СЕЛЕКТОРАМИ (do waht Anna recommended)
-// ДОДАТИ СЕЛЕКТОР ЮЗЕРА
-// ОТРИМАТИ ДАНІ У СВОЇЙ МОДАЛЬЦІ
-// ДОДАТИ ПОЧАТКОВІ ЗНАЧЕННЯ ДЛЯ АВАТАРУ, ІМЕНІ, ІМЕЙЛУ, СТАТІ
-// ПАРОЛЬ МАЄ БУТИ НЕАКТИВНИМ
-// НАПИСАТИ ОПЕРАЦІЮ ДЛЯ ОНОВЛЕННЯ ФОТО
-// НАПИСАТИ РЕДЬЮСЕРИ ДЛЯ ОНОВЛЕННЯ ФОТО
-// ТЕ Ж САМЕ ДЛЯ ЗМІНИ ДАНИХ
-// ДАНІ З ПАРОЛЕМ ВІДПРАВЛЯЮТЬСЯ ЛИШЕ ЯКЩО ЮЗЕР ВИРІШИВ ЗМІНИТИ
-// НЕВАЛІДНІ АБО ВАЛІДНІ ДАНІ - ВІДПОВІДНЕ ПОВІДОМЛЕННЯ
-// MODAL IS OPEN WHEN SEEING NOTIFICATIONS
-// MODAL IS CLOSED AFTER SUCCESSFUL SERVER UPDATE
-// VALIDATION STYLES
-// NOT CLOSABLE MODAL BY CLICKING ON BACKDROP
-// ADD AN EYE
-
-// ЗАПИТАТИ У ІНШИХ ПРО РАДІО
-// ЗАПИТАТИ НА ЗІДЗВОНІ ЗА ОКО
-/* ADD ICON THAT WILL SWITCH BETWEEN TEXT AND PASSWORD STATES + IMPLEMENT THIS FEATURE */
-// gender validation handling
-// labels always wraps the component
-// what's the point of checking outdated password
-// timeout for showing an errro
-// which photo should it be
-// fix button position
-// refactor not not use too many styled microcomponents
