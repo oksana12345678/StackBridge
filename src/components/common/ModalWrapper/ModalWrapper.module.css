@@ -17,6 +17,13 @@
   background-color: #ffffff;
 }
 
+
+@media screen and (max-width: 767px) {
+  .modal {
+    max-width: 280px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .modal {
     padding: 32px 24px;
