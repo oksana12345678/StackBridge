@@ -20,7 +20,7 @@ const modalSlice = createSlice({
       state.isUserLogoModalOpen = false;
       state.isDeleteEntryModalOpen = false;
     },
-    settingModalOpen: (state) => {
+    settingModal: (state) => {
       state.isSettingModalOpen = true;
     },
     logOutModal: (state) => {
@@ -38,7 +38,7 @@ const modalSlice = createSlice({
 export const {
   openModal,
   closeModal,
-  settingModalOpen,
+  settingModal,
   logOutModal,
   userLogoModal,
   deleteEntryModalOpen,

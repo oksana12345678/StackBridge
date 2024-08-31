@@ -1,7 +1,9 @@
 import { useId, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { closeModal } from "../../../redux/modalWindow/slice";
+import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import clsx from "clsx";
-import userPic from "../../../Images/userPic.png";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
 import RadioContainer from "./RadioContainer/RadioContainer";
@@ -14,6 +16,10 @@ import * as Yup from "yup";
 import css from "./SettingModal.module.css";
 
 const SettingModal = () => {
+  const isModalOpen = useSelector(selectIsSettingModalOpen);
+
+  const dispatch = useDispatch();
+
   const initialValues = {
     email: "",
     name: "",
@@ -63,8 +69,8 @@ const SettingModal = () => {
 
   return (
     <ModalWrapper
-      modalIsOpen={modalIsOpen}
-      closeModal={() => console.log("closing modal")}
+      modalIsOpen={isModalOpen}
+      closeModal={() => dispatch(closeModal())}
     >
       <FormTitle />
       <Formik
@@ -80,7 +86,7 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img src={userPic} alt="avatar" />
+                  <img src="https://via.placeholder.com/15" alt="avatar" />
                 </div>
                 <div>
                   <button className={css["upload-button"]}>
