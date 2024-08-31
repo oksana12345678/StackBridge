@@ -7,6 +7,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { logIn } from "../../redux/auth/operations";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css"
 
 const initialValues = {
   email: "",
@@ -19,8 +20,8 @@ const validationSchema = Yup.object({
 });
 
 const SignInForm = () => {
-  const notify = () => {
-    toast("");
+  const notify = (message) => {
+    toast(message);
   };
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +29,7 @@ const SignInForm = () => {
   const handleSubmit = (values, action) => {
     const { email, password } = values;
     dispatch(
-      register({
+      logIn({
         email,
         password,
       })
@@ -46,7 +47,7 @@ const SignInForm = () => {
         onSubmit={handleSubmit}
       >
         {({ touched, errors }) => (
-          <form className={css.form}>
+          <form className={css.form} onSubmit={handleSubmit}>
             <h4 className={css.signinPageTitle}>Sign In</h4>
             <label className={css.label} htmlFor="email">
               Enter your email
@@ -93,7 +94,11 @@ const SignInForm = () => {
               <div className={css.errorMsg}>{errors.password}</div>
             )}
 
-            <button className={css.signinPageButton} onClick={notify} type="submit">
+            <button
+              className={css.signinPageButton}
+              onClick={() => notify("Signing in...")}
+              type="submit"
+            >
               Sign In
             </button>
             <NavLink className={css.signinPageLink} to={"/forgot-password"}>
