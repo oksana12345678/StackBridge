@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  font-family: var(--main-font);
 }
 .title {
   text-align: left;
@@ -26,16 +27,15 @@
 .label {
   display: flex;
   flex-direction: column;
-  padding-bottom: 12px;
+  padding-top: 16px;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.33333;
+  line-height: 1.3;
 }
 .btn {
   border-radius: 10px;
   padding: 10px 30px;
-  width: 384px;
-
+  width: 100%;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   background: #407bff;
   font-weight: 500;
@@ -43,6 +43,7 @@
   line-height: 1.33333;
   text-align: center;
   color: #ffffff;
+  margin-top: 16px;
 }
 .btn:hover,
 .btn:focus {
@@ -51,11 +52,32 @@
 .btn:active {
   box-shadow: none;
 }
-.err {
-  border-color: #ef5050;
+.eye {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #407BFF;
+      fill: #407bff;
+  outline-color: none;
 }
-
-.fieldStyle {
+.msgErr {
+  color: #ef5050;
+}
+.errField{
+  color: #ef5050;
+  border: 1px solid #ef5050;
+  /* border-radius: 6px;
+  padding: 12px 10px;
+  width: 100%;
+  margin-top: 8px;
+  background-color: transparent;
+  outline: 0px transparent;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25; */
+}
+.fialdStyle {
   display: block;
 }
 
@@ -63,11 +85,16 @@
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   padding: 12px 10px;
-  width: 384px;
+  width: 100%;
   margin-top: 8px;
   background-color: transparent;
   outline: 0px transparent;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #9ebbff;
 }
+
 .field:hover,
 .field:focus,
 .field:active {
@@ -84,27 +111,21 @@
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
   .form_box {
-    max-width: 280px;
-    margin-top: 24px;
+    width: 280px;
+    margin-top: 31px;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 197px;
     justify-content: center;
     align-items: left;
-  }
-  .field {
-    width: 100%;
-  }
-  .btn {
-    width: 100%;
   }
 }
 /* tablet 750**************************** */
 @media screen and (min-width: 768px) {
   .form_box {
     width: 336px;
-    margin-top: 40px;
-    margin-left: 32px;
-    margin-bottom: 156px;
+    margin-top: 40px; 
+    margin-bottom: 172px;
     justify-content: left;
   }
 }
@@ -113,7 +134,7 @@
   .form_box {
     width: 384px;
     margin-top: 148px;
-    margin-right: 198px;
+
     margin-bottom: 196px;
     justify-content: right;
   }
