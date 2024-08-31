@@ -1,0 +1,43 @@
+.link {
+  position: relative;
+  font-size: 16px;
+  line-height: calc(20 / 16);
+  color: var(--primary-blue-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link:hover {
+  color: var(--orange-accent-color);
+  transition: color 0.3s ease;
+}
+.link:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--orange-accent-color);
+  transition: width 0.3s ease;
+}
+.link:hover:before {
+  width: 60%;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-black-color);
+}
+.iconContainer {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primary-black-color);
+  border-radius: 100%;
+}

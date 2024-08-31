@@ -1,0 +1,84 @@
+.error {
+  color: red;
+  font-size: 10px;
+}
+
+.amountBtn {
+  border: 1px solid #9ebbff;
+  border-radius: 30px;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.2);
+  background: #fff;
+  color: #9ebbff;
+}
+
+.amountCounter {
+  border-radius: 40px;
+  padding: 6px 10px;
+  width: 92px;
+  height: 36px;
+  background: #d7e3ff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  color: #407bff;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 7px;
+}
+
+.saveBtn {
+  display: block;
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 160px;
+  height: 44px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background: #407bff;
+}
+
+.editModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  padding: 12px;
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.editModal p {
+  font-weight: 500;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+}

@@ -1,0 +1,29 @@
+.rippleButton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.rippleButton .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(160, 221, 247, 0.243);
+  animation: ripple-animation 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
