@@ -1,53 +1,72 @@
 import { NavLink } from "react-router-dom";
 import css from "./SignInForm.module.css";
 import * as Yup from "yup";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { logIn } from "../../redux/auth/operations";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css"
+import "react-toastify/ReactToastify.css";
+import { logIn } from "../../redux/auth/operations";
 
-const initialValues = {
-  email: "",
-  password: "",
+const showToast = (message, type) => {
+  toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: type === "success" ? "light" : "colored",
+    type: type,
+  });
 };
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().required("Required"),
-});
+// const validationSchema = Yup.object({
+//   email: Yup.string().email("Invalid email address").required("Required"),
+//   password: Yup.string().required("Required"),
+// });
 
 const SignInForm = () => {
-  const notify = (message) => {
-    toast(message);
-  };
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (values, action) => {
+  const handleSubmit = (values, actions) => {
     const { email, password } = values;
     dispatch(
       logIn({
         email,
         password,
       })
-    );
-
-    action.resetForm();
+    )
+      .unwrap()
+      .then(() => {
+        showToast("Login successful!", "success");
+        actions.resetForm();
+      })
+      .catch(() => {
+        showToast("Login failed!", "error");
+      });
   };
+
+  const contactsSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email address").required("Required"),
+    password: Yup.string()
+      .min(8, "Too Short!")
+      .max(64, "Too Long!")
+      .required("Required"),
+  });
 
   return (
     <div className={css.signinPageWrapper}>
-      <ToastContainer />
       <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
+        initialValues={{ email: "", password: "" }}
+        validationSchema={contactsSchema}
         onSubmit={handleSubmit}
       >
-        {({ touched, errors }) => (
-          <form className={css.form} onSubmit={handleSubmit}>
+        {({ errors, touched }) => (
+          <Form className={css.form}>
             <h4 className={css.signinPageTitle}>Sign In</h4>
             <label className={css.label} htmlFor="email">
               Enter your email
@@ -56,13 +75,16 @@ const SignInForm = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="E-mail"
-              className={touched.email && errors.email ? css.inputError : ""}
-              autoComplete="email"
+              placeholder="Enter your email"
+              className={`${css.input} ${
+                errors.email && touched.email ? css.inputError : ""
+              }`}
             />
-            {touched.email && errors.email && (
-              <div className={css.errorMsg}>{errors.email}</div>
-            )}
+            <ErrorMessage
+              className={css.errorMsg}
+              name="email"
+              component="span"
+            />
 
             <label className={css.label} htmlFor="password">
               Enter your password
@@ -80,25 +102,21 @@ const SignInForm = () => {
                 <FaEyeSlash className={css.faEyeSlash} />
               )}
             </button>
-            <Field
-              type={showPassword ? "text" : "password"}
-              name="password"
-              id="password"
-              placeholder="Password"
-              className={
-                touched.password && errors.password ? css.inputError : ""
-              }
-              autoComplete="current-password"
-            />
-            {touched.password && errors.password && (
-              <div className={css.errorMsg}>{errors.password}</div>
-            )}
 
-            <button
-              className={css.signinPageButton}
-              onClick={() => notify("Signing in...")}
-              type="submit"
-            >
+            <Field
+              name="password"
+              placeholder="Enter your password"
+              className={`${css.input} ${
+                errors.password && touched.password ? css.inputError : ""
+              }`}
+            />
+            <ErrorMessage
+              className={css.errorMsg}
+              name="password"
+              component="span"
+            />
+
+            <button className={css.signinPageButton} type="submit">
               Sign In
             </button>
             <NavLink className={css.signinPageLink} to={"/forgot-password"}>
@@ -107,7 +125,7 @@ const SignInForm = () => {
             <NavLink className={css.signinPageLink} to={"/signup"}>
               Sign up
             </NavLink>
-          </form>
+          </Form>
         )}
       </Formik>
       <div className={css.signinPageBottle}></div>
