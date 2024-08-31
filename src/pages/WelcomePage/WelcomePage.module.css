@@ -5,6 +5,7 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 24px;
     background-color: transparent;
     min-height: 100vh;
     margin: 0 auto;
@@ -46,7 +47,7 @@
         max-width: 100%;
         padding-left: 32px;
         padding-right: 32px;
-        padding-top: 104px;
+        padding-top: 40px;
     }
 
     .backgroundElement {
@@ -66,33 +67,34 @@
     }
 }
 
-/* Перелом 1440px і вище (десктопи) */
-/* @media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
     .welcomeContainer {
-        margin-top: 49px;
-        padding: 20px;
-        max-width: 1014px;
+        padding-right: 210px;
+        padding-left: 210px;
+        padding-top: 80px;
     }
 
     .backgroundElement {
     background: url('src/Images/welcome-page/Desktop.png') no-repeat center center;
+    background-size: cover;
 
 }
 
     .welcomeContent {
-        max-width: 1200px;
-    }
+    max-width: 1200px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 80px;
+}
 
     .trackerSection {
-        flex-basis: 48%;
-        flex: 1;
-        margin-right: 20px;
-        max-width: 494px;
+        max-width: 439px;
+        margin: 0 0 0 0;
     }
 
     .whyDrinkSection {
-        flex: 1;
-        margin-left: 20px;
-        max-width: 439px;
+        max-width: 494px;
+        margin: 0 0 0 0;
     }
-} */
+} 

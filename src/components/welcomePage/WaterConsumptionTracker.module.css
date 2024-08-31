@@ -113,3 +113,17 @@ button:hover {
         max-width: 336px;
     }
 }
+
+@media screen and (min-width: 1440px) {
+    .trackerWelcomeContainer {
+        margin-bottom: 0;
+    }
+
+    .trackerBenefits{
+        flex-direction: column;
+    }
+
+    .trackerWelcomeContainer button{
+        max-width: 384px;
+    }
+}

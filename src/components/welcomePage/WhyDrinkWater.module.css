@@ -62,3 +62,9 @@
     }
 
 }
+
+@media screen and (min-width: 1440px) {
+    .whyDrinkWater {
+        margin-bottom: 0;
+    }
+}
