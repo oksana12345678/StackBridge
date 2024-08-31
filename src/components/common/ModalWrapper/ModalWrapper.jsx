@@ -4,15 +4,19 @@ import css from "./ModalWrapper.module.css";
 
 Modal.setAppElement(document.getElementById("root"));
 
-const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
+const ModalWrapper = ({
+  modalIsOpen,
+  closeModal,
+  children,
+}) => {
   useEffect(() => {
     if (modalIsOpen) {
-      document.body.classList.add(css['no-scroll']);
+      document.body.classList.add(css["no-scroll"]);
     } else {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     }
     return () => {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     };
   }, [modalIsOpen]);
 
@@ -27,7 +31,10 @@ const ModalWrapper = ({ modalIsOpen, closeModal, children }) => {
     >
       {children}
 
-      <button className={css["close-button"]} onClick={closeModal}>
+      <button
+        className={css["close-button"]}
+        onClick={closeModal}
+      >
         {/* ЦЕ ЧОМУСЬ НЕ ПРАЦЮЄ, ТОМУ ПОКИ ВАРІНТ НИЖЧЕ */}
         {/* <svg className={css["close-icon"]} width="24" height="24">
           <use href="../../../Icons/sprite.svg#close-cross"></use>
