@@ -10,13 +10,14 @@
   --red-accent-color: rgb(239, 80, 80);
   --orange-accent-color: rgb(255, 157, 67);
   --light-blue-text: rgb(158, 187, 255);
+  --secondary-light-blue: rgb(215, 227, 255);
 
   --font-size-base: 16px;
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -65,7 +66,6 @@ h1 {
   font-weight: var(--font-weight-bold);
 }
 
-
 button {
   font-family: var(--main-font);
   border-radius: 10px;
@@ -75,11 +75,11 @@ button {
   background-color: var(--bg-button-and-text-blue-color);
   cursor: pointer;
   transition: border-color 0.25s;
+  padding: 0;
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.modal {
+  max-height: 95%;
+  overflow: auto;
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,0 +1,199 @@
+@media only screen and (min-width: 320px) {
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .today {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-blue-color);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .range {
+    height: 12px;
+    width: 256px;
+    margin-bottom: 6px;
+    background-color: #d7e3ff;
+    border-radius: 4rem;
+  }
+
+  .rangeContent {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: start;
+  }
+
+  .decorativeLines {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .line {
+    width: 1px;
+    height: 8px;
+    background-color: #d7e3ff;
+  }
+
+  .number1 {
+    position: absolute;
+    left: -3%;
+    transition: all 0.7s ease;
+  }
+
+  .number2 {
+    position: absolute;
+    left: 47%;
+    transition: all 0.7s ease;
+  }
+
+  .number3 {
+    position: absolute;
+    right: -3%;
+    transition: all 0.7s ease;
+  }
+
+  .addButton {
+    display: inline-flex;
+    width: 280px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border-color: transparent;
+    background: var(--primary-blue-color);
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  }
+
+  .addButton:hover,
+  .addButton:focus {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
+
+  .addButton:active {
+    box-shadow: none;
+  }
+
+  .addButtonText {
+    display: block;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .plusCircle {
+    fill: var(--primary-blue-color);
+    stroke: #fff;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mainContainer {
+    position: relative;
+    gap: 12px;
+    flex-direction: row;
+    height: 50px;
+    justify-items: center;
+  }
+
+  .panel {
+    display: block;
+    width: 356px;
+    height: 50px;
+    margin-left: 10px;
+  }
+
+  .today {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .range {
+    height: 8px;
+    width: 325px;
+    margin-bottom: 4px;
+  }
+
+  .decorativeLines {
+    width: 325px;
+  }
+
+  .line {
+    width: 1px;
+    height: 8px;
+    background: #d7e3ff;
+  }
+
+  .number3 {
+    position: absolute;
+    right: -5%;
+  }
+
+  .addButton {
+    position: absolute;
+    top: -35%;
+    left: 52%;
+    width: 336px;
+    height: 44px;
+  }
+
+  .addButtonText {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .mainContainer {
+    display: block;
+    height: 50px;
+  }
+
+  .panel {
+    display: block;
+    width: 391px;
+  }
+
+  .range {
+    width: 360px;
+  }
+
+  .decorativeLines {
+    width: 360px;
+  }
+
+  .line {
+    width: 1px;
+    height: 8px;
+    background: #d7e3ff;
+  }
+
+  .number3 {
+    position: absolute;
+    right: -1%;
+  }
+
+  .addButton {
+    top: -35%;
+    left: 414px;
+    width: 178px;
+  }
+
+  .addButtonText {
+    font-size: 17px;
+  }
+}
