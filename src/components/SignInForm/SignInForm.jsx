@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { logIn } from "../../redux/auth/operations";
+import { toast, ToastContainer } from "react-toastify";
 
 const initialValues = {
   email: "",
@@ -18,22 +19,27 @@ const validationSchema = Yup.object({
 });
 
 const SignInForm = () => {
+  const notify = () => {
+    toast("");
+  };
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async ({ email, password }, { resetForm }) => {
+  const handleSubmit = (values, action) => {
+    const { email, password } = values;
     dispatch(
-      logIn({
+      register({
         email,
         password,
       })
     );
-    resetForm();
+
+    action.resetForm();
   };
 
   return (
     <div className={css.signinPageWrapper}>
+      <ToastContainer />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -42,9 +48,9 @@ const SignInForm = () => {
         {({ touched, errors }) => (
           <form className={css.form}>
             <h4 className={css.signinPageTitle}>Sign In</h4>
-            <p className={css.label} htmlFor="email">
+            <label className={css.label} htmlFor="email">
               Enter your email
-            </p>
+            </label>
             <Field
               type="email"
               name="email"
@@ -57,22 +63,22 @@ const SignInForm = () => {
               <div className={css.errorMsg}>{errors.email}</div>
             )}
 
-            <p className={css.label} htmlFor="password">
+            <label className={css.label} htmlFor="password">
               Enter your password
-              <button
-                className={css.eyeBtn}
-                onClick={(event) => {
-                  event.preventDefault();
-                  setShowPassword(!showPassword);
-                }}
-              >
-                {showPassword ? (
-                  <FaEye className={css.faEye} />
-                ) : (
-                  <FaEyeSlash className={css.faEyeSlash} />
-                )}
-              </button>
-            </p>
+            </label>
+            <button
+              className={css.eyeBtn}
+              onClick={(event) => {
+                event.preventDefault();
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? (
+                <FaEye className={css.faEye} />
+              ) : (
+                <FaEyeSlash className={css.faEyeSlash} />
+              )}
+            </button>
             <Field
               type={showPassword ? "text" : "password"}
               name="password"
@@ -87,7 +93,7 @@ const SignInForm = () => {
               <div className={css.errorMsg}>{errors.password}</div>
             )}
 
-            <button className={css.signinPageButton} type="submit">
+            <button className={css.signinPageButton} onClick={notify} type="submit">
               Sign In
             </button>
             <NavLink className={css.signinPageLink} to={"/forgot-password"}>

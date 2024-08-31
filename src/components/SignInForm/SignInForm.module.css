@@ -23,7 +23,7 @@
 
 .faEye {
   stroke: none;
-  transform: translateY(20%);
+  transform: translateY(-60%);
   top: calc(50% + 42px);
   margin-left: -15px;
   width: 28px;
@@ -33,7 +33,7 @@
 }
 
 .faEyeSlash {
-  transform: translateY(20%);
+  transform: translateY(-60%);
   top: calc(50% + 42px);
   margin-left: -15px;
   width: 28px;
@@ -184,18 +184,15 @@ input::placeholder {
 @media screen and (min-width: 1440px) {
   .signinPageWrapper {
     padding: 162px 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
   }
 
   .signinPageForm {
     width: 384px;
     margin-top: 0;
     margin-right: 0;
-  }
-
-  .signinPageWrapper {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row-reverse;
   }
 
   .form {
