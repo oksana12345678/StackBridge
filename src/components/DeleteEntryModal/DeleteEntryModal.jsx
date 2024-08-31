@@ -19,7 +19,7 @@ export default function DeleteEntryModal() {
           <h3 className={css.text}>Are you sure you want to delete the entry?</h3>
           <div className={css.modalButtons}>
             <button className={css.buttonCancel} onClick={() => dispatch(closeModal())}>Cancel</button>
-            <button className={css.buttonLogout} onClick={()=>{dispatch(logOut())}}>Delete</button>
+            <button className={css.buttonLogout} >Delete</button>
           </div>
         </div>
       </ModalWrapper>
