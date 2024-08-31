@@ -28,9 +28,17 @@
 }
 
 .icon {
-  margin-left: 8px;
-  width: 28px;
-  height: 28px;
+  width: 16px;
+  height: 20px;
   fill: var(--primary-white-color);
   stroke: var(--primary-black-color);
+}
+.iconContainer {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primary-black-color);
+  border-radius: 100%;
 }
