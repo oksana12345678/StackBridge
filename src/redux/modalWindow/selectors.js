@@ -3,3 +3,5 @@ export const selectSettingModalOpen = (state) => state.modal.settingModalOpen;
 export const selectLogOutModal = (state) => state.modal.logOutModal;
 export const selectIsUserLogoModalOpen = (state) =>
   state.modal.isUserLogoModalOpen;
+export const selectIsDeleteEntryModalOpen = (state) =>
+  state.modal.isDeleteEntryModalOpen;

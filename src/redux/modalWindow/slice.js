@@ -7,6 +7,7 @@ const modalSlice = createSlice({
     settingModalOpen: false,
     logOutModal: false,
     isUserLogoModalOpen: false,
+    isDeleteEntryModalOpen:false,
   },
   reducers: {
     openModal: (state) => {
@@ -17,6 +18,7 @@ const modalSlice = createSlice({
       // state.settingModalOpen = false;
       state.logOutModal = false;
       state.isUserLogoModalOpen = false;
+      state.isDeleteEntryModalOpen = false;
     },
     settingModalOpen: (state) => {
       state.settingModalOpen = true;
@@ -27,6 +29,9 @@ const modalSlice = createSlice({
     userLogoModal: (state) => {
       state.isUserLogoModalOpen = true;
     },
+    deleteEntryModalOpen:(state)=>{
+      state.isDeleteEntryModalOpen=true;
+    }
   },
 });
 
@@ -36,6 +41,7 @@ export const {
   settingModalOpen,
   logOutModal,
   userLogoModal,
+  deleteEntryModalOpen,
 } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;
