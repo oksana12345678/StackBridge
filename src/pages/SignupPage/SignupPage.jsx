@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
-// import clsx from "clsx";
-// import Image from "next/image";
 
 import SignUpForm from "../../components/SignUpForm/SignUpForm.jsx";
+import MainAuth from "../../components/MainAuth/MainAuth.jsx";
+
 import css from "./SignupPage.module.css";
 
 export default function RegisterPage() {
@@ -12,9 +12,11 @@ export default function RegisterPage() {
         <title>Sign up page</title>
       </Helmet>
 
-      <div className={css.div}>
-        <SignUpForm />
-      </div>
+      <MainAuth>
+        <div className={css.div}>
+          <SignUpForm />
+        </div>
+      </MainAuth>
     </>
   );
 }

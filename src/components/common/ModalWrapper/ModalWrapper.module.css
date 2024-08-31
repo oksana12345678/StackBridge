@@ -10,17 +10,24 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-@media screen and (max-width: 768px) {
-  .modal {
-    max-width: 280px;
-  }
-}
-
 .modal {
   position: relative;
   padding: 24px 12px;
   border-radius: 10px;
   background-color: #ffffff;
+}
+
+
+@media screen and (max-width: 767px) {
+  .modal {
+    max-width: 280px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 32px 24px;
+  }
 }
 
 .no-scroll {
@@ -39,6 +46,14 @@
   background-color: transparent;
   box-shadow: none;
   outline: none;
+}
+
+
+@media screen and (min-width: 768px) {
+  .close-button {
+    top: 36px;
+    right: 24px;
+  }
 }
 
 .close-button:active {

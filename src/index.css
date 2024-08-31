@@ -77,6 +77,10 @@ button {
   transition: border-color 0.25s;
   padding: 0;
 }
+.modal {
+  max-height: 95%;
+  overflow: auto;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

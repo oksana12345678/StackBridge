@@ -9,6 +9,7 @@ import RestrictedRoute from "../../components/Route/RegisteredRoute/RegisteredRo
 import PrivateRoute from "../../components/Route/PrivateRout/PrivateRout.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
+import { ToastContainer } from "react-toastify";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -33,10 +34,13 @@ function App() {
   }, [dispatch, token, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <b>
+      <Loader />
+    </b>
   ) : (
     <>
       <Suspense fallback={<Loader />}>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/welcome" element={<WelcomePage />} />
@@ -64,6 +68,7 @@ function App() {
                 <PrivateRoute redirectTo="/signin" component={<HomePage />} />
               }
             />
+
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

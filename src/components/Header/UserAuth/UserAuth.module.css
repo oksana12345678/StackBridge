@@ -27,10 +27,17 @@
   width: 60%;
 }
 
-svg {
-  margin-left: 8px;
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-black-color);
+}
+.iconContainer {
   width: 28px;
   height: 28px;
-  fill: var(--primary-white-color);
-  stroke: var(--primary-black-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primary-black-color);
+  border-radius: 100%;
 }
