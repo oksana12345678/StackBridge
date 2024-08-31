@@ -1,14 +1,14 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
-import { useId } from "react";
-import * as Yup from "yup";
+// import { useId } from "react";
+// import * as Yup from "yup";
 // import toast from "react-hot-toast";
-// import { useDispatch } from "react-redux";
-// import { register } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
 
 export default function SignUpForm() {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   //   const validationControl = Yup.object().shape({
   //     email: Yup.string()
@@ -21,15 +21,17 @@ export default function SignUpForm() {
   //       .required("Required"),
   //   });
 
-  //   const handleSubmit = (values, actions) => {
-  //     dispatch(register(values))
-  //       .unwrap()
-  //       .then((data) => console.log(data))
-  //       .catch((err) => console.log(err));
+  const handleSubmit = (values, action) => {
+    const { email, password } = values;
+    dispatch(
+      register({
+        email,
+        password,
+      })
+    );
 
-  //     actions.resetForm();
-  //   };
-
+    action.resetForm();
+  };
   return (
     <div className={css.form_box}>
       <h2 className={css.title}>Sign Up</h2>
@@ -39,7 +41,7 @@ export default function SignUpForm() {
           email: "",
           password: "",
         }}
-        //   onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <Form className={css.form} autoComplete="off">
           <div className={css.fialdStyle}>
