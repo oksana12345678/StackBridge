@@ -72,6 +72,7 @@ export default function SignUpForm() {
                 className={css.field}
               />
             </label>
+
             <button type="submit" className={css.btn}>
               Sign Up
             </button>
