@@ -1,10 +1,11 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import css from "./SignInForm.module.css";
 import * as Yup from "yup";
 import { Field, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { logIn } from "../../redux/auth/operations";
 
 const initialValues = {
   email: "",
@@ -17,11 +18,9 @@ const validationSchema = Yup.object({
 });
 
 const SignInForm = () => {
-
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
 
   const handleSubmit = async ({ email, password }, { resetForm }) => {
     dispatch(
@@ -34,14 +33,13 @@ const SignInForm = () => {
   };
 
   return (
-    <div className={css.signinPageWraper}>
-
+    <div className={css.signinPageWrapper}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, touched, errors }) => (
+        {({ touched, errors }) => (
           <form className={css.form}>
             <h4 className={css.signinPageTitle}>Sign In</h4>
             <p className={css.label} htmlFor="email">
@@ -102,7 +100,6 @@ const SignInForm = () => {
         )}
       </Formik>
       <div className={css.signinPageBottle}></div>
-
     </div>
   );
 };

@@ -9,6 +9,7 @@ import RestrictedRoute from "../../components/Route/RegisteredRoute/RegisteredRo
 import PrivateRoute from "../../components/Route/PrivateRout/PrivateRout.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
+import { ToastContainer } from "react-toastify";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -39,6 +40,7 @@ function App() {
   ) : (
     <>
       <Suspense fallback={<Loader />}>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/welcome" element={<WelcomePage />} />
