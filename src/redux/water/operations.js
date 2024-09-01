@@ -12,3 +12,15 @@ export const addWater = createAsyncThunk(
     }
   }
 );
+
+export const editWater = createAsyncThunk(
+  "water/editWater",
+  async ({ id, updates }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/water/${id}`, updates);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -23,11 +23,6 @@ const showToast = (message, type) => {
   });
 };
 
-// const validationSchema = Yup.object({
-//   email: Yup.string().email("Invalid email address").required("Required"),
-//   password: Yup.string().required("Required"),
-// });
-
 const SignInForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -89,27 +84,31 @@ const SignInForm = () => {
             <label className={css.label} htmlFor="password">
               Enter your password
             </label>
-            <button
-              className={css.eyeBtn}
-              onClick={(event) => {
-                event.preventDefault();
-                setShowPassword(!showPassword);
-              }}
-            >
-              {showPassword ? (
-                <FaEye className={css.faEye} />
-              ) : (
-                <FaEyeSlash className={css.faEyeSlash} />
-              )}
-            </button>
-
-            <Field
-              name="password"
-              placeholder="Enter your password"
-              className={`${css.input} ${
-                errors.password && touched.password ? css.inputError : ""
-              }`}
-            />
+            <div className={css.passwordWrapper}>
+              <Field
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                className={`${css.input} ${
+                  errors.password && touched.password ? css.inputError : ""
+                }`}
+                
+              />
+              <button
+                className={css.eyeBtn}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? (
+                  <FaEye className={css.faEye} />
+                ) : (
+                  <FaEyeSlash  className={css.faEye} />
+                )}
+              </button>
+            </div>
             <ErrorMessage
               className={css.errorMsg}
               name="password"
