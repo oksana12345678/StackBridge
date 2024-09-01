@@ -23,15 +23,21 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn, token, isRefreshing } = useAuth();
+  // const { isLoggedIn, token, isRefreshing } = useAuth();
+
+  // useEffect(() => {
+  //   if (token && !isLoggedIn && !isRefreshing) {
+  //     dispatch(refreshUser());
+  //   }
+
+  //   return;
+  // }, [dispatch, token, isLoggedIn, isRefreshing]);
+
+  const {  isRefreshing } = useAuth();
 
   useEffect(() => {
-    if (token && !isLoggedIn && !isRefreshing) {
       dispatch(refreshUser());
-    }
-
-    return;
-  }, [dispatch, token, isLoggedIn, isRefreshing]);
+  }, [dispatch]);
 
   return isRefreshing ? (
     <b>

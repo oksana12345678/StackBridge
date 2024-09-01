@@ -34,10 +34,6 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
 
 
       <button className={clsx(css["close-button"],buttonClassLogout && css["button-class-logout"])} onClick={closeModal}>
-        {/* ЦЕ ЧОМУСЬ НЕ ПРАЦЮЄ, ТОМУ ПОКИ ВАРІНТ НИЖЧЕ */}
-        {/* <svg className={css["close-icon"]} width="24" height="24">
-          <use href="../../../Icons/sprite.svg#close-cross"></use>
-        </svg> */}
         <svg
           className={css["close-icon"]}
           width="24"
@@ -53,7 +49,6 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
           />
         </svg>
       </button>
-
     </Modal>
   );
 };

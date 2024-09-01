@@ -78,18 +78,22 @@ const DailyNormaModal = () => {
                   <Field
                     type="radio"
                     name="gender"
-                    value="man"
+                    value="woman"
+                    className={css.radioInput}
                   />
-                  For man
+                  <span className={css.radioMark}></span>
+                  For woman
                 </label>
 
                 <label className={css.radioLabel}>
                   <Field
                     type="radio"
                     name="gender"
-                    value="woman"
+                    value="man"
+                    className={css.radioInput}
                   />
-                  For woman
+                  <span className={css.radioMark}></span>
+                  For man
                 </label>
               </div>
 
@@ -131,7 +135,7 @@ const DailyNormaModal = () => {
                 <Field
                   type="number"
                   name="plannedWaterIntake"
-                  className={css.input}
+                  className={css.inputSubmit}
                 />
               </label>
 
