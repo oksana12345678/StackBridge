@@ -1,140 +1,149 @@
-.container {
-  border-radius: 10px;
-  padding: 32px 24px;
-  width: 592px;
-  height: 712px;
-}
-
 .title {
+  font-family: var(--main-font);
   font-weight: 500;
   font-size: 26px;
   line-height: 1.23;
   margin-bottom: 24px;
-}
-
-.Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ModalContainer {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.CloseButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: none;
-  background: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.formulasContainer {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 12px;
+  color: var(--primary-black-color);
 }
 
 .formulas {
+  font-family: var(--main-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
+  color: var(--primary-black-color);
 }
 
 .formulasSpan {
+  font-family: var(--main-font);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.33;
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .formulaDescription {
+  font-family: var(--main-font);
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
-  color: gray;
+  color: #8f8f8f;
   margin-bottom: 24px;
-  border: 1px solid rgb(215, 227, 255);
+  border: 1px solid var(--secondary-light-blue);
   border-radius: 10px;
   padding: 10px;
-  width: 544px;
-  height: 68px;
+  width: 100%;
+  height: auto;
 }
 
 .span {
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
 .labelTitle {
+  font-family: var(--main-font);
   font-weight: 500;
   font-size: 18px;
   line-height: 1.11;
+  color: var(--primary-black-color);
 }
 
 .label {
+  font-family: var(--main-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
   margin-bottom: 5px;
+  color: var(--primary-black-color);
 }
 
 .labelSpam {
+  font-family: var(--main-font);
   font-weight: 700;
   font-size: 18px;
   line-height: 1.33;
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .input {
+  font-family: var(--main-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
-  color: #407bff;
+  color: var(--primary-blue-color);
   padding: 12px 10px;
   border-radius: 6px;
   border: 1px solid rgb(215, 227, 255);
   width: 100%;
   margin-top: 8px;
-  width: 544px;
-  height: 44px;
 }
 
-.radioGroup {
-  display: flex;
-  gap: 20px;
+.inputSubmit {
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-blue-color);
+  padding: 12px 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(215, 227, 255);
+  width: 100%;
+  margin-top: 16px;
 }
 
 .radioLabel {
-  font-size: 14px;
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-black-color);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+  position: relative;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioMark {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--primary-blue-color);
+  border-radius: 50%;
+  position: relative;
+  margin-right: 8px;
+}
+
+.radioInput:checked + .radioMark::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary-blue-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .btn {
-  width: 160px;
-  height: 44px;
-  background-color: #407bff;
-  color: white;
-  padding: 10px 30px;
+  font-family: var(--main-font);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--primary-white-color);
+  background-color: var(--primary-blue-color);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -142,8 +151,48 @@
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
 }
 
-/* .ErrorNotification {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-} */
+@media screen and (max-width: 767px) {
+  .container {
+    border-radius: 10px;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .formulasContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .btn {
+    width: 256px;
+    height: 36px;
+    padding: 8px 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 704px;
+  }
+
+  .formulasContainer {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 12px;
+  }
+
+  .btn {
+    width: 160px;
+    height: 44px;
+    padding: 10px 30px;
+    align-self: flex-end;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 592px;
+  }
+}
