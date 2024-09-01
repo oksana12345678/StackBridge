@@ -56,41 +56,38 @@ const UserLogoPopUp = () => {
   }, [isUserLogoModalOpen, dispatch]);
 
   return (
+  <>
+  {
     (isVisible || isClosing) && (
-      <>
-        <div
-          className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
-            isClosing ? css.isClosing : ""
-          }`}
-          ref={node}
-        >
-          <ul className={css.list}>
-            <li>
-              <button className={css.LogoModalBtn}>
-                <IoSettingsOutline
-                  className={css.icons}
-                  onClick={() => {
-                    dispatch(settingModal());
-                  }}
-                />
-                Setting
-              </button>
-            </li>
-            <li>
-              <button
-                className={css.LogoModalBtn}
-                onClick={() => dispatch(logOutModal())}
-              >
-                <IoLogOutOutline className={css.icons} />
-                Log out
-              </button>
-            </li>
-          </ul>
-        </div>
-        <UserLogoutModal />
-        <SettingModal />
-      </>
-    )
+
+
+      <div
+        className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
+          isClosing ? css.isClosing : ""
+        }`}
+        ref={node}
+      >
+        <ul className={css.list}>
+          <li>
+            <button className={css.LogoModalBtn}>
+              <IoSettingsOutline className={css.icons} />
+              Setting
+            </button>
+          </li>
+          <li>
+            <button className={css.LogoModalBtn}  onClick={()=>{setIsVisible(false); setIsClosing(false);setIsOpening(false);dispatch(logOutModal())}}>
+              <IoLogOutOutline className={css.icons} />
+              Log out
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+    )}
+    <UserLogoutModal/>
+  </>
+
   );
 };
 
