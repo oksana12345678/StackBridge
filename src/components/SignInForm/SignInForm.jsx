@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import { logIn } from "../../redux/auth/operations";
+import { logIn, refreshUser } from "../../redux/auth/operations";
 
 const showToast = (message, type) => {
   toast(message, {
@@ -37,6 +37,7 @@ const SignInForm = () => {
     )
       .unwrap()
       .then(() => {
+        dispatch(refreshUser());
         showToast("Login successful!", "success");
         actions.resetForm();
       })

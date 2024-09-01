@@ -15,7 +15,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/signup", credentials);
+      const response = await axios.post("https://watertracker-app.onrender.com/auth/signup", credentials);
       setAuthHeader(response.data.token);
 
       return response.data;
@@ -59,7 +59,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get("/users/current");
+      const response = await axios.get("https://watertracker-app.onrender.com/users/current");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
