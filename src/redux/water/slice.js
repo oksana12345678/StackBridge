@@ -1,6 +1,5 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { addWater, editWater } from "./operations";
-import { selectWater } from "./selectors";
 
 const waterSlice = createSlice({
   name: "water",
