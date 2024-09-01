@@ -57,7 +57,7 @@ const UserLogoPopUp = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isUserLogoModalOpen, dispatch]);
+  }, [isUserLogoModalOpen, isSettingModalOpen, dispatch]);
 
   return (
     <>
