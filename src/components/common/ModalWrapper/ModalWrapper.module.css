@@ -18,6 +18,12 @@
   background-color: #ffffff;
   overflow: auto;
   max-height: 95%;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.modal::-webkit-scrollbar {
+  display: none; 
 }
 
 @media screen and (min-width: 768px) {
