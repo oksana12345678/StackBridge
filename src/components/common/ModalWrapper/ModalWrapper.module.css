@@ -17,7 +17,6 @@
   background-color: #ffffff;
 }
 
-
 @media screen and (max-width: 767px) {
   .modal {
     max-width: 280px;
@@ -48,7 +47,6 @@
   outline: none;
 }
 
-
 @media screen and (min-width: 768px) {
   .close-button {
     top: 36px;
@@ -67,7 +65,7 @@
   stroke: var(--primary-blue-color);
 }
 
-.button-class-logout{
+.button-class-logout {
   top: 36px;
   right: 24px;
 }
