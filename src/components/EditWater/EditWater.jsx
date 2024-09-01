@@ -2,10 +2,11 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater } from "../../redux/water/operations";
+import { editWater } from "../../redux/water/operations";
 import showToast from "../showToast";
-import css from "./AddWater.module.css";
+import css from "./EditWater.module.css";
 
+import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
 import plus from "../../Icons/plus.svg";
 import close from "../../Icons/close.svg";
@@ -21,7 +22,7 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function AddWater() {
+export default function EditWater({ id, amount, time }) {
   const dispatch = useDispatch();
 
   const [amountOfWater, setAmountOfWater] = useState(0);
@@ -80,30 +81,37 @@ export default function AddWater() {
   }
 
   /////// Функція відправки даних на бекенд
-  const handleAddWater = (values, actions) => {
+  const handleEditWater = (values, actions) => {
     const time = formatDateTime(values.time);
     const amount = values.amount;
-    dispatch(addWater({ amount, time }))
+    dispatch(editWater({ amount, time }))
       .unwrap()
       .then(() => {
-        showToast("Water add successful!", "success");
+        showToast("Water edit successful!", "success");
         actions.resetForm();
       })
       .catch(() => {
-        showToast("Water add failed!", "error");
+        showToast("Water edit failed!", "error");
       });
   };
 
   return (
     <Formik
       initialValues={{ time: timeNow, amount: 0 }}
-      onSubmit={handleAddWater}
+      onSubmit={handleEditWater}
       validationSchema={WaterSchema}
     >
       {({ setFieldValue }) => (
         <Form className={css.formContainer}>
-          <h2 className={css.title}>Add water</h2>
-          <p className={css.text}>Choose a value:</p>
+          <h2 className={css.title}>Edit the entered amount of water</h2>
+          <div className={css.prevRecordContainer}>
+            <img src={drink} alt="Glass of water" />
+            <div className={css.prevInfoContainer}>
+              <div className={css.prevAmountWater}>200 ml</div>
+              <div className={css.prevTime}>07:00 AM</div>
+            </div>
+          </div>
+          <p className={css.text}>Correct entered data:</p>
           <p className={css.textCounter}>Amount of water:</p>
           <div className={css.counterContainer}>
             <button
