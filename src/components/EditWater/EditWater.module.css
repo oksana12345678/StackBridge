@@ -7,7 +7,7 @@
   border-radius: 10px;
   padding: 24px 12px;
   width: 280px;
-  height: 540px;
+  height: 648px;
   background-color: #fff;
   position: relative;
   margin-left: auto;
@@ -22,6 +22,43 @@
   line-height: 1.23077;
   color: #2f2f2f;
   margin-bottom: 24px;
+}
+
+.prevRecordContainer {
+  border-radius: 10px;
+  padding: 8px 24px;
+  width: 256px;
+  height: 52px;
+  background-color: #ecf2ff;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.prevInfoContainer {
+  width: 160px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.prevAmountWater {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: #407bff;
+}
+
+.prevTime {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  color: #2f2f2f;
 }
 
 .text {
@@ -93,7 +130,7 @@
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   padding: 12px 10px;
-  width: 120px;
+  width: 256px;
   height: 44px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -162,7 +199,7 @@
   border: none;
   position: absolute;
   right: 12px;
-  top: 30px;
+  top: 24px;
 }
 
 /* Tablet styles 768px */
@@ -170,11 +207,19 @@
   .formContainer {
     padding: 32px 24px;
     width: 704px;
-    height: 504px;
+    height: 580px;
+  }
+
+  .prevRecordContainer {
+    width: 254px;
+  }
+
+  .prevInfoContainer {
+    width: 158px;
   }
 
   .input {
-    width: 656px;
+    width: 544px;
   }
 
   .resultContainer {
