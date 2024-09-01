@@ -9,12 +9,12 @@ Modal.setAppElement(document.getElementById("root"));
 const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLogout=false, children }) => {
   useEffect(() => {
     if (modalIsOpen) {
-      document.body.classList.add(css['no-scroll']);
+      document.body.classList.add(css["no-scroll"]);
     } else {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     }
     return () => {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     };
   }, [modalIsOpen]);
 
