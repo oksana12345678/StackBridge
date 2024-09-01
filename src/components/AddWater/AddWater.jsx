@@ -6,6 +6,10 @@ import { addWater } from "../../redux/water/operations";
 import showToast from "../showToast";
 import css from "./AddWater.module.css";
 
+import minus from "../../Icons/minus.svg";
+import plus from "../../Icons/plus.svg";
+import close from "../../Icons/close.svg";
+
 const WaterSchema = Yup.object().shape({
   time: Yup.string()
     .min(8, "Too Short! Min 8 symbols")
@@ -97,10 +101,10 @@ export default function AddWater() {
       validationSchema={WaterSchema}
     >
       {({ setFieldValue }) => (
-        <Form>
-          <h2>Add water</h2>
-          <p>Choose a value:</p>
-          <p>Amount of water:</p>
+        <Form className={css.formContainer}>
+          <h2 className={css.title}>Add water</h2>
+          <p className={css.text}>Choose a value:</p>
+          <p className={css.textCounter}>Amount of water:</p>
           <div className={css.counterContainer}>
             <button
               className={css.amountBtn}
@@ -111,7 +115,7 @@ export default function AddWater() {
                 setResult(amountOfWater);
               }}
             >
-              -
+              <img src={minus} alt="Minus" />
             </button>
             <div className={css.amountCounter}>{amountOfWater}ml</div>
             <button
@@ -123,12 +127,19 @@ export default function AddWater() {
                 setResult(amountOfWater);
               }}
             >
-              +
+              <img src={plus} alt="Plus" />
             </button>
           </div>
-          <div>
-            <label htmlFor={`${fieldId}-time`}>Recording time:</label>
-            <Field as="select" name="time" id={`${fieldId}-time`}>
+          <div className={css.timeContainer}>
+            <label className={css.labelTime} htmlFor={`${fieldId}-time`}>
+              Recording time:
+            </label>
+            <Field
+              as="select"
+              name="time"
+              className={css.input}
+              id={`${fieldId}-time`}
+            >
               <option value={timeNow}>{timeNow}</option>
               {listOfTime.map((time, index) => (
                 <option key={index} value={time}>
@@ -138,11 +149,15 @@ export default function AddWater() {
             </Field>
             <ErrorMessage className={css.error} name="time" component="span" />
           </div>
-          <div>
-            <label htmlFor={`${fieldId}-amount`}>
+          <div className={css.enterValueContainer}>
+            <label
+              className={css.enterValueLabel}
+              htmlFor={`${fieldId}-amount`}
+            >
               Enter the value of the water used:
             </label>
             <Field
+              className={css.input}
               name="amount"
               type="number"
               id={`${fieldId}-amount`}
@@ -157,11 +172,16 @@ export default function AddWater() {
               component="span"
             />
           </div>
-          <p>{result}ml</p>
-          <button className={css.saveBtn} type="submit">
-            Save
+          <div className={css.resultContainer}>
+            <p className={css.textResult}>{result}ml</p>
+            <button className={css.saveBtn} type="submit">
+              Save
+            </button>
+          </div>
+
+          <button className={css.closeBtn} type="button">
+            <img src={close} alt="Close cross" />
           </button>
-          <button type="button">x</button>
         </Form>
       )}
     </Formik>

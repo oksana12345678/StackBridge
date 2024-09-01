@@ -15,8 +15,9 @@
   padding: 24px 12px;
   border-radius: 10px;
   background-color: #ffffff;
+  overflow: auto;
+  max-height: 95%;
 }
-
 
 @media screen and (max-width: 767px) {
   .modal {

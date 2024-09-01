@@ -7,40 +7,6 @@
   width: 100%;
 }
 
-.eyeBtn {
-  position: absolute;
-  border: none;
-  top: calc(50% + 34px);
-  right: 4%;
-  cursor: pointer;
-  color: grey;
-  width: 16px;
-  height: 16px;
-  border-radius: 30px;
-  border: transparent;
-  outline-color: none;
-}
-
-.faEye {
-  stroke: none;
-  transform: translateY(-60%);
-  top: calc(50% + 42px);
-  margin-left: -15px;
-  width: 28px;
-  height: 28px;
-  fill: #407bff;
-  outline-color: none;
-}
-
-.faEyeSlash {
-  transform: translateY(-60%);
-  top: calc(50% + 42px);
-  margin-left: -15px;
-  width: 28px;
-  height: 28px;
-  fill: #407bff;
-}
-
 .signinPageTitle {
   margin-bottom: 16px;
   text-align: left;
@@ -51,8 +17,31 @@
   color: #2f2f2f;
 }
 
+/* .eyeBtn {
+  border: none;
+  top: calc(50% + 34px);
+  right: 4%;
+  cursor: pointer;
+  color: grey;
+  width: 16px;
+  height: 16px;
+  border-radius: 30px;
+  border: transparent;
+  outline-color: none;
+} */
+
+.faEye {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  stroke: none;
+  width: 28px;
+  height: 28px;
+  fill: #407bff;
+  outline-color: none;
+}
+
 .form {
-  position: relative;
   row-gap: 16px;
   display: flex;
   flex-direction: column;
@@ -62,7 +51,6 @@
 
 .label {
   color: black;
-  position: relative;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -77,7 +65,12 @@
   color: #ef5050;
 }
 
-input {
+.passwordWrapper {
+  position: relative;
+  height: 50px;
+}
+
+.input {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -90,9 +83,9 @@ input {
   outline: none;
 }
 
-input:hover,
-input:focus,
-input:active {
+.input:hover,
+.input:focus,
+.input:active {
   border: 1px solid #d7e3ff;
   border-color: none;
   border-radius: 6px;
@@ -101,13 +94,12 @@ input:active {
   color: #407bff;
 }
 
-input::placeholder {
+.input::placeholder {
   color: #d7e3ff;
   background-color: #ffffff;
 }
 
 .signinPageButton {
-  margin-bottom: 16px;
   display: flex;
   padding: 10px 30px;
   justify-content: center;

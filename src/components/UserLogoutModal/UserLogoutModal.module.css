@@ -30,7 +30,6 @@
   padding: 10px 30px;
   width: 160px;
   height: 44px;
-  font-size: 18px;
   background: var(--secondary-light-blue);
   color: var(--primary-blue-color);
 }
@@ -64,6 +63,8 @@
   .modalButtons{
     flex-direction: column-reverse;
     gap: 24px;
+    font-size: 16px;
+    line-height: 1.25;
   }
   .buttonCancel{
     padding: 8px 30px;

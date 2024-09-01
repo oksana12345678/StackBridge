@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addWater } from "./operations";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { addWater, editWater } from "./operations";
+import { selectWater } from "./selectors";
 
 const waterSlice = createSlice({
   name: "water",
@@ -21,8 +22,17 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(editWater.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+        state.loading = false;
       });
   },
 });
 
-export const waterReducer = waterSlice.reducer;
+export default waterSlice.reducer;
