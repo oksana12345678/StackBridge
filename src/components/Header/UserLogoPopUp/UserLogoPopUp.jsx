@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import css from "./UserLogoPopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, logOutModal } from "../../../redux/modalWindow/slice";
+import {
+  closeModal,
+  logOutModal,
+  settingModal,
+} from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
 import UserLogoutModal from "../../UserLogoutModal/UserLogoutModal";
+import SettingModal from "../../SettingsModal/SettingModal/SettingModal";
 
 const UserLogoPopUp = () => {
   const node = useRef();
@@ -53,28 +58,37 @@ const UserLogoPopUp = () => {
   return (
     (isVisible || isClosing) && (
       <>
-      <div
-        className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
-          isClosing ? css.isClosing : ""
-        }`}
-        ref={node}
-      >
-        <ul className={css.list}>
-          <li>
-            <button className={css.LogoModalBtn}>
-              <IoSettingsOutline className={css.icons} />
-              Setting
-            </button>
-          </li>
-          <li>
-            <button className={css.LogoModalBtn}  onClick={()=>dispatch(logOutModal())}>
-              <IoLogOutOutline className={css.icons} />
-              Log out
-            </button>
-          </li>
-        </ul>
-      </div>
-      <UserLogoutModal/>
+        <div
+          className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
+            isClosing ? css.isClosing : ""
+          }`}
+          ref={node}
+        >
+          <ul className={css.list}>
+            <li>
+              <button className={css.LogoModalBtn}>
+                <IoSettingsOutline
+                  className={css.icons}
+                  onClick={() => {
+                    dispatch(settingModal());
+                  }}
+                />
+                Setting
+              </button>
+            </li>
+            <li>
+              <button
+                className={css.LogoModalBtn}
+                onClick={() => dispatch(logOutModal())}
+              >
+                <IoLogOutOutline className={css.icons} />
+                Log out
+              </button>
+            </li>
+          </ul>
+        </div>
+        <UserLogoutModal />
+        <SettingModal />
       </>
     )
   );
