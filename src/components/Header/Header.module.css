@@ -28,6 +28,7 @@
 @media screen and (min-width: 1440px) {
   .header {
     min-width: 1216px;
+    max-width: 1216px;
     margin: 0 auto;
   }
   .container {
