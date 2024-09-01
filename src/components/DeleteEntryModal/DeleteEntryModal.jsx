@@ -2,16 +2,19 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from 'react-redux';
 import css from "./DeleteEntryModal.module.css";
 import { closeModal } from "../../redux/modalWindow/slice";
-import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
+import { selectIsDeleteEntryModalOpen } from "../../redux/modalWindow/selectors";
+import { deleteWaterEntryThunk } from "../../redux/waterConsumption/operations";
 const customStyles = {
   content: {
     padding: "32px 24px",
   }
 };
 
-export default function DeleteEntryModal() {
+export default function DeleteEntryModal({id}) {
+  console.log(id);
+  
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsModalOpen)
+  const modalIsOpen = useSelector(selectIsDeleteEntryModalOpen)
   return (
       <ModalWrapper modalIsOpen={modalIsOpen} closeModal={() => dispatch(closeModal())} customStyles={customStyles} buttonClassLogout={true}>
         <div className={css.modal}>

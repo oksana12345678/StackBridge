@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import css from "./UserLogoPopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, logOutModal } from "../../../redux/modalWindow/slice";
+import {
+  closeModal,
+  logOutModal,
+  settingModal,
+} from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
+import UserLogoutModal from "../../UserLogoutModal/UserLogoutModal";
+import SettingModal from "../../SettingsModal/SettingModal/SettingModal";
 
 const UserLogoPopUp = () => {
   const node = useRef();
@@ -50,7 +56,11 @@ const UserLogoPopUp = () => {
   }, [isUserLogoModalOpen, dispatch]);
 
   return (
+  <>
+  {
     (isVisible || isClosing) && (
+
+
       <div
         className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
           isClosing ? css.isClosing : ""
@@ -65,14 +75,19 @@ const UserLogoPopUp = () => {
             </button>
           </li>
           <li>
-            <button className={css.LogoModalBtn} onClick={dispatch(logOutModal())}>
+            <button className={css.LogoModalBtn}  onClick={()=>{setIsVisible(false); setIsClosing(false);setIsOpening(false);dispatch(logOutModal())}}>
               <IoLogOutOutline className={css.icons} />
               Log out
             </button>
           </li>
         </ul>
       </div>
-    )
+
+
+    )}
+    <UserLogoutModal/>
+  </>
+
   );
 };
 

@@ -25,8 +25,8 @@ export const UserLogo = () => {
   const userAvatar = userProfile.avatar;
 
   return (
-    <div onClick={onClickOpenUserLogoModal} ref={buttonNode}>
-      <button className={css.button} aria-label="User Logo">
+    <div ref={buttonNode}>
+      <button className={css.button} aria-label="User Logo"  onClick={onClickOpenUserLogoModal}>
         <p className={css.name}>{name ? name : defaultName}</p>
 
         <img
