@@ -135,7 +135,7 @@
     width: 100%;
     height: 620px;
     background-size: 688px, cover;
-    background-position: bottom right -12%, center;
+    background-position: bottom right -20%, center;
   }
 
   @media (min-device-pixel-ratio: 2),
@@ -155,7 +155,7 @@
     height: 750px;
     width: 100%;
     background-size: 880px, cover;
-    background-position: bottom 35px left -12%, center;
+    background-position: bottom 35px left 10%, center;
   }
 
   @media (min-device-pixel-ratio: 2),

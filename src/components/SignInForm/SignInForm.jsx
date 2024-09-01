@@ -5,23 +5,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
 import { logIn } from "../../redux/auth/operations";
-
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
+import showToast from "../showToast";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -93,7 +78,6 @@ const SignInForm = () => {
                 className={`${css.input} ${
                   errors.password && touched.password ? css.inputError : ""
                 }`}
-                
               />
               <button
                 className={css.eyeBtn}
@@ -105,7 +89,7 @@ const SignInForm = () => {
                 {showPassword ? (
                   <FaEye className={css.faEye} />
                 ) : (
-                  <FaEyeSlash  className={css.faEye} />
+                  <FaEyeSlash className={css.faEye} />
                 )}
               </button>
             </div>
