@@ -11,6 +11,7 @@
 }
 
 .modal {
+  width: 280px;
   position: relative;
   padding: 24px 12px;
   border-radius: 10px;
@@ -19,15 +20,16 @@
   max-height: 95%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 768px) {
   .modal {
-    max-width: 280px;
+    min-width: 704px;
+    padding: 32px 24px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .modal {
-    padding: 32px 24px;
+    min-width: 1008px;
   }
 }
 
@@ -49,7 +51,6 @@
   outline: none;
 }
 
-
 @media screen and (min-width: 768px) {
   .close-button {
     top: 36px;
@@ -68,7 +69,7 @@
   stroke: var(--primary-blue-color);
 }
 
-.button-class-logout{
+.button-class-logout {
   top: 36px;
   right: 24px;
 }
