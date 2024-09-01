@@ -9,13 +9,18 @@
 }
 
 .signinPageTitle {
-  margin-bottom: 16px;
   text-align: left;
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.23;
   color: #2f2f2f;
+}
+
+.inputErrorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 /* .eyeBtn {
@@ -35,14 +40,14 @@
   position: absolute;
   top: 12px;
   right: 10px;
-  stroke: none;
+  stroke: #407bff;
   width: 28px;
   height: 28px;
-  fill: #407bff;
   outline-color: none;
 }
 
 .form {
+  margin: 0 auto;
   row-gap: 16px;
   display: flex;
   flex-direction: column;
@@ -149,6 +154,7 @@
     align-items: flex-start;
   }
   .form {
+    margin: 0;
     top: 0;
     left: 0;
     width: 336px;

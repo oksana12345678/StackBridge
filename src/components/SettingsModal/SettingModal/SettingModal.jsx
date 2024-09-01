@@ -12,7 +12,7 @@ import { PiUploadSimple } from "react-icons/pi";
 import { IoMdRadioButtonOn } from "react-icons/io";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import userPic from "../../../../public/userPic.png"
+import userPic from "../../../../public/userPic.png";
 import * as Yup from "yup";
 import css from "./SettingModal.module.css";
 
@@ -73,6 +73,12 @@ const SettingModal = () => {
     <ModalWrapper
       modalIsOpen={isModalOpen}
       closeModal={() => dispatch(closeModal())}
+      customStyles={{
+        content: {
+          paddingTop: "32px",
+          paddingBottom: "32px",
+        },
+      }}
     >
       <FormTitle />
       <Formik
