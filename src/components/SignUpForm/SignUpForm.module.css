@@ -52,34 +52,11 @@
 .btn:active {
   box-shadow: none;
 }
-.eye {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #407BFF;
-      fill: #407bff;
-  outline-color: none;
-}
+
 .msgErr {
   color: #ef5050;
 }
-.errField{
-  color: #ef5050;
-  border: 1px solid #ef5050;
-  /* border-radius: 6px;
-  padding: 12px 10px;
-  width: 100%;
-  margin-top: 8px;
-  background-color: transparent;
-  outline: 0px transparent;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25; */
-}
-.fialdStyle {
-  display: block;
-}
+
 
 .field {
   border: 1px solid #d7e3ff;
@@ -98,7 +75,7 @@
 .field:hover,
 .field:focus,
 .field:active {
-  border: 1px solid #d7e3ff;
+
   border-radius: 6px;
   padding: 12px 10px;
   background-color: transparent;
@@ -107,6 +84,40 @@
 .field::placeholder {
   color: #d7e3ff;
   background-color: #ffffff;
+}
+
+.fieldError{
+  color: #ef5050;
+  border: 1px solid #ef5050;
+
+}
+.fialdStyle {
+  display: block;
+}
+.blockField{
+  position: relative;
+ 
+}
+.eyebtn{
+position: absolute;
+background-color:transparent;
+border: none;
+color: #407BFF;
+width: 44px;
+height: 44px;
+padding: none;
+right: 0;
+top: 50px;
+}
+
+.eye {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #407BFF;
+      fill: #407bff;
+  outline-color: none;
 }
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
