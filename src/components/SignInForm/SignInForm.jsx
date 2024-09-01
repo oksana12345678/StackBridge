@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { logIn } from "../../redux/auth/operations";
@@ -93,7 +93,6 @@ const SignInForm = () => {
                 className={`${css.input} ${
                   errors.password && touched.password ? css.inputError : ""
                 }`}
-                
               />
               <button
                 className={css.eyeBtn}
@@ -103,9 +102,9 @@ const SignInForm = () => {
                 }}
               >
                 {showPassword ? (
-                  <FaEye className={css.faEye} />
+                  <HiOutlineEye className={css.faEye} />
                 ) : (
-                  <FaEyeSlash  className={css.faEye} />
+                  <HiOutlineEyeOff className={css.faEye} />
                 )}
               </button>
             </div>

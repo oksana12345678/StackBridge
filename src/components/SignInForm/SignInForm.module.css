@@ -34,10 +34,9 @@
   position: absolute;
   top: 12px;
   right: 10px;
-  stroke: none;
+  stroke: #407bff;;
   width: 28px;
   height: 28px;
-  fill: #407bff;
   outline-color: none;
 }
 
