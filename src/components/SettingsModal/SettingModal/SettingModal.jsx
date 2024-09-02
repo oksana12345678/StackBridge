@@ -1,7 +1,8 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
+import { selectUserEmail } from "../../../redux/auth/selectors";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
@@ -15,22 +16,41 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import userPic from "../../../../public/userPic.png";
 import * as Yup from "yup";
 import css from "./SettingModal.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+import { updateAvatar, updateUser } from "../../../redux/auth/operations";
 
+const showToast = (message, type) => {
+  toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: type === "success" ? "light" : "colored",
+    type: type,
+  });
+};
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
-
+  const user = useSelector(selectUserEmail)
   const defaultAvatar = userPic;
   const dispatch = useDispatch();
-
+  const [newAvatar, setNewAvatar]= useState(user.avatar || defaultAvatar)
+  const [newAvatarFile, setNewAvatarFile]= useState(null)
   const initialValues = {
-    email: "",
-    name: "",
-    gender: "",
-    avatar: "",
+    email: user.email || "",
+    name: user.name || "",
+    gender: user.gender,
+    avatar: user.avatar || "",
     outdatedPassword: "",
-    newPassword: "",
+    password: "",
     repeatPassword: "",
   };
+
+  let patchedData={};
 
   const nameInputId = useId();
   const emailInputId = useId();
@@ -42,11 +62,15 @@ const SettingModal = () => {
   const repeatPasswordInputId = useId();
 
   const userInfoValidationSchema = Yup.object({
-    name: Yup.string().max(32, "Your name shouldn't exceed 32 characters"),
+    name: Yup.string().max(3,"Your name shouldn't exceed min 3 characters").max(32,"Your name shouldn't exceed 32 characters"),
     email: Yup.string().email("Invalid email address"),
+    outdatedPassword: Yup.string()
+    .min(8, "Your password should contain at least 8 characters")
+    .max(64, "Your password shouldn't exceed 64 characters"),
     password: Yup.string()
       .min(8, "Your password should contain at least 8 characters")
-      .max(64, "Your password shouldn't exceed 64 characters"),
+      .max(64, "Your password shouldn't exceed 64 characters")
+      .notOneOf([Yup.ref("outdatedPassword")],"New password cannot be the same as the old password."),
     repeatPassword: Yup.string().oneOf(
       [Yup.ref("password")],
       "Passwords must match"
@@ -64,11 +88,74 @@ const SettingModal = () => {
       }
     });
   };
-
+  function areEqualWithNull(values, user) {
+    for (let key in values) {
+      const formValue = values[key];
+      const userValue = user[key];
+      if (formValue !== (userValue ?? "")) {
+        patchedData[key]=formValue;
+      }
+      if(key=="avatar" && newAvatar!=user[key])
+        patchedData["avatar"]=newAvatarFile;
+    }
+    return patchedData;
+  }
   const onSubmit = (values) => {
-    console.log(values);
-  };
+    const {password,outdatedPassword,repeatPassword}=values;
 
+    patchedData=areEqualWithNull(values, user)
+
+      if (Object.keys(patchedData).length == 0) {
+        if(newAvatar!=user.avatar && newAvatar!=defaultAvatar) {
+          dispatch(updateAvatar({avatar:newAvatarFile}))
+          .unwrap()
+          .then(()=>{
+            showToast("Avatar changed!", "success");
+          })
+          .catch(()=>showToast("Error, try later!" , "error"))
+        }
+        else{
+          showToast("You have not made any changes.", "error");
+        }
+      } 
+      else {     
+       if(outdatedPassword!="" || password!="" || repeatPassword!=""){
+          if(outdatedPassword=="" || password=="" || repeatPassword==""){
+            showToast("Fill in all fields with passwords.", "error");
+          }
+          else{
+            const keysForDelete = ["outdatedPassword","password","repeatPassword"];
+            keysForDelete.forEach(key => {
+              delete patchedData[key];
+            });
+            dispatch(updateUser({...patchedData, password:outdatedPassword,newPassword:repeatPassword}))
+            .unwrap()
+            .then(()=>{
+              showToast("Successfully changed information.", "success");
+            })
+            .catch(()=>showToast("Error, try later!" , "error"))
+          }
+        }
+          else{
+            dispatch(updateUser(patchedData))
+              .unwrap()
+              .then(()=>{
+                showToast("Successfully changed information.", "success");
+              })
+              .catch(()=>showToast("Error, try later!" , "error"))
+          }
+      }
+
+      patchedData={}
+  };
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const fileURL = URL.createObjectURL(file);
+      setNewAvatar(fileURL);
+      setNewAvatarFile(file)
+    }
+  };
   return (
     <ModalWrapper
       modalIsOpen={isModalOpen}
@@ -80,6 +167,7 @@ const SettingModal = () => {
         },
       }}
     >
+    <ToastContainer />
       <FormTitle />
       <Formik
         initialValues={initialValues}
@@ -94,10 +182,10 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img src={defaultAvatar} alt="avatar" />
+                  <img src={newAvatar} alt="avatar" />
                 </div>
                 <div>
-                  <button className={css["upload-button"]}>
+                  <button className={css["upload-button"]} type="button">
                     <label
                       htmlFor={fileInputId}
                       className={css["file-upload-label"]}
@@ -109,6 +197,8 @@ const SettingModal = () => {
                       id={fileInputId}
                       type="file"
                       className={css["file-input"]}
+                      accept=".jpg,.jpeg,.png,.gif"
+                      onChange={handleAvatarChange}
                     />
                   </button>
                 </div>
@@ -255,6 +345,11 @@ const SettingModal = () => {
                         />
                       )}
                     </div>
+                    <ErrorMessage
+                      name="outdatedPassword"
+                      component="div"
+                      className={css["error-message"]}
+                    />
                   </div>
                   {/* ====================================================== NEW PASSWORD ================================================= */}
                   <div className={css["password-sub-group"]}>
@@ -356,6 +451,7 @@ const SettingModal = () => {
         )}
       </Formik>
     </ModalWrapper>
+    
   );
 };
 
