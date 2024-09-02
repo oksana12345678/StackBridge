@@ -7,10 +7,7 @@ import "react-toastify/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import React, { useState } from "react";
-import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
+import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -63,119 +60,62 @@ export default function SignUpForm() {
   const [showPassword1, setShowPassword1] = useState(false);
 
   return (
-    <div className={css.form_box}>
-      <ToastContainer />
-      <h2 className={css.title}>Sign Up</h2>
-
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          repeatPassword: "",
-        }}
-        validationSchema={validationControl}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={css.form} autoComplete="off">
-            <div className={css.fialdStyle}>
-              <div>
-                <label className={css.label}>Enter your email</label>
-
-                <Field
-                  type="email"
-                  name="email"
-                  className={`${css.field} ${
-                    touched.email && errors.email ? css.fieldError : ""
-                  }`}
-                  placeholder="E-mail"
-                />
-                <ErrorMessage
-                  className={css.msgErr}
-                  name="email"
-                  component="span"
-                />
-              </div>
-
-              <div className={css.blockField}>
-                <label className={css.label}>Enter your password</label>
-                <Field
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  id="password"
-                  className={`${css.field} ${
-                    touched.password && errors.password ? css.fieldError : ""
-                  }`}
-                  placeholder="Password"
-                />
-
-                <button
-                  type="button"
-                  name="password"
-                  className={css.eyebtn}
-                  width="44"
-                  height="44"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <FaEye size="20" className={css.eye} />
-                  ) : (
-                    <FaEyeSlash size="20" className={css.eye} />
-                  )}
-                </button>
-                <ErrorMessage
-                  className={css.msgErr}
-                  name="password"
-                  component="span"
-                />
-              </div>
-
-              <div className={css.blockField}>
-                <label className={css.label}>Repeat password</label>
-                <Field
-                  type={showPassword1 ? "text" : "password"}
-                  name="repeatPassword"
-                  className={`${css.field} ${
-                    touched.repeatPassword && errors.repeatPassword
-                      ? css.fieldError
-                      : ""
-                  }`}
-                  placeholder="Repeat password"
-                />
-
-                <button
-                  type="button"
-                  className={css.eyebtn}
-                  width="44"
-                  height="44"
-                  onClick={() => setShowPassword1(!showPassword1)}
-                >
-                  {showPassword1 ? (
-                    <FaEye size="20" className={css.eye} />
-                  ) : (
-                    <FaEyeSlash size="20" className={css.eye} />
-                  )}
-                </button>
-                <ErrorMessage
-                  className={css.msgErr}
-                  name="repeatPassword"
-                  component="span"
-                />
-              </div>
-              <WaveEffectButton>
-                <button type="submit" className={css.btn}>
-                  Sign Up
-                </button>
-              </WaveEffectButton>
-            </div>
-          </Form>
-        )}
-      </Formik>
-      <nav className={css.nav}>
-        <NavLink to="/signin" className={css.link}>
-          Sign in
-        </NavLink>
-      </nav>
-    </div>
+    <SignInSignUpWrapper
+      // contactsSchema={contactsSchema}
+      handleSubmit={handleSubmit}
+      // showPassword={showPassword}
+      // setShowPassword={setShowPassword}
+    />
+    // <div className={css.form_box}>
+    //   <h2 className={css.title}>Sign Up</h2>
+    //   <Formik
+    //     initialValues={{
+    //       name: "",
+    //       email: "",
+    //       password: "",
+    //     }}
+    //     onSubmit={handleSubmit}
+    //   >
+    //     <Form className={css.form} autoComplete="off">
+    //       <div className={css.fialdStyle}>
+    //         <label className={css.label}>
+    //           Enter your email
+    //           <Field
+    //             type="email"
+    //             name="email"
+    //             className={css.field}
+    //             placeholder="E-mail"
+    //           />
+    //         </label>
+    //         <label className={css.label}>
+    //           Enter your password
+    //           <Field
+    //             type="password"
+    //             name="password"
+    //             className={css.field}
+    //             placeholder="Password"
+    //           />
+    //         </label>
+    //         <label className={css.label}>
+    //           Repeat password
+    //           <Field
+    //             type="password"
+    //             name="passwordRepeat"
+    //             placeholder="Repeat password"
+    //             className={css.field}
+    //           />
+    //         </label>
+    //         <button type="submit" className={css.btn}>
+    //           Sign Up
+    //         </button>
+    //       </div>
+    //     </Form>
+    //   </Formik>
+    //   <nav className={css.nav}>
+    //     <NavLink to="/signin" className={css.link}>
+    //       Sign in
+    //     </NavLink>
+    //   </nav>
+    // </div>
   );
 }

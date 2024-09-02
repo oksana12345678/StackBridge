@@ -13,9 +13,9 @@ export default function RegisterPage() {
       </Helmet>
 
       <MainAuth>
-        <div className={css.div}>
+        {/* <div className={css.div}> */}
           <SignUpForm />
-        </div>
+        {/* </div> */}
       </MainAuth>
     </>
   );
