@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import css from "./ModalWrapper.module.css";
 import clsx from "clsx";
+import { useEffect } from "react";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -8,19 +9,19 @@ Modal.setAppElement(document.getElementById("root"));
 const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLogout=false, children }) => {
   useEffect(() => {
     if (modalIsOpen) {
-      document.body.classList.add(css['no-scroll']);
+      document.body.classList.add(css["no-scroll"]);
     } else {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     }
     return () => {
-      document.body.classList.remove(css['no-scroll']);
+      document.body.classList.remove(css["no-scroll"]);
     };
   }, [modalIsOpen]);
 
 
   return (
     <Modal
-      isOpen={isModalOpen}
+      isOpen={modalIsOpen}
       onRequestClose={closeModal}
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
@@ -33,10 +34,6 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
 
 
       <button className={clsx(css["close-button"],buttonClassLogout && css["button-class-logout"])} onClick={closeModal}>
-        {/* ЦЕ ЧОМУСЬ НЕ ПРАЦЮЄ, ТОМУ ПОКИ ВАРІНТ НИЖЧЕ */}
-        {/* <svg className={css["close-icon"]} width="24" height="24">
-          <use href="../../../Icons/sprite.svg#close-cross"></use>
-        </svg> */}
         <svg
           className={css["close-icon"]}
           width="24"
@@ -52,7 +49,6 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
           />
         </svg>
       </button>
-
     </Modal>
   );
 };

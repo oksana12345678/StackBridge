@@ -13,6 +13,7 @@ import {
 import persistStore from "redux-persist/es/persistStore";
 import { modalReducer } from "./modalWindow/slice";
 import monthStatsReducer from "./monthStats/slice";
+import waterReducer from "./water/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -25,8 +26,9 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
     monthStats: monthStatsReducer,
+    water: waterReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

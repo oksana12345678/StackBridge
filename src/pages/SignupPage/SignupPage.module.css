@@ -1,14 +1,12 @@
 .div {
   display: flex;
-  /* background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
 }
-
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
   .div {
     width: 320px;
+    justify-content: center;
+    align-items: center;
   }
 }
 /* tablet 750**************************** */

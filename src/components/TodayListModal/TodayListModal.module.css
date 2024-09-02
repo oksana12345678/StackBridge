@@ -1,0 +1,253 @@
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.formContainer {
+  border-radius: 10px;
+  padding: 24px 12px;
+  width: 280px;
+  height: 648px;
+  background-color: #fff;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid lightblue;
+}
+
+.title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23077;
+  color: #2f2f2f;
+  margin-bottom: 24px;
+}
+
+.prevRecordContainer {
+  border-radius: 10px;
+  padding: 8px 24px;
+  width: 256px;
+  height: 52px;
+  background-color: #ecf2ff;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.prevInfoContainer {
+  width: 160px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.prevAmountWater {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: #407bff;
+}
+
+.prevTime {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  color: #2f2f2f;
+}
+
+.text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11111;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+
+.textCounter,
+.labelTime {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2f2f2f;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0 24px 0;
+}
+
+.amountBtn {
+  border: 1px solid #9ebbff;
+  border-radius: 30px;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.2);
+  background: #fff;
+}
+
+.amountBtn:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.amountBtn:active {
+  box-shadow: none;
+}
+
+.amountCounter {
+  border-radius: 40px;
+  padding: 6px 10px;
+  width: 92px;
+  height: 36px;
+  background: #d7e3ff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  color: #407bff;
+}
+
+.timeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.input {
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  width: 256px;
+  height: 44px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+}
+
+.enterValueLabel {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11111;
+  color: #2f2f2f;
+}
+
+.enterValueContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.textResult {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  color: #407bff;
+}
+
+.saveBtn {
+  display: block;
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 256px;
+  height: 36px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: #407bff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: #fff;
+}
+
+.saveBtn:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.saveBtn:active {
+  box-shadow: none;
+}
+
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 12px;
+  top: 24px;
+}
+
+/* Tablet styles 768px */
+@media screen and (min-width: 768px) {
+  .formContainer {
+    padding: 32px 24px;
+    width: 704px;
+    height: 580px;
+  }
+
+  .prevRecordContainer {
+    width: 254px;
+  }
+
+  .prevInfoContainer {
+    width: 158px;
+  }
+
+  .input {
+    width: 544px;
+  }
+
+  .resultContainer {
+    flex-direction: row;
+    gap: 24px;
+    justify-content: end;
+  }
+
+  .saveBtn {
+    padding: 10px 30px;
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 1.33333;
+  }
+
+  .closeBtn {
+    right: 24px;
+    top: 36px;
+  }
+}
+/* Desktop styles 1440px */
+@media screen and (min-width: 1440px) {
+  .formContainer {
+    width: 592px;
+  }
+
+  .input {
+    width: 544px;
+  }
+}

@@ -2,7 +2,7 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from "../../redux/auth/operations";
 import css from "./UserLogoutModal.module.css";
-import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
+import { selectLogOutModal } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 const customStyles = {
   content: {
@@ -12,7 +12,7 @@ const customStyles = {
 
 export default function UserLogoutModal() {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsModalOpen)
+  const modalIsOpen = useSelector(selectLogOutModal)
   return (
       <ModalWrapper modalIsOpen={modalIsOpen} closeModal={() => dispatch(closeModal())} customStyles={customStyles} buttonClassLogout={true}>
         <div className={css.modal}>

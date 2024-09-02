@@ -1,0 +1,78 @@
+.entryItem {
+  box-sizing: content-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  height: 26px;
+  border-bottom: 1px solid #d7e3ff;
+}
+
+.entryItem:last-child {
+  border-bottom: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .entryItem {
+    height: 36px;
+  }
+}
+
+.glass {
+  width: 26px;
+  height: 26px;
+}
+
+@media only screen and (min-width: 768px) {
+  .glass {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.entryInfo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.amount {
+  color: var(--primary-blue-color, #407bff);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  width: 68px;
+  text-align: center;
+}
+
+.time {
+  color: var(--primary-black-color, #2f2f2f);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.icons {
+  display: flex;
+  gap: 18px;
+  width: 50px;
+}
+
+.button {
+  display: block;
+  background-color: transparent;
+  border: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
+.button:hover,
+.button:focus {
+  stroke: var(--orange-accent-color, #ff9d43);
+}
+
+.delete:hover,
+.delete:focus {
+  stroke: var(--red-accent-color, #ea1b1b);
+}

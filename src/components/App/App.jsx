@@ -1,6 +1,8 @@
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import { refreshUser } from "../../redux/auth/operations.js";
 
@@ -43,6 +45,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Navigate to="/welcome" />} />
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
               path="/signup"

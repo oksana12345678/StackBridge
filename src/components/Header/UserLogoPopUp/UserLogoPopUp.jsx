@@ -1,9 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import css from "./UserLogoPopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../../redux/modalWindow/slice";
-import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
+import {
+  closeModal,
+  logOutModal,
+  settingModal,
+} from "../../../redux/modalWindow/slice";
+import {
+  selectIsUserLogoModalOpen,
+  selectIsSettingModalOpen,
+} from "../../../redux/modalWindow/selectors";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
+import UserLogoutModal from "../../UserLogoutModal/UserLogoutModal";
+import SettingModal from "../../SettingsModal/SettingModal/SettingModal";
 
 const UserLogoPopUp = () => {
   const node = useRef();
@@ -13,6 +22,7 @@ const UserLogoPopUp = () => {
   const [isOpening, setIsOpening] = useState(false);
 
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
+  const isSettingModalOpen = useSelector(selectIsSettingModalOpen);
 
   useEffect(() => {
     if (isUserLogoModalOpen) {
@@ -39,7 +49,7 @@ const UserLogoPopUp = () => {
         handleCloseModal();
       }
     };
-    if (isUserLogoModalOpen) {
+    if (isUserLogoModalOpen || isSettingModalOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -47,32 +57,52 @@ const UserLogoPopUp = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isUserLogoModalOpen, dispatch]);
+  }, [isUserLogoModalOpen, isSettingModalOpen, dispatch]);
 
   return (
-    (isVisible || isClosing) && (
-      <div
-        className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
-          isClosing ? css.isClosing : ""
-        }`}
-        ref={node}
-      >
-        <ul className={css.list}>
-          <li>
-            <button className={css.LogoModalBtn}>
-              <IoSettingsOutline className={css.icons} />
-              Setting
-            </button>
-          </li>
-          <li>
-            <button className={css.LogoModalBtn}>
-              <IoLogOutOutline className={css.icons} />
-              Log out
-            </button>
-          </li>
-        </ul>
-      </div>
-    )
+    <>
+      {(isVisible || isClosing) && (
+        <div
+          className={`${css.backdrop} ${isOpening ? css.isOpen : ""} ${
+            isClosing ? css.isClosing : ""
+          }`}
+          ref={node}
+        >
+          <ul className={css.list}>
+            <li>
+              <button
+                className={css.LogoModalBtn}
+                onClick={() => {
+                  setIsVisible(false);
+                  setIsClosing(false);
+                  setIsOpening(false);
+                  dispatch(settingModal());
+                }}
+              >
+                <IoSettingsOutline className={css.icons} />
+                Setting
+              </button>
+            </li>
+            <li>
+              <button
+                className={css.LogoModalBtn}
+                onClick={() => {
+                  setIsVisible(false);
+                  setIsClosing(false);
+                  setIsOpening(false);
+                  dispatch(logOutModal());
+                }}
+              >
+                <IoLogOutOutline className={css.icons} />
+                Log out
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
+      <UserLogoutModal />
+      <SettingModal />
+    </>
   );
 };
 

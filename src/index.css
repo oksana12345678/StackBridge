@@ -16,11 +16,13 @@
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
-
   /* color-scheme: light dark; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  height: 100vh;
 }
 
 h1,

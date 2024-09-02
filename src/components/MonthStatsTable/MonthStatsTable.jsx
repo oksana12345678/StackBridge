@@ -1,35 +1,61 @@
-import { useSelector, useDispatch } from 'react-redux';
-// import clsx from 'clsx';
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import clsx from "clsx";
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { getMonthWater } from "../../redux/monthStats/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
-} from '../../redux/monthStats/selectors';
-import { monthNames } from '../../data/monthNames';
-import { prevMonth, nextMonth } from '../../redux/monthStats/slice';
-import css from './MonthStatsTable.module.css';
+  selectDaysStats,
+  selectSelectedDay,
+} from "../../redux/monthStats/selectors";
+import { monthNames } from "../../data/monthNames";
+import {
+  prevMonth,
+  nextMonth,
+  toggleModal,
+} from "../../redux/monthStats/slice";
+import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
+import css from "./MonthStatsTable.module.css";
 
 const MonthStatsTable = () => {
   const currentMonth = useSelector(selectCurrentMonth);
   const currentYear = useSelector(selectCurrentYear);
+  const daysStats = useSelector(selectDaysStats);
+  const selectedDay = useSelector(selectSelectedDay);
   const dispatch = useDispatch();
 
-  // Функция для перехода на предыдущий месяц
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
+
+  useEffect(() => {
+    dispatch(getMonthWater({ year: yearString, month: monthString }));
+  }, [currentMonth, currentYear, dispatch]);
+
   const handlePrevMonth = () => {
     dispatch(prevMonth());
   };
 
-  // Функция для перехода на следующий месяц
   const handleNextMonth = () => {
     dispatch(nextMonth());
   };
 
-  // Генерация дней месяца
+  const handleDayClick = dayStats => {
+    dispatch(toggleModal(dayStats));
+  };
+
+  useEffect(() => {
+    if (selectedDay !== null) {
+      const timer = setTimeout(() => {
+        dispatch(toggleModal(null));
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedDay, dispatch]);
+
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  console.log(daysInMonth);
-  // Создание массива
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  console.log(daysArray);
 
   const dateNow =
     currentMonth === new Date().getMonth() &&
@@ -51,19 +77,48 @@ const MonthStatsTable = () => {
             onClick={handleNextMonth}
             disabled={dateNow}
           >
-            <GoChevronRight className={css.icon} />
+            <GoChevronRight className={clsx(css.icon)} />
           </button>
         </div>
       </div>
 
       <ul className={css.list}>
-        {daysArray.map(day => (
-          <li className={css.item} key={day}>
-            <span className={css.day}>{day}</span>
-            <span className={css.dailyNorma}>0%</span>
-          </li>
-        ))}
+        {daysArray.map(day => {
+          const dayString = day.toString();
+          const dayStats = daysStats.find(stat => {
+            const statDay = stat.date.split(",")[0].trim();
+            return statDay === dayString;
+          });
+          const fulfilled = dayStats?.percentOfWaterRate || "0%";
+          const belowNorma = fulfilled !== "100%";
+
+          return (
+            <li
+              className={css.item}
+              key={day}
+              onClick={() => handleDayClick(dayStats)}
+            >
+              <span
+                className={clsx(css.day, {
+                  [css.belowNorma]: belowNorma,
+                })}
+              >
+                {day}
+              </span>
+              <span className={css.dailyNorma}>{fulfilled}</span>
+            </li>
+          );
+        })}
       </ul>
+
+      {selectedDay !== null && (
+        <DaysGeneralStats
+          date={selectedDay?.date}
+          dailyNorma={selectedDay?.waterRate}
+          percentageOfFulfillment={selectedDay?.percentOfWaterRate}
+          servingsAmount={selectedDay?.amountOfRecords}
+        />
+      )}
     </div>
   );
 };
