@@ -14,7 +14,7 @@ export const UserLogo = () => {
   const buttonNode = useRef();
   const dispatch = useDispatch();
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
-  const defaultUserImage = "/public/userPic.png";
+  const defaultUserImage = "/userPic.png";
   const defaultName = "User Name";
 
   const onClickOpenUserLogoModal = () => {
