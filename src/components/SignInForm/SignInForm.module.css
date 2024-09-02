@@ -17,6 +17,7 @@
 }
 
 .inputErrorContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -47,7 +48,7 @@
 
 .form {
   margin: 0 auto;
-  row-gap: 16px;
+  row-gap: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -67,11 +68,13 @@
 }
 
 .errorMsg {
+  top: 49px;
+  left: 0;
+  position: absolute;
   color: #ef5050;
 }
 
 .passwordWrapper {
-  position: relative;
   height: 50px;
 }
 
