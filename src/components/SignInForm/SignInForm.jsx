@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { toast } from "react-toastify";
 
 import { logIn } from "../../redux/auth/operations";
 import showToast from "../showToast";
@@ -102,10 +101,8 @@ const SignInForm = () => {
               <ErrorMessage
                 className={css.errorMsg}
                 name="password"
-
                 component="span"
               />
-
             </div>
 
             <button className={css.signinPageButton} type="submit">
