@@ -55,6 +55,11 @@
 
 .msgErr {
   color: #ef5050;
+  position: absolute;
+ left: 0;
+ top:93px;
+ font-size: 14px;
+
 }
 
 
@@ -101,13 +106,13 @@
 .eyebtn{
 position: absolute;
 background-color:transparent;
-border: none;
+ border: 0px solid transparent;
 color: #407BFF;
-width: 44px;
-height: 44px;
+width: 1px;
+height: 1px;
 padding: none;
-right: 0;
-top: 50px;
+right: 30px;
+top: 60px;
 }
 
 .eye {
@@ -116,7 +121,7 @@ top: 50px;
     cursor: pointer;
     font-size: 16px;
     color: #407BFF;
-      fill: #407bff;
+  
   outline-color: none;
 }
 /* phone style **********************************/

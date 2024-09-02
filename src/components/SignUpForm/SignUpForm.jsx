@@ -7,9 +7,10 @@ import "react-toastify/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import React, { useState } from "react";
+import showToast from "../showToast";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -29,19 +30,7 @@ export default function SignUpForm() {
       .oneOf([Yup.ref("password"), null], "Password don't match")
       .required("Required"),
   });
-  const showToast = (message, type) => {
-    toast(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: type === "success" ? "light" : "colored",
-      type: type,
-    });
-  };
+
   const handleSubmit = (values, actions) => {
     const { email, password } = values;
     dispatch(
@@ -78,7 +67,7 @@ export default function SignUpForm() {
         {({ errors, touched }) => (
           <Form className={css.form} autoComplete="off">
             <div className={css.fialdStyle}>
-              <div>
+              <div className={css.blockField}>
                 <label className={css.label}>Enter your email</label>
 
                 <Field
@@ -117,11 +106,12 @@ export default function SignUpForm() {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <FaEye size="20" className={css.eye} />
+                    <HiOutlineEye size="20" className={css.eye} />
                   ) : (
-                    <FaEyeSlash size="20" className={css.eye} />
+                    <HiOutlineEyeOff size="20" className={css.eye} />
                   )}
                 </button>
+
                 <ErrorMessage
                   className={css.msgErr}
                   name="password"
@@ -150,9 +140,9 @@ export default function SignUpForm() {
                   onClick={() => setShowPassword1(!showPassword1)}
                 >
                   {showPassword1 ? (
-                    <FaEye size="20" className={css.eye} />
+                    <HiOutlineEye size="20" className={css.eye} />
                   ) : (
-                    <FaEyeSlash size="20" className={css.eye} />
+                    <HiOutlineEyeOff size="20" className={css.eye} />
                   )}
                 </button>
                 <ErrorMessage
