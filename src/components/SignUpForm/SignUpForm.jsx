@@ -10,6 +10,7 @@ import css from "./SignUpForm.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import React, { useState } from "react";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -161,9 +162,11 @@ export default function SignUpForm() {
                   component="span"
                 />
               </div>
-              <button type="submit" className={css.btn}>
-                Sign Up
-              </button>
+              <WaveEffectButton>
+                <button type="submit" className={css.btn}>
+                  Sign Up
+                </button>
+              </WaveEffectButton>
             </div>
           </Form>
         )}
