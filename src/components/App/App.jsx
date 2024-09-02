@@ -25,15 +25,13 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn, token, isRefreshing } = useAuth();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    if (token && !isLoggedIn && !isRefreshing) {
-      dispatch(refreshUser());
-    }
+    dispatch(refreshUser());
 
     return;
-  }, [dispatch, token, isLoggedIn, isRefreshing]);
+  }, [dispatch]);
 
   return isRefreshing ? (
     <b>
