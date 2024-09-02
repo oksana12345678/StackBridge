@@ -3,7 +3,6 @@
   max-width: 264px; /* исправить на 100%, когда будет в общем контейнере с тудушками*/
   height: 506px;
   margin: 0 auto;
-  /* background-color: rgba(64, 123, 255, 0.1); */
 }
 
 .monthStateDate {
@@ -36,7 +35,6 @@
   padding: 2px 0;
   align-items: center;
   background-color: var(--bg-button-and-text-blue-color);
-  /* border: 1px solid transparent; */
   border: none;
   cursor: pointer;
 }
