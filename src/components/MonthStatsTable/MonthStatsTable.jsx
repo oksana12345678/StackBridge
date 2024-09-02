@@ -7,9 +7,7 @@ import {
   selectCurrentMonth,
   selectCurrentYear,
   selectDaysStats,
-  // selectLoading,
   selectSelectedDay,
-  selectIsOpen,
 } from "../../redux/monthStats/selectors";
 import { monthNames } from "../../data/monthNames";
 import {
@@ -24,7 +22,6 @@ const MonthStatsTable = () => {
   const currentMonth = useSelector(selectCurrentMonth);
   const currentYear = useSelector(selectCurrentYear);
   const daysStats = useSelector(selectDaysStats);
-  const isOpen = useSelector(selectIsOpen);
   const selectedDay = useSelector(selectSelectedDay);
   const dispatch = useDispatch();
 
@@ -46,6 +43,16 @@ const MonthStatsTable = () => {
   const handleDayClick = dayStats => {
     dispatch(toggleModal(dayStats));
   };
+
+  useEffect(() => {
+    if (selectedDay !== null) {
+      const timer = setTimeout(() => {
+        dispatch(toggleModal(null));
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedDay, dispatch]);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
@@ -89,7 +96,6 @@ const MonthStatsTable = () => {
             <li
               className={css.item}
               key={day}
-              // onClick={() => handleDayClick(dayStats)}
               onClick={() => handleDayClick(dayStats)}
             >
               <span
@@ -104,7 +110,8 @@ const MonthStatsTable = () => {
           );
         })}
       </ul>
-      {isOpen && selectedDay && (
+
+      {selectedDay !== null && (
         <DaysGeneralStats
           date={selectedDay?.date}
           dailyNorma={selectedDay?.waterRate}

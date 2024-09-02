@@ -3,11 +3,9 @@ import { getMonthWater } from "./operations";
 
 const handlePending = state => {
   state.error = null;
-  // state.loading = true;
 };
 
 const handleRejected = (state, action) => {
-  // state.loading = false;
   state.error = action.payload;
 };
 
@@ -17,9 +15,7 @@ const monthStatsSlice = createSlice({
     currentMonth: new Date().getMonth(),
     currentYear: new Date().getFullYear(),
     daysStats: [],
-    // loading: false,
     selectedDay: null,
-    isOpen: false,
     error: null,
   },
   reducers: {
@@ -44,8 +40,7 @@ const monthStatsSlice = createSlice({
       }
     },
     toggleModal(state, action) {
-      state.isOpen = !state.isOpen;
-      state.selectedDay = state.isOpen ? action.payload : null;
+      state.selectedDay = action.payload || null;
     },
   },
   extraReducers: builder => {
@@ -53,7 +48,6 @@ const monthStatsSlice = createSlice({
       .addCase(getMonthWater.pending, handlePending)
       .addCase(getMonthWater.fulfilled, (state, action) => {
         state.daysStats = action.payload;
-        // state.loading = false;
       })
       .addCase(getMonthWater.rejected, handleRejected);
   },
