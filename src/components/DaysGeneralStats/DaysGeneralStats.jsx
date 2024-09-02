@@ -10,11 +10,11 @@ const DaysGeneralStats = ({
     <div className={css.statsContainer}>
       <div className={css.statsInfoDate}>{date}</div>
       <div className={css.statsInfo}>
-        Daily norma: <span className={css.statsInfoValue}>{dailyNorma} L</span>
+        Daily norma: <span className={css.statsInfoValue}>{dailyNorma}</span>
       </div>
       <div className={css.statsInfo}>
         Fulfillment of the daily norm:{" "}
-        <span className={css.statsInfoValue}>{percentageOfFulfillment}%</span>
+        <span className={css.statsInfoValue}>{percentageOfFulfillment}</span>
       </div>
       <div className={css.statsInfo}>
         How many servings of water:{" "}

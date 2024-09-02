@@ -1,20 +1,27 @@
 .signinPageWrapper {
-  padding: 24px 20px;
+  padding: 24px 0;
   color: #2f2f2f;
   background-color: transparent;
   display: flex;
+  align-items: center;
   flex-direction: column;
   width: 100%;
 }
 
 .signinPageTitle {
-  margin-bottom: 16px;
   text-align: left;
   font-size: 26px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 1.23;
   color: #2f2f2f;
+}
+
+.inputErrorContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 /* .eyeBtn {
@@ -34,15 +41,15 @@
   position: absolute;
   top: 12px;
   right: 10px;
-  stroke: none;
+  stroke: #407bff;
   width: 28px;
   height: 28px;
-  fill: #407bff;
   outline-color: none;
 }
 
 .form {
-  row-gap: 16px;
+  margin: 0 auto;
+  row-gap: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -62,11 +69,13 @@
 }
 
 .errorMsg {
+  top: 49px;
+  left: 0;
+  position: absolute;
   color: #ef5050;
 }
 
 .passwordWrapper {
-  position: relative;
   height: 50px;
 }
 
@@ -74,7 +83,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 18px;
   line-height: 1.33333;
   border-radius: 6px;
@@ -113,7 +122,7 @@
   font-family: var(--main-font);
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 1.33333;
   width: 100%;
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -144,14 +153,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  .signinPageWrapper {
+    align-items: flex-start;
+  }
   .form {
+    margin: 0;
     top: 0;
     left: 0;
     width: 336px;
   }
 
   .signinPageWrapper {
-    padding: 40px 32px;
+    padding: 40px 0;
     position: relative;
   }
 
@@ -176,9 +189,9 @@
 @media screen and (min-width: 1440px) {
   .signinPageWrapper {
     padding: 162px 0;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row-reverse;
+    /* justify-content: space-evenly; */
+    align-items: flex-end;
+    /* flex-direction: row-reverse; */
   }
 
   .signinPageForm {
@@ -189,6 +202,6 @@
 
   .form {
     width: 384px;
-    margin-right: 0;
+    margin-right: 216px;
   }
 }

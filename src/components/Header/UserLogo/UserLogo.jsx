@@ -14,7 +14,7 @@ export const UserLogo = () => {
   const buttonNode = useRef();
   const dispatch = useDispatch();
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
-  const defaultUserImage = "../../../../public/userPic.png";
+  const defaultUserImage = "/userPic.png";
   const defaultName = "User Name";
 
   const onClickOpenUserLogoModal = () => {
@@ -26,7 +26,11 @@ export const UserLogo = () => {
 
   return (
     <div ref={buttonNode}>
-      <button className={css.button} aria-label="User Logo"  onClick={onClickOpenUserLogoModal}>
+      <button
+        className={css.button}
+        aria-label="User Logo"
+        onClick={onClickOpenUserLogoModal}
+      >
         <p className={css.name}>{name ? name : defaultName}</p>
 
         <img

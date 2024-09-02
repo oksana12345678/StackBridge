@@ -1,4 +1,7 @@
 .statsContainer {
+  position: absolute;
+  top: -145px;
+  left: -8px;
   border-radius: 10px;
   padding: 24px 13px;
   width: 280px;

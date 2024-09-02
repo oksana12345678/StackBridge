@@ -17,12 +17,12 @@
   background-color: #ffffff;
   overflow: auto;
   max-height: 95%;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
-@media screen and (max-width: 767px) {
-  .modal {
-    max-width: 280px;
-  }
+.modal::-webkit-scrollbar {
+  display: none; 
 }
 
 @media screen and (min-width: 768px) {
@@ -49,7 +49,6 @@
   outline: none;
 }
 
-
 @media screen and (min-width: 768px) {
   .close-button {
     top: 36px;
@@ -68,7 +67,7 @@
   stroke: var(--primary-blue-color);
 }
 
-.button-class-logout{
+.button-class-logout {
   top: 36px;
   right: 24px;
 }
