@@ -4,24 +4,12 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { logIn } from "../../redux/auth/operations";
 
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { toast } from "react-toastify";
+
+import { logIn } from "../../redux/auth/operations";
+import showToast from "../showToast";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -114,8 +102,10 @@ const SignInForm = () => {
               <ErrorMessage
                 className={css.errorMsg}
                 name="password"
+
                 component="span"
               />
+
             </div>
 
             <button className={css.signinPageButton} type="submit">

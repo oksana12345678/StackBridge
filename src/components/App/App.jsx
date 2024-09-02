@@ -2,6 +2,8 @@ import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
+ import 'react-toastify/dist/ReactToastify.css';
+
 import { refreshUser } from "../../redux/auth/operations.js";
 
 import SharedLayout from "../../components/SharedLayout/SharedLayout";
@@ -23,21 +25,15 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  // const { isLoggedIn, token, isRefreshing } = useAuth();
-
-  // useEffect(() => {
-  //   if (token && !isLoggedIn && !isRefreshing) {
-  //     dispatch(refreshUser());
-  //   }
-
-  //   return;
-  // }, [dispatch, token, isLoggedIn, isRefreshing]);
-
-  const {  isRefreshing } = useAuth();
+  const { isLoggedIn, token, isRefreshing } = useAuth();
 
   useEffect(() => {
+    if (token && !isLoggedIn && !isRefreshing) {
       dispatch(refreshUser());
-  }, [dispatch]);
+    }
+
+    return;
+  }, [dispatch, token, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
     <b>
