@@ -37,7 +37,6 @@ const SignInForm = () => {
     )
       .unwrap()
       .then(() => {
-        dispatch(refreshUser());
         showToast("Login successful!", "success");
         actions.resetForm();
       })

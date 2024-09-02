@@ -66,3 +66,34 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.patch("https://watertracker-app.onrender.com/users", credentials, {headers: {
+        "Content-Type": "multipart/form-data",
+      }});
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const updateAvatar = createAsyncThunk(
+  "auth/updateAvatar",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.patch("https://watertracker-app.onrender.com/users/avatar", credentials,{headers: {
+          "Content-Type": "multipart/form-data",
+        }});
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
