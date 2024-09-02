@@ -194,7 +194,7 @@
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   background-color: transparent;
-  color: var(--light-blue-text);
+  color: var(--primary-blue-color);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: 1.25;
