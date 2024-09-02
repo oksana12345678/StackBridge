@@ -1,29 +1,10 @@
-import { NavLink } from "react-router-dom";
-import css from "./SignInForm.module.css";
 import * as Yup from "yup";
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-import RainEffectButton from "../rainEffectForeButton/rainEffectForeButton";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-
 import { logIn } from "../../redux/auth/operations";
 import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper";
-
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
+import showToast from "../showToast.js";
 
 const SignInForm = () => {
   const dispatch = useDispatch();

@@ -11,7 +11,7 @@ export const SignInSignUpWrapper = ({
   setShowPassword,
 }) => {
   const { pathname } = useLocation();
-  //   console.log(pathname);
+
   return (
     <div className={css.signinPageWrapper}>
       <Formik
@@ -24,110 +24,119 @@ export const SignInSignUpWrapper = ({
             <h2 className={css.signinPageTitle}>
               Sign {pathname === "/signin" ? "in" : "up"}
             </h2>
-            <label className={css.label} htmlFor="email">
-              Enter your email
-            </label>
-            <div className={css.inputErrorContainer}>
-              <Field
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter your email"
-                className={`${css.input} ${
-                  errors.email && touched.email ? css.inputError : ""
-                }`}
-              />
-              <ErrorMessage
-                className={css.errorMsg}
-                name="email"
-                component="span"
-              />
-            </div>
-
-            <label className={css.label} htmlFor="password">
-              Enter your password
-            </label>
-            <div className={css.inputErrorContainer}>
-              <div className={css.passwordWrapper}>
+            <div className={css.labelInputWrapper}>
+              <label className={css.label} htmlFor="email">
+                Enter your email
+              </label>
+              <div className={css.inputErrorContainer}>
                 <Field
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  id="password"
-                  placeholder="Enter your password"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter your email"
                   className={`${css.input} ${
-                    errors.password && touched.password ? css.inputError : ""
+                    errors.email && touched.email ? css.inputError : ""
                   }`}
                 />
-                <button
-                  className={css.eyeBtn}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setShowPassword(!showPassword);
-                  }}
-                >
-                  {showPassword ? (
-                    <HiOutlineEye className={css.faEye} />
-                  ) : (
-                    <HiOutlineEyeOff className={css.faEye} />
-                  )}
-                </button>
+                <ErrorMessage
+                  className={css.errorMsg}
+                  name="email"
+                  component="span"
+                />
               </div>
-              <ErrorMessage
-                className={css.errorMsg}
-                name="password"
-                component="span"
-              />
+            </div>
+
+            <div className={css.labelInputWrapper}>
+              <label className={css.label} htmlFor="password">
+                Enter your password
+              </label>
+              <div className={css.inputErrorContainer}>
+                <div className={css.passwordWrapper}>
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    className={`${css.input} ${
+                      errors.password && touched.password ? css.inputError : ""
+                    }`}
+                  />
+                  <button
+                    className={css.eyeBtn}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? (
+                      <HiOutlineEye className={css.faEye} />
+                    ) : (
+                      <HiOutlineEyeOff className={css.faEye} />
+                    )}
+                  </button>
+                </div>
+                <ErrorMessage
+                  className={css.errorMsg}
+                  name="password"
+                  component="span"
+                />
+              </div>
             </div>
             {pathname === "/signin" ? undefined : (
               <>
                 {" "}
-                <label className={css.label} htmlFor="password">
-                  Repeat password
-                </label>
-                <div className={css.inputErrorContainer}>
-                  <div className={css.passwordWrapper}>
-                    <Field
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      id="password"
-                      placeholder="Enter your password"
-                      className={`${css.input} ${
-                        errors.password && touched.password
-                          ? css.inputError
-                          : ""
-                      }`}
+                <div className={css.labelInputWrapper}>
+                  <label className={css.label} htmlFor="password">
+                    Repeat password
+                  </label>
+                  <div className={css.inputErrorContainer}>
+                    <div className={css.passwordWrapper}>
+                      <Field
+                        type={showPassword ? "text" : "password"}
+                        name="repeatPassword"
+                        id="repeatPassword"
+                        placeholder="Repeat your password"
+                        className={`${css.input} ${
+                          errors.password && touched.password
+                            ? css.inputError
+                            : ""
+                        }`}
+                      />
+                      <button
+                        className={css.eyeBtn}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setShowPassword(!showPassword);
+                        }}
+                      >
+                        {showPassword ? (
+                          <HiOutlineEye className={css.faEye} />
+                        ) : (
+                          <HiOutlineEyeOff className={css.faEye} />
+                        )}
+                      </button>
+                    </div>
+                    <ErrorMessage
+                      className={css.errorMsg}
+                      name="repeatPassword"
+                      component="span"
                     />
-                    <button
-                      className={css.eyeBtn}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        setShowPassword(!showPassword);
-                      }}
-                    >
-                      {showPassword ? (
-                        <HiOutlineEye className={css.faEye} />
-                      ) : (
-                        <HiOutlineEyeOff className={css.faEye} />
-                      )}
-                    </button>
                   </div>
-                  <ErrorMessage
-                    className={css.errorMsg}
-                    name="password"
-                    component="span"
-                  />
                 </div>
               </>
             )}
 
             <button className={css.signinPageButton} type="submit">
-              Sign In
+              Sign {pathname === "/signin" ? "in" : "up"}
             </button>
             <NavLink className={css.signinPageLink} to={"/forgot-password"}>
               Forgot password?
             </NavLink>
-            <NavLink className={css.signinPageLink} to={"/signup"}>
-              Sign up
+            <NavLink
+              className={css.signinPageLink}
+              to={pathname === "/signup" ? "/signin" : "/signup"}
+            >
+              Sign {pathname === "/signin" ? "up" : "in"}
             </NavLink>
           </Form>
         )}
