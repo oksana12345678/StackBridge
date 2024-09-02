@@ -75,10 +75,6 @@
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 }
 
-button:hover {
-    background-color: var(--orange-accent-color);
-} 
-
 @media screen and (min-width: 768px) {
 
     .trackerWelcomeContainer {
