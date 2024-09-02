@@ -5,10 +5,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
+import RainEffectButton from "../rainEffectForeButton/rainEffectForeButton";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 
 import { logIn } from "../../redux/auth/operations";
 import showToast from "../showToast";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -104,10 +106,11 @@ const SignInForm = () => {
                 component="span"
               />
             </div>
-
-            <button className={css.signinPageButton} type="submit">
-              Sign In
-            </button>
+            <WaveEffectButton>
+              <button className={css.signinPageButton} type="submit">
+                Sign In
+              </button>
+            </WaveEffectButton>
             <NavLink className={css.signinPageLink} to={"/forgot-password"}>
               Forgot password?
             </NavLink>
