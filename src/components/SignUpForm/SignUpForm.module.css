@@ -56,12 +56,10 @@
 .msgErr {
   color: #ef5050;
   position: absolute;
- left: 0;
- top:93px;
- font-size: 14px;
-
+  left: 0;
+  top: 93px;
+  font-size: 14px;
 }
-
 
 .field {
   border: 1px solid #d7e3ff;
@@ -80,7 +78,6 @@
 .field:hover,
 .field:focus,
 .field:active {
-
   border-radius: 6px;
   padding: 12px 10px;
   background-color: transparent;
@@ -88,42 +85,21 @@
 
 .field::placeholder {
   color: #d7e3ff;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
-.fieldError{
+.fieldError {
   color: #ef5050;
   border: 1px solid #ef5050;
-
 }
 .fialdStyle {
   display: block;
 }
-.blockField{
+.blockField {
   position: relative;
- 
-}
-.eyebtn{
-position: absolute;
-background-color:transparent;
- border: 0px solid transparent;
-color: #407BFF;
-width: 1px;
-height: 1px;
-padding: none;
-right: 30px;
-top: 60px;
 }
 
-.eye {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #407BFF;
-  
-  outline-color: none;
-}
+
 /* phone style **********************************/
 @media screen and (max-width: 767px) {
   .form_box {
@@ -140,7 +116,7 @@ top: 60px;
 @media screen and (min-width: 768px) {
   .form_box {
     width: 336px;
-    margin-top: 40px; 
+    margin-top: 40px;
     margin-bottom: 172px;
     justify-content: left;
   }

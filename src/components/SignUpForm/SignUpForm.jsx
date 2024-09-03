@@ -11,6 +11,7 @@ import css from "./SignUpForm.module.css";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import React, { useState } from "react";
 import showToast from "../showToast";
+import { EyeToggle } from "../AuthFieldItems/AuthFieldItems";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -69,7 +70,6 @@ export default function SignUpForm() {
             <div className={css.fialdStyle}>
               <div className={css.blockField}>
                 <label className={css.label}>Enter your email</label>
-
                 <Field
                   type="email"
                   name="email"
@@ -77,7 +77,7 @@ export default function SignUpForm() {
                     touched.email && errors.email ? css.fieldError : ""
                   }`}
                   placeholder="E-mail"
-                />
+                />           
                 <ErrorMessage
                   className={css.msgErr}
                   name="email"
@@ -90,28 +90,15 @@ export default function SignUpForm() {
                 <Field
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  id="password"
                   className={`${css.field} ${
                     touched.password && errors.password ? css.fieldError : ""
                   }`}
                   placeholder="Password"
                 />
-
-                <button
-                  type="button"
-                  name="password"
-                  className={css.eyebtn}
-                  width="44"
-                  height="44"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <HiOutlineEye size="20" className={css.eye} />
-                  ) : (
-                    <HiOutlineEyeOff size="20" className={css.eye} />
-                  )}
-                </button>
-
+                <EyeToggle
+                  showPassword={showPassword}
+                  setShowPassword={setShowPassword}
+                />
                 <ErrorMessage
                   className={css.msgErr}
                   name="password"
@@ -132,19 +119,10 @@ export default function SignUpForm() {
                   placeholder="Repeat password"
                 />
 
-                <button
-                  type="button"
-                  className={css.eyebtn}
-                  width="44"
-                  height="44"
-                  onClick={() => setShowPassword1(!showPassword1)}
-                >
-                  {showPassword1 ? (
-                    <HiOutlineEye size="20" className={css.eye} />
-                  ) : (
-                    <HiOutlineEyeOff size="20" className={css.eye} />
-                  )}
-                </button>
+                <EyeToggle
+                  showPassword={showPassword1}
+                  setShowPassword={setShowPassword1}
+                />
                 <ErrorMessage
                   className={css.msgErr}
                   name="repeatPassword"
