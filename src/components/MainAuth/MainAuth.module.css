@@ -173,6 +173,10 @@
     }
   }
   .container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
     padding: 0 0;
+    padding-right: 216px;
   }
 }
