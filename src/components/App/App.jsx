@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,13 +25,24 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, token, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+
+  //   return;
+  // }, [dispatch]);
 
   useEffect(() => {
+    // const savedToken = localStorage.getItem("token");
+
     dispatch(refreshUser());
 
-    return;
-  }, [dispatch]);
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  }, [dispatch, isLoggedIn, token, navigate]);
 
   return isRefreshing ? (
     <b>
