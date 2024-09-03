@@ -203,7 +203,7 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img src={newAvatar} alt="avatar" />
+                  <img className={css.avatar} src={newAvatar} alt="avatar" />
                 </div>
                 <div>
                   <button className={css["upload-button"]} type="button">
