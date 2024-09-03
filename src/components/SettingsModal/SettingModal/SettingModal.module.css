@@ -58,7 +58,6 @@
   }
 }
 
-
 .photo-group {
   margin-bottom: 24px;
 }
@@ -187,7 +186,6 @@
   }
 }
 
-
 .input {
   width: 256px;
   padding: 12px 10px;
@@ -204,7 +202,6 @@
   outline: none;
   cursor: pointer;
 }
-
 
 @media screen and (min-width: 768px) {
   .input {
@@ -241,29 +238,27 @@
   color: var(--red-accent-color);
 }
 
-/* .eyeBtn {
+.eye-button {
   position: absolute;
-  border: none;
-  top: 14px;
-  right: 10px;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  padding-top: 12px;
+  padding-right: 10px;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .eye-button {
+    padding-right: 16px;
+  }
+}
+
+.eye-icon {
+  stroke: none;
   width: 16px;
   height: 16px;
-  border-radius: 30px;
-  border: transparent;
-  outline-color: none;
-} */
-
-.faEye {
-  position: absolute;
-  cursor: pointer;
-  top: 12px;
-  right: 10px;
-  stroke: none;
-  width: 28px;
-  height: 28px;
-  fill: #407bff;
-  outline-color: none;
+  stroke: #407bff;
 }
 
 .submit-button {
