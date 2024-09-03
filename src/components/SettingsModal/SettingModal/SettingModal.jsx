@@ -69,8 +69,7 @@ const SettingModal = () => {
     .max(64, "Your password shouldn't exceed 64 characters"),
     password: Yup.string()
       .min(8, "Your password should contain at least 8 characters")
-      .max(64, "Your password shouldn't exceed 64 characters")
-      .notOneOf([Yup.ref("outdatedPassword")],"New password cannot be the same as the old password."),
+      .max(64, "Your password shouldn't exceed 64 characters"),
     repeatPassword: Yup.string().oneOf(
       [Yup.ref("password")],
       "Passwords must match"
@@ -118,9 +117,12 @@ const SettingModal = () => {
           showToast("You have not made any changes.", "error");
         }
       } 
-      else {     
-       if(outdatedPassword!="" || password!="" || repeatPassword!=""){
-          if(outdatedPassword=="" || password=="" || repeatPassword==""){
+      else {
+        if(outdatedPassword!="" || password!="" || repeatPassword!=""){
+          if(outdatedPassword==password){
+            showToast("New password cannot be the same as the old password.", "error");
+          }
+          else if(outdatedPassword=="" || password=="" || repeatPassword==""){
             showToast("Fill in all fields with passwords.", "error");
           }
           else{
