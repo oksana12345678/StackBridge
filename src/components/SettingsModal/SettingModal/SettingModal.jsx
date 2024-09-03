@@ -296,12 +296,12 @@ const SettingModal = () => {
                         name="name"
                         placeholder="name"
                       />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className={css["error-message"]}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className={css["error-message"]}
-                    />
                   </div>
                 </div>
                 {/* ==================================================== EMAIL GROUP =========================================================*/}
@@ -320,12 +320,12 @@ const SettingModal = () => {
                         name="email"
                         placeholder="email"
                       />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className={css["error-message"]}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className={css["error-message"]}
-                    />
                   </div>
                 </div>
               </div>
@@ -368,13 +368,13 @@ const SettingModal = () => {
                         >
                           <HiOutlineEyeOff className={css["eye-icon"]} />
                         </button>
-                      )}
+                      )}{" "}
+                      <ErrorMessage
+                        name="outdatedPassword"
+                        component="div"
+                        className={css["error-message"]}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="outdatedPassword"
-                      component="div"
-                      className={css["error-message"]}
-                    />
                   </div>
                   {/* ====================================================== NEW PASSWORD ================================================= */}
                   <div className={css["password-sub-group"]}>
@@ -415,12 +415,12 @@ const SettingModal = () => {
                           <HiOutlineEyeOff className={css["eye-icon"]} />
                         </button>
                       )}
+                      <ErrorMessage
+                        name="password"
+                        component="div"
+                        className={css["error-message"]}
+                      />
                     </div>
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className={css["error-message"]}
-                    />
                   </div>
                   {/* ===================================================== REPEAT NEW PASSWORD ============================================ */}
                   <div className={css["password-sub-group"]}>
@@ -463,13 +463,13 @@ const SettingModal = () => {
                           >
                             <HiOutlineEyeOff className={css["eye-icon"]} />
                           </button>
-                        )}
+                        )}{" "}
+                        <ErrorMessage
+                          name="repeatPassword"
+                          component="div"
+                          className={css["error-message"]}
+                        />
                       </div>
-                      <ErrorMessage
-                        name="repeatPassword"
-                        component="div"
-                        className={css["error-message"]}
-                      />
                     </div>
                   </div>
                 </div>
