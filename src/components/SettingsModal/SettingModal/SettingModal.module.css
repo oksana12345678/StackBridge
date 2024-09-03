@@ -177,6 +177,7 @@
 }
 
 .input-wrapper {
+  width: 256px;
   position: relative;
 }
 
@@ -187,7 +188,7 @@
 }
 
 .input {
-  width: 256px;
+  width: 100%;
   padding: 12px 10px;
   border: 1px solid #d7e3ff;
   border-radius: 6px;
@@ -201,12 +202,6 @@
   text-overflow: ellipsis;
   outline: none;
   cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-  .input {
-    width: 100%;
-  }
 }
 
 .error-input {
