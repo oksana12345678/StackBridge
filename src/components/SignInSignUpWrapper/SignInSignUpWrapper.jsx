@@ -62,6 +62,7 @@ export const SignInSignUpWrapper = ({
                     }`}
                   />
                   <button
+                    type="button"
                     className={css.eyeBtn}
                     onClick={(event) => {
                       event.preventDefault();
@@ -103,6 +104,7 @@ export const SignInSignUpWrapper = ({
                         }`}
                       />
                       <button
+                        type="button"
                         className={css.eyeBtn}
                         onClick={(event) => {
                           event.preventDefault();
