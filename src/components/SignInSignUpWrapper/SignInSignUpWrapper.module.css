@@ -27,13 +27,14 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 2px;
+  right: 0;
   width: 44px;
   height: 44px;
-  background-color: #ffffff;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
 }
 
 .faEye {
@@ -89,13 +90,15 @@
   outline: none;
 }
 
+.input[type="password"],
+.input[type="text"] {
+  padding: 12px 36px 12px 10px;
+}
+
 .input:hover,
 .input:focus,
 .input:active {
-  border: 1px solid #d7e3ff;
   border-color: none;
-  border-radius: 6px;
-  padding: 12px 10px;
   background-color: transparent;
   color: #407bff;
 }
@@ -156,7 +159,7 @@
 
 @media screen and (min-width: 768px) {
   .form {
-    margin: 0;
+    margin: 0 0 0 32px;
     top: 0;
     left: 0;
     width: 336px;
@@ -165,17 +168,6 @@
   .signinPageWrapper {
     padding-top: 40px;
     position: relative;
-  }
-
-  .signinPageForm {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 16px;
-    width: 336px;
-    margin-left: 0;
-    margin-right: auto;
   }
 
   .signinPageButton {
@@ -190,13 +182,6 @@
     padding: 140px 0;
     display: flex;
     justify-content: space-evenly;
-    /* flex-direction: row-reverse; */
-  }
-
-  .signinPageForm {
-    width: 384px;
-    margin-top: 0;
-    margin-right: 0;
   }
 
   .form {
