@@ -1,23 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
-import { useId } from "react";
 import * as Yup from "yup";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
-// import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import React, { useState } from "react";
+import  { useState } from "react";
 import showToast from "../showToast";
 import { EyeToggle } from "../AuthFieldItems/AuthFieldItems";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
-  const notify = () => {
-    toast("");
-  };
+
   const validationControl = Yup.object().shape({
     email: Yup.string()
       .min(8, "Too Short!")
@@ -32,7 +26,7 @@ export default function SignUpForm() {
       .required("Required"),
   });
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values) => {
     const { email, password } = values;
     dispatch(
       register({
@@ -53,7 +47,6 @@ export default function SignUpForm() {
 
   return (
     <div className={css.form_box}>
-      <ToastContainer />
       <h2 className={css.title}>Sign Up</h2>
 
       <Formik
