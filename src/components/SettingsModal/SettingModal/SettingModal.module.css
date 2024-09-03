@@ -238,14 +238,16 @@
   top: 0;
   right: 0;
   cursor: pointer;
-  padding-top: 12px;
-  padding-right: 10px;
+  width: 16px;
+  height: 16px;
+  top: 12px;
+  right: 10px;
   background-color: transparent;
 }
 
 @media screen and (min-width: 768px) {
   .eye-button {
-    padding-right: 16px;
+    right: 16px;
   }
 }
 
