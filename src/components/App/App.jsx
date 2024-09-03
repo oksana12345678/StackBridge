@@ -19,6 +19,12 @@ const WelcomePage = lazy(() =>
 const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
 const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
+const ForgotPasswordPage = lazy(() =>
+  import("../../pages/ForgotPasswordPage/ForgotPasswordPage.jsx")
+);
+const UpdatePasswordPage = lazy(() =>
+  import("../../pages/UpdatePasswordPage/UpdatePasswordPage.jsx")
+);
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
@@ -81,6 +87,8 @@ function App() {
               }
             />
 
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/update-password" element={<UpdatePasswordPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
