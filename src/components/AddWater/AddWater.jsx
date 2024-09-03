@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addWater } from "../../redux/water/operations";
 import showToast from "../showToast";
+import "react-toastify/ReactToastify.css";
 import css from "./AddWater.module.css";
 
 import minus from "../../Icons/minus.svg";

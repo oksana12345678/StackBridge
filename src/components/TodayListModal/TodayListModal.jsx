@@ -4,7 +4,9 @@ import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editWater } from "../../redux/water/operations";
 import showToast from "../showToast";
+import "react-toastify/ReactToastify.css";
 import css from "./EditWater.module.css";
+import { selectWatersToday } from "../../redux/waterConsumption/selectors";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
@@ -22,7 +24,7 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function EditWater({ id, amount, time }) {
+export default function TodayListModal() {
   const dispatch = useDispatch();
 
   const [amountOfWater, setAmountOfWater] = useState(0);
@@ -107,7 +109,7 @@ export default function EditWater({ id, amount, time }) {
           <div className={css.prevRecordContainer}>
             <img src={drink} alt="Glass of water" />
             <div className={css.prevInfoContainer}>
-              <div className={css.prevAmountWater}>200 ml</div>
+              <div className={css.prevAmountWater}>250 ml</div>
               <div className={css.prevTime}>07:00 AM</div>
             </div>
           </div>

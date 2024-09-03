@@ -2,14 +2,14 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .rippleButton .ripple {
   position: absolute;
   border-radius: 50%;
   background-color: rgba(160, 221, 247, 0.243);
-  animation: ripple-animation 3s linear infinite;
+  animation: ripple-animation 2s linear infinite;
   pointer-events: none;
 }
 

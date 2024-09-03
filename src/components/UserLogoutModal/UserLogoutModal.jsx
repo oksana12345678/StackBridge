@@ -20,7 +20,7 @@ export default function UserLogoutModal() {
           <h3 className={css.text}>Do you really want to leave?</h3>
           <div className={css.modalButtons}>
             <button className={css.buttonCancel} onClick={() => dispatch(closeModal())}>Cancel</button>
-            <button className={css.buttonLogout} onClick={()=>{dispatch(logOut())}}>Log out</button>
+            <button className={css.buttonLogout} onClick={()=>{dispatch(logOut());dispatch(closeModal())}}>Log out</button>
           </div>
         </div>
       </ModalWrapper>

@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
+import css from "./SharedLayout.module.css";
 
 const SharedLayout = () => {
   return (
-    <div>
+    <>
       <Header />
-      <main>
+      <main className={css.main}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 

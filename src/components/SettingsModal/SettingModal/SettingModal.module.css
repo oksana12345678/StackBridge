@@ -58,7 +58,6 @@
   }
 }
 
-
 .photo-group {
   margin-bottom: 24px;
 }
@@ -100,6 +99,16 @@
   height: 80px;
   overflow: hidden;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .file-upload-label {
@@ -178,6 +187,7 @@
 }
 
 .input-wrapper {
+  width: 256px;
   position: relative;
 }
 
@@ -187,14 +197,13 @@
   }
 }
 
-
 .input {
-  width: 256px;
+  width: 100%;
   padding: 12px 10px;
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   background-color: transparent;
-  color: var(--light-blue-text);
+  color: var(--primary-blue-color);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: 1.25;
@@ -203,13 +212,6 @@
   text-overflow: ellipsis;
   outline: none;
   cursor: pointer;
-}
-
-
-@media screen and (min-width: 768px) {
-  .input {
-    width: 100%;
-  }
 }
 
 .error-input {
@@ -241,29 +243,29 @@
   color: var(--red-accent-color);
 }
 
-/* .eyeBtn {
+.eye-button {
   position: absolute;
-  border: none;
-  top: 14px;
-  right: 10px;
+  top: 0;
+  right: 0;
   cursor: pointer;
   width: 16px;
   height: 16px;
-  border-radius: 30px;
-  border: transparent;
-  outline-color: none;
-} */
-
-.faEye {
-  position: absolute;
-  cursor: pointer;
   top: 12px;
   right: 10px;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .eye-button {
+    right: 16px;
+  }
+}
+
+.eye-icon {
   stroke: none;
-  width: 28px;
-  height: 28px;
-  fill: #407bff;
-  outline-color: none;
+  width: 16px;
+  height: 16px;
+  stroke: #407bff;
 }
 
 .submit-button {

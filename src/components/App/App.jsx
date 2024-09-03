@@ -1,6 +1,8 @@
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import { refreshUser } from "../../redux/auth/operations.js";
 
@@ -17,27 +19,36 @@ const WelcomePage = lazy(() =>
 const SignupPage = lazy(() => import("../../pages/SignupPage/SignupPage.jsx"));
 const SigninPage = lazy(() => import("../../pages/SigninPage/SigninPage.jsx"));
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
+const ForgotPasswordPage = lazy(() =>
+  import("../../pages/ForgotPasswordPage/ForgotPasswordPage.jsx")
+);
+const UpdatePasswordPage = lazy(() =>
+  import("../../pages/UpdatePasswordPage/UpdatePasswordPage.jsx")
+);
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
 
 function App() {
   const dispatch = useDispatch();
-  // const { isLoggedIn, token, isRefreshing } = useAuth();
+  const { isRefreshing, token, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   // useEffect(() => {
-  //   if (token && !isLoggedIn && !isRefreshing) {
-  //     dispatch(refreshUser());
-  //   }
+  //   dispatch(refreshUser());
 
   //   return;
-  // }, [dispatch, token, isLoggedIn, isRefreshing]);
-
-  const {  isRefreshing } = useAuth();
+  // }, [dispatch]);
 
   useEffect(() => {
-      dispatch(refreshUser());
-  }, [dispatch]);
+    // const savedToken = localStorage.getItem("token");
+
+    dispatch(refreshUser());
+
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  }, [dispatch, isLoggedIn, token, navigate]);
 
   return isRefreshing ? (
     <b>
@@ -49,6 +60,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Navigate to="/welcome" />} />
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
               path="/signup"
@@ -75,6 +87,8 @@ function App() {
               }
             />
 
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/update-password" element={<UpdatePasswordPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

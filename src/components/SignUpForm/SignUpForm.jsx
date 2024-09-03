@@ -1,20 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
-import { useId } from "react";
 import * as Yup from "yup";
-import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./SignUpForm.module.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import React, { useState } from "react";
+import  { useState } from "react";
+import showToast from "../showToast";
+import { EyeToggle } from "../AuthFieldItems/AuthFieldItems";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
-  const notify = () => {
-    toast("");
-  };
+
   const validationControl = Yup.object().shape({
     email: Yup.string()
       .min(8, "Too Short!")
@@ -29,28 +26,27 @@ export default function SignUpForm() {
       .required("Required"),
   });
 
-  const handleSubmit = (values, actions) => {
-
+  const handleSubmit = (values) => {
     const { email, password } = values;
     dispatch(
       register({
         email,
         password,
       })
-    );
-    actions.resetForm();
+    )
+      .unwrap()
+      .then(() => {
+        showToast("Registered successful!", "success");
+      })
+      .catch(() => {
+        showToast("Incorrect login or password", "error");
+      });
   };
   const [showPassword, setShowPassword] = useState(false);
-const handleTogglePassword = (fieldName) => {
-  if (fieldName === "password" || fieldName === "repeatPassword") {
-    setShowPassword(!showPassword);
-  }
-};
-
+  const [showPassword1, setShowPassword1] = useState(false);
 
   return (
     <div className={css.form_box}>
-      <ToastContainer />
       <h2 className={css.title}>Sign Up</h2>
 
       <Formik
@@ -62,85 +58,76 @@ const handleTogglePassword = (fieldName) => {
         validationSchema={validationControl}
         onSubmit={handleSubmit}
       >
-        <Form className={css.form} autoComplete="off">
-          <div className={css.fialdStyle}>
-            <div>
-              <label className={css.label}>Enter your email</label>
+        {({ errors, touched }) => (
+          <Form className={css.form} autoComplete="off">
+            <div className={css.fialdStyle}>
+              <div className={css.blockField}>
+                <label className={css.label}>Enter your email</label>
+                <Field
+                  type="email"
+                  name="email"
+                  className={`${css.field} ${
+                    touched.email && errors.email ? css.fieldError : ""
+                  }`}
+                  placeholder="E-mail"
+                />           
+                <ErrorMessage
+                  className={css.msgErr}
+                  name="email"
+                  component="span"
+                />
+              </div>
 
-              <Field
-                type="email"
-                name="email"
-                className={css.field}
-                placeholder="E-mail"
-              />
-              <ErrorMessage
-                className={css.msgErr}
-                name="email"
-                component="span"
-              />
-            </div>
-            <div>
-              <label className={css.label}>Enter your password</label>
-              <Field
-                type={showPassword ? "text" : "password"}
-                name="password"
-                id="password"
+              <div className={css.blockField}>
+                <label className={css.label}>Enter your password</label>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className={`${css.field} ${
+                    touched.password && errors.password ? css.fieldError : ""
+                  }`}
+                  placeholder="Password"
+                />
+                <EyeToggle
+                  showPassword={showPassword}
+                  setShowPassword={setShowPassword}
+                />
+                <ErrorMessage
+                  className={css.msgErr}
+                  name="password"
+                  component="span"
+                />
+              </div>
 
-                className={css.field}
-                placeholder="Password"
-              />
+              <div className={css.blockField}>
+                <label className={css.label}>Repeat password</label>
+                <Field
+                  type={showPassword1 ? "text" : "password"}
+                  name="repeatPassword"
+                  className={`${css.field} ${
+                    touched.repeatPassword && errors.repeatPassword
+                      ? css.fieldError
+                      : ""
+                  }`}
+                  placeholder="Repeat password"
+                />
 
-              <button
-                type="button"
-                onClick={() => handleTogglePassword("password")}
-                // onClick={() => setShowPassword(!showPassword)}
-                className="eye"
-              >
-                {showPassword ? (
-                  <FaEyeSlash size="16" className="css.eye" />
-                ) : (
-                  <FaEye size="16" className="css.eye" />
-                )}
+                <EyeToggle
+                  showPassword={showPassword1}
+                  setShowPassword={setShowPassword1}
+                />
+                <ErrorMessage
+                  className={css.msgErr}
+                  name="repeatPassword"
+                  component="span"
+                />
+              </div>
+              <button type="submit" className={css.btn}>
+                Sign Up
               </button>
-              <ErrorMessage
-                className={css.msgErr}
-                name="password"
-                component="span"
-              />
             </div>
-            <div>
-              <label className={css.label}>Repeat password</label>
-              <Field
-                type={showPassword ? "text" : "password"}
-                name="repeatPassword"
-                id="repeatPassword"
-                placeholder="Repeat password"
-                className={css.field}
-              />
-              <button
-                type="button"
-                // onClick={() => setShowPassword(!showPassword)}
-                onClick={() => handleTogglePassword("repeatPassword")}
-                className="eye"
-              >
-                {showPassword ? (
-                  <FaEyeSlash size="16" className="css.eye" />
-                ) : (
-                  <FaEye size="16" className="css.eye" />
-                )}
-              </button>
-              <ErrorMessage
-                className={css.msgErr}
-                name="repeatPassword"
-                component="span"
-              />
-            </div>
-
-            <button type="submit" className={css.btn}>
-              Sign Up
-            </button>
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
       <nav className={css.nav}>
         <NavLink to="/signin" className={css.link}>
