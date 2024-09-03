@@ -104,7 +104,7 @@ const SettingModal = () => {
 
     patchedData=areEqualWithNull(values, user)
 
-      if (Object.keys(patchedData).length == 0) {
+      if (Object.keys(patchedData).length == 0 || (Object.keys(patchedData).length == 1 && Object.keys(patchedData).includes("avatar"))) {
         if(newAvatar!=user.avatar && newAvatar!=defaultAvatar) {
           dispatch(updateAvatar({avatar:newAvatarFile}))
           .unwrap()
