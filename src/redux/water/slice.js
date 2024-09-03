@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addWater, editWater } from "./operations";
+import { addWater, editWater, getWaterToday } from "./operations";
 
 const waterSlice = createSlice({
   name: "water",
   initialState: {
     items: [],
+    itemsToday: [],
     loading: false,
     error: null,
   },
@@ -30,6 +31,18 @@ const waterSlice = createSlice({
           state.items[index] = action.payload;
         }
         state.loading = false;
+      })
+      .addCase(getWaterToday.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(getWaterToday.fulfilled, (state, action) => {
+        state.itemsToday = action.payload;
+        state.loading = false;
+      })
+      .addCase(getWaterToday.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       });
   },
 });

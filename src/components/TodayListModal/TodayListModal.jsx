@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { editWater } from "../../redux/water/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
-import css from "./EditWater.module.css";
-import { selectWatersToday } from "../../redux/waterConsumption/selectors";
+import css from "./TodayListModal.module.css";
+import { selectWaterToday } from "../../redux/water/selectors";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
+// для модалки
+import { selectIsEditWaterModalOpen } from "../../redux/modalWindow/selectors";
+import { closeModal } from "../../redux/modalWindow/slice";
+import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
 import plus from "../../Icons/plus.svg";
-import close from "../../Icons/close.svg";
 
 const WaterSchema = Yup.object().shape({
   time: Yup.string()
@@ -24,12 +28,49 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function TodayListModal() {
+export default function TodayListModal({ waterRecord: { id } }) {
   const dispatch = useDispatch();
-
-  const [amountOfWater, setAmountOfWater] = useState(0);
-  const [result, setResult] = useState(0);
+  const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
   const fieldId = useId();
+
+  const waterTodayList = [
+    {
+      amount: 50,
+      time: "2024-09-02T22:24:00.000Z",
+      userId: "66d077a4d82e176e87037322",
+      _id: "66d63b1ee2bba0005c5aa5e4",
+      createdAt: "2024-09-02T22:24:30.420Z",
+      updatedAt: "2024-09-02T22:24:30.420Z",
+    },
+    {
+      amount: 250,
+      time: "2024-09-02T08:24:00.000Z",
+      userId: "66d077a4d82e176e87037322",
+      _id: "66d63b1ee2bba0005c5aa5e4",
+      createdAt: "2024-09-02T22:24:30.420Z",
+      updatedAt: "2024-09-02T22:24:30.420Z",
+    },
+    {
+      amount: 500,
+      time: "2024-09-02T12:24:00.000Z",
+      userId: "66d077a4d82e176e87037322",
+      _id: "66d63b1ee2bba0005c5aa5e4",
+      createdAt: "2024-09-02T22:24:30.420Z",
+      updatedAt: "2024-09-02T22:24:30.420Z",
+    },
+  ]; // для прикладу //
+  // const waterTodayList = useSelector(selectWaterToday); //масив записів про воду за сьогодні
+  const sortedWaterTodayList = waterTodayList.sort((a, b) => {
+    const timeA = new Date(a.time);
+    const timeB = new Date(b.time);
+    return timeA - timeB;
+  });
+  const lastWaterToday = sortedWaterTodayList[sortedWaterTodayList.length - 1];
+
+  // Лічильник
+  const [amountOfWater, setAmountOfWater] = useState(lastWaterToday.amount);
+  const [result, setResult] = useState(lastWaterToday.amount);
+
   const incrementOfCounter = 50;
 
   const addAmount = () => {
@@ -42,7 +83,7 @@ export default function TodayListModal() {
     }
   };
 
-  /////// About TIME
+  // Генерування списку з часом
   const timeNow = new Date().toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
@@ -70,7 +111,7 @@ export default function TodayListModal() {
 
   const listOfTime = generateListOfTime();
 
-  /////// Форматування дати для відправки на бекенд
+  // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
     const formattedDate = new Date()
       .toLocaleDateString("en-CA", {
@@ -82,15 +123,16 @@ export default function TodayListModal() {
     return `${formattedDate} ${time}`;
   }
 
-  /////// Функція відправки даних на бекенд
+  // Функція відправки даних на бекенд
   const handleEditWater = (values, actions) => {
     const time = formatDateTime(values.time);
     const amount = values.amount;
-    dispatch(editWater({ amount, time }))
+    dispatch(editWater({ id: id, updates: { amount, time } }))
       .unwrap()
       .then(() => {
         showToast("Water edit successful!", "success");
         actions.resetForm();
+        dispatch(closeModal());
       })
       .catch(() => {
         showToast("Water edit failed!", "error");
@@ -98,102 +140,131 @@ export default function TodayListModal() {
   };
 
   return (
-    <Formik
-      initialValues={{ time: timeNow, amount: 0 }}
-      onSubmit={handleEditWater}
-      validationSchema={WaterSchema}
+    <ModalWrapper
+      modalIsOpen={modalIsOpen}
+      closeModal={() => dispatch(closeModal())}
+      customStyles={{
+        content: {
+          padding: "0",
+        },
+      }}
     >
-      {({ setFieldValue }) => (
-        <Form className={css.formContainer}>
-          <h2 className={css.title}>Edit the entered amount of water</h2>
-          <div className={css.prevRecordContainer}>
-            <img src={drink} alt="Glass of water" />
-            <div className={css.prevInfoContainer}>
-              <div className={css.prevAmountWater}>250 ml</div>
-              <div className={css.prevTime}>07:00 AM</div>
+      <Formik
+        initialValues={{ time: timeNow, amount: lastWaterToday.amount }}
+        onSubmit={handleEditWater}
+        validationSchema={WaterSchema}
+      >
+        {({ setFieldValue }) => (
+          <Form className={css.formContainer}>
+            <h2 className={css.title}>Edit the entered amount of water</h2>
+            {!lastWaterToday ? (
+              <p className={css.textNoNotes}>No notes yet</p>
+            ) : (
+              <div>
+                <div className={css.prevRecordContainer}>
+                  <img src={drink} alt="Glass of water" />
+                  <div className={css.prevInfoContainer}>
+                    <div className={css.prevAmountWater}>
+                      {lastWaterToday.amount} ml
+                    </div>
+                    <div className={css.prevTime}>
+                      {new Date(lastWaterToday.time).toLocaleTimeString(
+                        "en-US",
+                        {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        }
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <p className={css.text}>Correct entered data:</p>
+            <p className={css.textCounter}>Amount of water:</p>
+            <div className={css.counterContainer}>
+              <button
+                className={css.amountBtn}
+                onClick={withdrawAmount}
+                type="button"
+                onBlur={() => {
+                  setFieldValue("amount", amountOfWater);
+                  setResult(amountOfWater);
+                }}
+              >
+                <img src={minus} alt="Minus" />
+              </button>
+              <div className={css.amountCounter}>{amountOfWater}ml</div>
+              <button
+                className={css.amountBtn}
+                onClick={addAmount}
+                type="button"
+                onBlur={() => {
+                  setFieldValue("amount", amountOfWater);
+                  setResult(amountOfWater);
+                }}
+              >
+                <img src={plus} alt="Plus" />
+              </button>
             </div>
-          </div>
-          <p className={css.text}>Correct entered data:</p>
-          <p className={css.textCounter}>Amount of water:</p>
-          <div className={css.counterContainer}>
-            <button
-              className={css.amountBtn}
-              onClick={withdrawAmount}
-              type="button"
-              onBlur={() => {
-                setFieldValue("amount", amountOfWater);
-                setResult(amountOfWater);
-              }}
-            >
-              <img src={minus} alt="Minus" />
-            </button>
-            <div className={css.amountCounter}>{amountOfWater}ml</div>
-            <button
-              className={css.amountBtn}
-              onClick={addAmount}
-              type="button"
-              onBlur={() => {
-                setFieldValue("amount", amountOfWater);
-                setResult(amountOfWater);
-              }}
-            >
-              <img src={plus} alt="Plus" />
-            </button>
-          </div>
-          <div className={css.timeContainer}>
-            <label className={css.labelTime} htmlFor={`${fieldId}-time`}>
-              Recording time:
-            </label>
-            <Field
-              as="select"
-              name="time"
-              className={css.input}
-              id={`${fieldId}-time`}
-            >
-              <option value={timeNow}>{timeNow}</option>
-              {listOfTime.map((time, index) => (
-                <option key={index} value={time}>
-                  {time}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage className={css.error} name="time" component="span" />
-          </div>
-          <div className={css.enterValueContainer}>
-            <label
-              className={css.enterValueLabel}
-              htmlFor={`${fieldId}-amount`}
-            >
-              Enter the value of the water used:
-            </label>
-            <Field
-              className={css.input}
-              name="amount"
-              type="number"
-              id={`${fieldId}-amount`}
-              onBlur={(e) => {
-                setAmountOfWater(Number(e.target.value));
-                setResult(Number(e.target.value));
-              }}
-            />
-            <ErrorMessage
-              className={css.error}
-              name="amount"
-              component="span"
-            />
-          </div>
-          <div className={css.resultContainer}>
-            <p className={css.textResult}>{result}ml</p>
-            <button className={css.saveBtn} type="submit">
-              Save
-            </button>
-          </div>
-
-          <button className={css.closeBtn} type="button">
-            <img src={close} alt="Close cross" />
-          </button>
-        </Form>
-      )}
-    </Formik>
+            <div className={css.timeContainer}>
+              <label className={css.labelTime} htmlFor={`${fieldId}-time`}>
+                Recording time:
+              </label>
+              <Field
+                as="select"
+                name="time"
+                className={css.input}
+                id={`${fieldId}-time`}
+              >
+                <option value={timeNow}>{timeNow}</option>
+                {listOfTime.map((time, index) => (
+                  <option key={index} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage
+                className={css.error}
+                name="time"
+                component="span"
+              />
+            </div>
+            <div className={css.enterValueContainer}>
+              <label
+                className={css.enterValueLabel}
+                htmlFor={`${fieldId}-amount`}
+              >
+                Enter the value of the water used:
+              </label>
+              <Field
+                className={css.input}
+                name="amount"
+                type="number"
+                id={`${fieldId}-amount`}
+                onBlur={(e) => {
+                  setAmountOfWater(Number(e.target.value));
+                  setResult(Number(e.target.value));
+                }}
+              />
+              <ErrorMessage
+                className={css.error}
+                name="amount"
+                component="span"
+              />
+            </div>
+            <div className={css.resultContainer}>
+              <p className={css.textResult}>{result}ml</p>
+              {/* <WaveEffectButton> */}
+              <button className={css.saveBtn} type="submit">
+                Save
+              </button>
+              {/* </WaveEffectButton> */}
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </ModalWrapper>
   );
 }

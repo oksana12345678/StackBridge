@@ -1,6 +1,9 @@
 .error {
   color: red;
   font-size: 14px;
+  position: absolute;
+  top: 102px;
+  left: 0;
 }
 
 .formContainer {
@@ -114,6 +117,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
 }
 
 .resultContainer {
@@ -157,12 +161,19 @@
   box-shadow: none;
 }
 
-.closeBtn {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 12px;
-  top: 30px;
+::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d7e3ff;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(158, 187, 255, 1);
+  border-radius: 12px;
 }
 
 /* Tablet styles 768px */
@@ -191,9 +202,8 @@
     line-height: 1.33333;
   }
 
-  .closeBtn {
-    right: 24px;
-    top: 36px;
+  .error {
+    top: 85px;
   }
 }
 /* Desktop styles 1440px */
