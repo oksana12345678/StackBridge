@@ -1,10 +1,11 @@
 .title {
-  margin: 0 0 16px;
+  margin-bottom: 8px;
 }
 
 @media (min-width: 768px) {
   .title {
     font-size: 26px;
+    margin-bottom: 24px;
   }
 }
 
@@ -30,6 +31,7 @@
 
 .entries {
   max-height: 275px;
+  margin-bottom: 12.5px;
 }
 
 @media (min-width: 768px) {
@@ -46,8 +48,6 @@
 }
 
 .btn-add {
-  padding: 18px 0;
-  height: 50px;
   background-color: transparent;
   border: none;
   color: var(--primary-blue-color, #407bff);

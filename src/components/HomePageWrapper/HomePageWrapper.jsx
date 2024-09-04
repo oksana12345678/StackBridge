@@ -1,13 +1,11 @@
-import DailyNorma from "../DailyNorma/DailyNorma.jsx";
-
 import css from "./HomePageWrapper.module.css";
 
-const HomePageWrapper = () => {
+const HomePageWrapper = ({ children }) => {
   return (
-    <section className={css.homePageWrapper}>
-      <div className={css.bottle}></div>
+    <section className={css.section}>
       <div className={css.bubbles}></div>
-      <DailyNorma />
+      <div className={css.bottle}></div>
+      {children}
     </section>
   );
 };
