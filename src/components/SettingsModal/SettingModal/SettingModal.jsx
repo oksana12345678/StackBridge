@@ -12,6 +12,8 @@ import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
 import RadioGroup from "./RadioGroup/RadioGroup";
 import PhotoGroup from "./PhotoGroup/PhotoGroup";
+import NameGroup from "./NameGroup";
+
 import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
@@ -33,7 +35,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const nameInputId = useId();
   const emailInputId = useId();
 
   const oldPasswordInputId = useId();
@@ -177,7 +178,7 @@ const SettingModal = () => {
         validateOnBlur={true}
       >
         {({ errors, touched }) => (
-          <Form className={css["form-container"]} autocomplete="off">
+          <Form className={css["form-container"]} autoComplete="off">
             <PhotoGroup
               avatar={user.avatar}
               isSubmitBlocked={isSubmitBlocked}
@@ -191,30 +192,7 @@ const SettingModal = () => {
                   <h3 className={css.subtitle}>Your gender identity</h3>
                   <RadioGroup labelLeft="Woman" labelRight="Man" />
                 </div>
-                {/* ==================================================== NAME-GROUP ================================================= */}
-                <div className={css["name-group"]}>
-                  <Label htmlFor={nameInputId} type="thick">
-                    Your name
-                  </Label>
-                  <div>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        className={clsx(css.input, {
-                          [css["error-input"]]: errors.name && touched.name,
-                        })}
-                        id={nameInputId}
-                        type="text"
-                        name="name"
-                        placeholder="name"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <NameGroup isError={errors.name} isTouched={touched.name} />
                 {/* ==================================================== EMAIL GROUP =========================================================*/}
                 <div className={css["email-group"]}>
                   <Label htmlFor={emailInputId} type="thick">
@@ -223,7 +201,7 @@ const SettingModal = () => {
                   <div>
                     <div className={css["input-wrapper"]}>
                       <Field
-                        autocomplete="off"
+                        autoComplete="off"
                         className={clsx(css.input, {
                           [css["error-input"]]: errors.email && touched.email,
                         })}
@@ -252,7 +230,7 @@ const SettingModal = () => {
                     </Label>
                     <div className={css["input-wrapper"]}>
                       <Field
-                        autocomplete="off"
+                        autoComplete="off"
                         className={css.input}
                         id={oldPasswordInputId}
                         type={
