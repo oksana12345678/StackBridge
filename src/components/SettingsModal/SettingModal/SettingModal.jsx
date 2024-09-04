@@ -13,6 +13,7 @@ import FormTitle from "./FormTitle/FormTitle";
 import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
 import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import NameGroup from "./NameGroup";
+import EmailGroup from "./EmailGroup/EmailGroup";
 
 import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
@@ -35,7 +36,7 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const emailInputId = useId();
+
 
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
@@ -184,36 +185,11 @@ const SettingModal = () => {
               isSubmitBlocked={isSubmitBlocked}
               handleAvatarChange={handleAvatarChange}
             />
-            {/* DESKTOP */}
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
                 <GenderIdentityGroup labelLeft="Woman" labelRight="Man" />
                 <NameGroup isError={errors.name} isTouched={touched.name} />
-                {/* ==================================================== EMAIL GROUP =========================================================*/}
-                <div className={css["email-group"]}>
-                  <Label htmlFor={emailInputId} type="thick">
-                    E-mail
-                  </Label>
-                  <div>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        autoComplete="off"
-                        className={clsx(css.input, {
-                          [css["error-input"]]: errors.email && touched.email,
-                        })}
-                        id={emailInputId}
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <EmailGroup isError={errors.email} isTouched={touched.email} />
               </div>
               <div className={css["desktop-right"]}>
                 {/* ==================================================== PASSWORD GROUP ====================================================== */}
