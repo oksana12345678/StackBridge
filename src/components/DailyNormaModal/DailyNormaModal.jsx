@@ -4,14 +4,15 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
-
-const handleSubmit = (values, action) => {
-  console.log(values.plannedWaterIntake * 1000);
-  action.resetForm();
-};
+import "react-toastify/ReactToastify.css";
+import {
+  fetchUserData,
+  updateWaterRate,
+} from "../../redux/dailyNormalModal/operations";
+import { useEffect, useState } from "react";
 
 const calculateWater = (gender, weight, activeTime) => {
-  if (weight === 0 || weight === 0) return "2.0";
+  if (weight === 0 || weight === 0) return "1.5";
   if (gender === "man") {
     return (weight * 0.04 + activeTime * 0.6).toFixed(1);
   } else {
@@ -22,9 +23,40 @@ const calculateWater = (gender, weight, activeTime) => {
 const DailyNormaModal = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalOpen);
+  const [initialValues, setInitialValues] = useState({
+    gender: "",
+    weight: 0,
+    activeTime: 0,
+    plannedWaterIntake: 0,
+  });
 
   const handleCloseModal = () => {
     dispatch(closeModal());
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      dispatch(fetchUserData()).then((action) => {
+        if (fetchUserData.fulfilled.match(action)) {
+          const { gender } = action.payload;
+          setInitialValues({
+            gender: gender || "",
+            weight: 0,
+            activeTime: 0,
+            plannedWaterIntake: 0,
+          });
+        }
+      });
+    }
+  }, [isModalOpen, dispatch]);
+
+  const handleSubmit = async (values, actions) => {
+    const waterRate = values.plannedWaterIntake * 1000;
+    await dispatch(
+      updateWaterRate({ waterRate: waterRate })
+    );
+    actions.resetForm();
+    handleCloseModal();
   };
 
   return (
@@ -60,13 +92,11 @@ const DailyNormaModal = () => {
         </div>
 
         <Formik
-          initialValues={{
-            gender: " ",
-            weight: 0,
-            activeTime: 0,
-            plannedWaterIntake: 2.0,
-          }}
-          onSubmit={handleSubmit}
+          enableReinitialize
+          initialValues={initialValues}
+          onSubmit={(values, actions) =>
+            handleSubmit(values, actions, handleCloseModal)
+          }
         >
           {({ values }) => (
             <Form className={css.form}>
