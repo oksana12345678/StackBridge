@@ -141,51 +141,6 @@
   display: none;
 }
 
-.radio-label {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-}
-
-.original-radio {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-}
-
-.custom-radio {
-  margin-left: 0;
-  width: 14px;
-  height: 14px;
-  fill: var(--primary-blue-color);
-  stroke: var(--primary-blue-color);
-}
-
-.custom-radio-initial {
-  display: block;
-}
-
-.custom-radio-checked {
-  display: none;
-}
-
-.original-radio:checked ~ .custom-radio-initial {
-  display: none;
-}
-
-.original-radio:checked ~ .custom-radio-checked {
-  display: block;
-}
-
 .input-wrapper {
   width: 256px;
   position: relative;

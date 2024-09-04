@@ -10,11 +10,10 @@ import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import RadioContainer from "./RadioContainer/RadioContainer";
+import RadioGroup from "./RadioGroup/RadioGroup";
 import Label from "./Label/Label";
 import { PiUploadSimple } from "react-icons/pi";
-import { IoMdRadioButtonOn } from "react-icons/io";
-import { IoIosRadioButtonOff } from "react-icons/io";
+
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
 
@@ -38,8 +37,6 @@ const SettingModal = () => {
   const nameInputId = useId();
   const emailInputId = useId();
   const fileInputId = useId();
-  const womanRadioId = useId();
-  const manRadioId = useId();
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
@@ -223,55 +220,7 @@ const SettingModal = () => {
                 {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
                 <div className={css["gender-identity-group"]}>
                   <h3 className={css.subtitle}>Your gender identity</h3>
-                  <RadioContainer>
-                    <label
-                      htmlFor={womanRadioId}
-                      className={css["radio-label"]}
-                    >
-                      <Field
-                        id={womanRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="woman"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Woman
-                    </label>
-                    <label htmlFor={manRadioId} className={css["radio-label"]}>
-                      <Field
-                        id={manRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="man"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Man
-                    </label>
-                  </RadioContainer>
+                  <RadioGroup labelLeft="Woman" labelRight="Man" />
                 </div>
                 {/* ==================================================== NAME-GROUP ================================================= */}
                 <div className={css["name-group"]}>
