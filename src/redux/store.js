@@ -13,7 +13,7 @@ import {
 import persistStore from "redux-persist/es/persistStore";
 import { modalReducer } from "./modalWindow/slice";
 import monthStatsReducer from "./monthStats/slice";
-import waterReducer from "./water/slice";
+import waterNotesReducer from "./water/slice";
 import { waterReducer as water2red } from "./waterConsumption/slice";
 import dailyNormalModalSlice from "./dailyNormalModal/slice";
 
@@ -28,8 +28,8 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
     monthStats: monthStatsReducer,
-    water: waterReducer,
-    water2: water2red,
+    waterNotes: waterNotesReducer,
+    waterNotes2: water2red,
     dailyNormalModal: dailyNormalModalSlice,
   },
   middleware: (getDefaultMiddleware) =>

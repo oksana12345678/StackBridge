@@ -14,7 +14,7 @@ const formatDate = (date, format = "long") =>
   })} ${date.getFullYear()}`;
 
 export const addWaterEntryThunk = createAsyncThunk(
-  "water/addWater",
+  "waterNotes/addWater",
   async (water, thunkApi) => {
     try {
       const response = await addWaterEntry({
@@ -29,7 +29,7 @@ export const addWaterEntryThunk = createAsyncThunk(
 );
 
 export const deleteWaterEntryThunk = createAsyncThunk(
-  "water/deleteWater",
+  "waterNotes/deleteWater",
   async (entryId, thunkApi) => {
     const { water } = thunkApi.getState();
 
@@ -45,7 +45,7 @@ export const deleteWaterEntryThunk = createAsyncThunk(
 );
 
 export const updateWaterEntryThunk = createAsyncThunk(
-  "water/updateWater",
+  "waterNotes/updateWater",
   async ({ entryId, body }, thunkApi) => {
     const { water } = thunkApi.getState();
 
@@ -61,7 +61,7 @@ export const updateWaterEntryThunk = createAsyncThunk(
 );
 
 export const getWaterForTodayThunk = createAsyncThunk(
-  "water/getTodayWater",
+  "waterNotes/getTodayWater",
   async (_, thunkApi) => {
     try {
       const date = new Date();
@@ -74,7 +74,7 @@ export const getWaterForTodayThunk = createAsyncThunk(
 );
 
 export const getWaterForMonthThunk = createAsyncThunk(
-  "water/getMonthWater",
+  "waterNotes/getMonthWater",
   async ({ year, month }, thunkApi) => {
     try {
       const response = await getWaterForMonth(year, month);

@@ -8,7 +8,7 @@ import { HiOutlineTrash as Trash } from "react-icons/hi2";
 import GlassIcon from "./GlassIcon";
 // import TodayListModal from "../../components/TodayListModal/TodayListModal";
 
-const TodayWaterItem = ({ id, amount, time }) => {
+const TodayWaterItem = ({ id, waterVolume, date }) => {
   const dispatch = useDispatch();
 
   const [modals, setModals] = useState({
@@ -34,8 +34,8 @@ const TodayWaterItem = ({ id, amount, time }) => {
     <li className={css.entryItem}>
       <div className={css.entryInfo}>
         <GlassIcon className={css.glass} />
-        <p className={css.amount}>{amount} ml</p>
-        <p className={css.time}>{time}</p>
+        <p className={css.amount}>{waterVolume} ml</p>
+        <p className={css.time}>{date}</p>
       </div>
       <div className={css.icons}>
         <button className={css.edit} onClick={() => toggleModal("isModalEdit")}>

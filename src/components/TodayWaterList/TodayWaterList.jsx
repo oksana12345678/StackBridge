@@ -37,12 +37,12 @@ export const TodayWaterList = () => {
           <p className={css.empty}>No notes yet</p>
         ) : (
           <ul className={css["list-entry"]}>
-            {entries.map(({ _id, amount, time }) => (
+            {entries.map(({ _id, waterVolume, date }) => (
               <TodayWaterItem
                 key={_id}
                 id={_id}
-                amount={amount}
-                time={formatTime(time)}
+                waterVolume={waterVolume}
+                date={formatTime(date)}
               />
             ))}
           </ul>
