@@ -1,199 +1,196 @@
-@media only screen and (min-width: 320px) {
-  .mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 20px;
-  }
-
-  .today {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--primary-blue-color);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-  }
-
-  .range {
-    height: 12px;
-    width: 256px;
-    margin-bottom: 6px;
-    background-color: #d7e3ff;
-    border-radius: 4rem;
-  }
-
-  .rangeContent {
-    position: relative;
-    width: 100%;
-    display: grid;
-    place-items: start;
-  }
-
-  .decorativeLines {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 4px;
-  }
-
-  .line {
-    width: 1px;
-    height: 8px;
-    background-color: #d7e3ff;
-  }
-
-  .number1 {
-    position: absolute;
-    left: -3%;
-    transition: all 0.7s ease;
-  }
-
-  .number2 {
-    position: absolute;
-    left: 47%;
-    transition: all 0.7s ease;
-  }
-
-  .number3 {
-    position: absolute;
-    right: -3%;
-    transition: all 0.7s ease;
-  }
-
-  .addButton {
-    display: inline-flex;
-    width: 280px;
-    height: 36px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    border-color: transparent;
-    background: var(--primary-blue-color);
-    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  }
-
-  .addButton:hover,
-  .addButton:focus {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
-  }
-
-  .addButton:active {
-    box-shadow: none;
-  }
-
-  .addButtonText {
-    display: block;
-    color: #fff;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 20px;
-  }
-
-  .plusCircle {
-    fill: var(--primary-blue-color);
-    stroke: #fff;
-  }
+.waterRatioPanelWrapper {
+  margin: 0 auto;
+  width: 280px;
 }
 
-@media only screen and (min-width: 768px) {
-  .mainContainer {
-    position: relative;
+.progressWrapper {
+  width: 100%;
+  height: 82px;
+}
+
+.progressTitle {
+  color: var(--primary-blue-color);
+  font-family: var(--main-font);
+  font-size: 18px;
+  line-height: 1.33;
+  margin-bottom: 8px;
+}
+
+.progressBarWrapper {
+  position: relative;
+  height: 50px;
+}
+
+.progressTrack {
+  position: absolute;
+  left: 10px;
+  top: 3px;
+  width: 256px;
+  height: 8px;
+  border-radius: 10px;
+  background: rgb(215, 227, 255);
+}
+
+.progressTrackValue {
+  height: 100%;
+  background-color: red;
+  border-radius: 10px 0 0 10px;
+  background: rgb(158, 187, 255);
+}
+
+.adjustmentWrapper {
+  background-color: transparent;
+  width: calc(100% - 14px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progressSlider {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: -3px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 1px solid rgb(64, 123, 255);
+  background: rgb(255, 255, 255);
+}
+
+.progressBarRangeScale {
+  position: absolute;
+  width: 280px;
+  height: 32px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.scaleValue {
+  min-width: 22px;
+  height: 28px;
+  padding-top: 12px;
+  text-align: center;
+  color: var(--primary-blue-color);
+  font-family: var(--main-font);
+  font-size: 12px;
+  line-height: 1.33;
+  position: relative;
+}
+
+.scaleValue::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  content: "";
+  width: 1px;
+  height: 8px;
+  background-color: var(--secondary-light-blue);
+}
+
+.activeScaleValue {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.addButton {
+  width: 280px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary-blue-color);
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  margin: 16px auto 0px;
+}
+
+.addButton:hover,
+.addButton:focus {
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+}
+
+.addButton:active {
+  box-shadow: none;
+}
+
+.plusCircle {
+  fill: var(--primary-blue-color);
+  stroke: var(--primary-white-color);
+  width: 24px;
+  height: 24px;
+}
+
+.addButtonText {
+  display: block;
+  color: var(--primary-white-color);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+@media screen and (min-width: 768px) {
+  .waterRatioPanelWrapper {
+    margin: 0;
+    width: 704px;
+    display: flex;
+    align-items: center;
     gap: 12px;
-    flex-direction: row;
-    height: 50px;
-    justify-items: center;
   }
 
-  .panel {
-    display: block;
+  .progressWrapper {
     width: 356px;
-    height: 50px;
-    margin-left: 10px;
+    height: 90px;
   }
 
-  .today {
+  .progressTitle {
     margin-bottom: 16px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
   }
 
-  .range {
-    height: 8px;
-    width: 325px;
-    margin-bottom: 4px;
-  }
-
-  .decorativeLines {
+  .progressTrack {
     width: 325px;
   }
 
-  .line {
-    width: 1px;
-    height: 8px;
-    background: #d7e3ff;
-  }
-
-  .number3 {
-    position: absolute;
-    right: -5%;
+  .progressBarRangeScale {
+    width: 348px;
   }
 
   .addButton {
-    position: absolute;
-    top: -35%;
-    left: 52%;
     width: 336px;
     height: 44px;
+    margin: 0;
   }
 
   .addButtonText {
     font-size: 18px;
-    line-height: 24px;
+    line-height: 1.33;
   }
 }
 
-@media only screen and (min-width: 1440px) {
-  .mainContainer {
-    display: block;
-    height: 50px;
+@media screen and (min-width: 1440px) {
+  .waterRatioPanelWrapper {
+    width: 592px;
+    gap: 23px;
   }
 
-  .panel {
-    display: block;
+  .progressWrapper {
     width: 391px;
   }
 
-  .range {
+  .progressTrack {
     width: 360px;
   }
 
-  .decorativeLines {
-    width: 360px;
-  }
-
-  .line {
-    width: 1px;
-    height: 8px;
-    background: #d7e3ff;
-  }
-
-  .number3 {
-    position: absolute;
-    right: -1%;
+  .progressBarRangeScale {
+    width: 384px;
   }
 
   .addButton {
-    top: -35%;
-    left: 414px;
     width: 178px;
-  }
-
-  .addButtonText {
-    font-size: 17px;
   }
 }
