@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "?????"; /* TODO */
+axios.defaults.baseURL = "https://watertracker-app.onrender.com"; /* TODO */
 
 export const addWaterEntry = async (waterData) => {
   const { data } = await axios.post("/water", waterData);
@@ -13,7 +13,7 @@ export const deleteWaterEntry = async (dayId, entryId) => {
 };
 
 export const getWaterForToday = async (date) => {
-  const { data } = await axios.get(`/water/${date}`);
+  const { data } = await axios.get(`/water/today`);
   return data;
 };
 

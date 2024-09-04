@@ -2,56 +2,59 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
 import TodayWaterItem from "./TodayWaterItem";
 import css from "./TodayWaterList.module.css";
-// import { selectWatersToday } from "../../redux/waterConsumption/selectors";
-// import { getWaterForTodayThunk } from "../../redux/waterConsumption/operations";
+import { FaPlus as Plus } from "react-icons/fa6";
+import { selectWatersToday } from "../../redux/waterConsumption/selectors";
+import { getWaterForTodayThunk } from "../../redux/waterConsumption/operations";
 // import TodayListModal from "../../components/TodayListModal/TodayListModal";
+import { addWaterModalOpen } from "../../redux/modalWindow/slice";
+
+const formatTime = (isoDateString) => {
+  const date = new Date(isoDateString);
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
 
 export const TodayWaterList = () => {
   const dispatch = useDispatch();
-  //   const waterToday = useSelector(selectWatersToday);
-  const [isOpen, setIsOpen] = useState(false);
+  const waterToday = useSelector(selectWatersToday);
 
-  //   useEffect(() => {
-  //     dispatch(getWaterForTodayThunk());
-  //   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getWaterForTodayThunk());
+  }, [dispatch]);
 
-  const waterToday = {
-    dailyEntries: [
-      { _id: "1", waterVolume: 250, time: "08:00 AM" },
-      { _id: "2", waterVolume: 300, time: "11:00 AM" },
-      { _id: "3", waterVolume: 150, time: "01:00 PM" },
-      { _id: "4", waterVolume: 200, time: "04:00 PM" },
-    ],
-  };
-
-  const toggleModal = () => setIsOpen((prevState) => !prevState);
-
-  const entries = useMemo(() => waterToday?.dailyEntries || [], [waterToday]);
+  const entries = useMemo(() => waterToday?.todayWaterList || [], [waterToday]);
 
   return (
     <div className={css["entries-container"]}>
       <div className={css.entries}>
         <h2 className={css.title}>Today</h2>
         {entries.length === 0 ? (
-          <p className={css.empty}>No records</p>
+          <p className={css.empty}>No notes yet</p>
         ) : (
           <ul className={css["list-entry"]}>
-            {entries.map(({ _id, waterVolume, time }) => (
+            {entries.map(({ _id, amount, time }) => (
               <TodayWaterItem
                 key={_id}
                 id={_id}
-                c
-                amount={waterVolume}
-                time={time}
+                amount={amount}
+                time={formatTime(time)}
               />
             ))}
           </ul>
         )}
       </div>
-      <button className={css["btn-add"]} onClick={toggleModal}>
-        <span className={css.plus}>+</span> Add water
+      <button
+        className={css["btn-add"]}
+        onClick={() => dispatch(addWaterModalOpen())}
+      >
+        <Plus className={css.plus} /> Add water
       </button>
-      {/* {isOpen && <TodayListModal />} */}
+      {/* <TodayListModal /> */}
     </div>
   );
 };

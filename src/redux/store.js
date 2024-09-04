@@ -14,6 +14,7 @@ import persistStore from "redux-persist/es/persistStore";
 import { modalReducer } from "./modalWindow/slice";
 import monthStatsReducer from "./monthStats/slice";
 import waterReducer from "./water/slice";
+import { waterReducer as water2red } from "./waterConsumption/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -27,6 +28,7 @@ export const store = configureStore({
     modal: modalReducer,
     monthStats: monthStatsReducer,
     water: waterReducer,
+    water2: water2red,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

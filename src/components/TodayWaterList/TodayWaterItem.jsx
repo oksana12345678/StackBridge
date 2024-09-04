@@ -5,7 +5,7 @@ import css from "./TodayWaterItem.module.css";
 import { deleteWaterEntryThunk } from "../../redux/waterConsumption/operations";
 import { HiOutlinePencilSquare as Edit } from "react-icons/hi2";
 import { HiOutlineTrash as Trash } from "react-icons/hi2";
-import { FaGlassWaterDroplet as Glass } from "react-icons/fa6";
+import GlassIcon from "./GlassIcon";
 // import TodayListModal from "../../components/TodayListModal/TodayListModal";
 
 const TodayWaterItem = ({ id, amount, time }) => {
@@ -33,19 +33,19 @@ const TodayWaterItem = ({ id, amount, time }) => {
   return (
     <li className={css.entryItem}>
       <div className={css.entryInfo}>
-        <Glass className={css.glass} />
+        <GlassIcon className={css.glass} />
         <p className={css.amount}>{amount} ml</p>
         <p className={css.time}>{time}</p>
       </div>
       <div className={css.icons}>
         <button className={css.edit} onClick={() => toggleModal("isModalEdit")}>
-          <Edit className={css.edit} />
+          <Edit className={css.edit} size={16} />
         </button>
         <button
           className={css.delete}
           onClick={() => toggleModal("isModalDelete")}
         >
-          <Trash className={css.delete} />
+          <Trash className={css.delete} size={16} />
         </button>
       </div>
 

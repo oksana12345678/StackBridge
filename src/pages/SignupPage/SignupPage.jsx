@@ -3,9 +3,7 @@ import { Helmet } from "react-helmet-async";
 import SignUpForm from "../../components/SignUpForm/SignUpForm.jsx";
 import MainAuth from "../../components/MainAuth/MainAuth.jsx";
 
-import css from "./SignupPage.module.css";
-
-export default function RegisterPage() {
+const RegisterPage = () => {
   return (
     <>
       <Helmet>
@@ -13,10 +11,10 @@ export default function RegisterPage() {
       </Helmet>
 
       <MainAuth>
-        {/* <div className={css.div}> */}
-          <SignUpForm />
-        {/* </div> */}
+        <SignUpForm />
       </MainAuth>
     </>
   );
-}
+};
+
+export default RegisterPage;

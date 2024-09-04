@@ -1,46 +1,27 @@
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
 import { selectUserEmail } from "../../../redux/auth/selectors";
-import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { updateAvatar, updateUser } from "../../../redux/auth/operations";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import RadioContainer from "./RadioContainer/RadioContainer";
+import RadioGroup from "./RadioGroup/RadioGroup";
 import Label from "./Label/Label";
 import { PiUploadSimple } from "react-icons/pi";
-import { IoMdRadioButtonOn } from "react-icons/io";
-import { IoIosRadioButtonOff } from "react-icons/io";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import userPic from "../../../../public/userPic.png";
-import * as Yup from "yup";
-import css from "./SettingModal.module.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { updateAvatar, updateUser } from "../../../redux/auth/operations";
 
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import css from "./SettingModal.module.css";
+
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
   const user = useSelector(selectUserEmail);
-  const defaultAvatar = userPic;
   const dispatch = useDispatch();
-  const [newAvatar, setNewAvatar] = useState(user.avatar || defaultAvatar);
-  const [newAvatarFile, setNewAvatarFile] = useState(null);
+
   const initialValues = {
     email: user.email || "",
     name: user.name || "",
@@ -56,8 +37,6 @@ const SettingModal = () => {
   const nameInputId = useId();
   const emailInputId = useId();
   const fileInputId = useId();
-  const womanRadioId = useId();
-  const manRadioId = useId();
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
@@ -80,6 +59,7 @@ const SettingModal = () => {
   });
 
   const [showPasswords, setShowPasswords] = useState([]);
+  const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const handleShownPasswords = (type) => {
     setShowPasswords((prev) => {
@@ -97,31 +77,20 @@ const SettingModal = () => {
       if (formValue !== (userValue ?? "")) {
         patchedData[key] = formValue;
       }
-      if (key == "avatar" && newAvatar != user[key])
-        patchedData["avatar"] = newAvatarFile;
     }
     return patchedData;
   }
   const onSubmit = (values) => {
+    setIsSubmitBlocked(true);
+    setTimeout(() => {
+      setIsSubmitBlocked(false);
+    }, 6000);
     const { password, outdatedPassword, repeatPassword } = values;
-
+    delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
 
-    if (
-      Object.keys(patchedData).length == 0 ||
-      (Object.keys(patchedData).length == 1 &&
-        Object.keys(patchedData).includes("avatar"))
-    ) {
-      if (newAvatar != user.avatar && newAvatar != defaultAvatar) {
-        dispatch(updateAvatar({ avatar: newAvatarFile }))
-          .unwrap()
-          .then(() => {
-            showToast("Avatar changed!", "success");
-          })
-          .catch(() => showToast("Error, try later!", "error"));
-      } else {
-        showToast("You have not made any changes.", "error");
-      }
+    if (Object.keys(patchedData).length == 0) {
+      showToast("You have not made any changes.", "error");
     } else {
       if (outdatedPassword != "" || password != "" || repeatPassword != "") {
         if (outdatedPassword == password) {
@@ -155,7 +124,11 @@ const SettingModal = () => {
             .then(() => {
               showToast("Successfully changed information.", "success");
             })
-            .catch(() => showToast("Error, try later!", "error"));
+            .catch((err) => {
+              if (err == "Request failed with status code 401")
+                showToast("Incorrect outdated password", "error");
+              else showToast("Error, try later!", "error");
+            });
         }
       } else {
         dispatch(updateUser(patchedData))
@@ -170,11 +143,20 @@ const SettingModal = () => {
     patchedData = {};
   };
   const handleAvatarChange = (e) => {
+    setIsSubmitBlocked(true);
+    setTimeout(() => {
+      setIsSubmitBlocked(false);
+    }, 6000);
     const file = e.target.files[0];
     if (file) {
-      const fileURL = URL.createObjectURL(file);
-      setNewAvatar(fileURL);
-      setNewAvatarFile(file);
+      dispatch(updateAvatar({ avatar: file }))
+        .unwrap()
+        .then(() => {
+          showToast("Avatar changed!", "success");
+        })
+        .catch(() => {
+          showToast("Error, try later!", "error");
+        });
     }
   };
   return (
@@ -188,7 +170,6 @@ const SettingModal = () => {
         },
       }}
     >
-      <ToastContainer />
       <FormTitle />
       <Formik
         initialValues={initialValues}
@@ -203,25 +184,34 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img className={css.avatar} src={newAvatar} alt="avatar" />
+                  <img className={css.avatar} src={user.avatar} alt="avatar" />
                 </div>
                 <div>
-                  <button className={css["upload-button"]} type="button">
+                  <div className={css["upload-button"]} type="button">
                     <label
                       htmlFor={fileInputId}
-                      className={css["file-upload-label"]}
+                      className={clsx(
+                        css["file-upload-label"],
+                        isSubmitBlocked && css["blocked-upload"]
+                      )}
                     >
-                      <PiUploadSimple className={css["upload-icon"]} />
+                      <PiUploadSimple
+                        className={clsx(
+                          css["upload-icon"],
+                          isSubmitBlocked && css["blocked-upload"]
+                        )}
+                      />
                       Upload a photo
                     </label>
                     <input
+                      disabled={isSubmitBlocked}
                       id={fileInputId}
                       type="file"
                       className={css["file-input"]}
                       accept=".jpg,.jpeg,.png,.gif"
                       onChange={handleAvatarChange}
                     />
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,55 +220,7 @@ const SettingModal = () => {
                 {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
                 <div className={css["gender-identity-group"]}>
                   <h3 className={css.subtitle}>Your gender identity</h3>
-                  <RadioContainer>
-                    <label
-                      htmlFor={womanRadioId}
-                      className={css["radio-label"]}
-                    >
-                      <Field
-                        id={womanRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="woman"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Woman
-                    </label>
-                    <label htmlFor={manRadioId} className={css["radio-label"]}>
-                      <Field
-                        id={manRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="man"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Man
-                    </label>
-                  </RadioContainer>
+                  <RadioGroup labelLeft="Woman" labelRight="Man" />
                 </div>
                 {/* ==================================================== NAME-GROUP ================================================= */}
                 <div className={css["name-group"]}>
@@ -476,7 +418,11 @@ const SettingModal = () => {
               </div>
             </div>
             <div className={css["button-container"]}>
-              <button className={css["submit-button"]} type="submit">
+              <button
+                className={css["submit-button"]}
+                type="submit"
+                disabled={isSubmitBlocked}
+              >
                 Save
               </button>
             </div>
