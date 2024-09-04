@@ -1,9 +1,12 @@
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
 import { selectUserEmail } from "../../../redux/auth/selectors";
-import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { updateAvatar, updateUser } from "../../../redux/auth/operations";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
@@ -13,30 +16,11 @@ import { PiUploadSimple } from "react-icons/pi";
 import { IoMdRadioButtonOn } from "react-icons/io";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import userPic from "../../../../public/userPic.png";
-import * as Yup from "yup";
 import css from "./SettingModal.module.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { updateAvatar, updateUser } from "../../../redux/auth/operations";
 
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
   const user = useSelector(selectUserEmail);
-  const defaultAvatar = userPic;
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -189,7 +173,6 @@ const SettingModal = () => {
         },
       }}
     >
-      <ToastContainer />
       <FormTitle />
       <Formik
         initialValues={initialValues}
