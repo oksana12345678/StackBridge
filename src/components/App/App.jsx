@@ -32,21 +32,23 @@ const NotFoundPage = lazy(() =>
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn } = useAuth();
+  const { isRefreshing, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser())
-      .unwrap()
+    if (token) {
+      dispatch(refreshUser())
+        .unwrap()
 
-      .catch((error) => {
-        showToast(`Oops something went wrong! ${error} `, "error");
-      });
+        .catch((error) => {
+          showToast(`Oops something went wrong! ${error} `, "error");
+        });
+    }
 
-    if (isLoggedIn) {
+    if (token) {
       navigate("/home");
     }
-  }, [dispatch, isLoggedIn, navigate]);
+  }, [dispatch, isLoggedIn, token, navigate]);
 
   return isRefreshing ? (
     <b>
