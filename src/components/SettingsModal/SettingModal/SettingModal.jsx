@@ -11,9 +11,8 @@ import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
 import RadioGroup from "./RadioGroup/RadioGroup";
+import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import Label from "./Label/Label";
-import { PiUploadSimple } from "react-icons/pi";
-
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
 
@@ -36,7 +35,7 @@ const SettingModal = () => {
 
   const nameInputId = useId();
   const emailInputId = useId();
-  const fileInputId = useId();
+
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
@@ -178,43 +177,13 @@ const SettingModal = () => {
         validateOnBlur={true}
       >
         {({ errors, touched }) => (
-          <Form className={css["form-container"]}>
-            {/* ==================================================== PHOTO GROUP ============================================= */}
-            <div className={css["photo-group"]}>
-              <h3 className={css.subtitle}>Your photo</h3>
-              <div className={css["photo-flex"]}>
-                <div className={css["avatar-container"]}>
-                  <img className={css.avatar} src={user.avatar} alt="avatar" />
-                </div>
-                <div>
-                  <div className={css["upload-button"]} type="button">
-                    <label
-                      htmlFor={fileInputId}
-                      className={clsx(
-                        css["file-upload-label"],
-                        isSubmitBlocked && css["blocked-upload"]
-                      )}
-                    >
-                      <PiUploadSimple
-                        className={clsx(
-                          css["upload-icon"],
-                          isSubmitBlocked && css["blocked-upload"]
-                        )}
-                      />
-                      Upload a photo
-                    </label>
-                    <input
-                      disabled={isSubmitBlocked}
-                      id={fileInputId}
-                      type="file"
-                      className={css["file-input"]}
-                      accept=".jpg,.jpeg,.png,.gif"
-                      onChange={handleAvatarChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <Form className={css["form-container"]} autocomplete="off">
+            <PhotoGroup
+              avatar={user.avatar}
+              isSubmitBlocked={isSubmitBlocked}
+              handleAvatarChange={handleAvatarChange}
+            />
+            {/* DESKTOP */}
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
                 {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
@@ -254,6 +223,7 @@ const SettingModal = () => {
                   <div>
                     <div className={css["input-wrapper"]}>
                       <Field
+                        autocomplete="off"
                         className={clsx(css.input, {
                           [css["error-input"]]: errors.email && touched.email,
                         })}
@@ -282,6 +252,7 @@ const SettingModal = () => {
                     </Label>
                     <div className={css["input-wrapper"]}>
                       <Field
+                        autocomplete="off"
                         className={css.input}
                         id={oldPasswordInputId}
                         type={
