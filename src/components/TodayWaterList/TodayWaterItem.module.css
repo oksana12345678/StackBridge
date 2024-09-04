@@ -72,7 +72,32 @@
   stroke: var(--orange-accent-color, #ff9d43);
 }
 
-.delete:hover,
-.delete:focus {
+.edit {
+  stroke: var(--light-blue-text, #9ebbff);
+  position: relative;
+}
+
+.edit:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--light-blue-text, #9ebbff);
+}
+
+.delete {
   stroke: var(--red-accent-color, #ea1b1b);
+  position: relative;
+}
+
+.delete:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--red-accent-color, #ea1b1b);
 }
