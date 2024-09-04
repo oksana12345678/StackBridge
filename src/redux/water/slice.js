@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addWater, editWater } from "./operations";
 
-const waterNotesSlice = createSlice({
-  name: "waterNotes",
+const waterSlice = createSlice({
+  name: "water",
   initialState: {
     items: [],
     loading: false,
@@ -34,4 +34,4 @@ const waterNotesSlice = createSlice({
   },
 });
 
-export default waterNotesSlice.reducer;
+export default waterSlice.reducer;
