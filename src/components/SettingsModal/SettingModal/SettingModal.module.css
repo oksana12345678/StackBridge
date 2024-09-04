@@ -304,7 +304,15 @@
 }
 
 .submit-button:disabled {
+  cursor: not-allowed;
   background-color: dimgrey;
   color: var(--primary-white-color);
   opacity: 1;
+}
+
+.blocked-upload {
+  cursor: not-allowed;
+  color: dimgrey;
+  fill: dimgrey;
+  stroke: dimgrey;
 }
