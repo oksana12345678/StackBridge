@@ -10,7 +10,7 @@ import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import RadioGroup from "./RadioGroup/RadioGroup";
+import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
 import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import NameGroup from "./NameGroup";
 
@@ -187,11 +187,7 @@ const SettingModal = () => {
             {/* DESKTOP */}
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
-                {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
-                <div className={css["gender-identity-group"]}>
-                  <h3 className={css.subtitle}>Your gender identity</h3>
-                  <RadioGroup labelLeft="Woman" labelRight="Man" />
-                </div>
+                <GenderIdentityGroup labelLeft="Woman" labelRight="Man" />
                 <NameGroup isError={errors.name} isTouched={touched.name} />
                 {/* ==================================================== EMAIL GROUP =========================================================*/}
                 <div className={css["email-group"]}>
