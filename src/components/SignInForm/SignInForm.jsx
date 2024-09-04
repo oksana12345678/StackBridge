@@ -1,14 +1,12 @@
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 
-import { logIn } from "../../redux/auth/operations";
-import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper";
+import { logIn } from "../../redux/auth/operations.js";
+import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper.jsx";
 import showToast from "../showToast.js";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (values, actions) => {
     const { email, password } = values;
@@ -40,8 +38,6 @@ const SignInForm = () => {
     <SignInSignUpWrapper
       contactsSchema={contactsSchema}
       handleSubmit={handleSubmit}
-      showPassword={showPassword}
-      setShowPassword={setShowPassword}
     />
   );
 };

@@ -127,9 +127,6 @@
       url("../../Images/signIn-signUp/back/mobile/back_mobile@2x.png");
   }
 }
-.container {
-  padding: 0 20px;
-}
 
 @media screen and (min-width: 768px) {
   .bottle {
@@ -148,9 +145,6 @@
       background-image: url("../../Images/signIn-signUp/bottle/tablet/bottle_tablet@2x.png"),
         url("../../Images/signIn-signUp/back/tablet/back_tablet@2x.png");
     }
-  }
-  .container {
-    padding: 0 32px;
   }
 }
 
@@ -171,12 +165,5 @@
       background-image: url("../../Images/signIn-signUp/bottle/desktop/bottle_desktop@2x.png"),
         url("../../Images/signIn-signUp/back/desktop/back_desktop@2x.png");
     }
-  }
-  .container {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 0 0;
-    padding-right: 216px;
   }
 }

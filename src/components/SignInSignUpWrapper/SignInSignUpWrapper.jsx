@@ -1,15 +1,14 @@
-import { ErrorMessage, Field, Formik, Form } from "formik";
-import css from "./SignInSignUpWrapper.module.css";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { ErrorMessage, Field, Formik, Form } from "formik";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 
-export const SignInSignUpWrapper = ({
-  contactsSchema,
-  handleSubmit,
-  showPassword,
-  setShowPassword,
-}) => {
+import { useToggle } from "../../hooks/useToggle.js";
+
+import css from "./SignInSignUpWrapper.module.css";
+
+export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
+  const [showPassword, toggle] = useToggle();
   const { pathname } = useLocation();
 
   return (
@@ -53,7 +52,7 @@ export const SignInSignUpWrapper = ({
               <div className={css.inputErrorContainer}>
                 <div className={css.passwordWrapper}>
                   <Field
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword.password ? "text" : "password"}
                     name="password"
                     id="password"
                     placeholder="Enter your password"
@@ -66,10 +65,10 @@ export const SignInSignUpWrapper = ({
                     className={css.eyeBtn}
                     onClick={(event) => {
                       event.preventDefault();
-                      setShowPassword(!showPassword);
+                      toggle("password");
                     }}
                   >
-                    {showPassword ? (
+                    {showPassword.password ? (
                       <HiOutlineEye className={css.faEye} />
                     ) : (
                       <HiOutlineEyeOff className={css.faEye} />
@@ -93,12 +92,12 @@ export const SignInSignUpWrapper = ({
                   <div className={css.inputErrorContainer}>
                     <div className={css.passwordWrapper}>
                       <Field
-                        type={showPassword ? "text" : "password"}
+                        type={showPassword.repeatPassword ? "text" : "password"}
                         name="repeatPassword"
                         id="repeatPassword"
                         placeholder="Repeat your password"
                         className={`${css.input} ${
-                          errors.password && touched.password
+                          errors.repeatPassword && touched.repeatPassword
                             ? css.inputError
                             : ""
                         }`}
@@ -108,10 +107,10 @@ export const SignInSignUpWrapper = ({
                         className={css.eyeBtn}
                         onClick={(event) => {
                           event.preventDefault();
-                          setShowPassword(!showPassword);
+                          toggle("repeatPassword");
                         }}
                       >
-                        {showPassword ? (
+                        {showPassword.repeatPassword ? (
                           <HiOutlineEye className={css.faEye} />
                         ) : (
                           <HiOutlineEyeOff className={css.faEye} />
@@ -131,9 +130,11 @@ export const SignInSignUpWrapper = ({
             <button className={css.signinPageButton} type="submit">
               Sign {pathname === "/signin" ? "in" : "up"}
             </button>
-            <NavLink className={css.signinPageLink} to={"/forgot-password"}>
-              Forgot password?
-            </NavLink>
+            {pathname === "/signin" ? (
+              <NavLink className={css.signinPageLink} to={"/forgot-password"}>
+                Forgot password?
+              </NavLink>
+            ) : undefined}
             <NavLink
               className={css.signinPageLink}
               to={pathname === "/signup" ? "/signin" : "/signup"}
