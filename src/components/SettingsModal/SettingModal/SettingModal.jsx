@@ -12,7 +12,6 @@ import Label from "./Label/Label";
 import { PiUploadSimple } from "react-icons/pi";
 import { IoMdRadioButtonOn } from "react-icons/io";
 import { IoIosRadioButtonOff } from "react-icons/io";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import userPic from "../../../../public/userPic.png";
 import * as Yup from "yup";
@@ -79,6 +78,7 @@ const SettingModal = () => {
   });
 
   const [showPasswords, setShowPasswords] = useState([]);
+  const [isSubmitButtonBlocked, setIsSubmitButtonBlocked] = useState(false);
 
   const handleShownPasswords = (type) => {
     setShowPasswords((prev) => {
@@ -100,12 +100,16 @@ const SettingModal = () => {
     return patchedData;
   }
   const onSubmit = (values) => {
+    setIsSubmitButtonBlocked(true);
+    setTimeout(() => {
+      setIsSubmitButtonBlocked(false);
+    }, 6000);
     const { password, outdatedPassword, repeatPassword } = values;
     delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
 
-    if (Object.keys(patchedData).length == 0 ) {
-        showToast("You have not made any changes.", "error");
+    if (Object.keys(patchedData).length == 0) {
+      showToast("You have not made any changes.", "error");
     } else {
       if (outdatedPassword != "" || password != "" || repeatPassword != "") {
         if (outdatedPassword == password) {
@@ -140,7 +144,7 @@ const SettingModal = () => {
               showToast("Successfully changed information.", "success");
             })
             .catch((err) => {
-              if(err=="Request failed with status code 401")
+              if (err == "Request failed with status code 401")
                 showToast("Incorrect outdated password", "error");
               else showToast("Error, try later!", "error");
             });
@@ -160,15 +164,14 @@ const SettingModal = () => {
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      dispatch(updateAvatar({avatar:file}))
-      .unwrap()
-      .then(()=>{
-        showToast("Avatar changed!", "success");
-      })
-      .catch(()=>{
-        showToast("Error, try later!", "error");
-      })
-
+      dispatch(updateAvatar({ avatar: file }))
+        .unwrap()
+        .then(() => {
+          showToast("Avatar changed!", "success");
+        })
+        .catch(() => {
+          showToast("Error, try later!", "error");
+        });
     }
   };
   return (
@@ -470,7 +473,11 @@ const SettingModal = () => {
               </div>
             </div>
             <div className={css["button-container"]}>
-              <button className={css["submit-button"]} type="submit">
+              <button
+                className={css["submit-button"]}
+                type="submit"
+                disabled={isSubmitButtonBlocked}
+              >
                 Save
               </button>
             </div>

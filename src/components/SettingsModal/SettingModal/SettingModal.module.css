@@ -302,3 +302,9 @@
   border: none;
   box-shadow: none;
 }
+
+.submit-button:disabled {
+  background-color: dimgrey;
+  color: var(--primary-white-color);
+  opacity: 1;
+}
