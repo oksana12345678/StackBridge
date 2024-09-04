@@ -78,7 +78,7 @@ const SettingModal = () => {
   });
 
   const [showPasswords, setShowPasswords] = useState([]);
-  const [isSubmitButtonBlocked, setIsSubmitButtonBlocked] = useState(false);
+  const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const handleShownPasswords = (type) => {
     setShowPasswords((prev) => {
@@ -100,9 +100,9 @@ const SettingModal = () => {
     return patchedData;
   }
   const onSubmit = (values) => {
-    setIsSubmitButtonBlocked(true);
+    setIsSubmitBlocked(true);
     setTimeout(() => {
-      setIsSubmitButtonBlocked(false);
+      setIsSubmitBlocked(false);
     }, 6000);
     const { password, outdatedPassword, repeatPassword } = values;
     delete values["avatar"];
@@ -162,6 +162,10 @@ const SettingModal = () => {
     patchedData = {};
   };
   const handleAvatarChange = (e) => {
+    setIsSubmitBlocked(true);
+    setTimeout(() => {
+      setIsSubmitBlocked(false);
+    }, 6000);
     const file = e.target.files[0];
     if (file) {
       dispatch(updateAvatar({ avatar: file }))
@@ -203,22 +207,31 @@ const SettingModal = () => {
                   <img className={css.avatar} src={user.avatar} alt="avatar" />
                 </div>
                 <div>
-                  <button className={css["upload-button"]} type="button">
+                  <div className={css["upload-button"]} type="button">
                     <label
                       htmlFor={fileInputId}
-                      className={css["file-upload-label"]}
+                      className={clsx(
+                        css["file-upload-label"],
+                        isSubmitBlocked && css["blocked-upload"]
+                      )}
                     >
-                      <PiUploadSimple className={css["upload-icon"]} />
+                      <PiUploadSimple
+                        className={clsx(
+                          css["upload-icon"],
+                          isSubmitBlocked && css["blocked-upload"]
+                        )}
+                      />
                       Upload a photo
                     </label>
                     <input
+                      disabled={isSubmitBlocked}
                       id={fileInputId}
                       type="file"
                       className={css["file-input"]}
                       accept=".jpg,.jpeg,.png,.gif"
                       onChange={handleAvatarChange}
                     />
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -476,7 +489,7 @@ const SettingModal = () => {
               <button
                 className={css["submit-button"]}
                 type="submit"
-                disabled={isSubmitButtonBlocked}
+                disabled={isSubmitBlocked}
               >
                 Save
               </button>
