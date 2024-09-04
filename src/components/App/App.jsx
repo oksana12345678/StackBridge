@@ -12,6 +12,7 @@ import PrivateRoute from "../../components/Route/PrivateRout/PrivateRout.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
 import { ToastContainer } from "react-toastify";
+import showToast from "../showToast.js";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -34,18 +35,17 @@ function App() {
   const { isRefreshing, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-
-  //   return;
-  // }, [dispatch]);
-
   useEffect(() => {
-    // const savedToken = localStorage.getItem("token");
+    if (token) {
+      dispatch(refreshUser())
+        .unwrap()
 
-    dispatch(refreshUser());
+        .catch((error) => {
+          showToast(`Oops something went wrong! ${error} `, "error");
+        });
+    }
 
-    if (isLoggedIn) {
+    if (token) {
       navigate("/home");
     }
   }, [dispatch, isLoggedIn, token, navigate]);
