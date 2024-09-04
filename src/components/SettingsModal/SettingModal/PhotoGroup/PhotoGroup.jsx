@@ -29,7 +29,7 @@ const PhotoGroup = ({ avatar, isSubmitBlocked, handleAvatarChange }) => {
                   isSubmitBlocked && css["blocked-upload"]
                 )}
               >
-                <use href="/spriteFull.svg#icon-arrow_up" />
+                <use href="/spriteFull.svg#upload-icon" />
               </svg> */}
               <PiUploadSimple
                 className={clsx(

@@ -36,8 +36,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-
-
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
