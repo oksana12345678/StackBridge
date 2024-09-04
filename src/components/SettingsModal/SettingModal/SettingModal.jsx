@@ -1,42 +1,25 @@
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
 import { selectUserEmail } from "../../../redux/auth/selectors";
-import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+import { updateAvatar, updateUser } from "../../../redux/auth/operations";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import RadioContainer from "./RadioContainer/RadioContainer";
+import RadioGroup from "./RadioGroup/RadioGroup";
 import Label from "./Label/Label";
 import { PiUploadSimple } from "react-icons/pi";
-import { IoMdRadioButtonOn } from "react-icons/io";
-import { IoIosRadioButtonOff } from "react-icons/io";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import userPic from "../../../../public/userPic.png";
-import * as Yup from "yup";
-import css from "./SettingModal.module.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { updateAvatar, updateUser } from "../../../redux/auth/operations";
 
-const showToast = (message, type) => {
-  toast(message, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: type === "success" ? "light" : "colored",
-    type: type,
-  });
-};
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import css from "./SettingModal.module.css";
+
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
   const user = useSelector(selectUserEmail);
-  const defaultAvatar = userPic;
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -54,8 +37,6 @@ const SettingModal = () => {
   const nameInputId = useId();
   const emailInputId = useId();
   const fileInputId = useId();
-  const womanRadioId = useId();
-  const manRadioId = useId();
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
@@ -189,7 +170,6 @@ const SettingModal = () => {
         },
       }}
     >
-      <ToastContainer />
       <FormTitle />
       <Formik
         initialValues={initialValues}
@@ -240,55 +220,7 @@ const SettingModal = () => {
                 {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
                 <div className={css["gender-identity-group"]}>
                   <h3 className={css.subtitle}>Your gender identity</h3>
-                  <RadioContainer>
-                    <label
-                      htmlFor={womanRadioId}
-                      className={css["radio-label"]}
-                    >
-                      <Field
-                        id={womanRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="woman"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Woman
-                    </label>
-                    <label htmlFor={manRadioId} className={css["radio-label"]}>
-                      <Field
-                        id={manRadioId}
-                        className={css["original-radio"]}
-                        type="radio"
-                        name="gender"
-                        value="man"
-                      />
-                      <IoIosRadioButtonOff
-                        className={clsx(
-                          css["custom-radio-initial"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      <IoMdRadioButtonOn
-                        className={clsx(
-                          css["custom-radio-checked"],
-                          css["custom-radio"]
-                        )}
-                      />
-                      Man
-                    </label>
-                  </RadioContainer>
+                  <RadioGroup labelLeft="Woman" labelRight="Man" />
                 </div>
                 {/* ==================================================== NAME-GROUP ================================================= */}
                 <div className={css["name-group"]}>
