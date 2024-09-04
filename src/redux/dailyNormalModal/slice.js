@@ -43,4 +43,4 @@ const slice = createSlice({
   },
 });
 
-export default slice.reducers;
+export default slice.reducer;
