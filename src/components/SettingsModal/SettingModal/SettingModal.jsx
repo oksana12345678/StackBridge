@@ -103,7 +103,7 @@ const SettingModal = () => {
     const { password, outdatedPassword, repeatPassword } = values;
     delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
-    
+
     if (Object.keys(patchedData).length == 0 ) {
         showToast("You have not made any changes.", "error");
     } else {
@@ -139,7 +139,11 @@ const SettingModal = () => {
             .then(() => {
               showToast("Successfully changed information.", "success");
             })
-            .catch(() => showToast("Error, try later!", "error"));
+            .catch((err) => {
+              if(err=="Request failed with status code 401")
+                showToast("Incorrect outdated password", "error");
+              else showToast("Error, try later!", "error");
+            });
         }
       } else {
         dispatch(updateUser(patchedData))
