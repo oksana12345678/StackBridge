@@ -1,7 +1,7 @@
-export const selectWaterError = (state) => state.water.error;
+export const selectWaterError = (state) => state.waterNotes.error;
 
-export const selectWatersToday = (state) => state.water2.today;
+export const selectWatersToday = (state) => state.waterNotes2.today;
 
-export const selectWatersPerMonth = (state) => state.water.itemsPerMonth;
+export const selectWatersPerMonth = (state) => state.waterNotes.itemsPerMonth;
 
-export const selectLoading = (state) => state.water.isLoading;
+export const selectLoading = (state) => state.waterNotes.isLoading;

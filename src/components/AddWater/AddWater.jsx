@@ -12,11 +12,11 @@ import plus from "../../Icons/plus.svg";
 import close from "../../Icons/close.svg";
 
 const WaterSchema = Yup.object().shape({
-  time: Yup.string()
+  date: Yup.string()
     .min(8, "Too Short! Min 8 symbols")
     .max(50, "Too Long! Max 50 symbols")
     .required("Required field!"),
-  amount: Yup.number()
+  waterVolume: Yup.number()
     .min(1, "Too little! Min 1 ml")
     .max(5000, "Too much! Max 5000 ml")
     .required("Required field!"),
@@ -41,13 +41,13 @@ export default function AddWater() {
   };
 
   /////// About TIME
-  const timeNow = new Date().toLocaleTimeString("en-US", {
+  const dateNow = new Date().toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
   });
 
-  const generateListOfTime = () => {
+  const generateListOfDate = () => {
     const options = [];
     const startHour = 0;
     const endHour = 23;
@@ -56,20 +56,20 @@ export default function AddWater() {
       for (let minute = 0; minute < 60; minute += 5) {
         const ampm = hour >= 12 ? "PM" : "AM";
         const hour12 = hour % 12 || 12;
-        const time = `${hour12.toString().padStart(2, "0")}:${minute
+        const date = `${hour12.toString().padStart(2, "0")}:${minute
           .toString()
           .padStart(2, "0")} ${ampm}`;
-        options.push(time);
+        options.push(date);
       }
     }
 
     return options;
   };
 
-  const listOfTime = generateListOfTime();
+  const listOfDate = generateListOfDate();
 
   /////// Форматування дати для відправки на бекенд
-  function formatDateTime(time) {
+  function formatDateTime(date) {
     const formattedDate = new Date()
       .toLocaleDateString("en-CA", {
         year: "numeric",
@@ -77,14 +77,14 @@ export default function AddWater() {
         day: "2-digit",
       })
       .replace(/\//g, "-");
-    return `${formattedDate} ${time}`;
+    return `${formattedDate} ${date}`;
   }
 
   /////// Функція відправки даних на бекенд
   const handleAddWater = (values, actions) => {
-    const time = formatDateTime(values.time);
-    const amount = values.amount;
-    dispatch(addWater({ amount, time }))
+    const date = formatDateTime(values.date);
+    const waterVolume = values.waterVolume;
+    dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
         showToast("Water add successful!", "success");
@@ -97,7 +97,7 @@ export default function AddWater() {
 
   return (
     <Formik
-      initialValues={{ time: timeNow, amount: 0 }}
+      initialValues={{ date: dateNow, waterVolume: 0 }}
       onSubmit={handleAddWater}
       validationSchema={WaterSchema}
     >
@@ -112,7 +112,7 @@ export default function AddWater() {
               onClick={withdrawAmount}
               type="button"
               onBlur={() => {
-                setFieldValue("amount", amountOfWater);
+                setFieldValue("waterVolume", amountOfWater);
                 setResult(amountOfWater);
               }}
             >
@@ -124,7 +124,7 @@ export default function AddWater() {
               onClick={addAmount}
               type="button"
               onBlur={() => {
-                setFieldValue("amount", amountOfWater);
+                setFieldValue("waterVolume", amountOfWater);
                 setResult(amountOfWater);
               }}
             >
@@ -132,36 +132,36 @@ export default function AddWater() {
             </button>
           </div>
           <div className={css.timeContainer}>
-            <label className={css.labelTime} htmlFor={`${fieldId}-time`}>
+            <label className={css.labelTime} htmlFor={`${fieldId}-date`}>
               Recording time:
             </label>
             <Field
               as="select"
-              name="time"
+              name="date"
               className={css.input}
-              id={`${fieldId}-time`}
+              id={`${fieldId}-date`}
             >
-              <option value={timeNow}>{timeNow}</option>
-              {listOfTime.map((time, index) => (
-                <option key={index} value={time}>
-                  {time}
+              <option value={dateNow}>{dateNow}</option>
+              {listOfDate.map((date, index) => (
+                <option key={index} value={date}>
+                  {date}
                 </option>
               ))}
             </Field>
-            <ErrorMessage className={css.error} name="time" component="span" />
+            <ErrorMessage className={css.error} name="date" component="span" />
           </div>
           <div className={css.enterValueContainer}>
             <label
               className={css.enterValueLabel}
-              htmlFor={`${fieldId}-amount`}
+              htmlFor={`${fieldId}-waterVolume`}
             >
               Enter the value of the water used:
             </label>
             <Field
               className={css.input}
-              name="amount"
+              name="waterVolume"
               type="number"
-              id={`${fieldId}-amount`}
+              id={`${fieldId}-waterVolume`}
               onBlur={(e) => {
                 setAmountOfWater(Number(e.target.value));
                 setResult(Number(e.target.value));
@@ -169,7 +169,7 @@ export default function AddWater() {
             />
             <ErrorMessage
               className={css.error}
-              name="amount"
+              name="waterVolume"
               component="span"
             />
           </div>

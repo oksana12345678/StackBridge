@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const addWater = createAsyncThunk(
-  "water/addWater",
+  "waterNotes/addWater",
   async (newWaterRecord, thunkAPI) => {
     try {
-      const response = await axios.post("/water", newWaterRecord);
+      const response = await axios.post("/waterNotes", newWaterRecord);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -14,10 +14,10 @@ export const addWater = createAsyncThunk(
 );
 
 export const editWater = createAsyncThunk(
-  "water/editWater",
+  "waterNotes/editWater",
   async ({ id, updates }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/water/${id}`, updates);
+      const response = await axios.patch(`/waterNotes/${id}`, updates);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
