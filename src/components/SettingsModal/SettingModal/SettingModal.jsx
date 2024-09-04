@@ -39,8 +39,7 @@ const SettingModal = () => {
   const user = useSelector(selectUserEmail);
   const defaultAvatar = userPic;
   const dispatch = useDispatch();
-  const [newAvatar, setNewAvatar] = useState(user.avatar || defaultAvatar);
-  const [newAvatarFile, setNewAvatarFile] = useState(null);
+
   const initialValues = {
     email: user.email || "",
     name: user.name || "",
@@ -97,31 +96,16 @@ const SettingModal = () => {
       if (formValue !== (userValue ?? "")) {
         patchedData[key] = formValue;
       }
-      if (key == "avatar" && newAvatar != user[key])
-        patchedData["avatar"] = newAvatarFile;
     }
     return patchedData;
   }
   const onSubmit = (values) => {
     const { password, outdatedPassword, repeatPassword } = values;
-
+    delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
 
-    if (
-      Object.keys(patchedData).length == 0 ||
-      (Object.keys(patchedData).length == 1 &&
-        Object.keys(patchedData).includes("avatar"))
-    ) {
-      if (newAvatar != user.avatar && newAvatar != defaultAvatar) {
-        dispatch(updateAvatar({ avatar: newAvatarFile }))
-          .unwrap()
-          .then(() => {
-            showToast("Avatar changed!", "success");
-          })
-          .catch(() => showToast("Error, try later!", "error"));
-      } else {
+    if (Object.keys(patchedData).length == 0 ) {
         showToast("You have not made any changes.", "error");
-      }
     } else {
       if (outdatedPassword != "" || password != "" || repeatPassword != "") {
         if (outdatedPassword == password) {
@@ -155,7 +139,11 @@ const SettingModal = () => {
             .then(() => {
               showToast("Successfully changed information.", "success");
             })
-            .catch(() => showToast("Error, try later!", "error"));
+            .catch((err) => {
+              if(err=="Request failed with status code 401")
+                showToast("Incorrect outdated password", "error");
+              else showToast("Error, try later!", "error");
+            });
         }
       } else {
         dispatch(updateUser(patchedData))
@@ -172,9 +160,15 @@ const SettingModal = () => {
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const fileURL = URL.createObjectURL(file);
-      setNewAvatar(fileURL);
-      setNewAvatarFile(file);
+      dispatch(updateAvatar({avatar:file}))
+      .unwrap()
+      .then(()=>{
+        showToast("Avatar changed!", "success");
+      })
+      .catch(()=>{
+        showToast("Error, try later!", "error");
+      })
+
     }
   };
   return (
@@ -203,7 +197,7 @@ const SettingModal = () => {
               <h3 className={css.subtitle}>Your photo</h3>
               <div className={css["photo-flex"]}>
                 <div className={css["avatar-container"]}>
-                  <img className={css.avatar} src={newAvatar} alt="avatar" />
+                  <img className={css.avatar} src={user.avatar} alt="avatar" />
                 </div>
                 <div>
                   <button className={css["upload-button"]} type="button">
