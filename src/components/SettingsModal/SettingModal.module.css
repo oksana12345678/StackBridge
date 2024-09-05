@@ -144,17 +144,11 @@
   top: 0;
   right: 0;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
-  top: 12px;
-  right: 10px;
+  height: 100%;
+  padding-top: 12px;
+  padding-right: 10px;
+  padding-bottom: 12px;
   background-color: transparent;
-}
-
-@media screen and (min-width: 768px) {
-  .eye-button {
-    right: 16px;
-  }
 }
 
 .eye-icon {
