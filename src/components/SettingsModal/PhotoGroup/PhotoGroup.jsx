@@ -6,13 +6,18 @@ import settingsCoreCss from "../SettingModal.module.css";
 
 const PhotoGroup = ({ avatar, isSubmitBlocked, handleAvatarChange }) => {
   const fileInputId = useId();
+  const defaultImage = "/userPic.png";
 
   return (
     <div className={settingsCoreCss["photo-group"]}>
       <h3 className={settingsCoreCss.subtitle}>Your photo</h3>
       <div className={css["photo-flex"]}>
         <div className={css["avatar-container"]}>
-          <img className={css.avatar} src={avatar} alt="avatar" />
+          <img
+            className={css.avatar}
+            src={avatar || defaultImage}
+            alt="avatar"
+          />
         </div>
         <div>
           <div className={css["upload-button"]} type="button">
