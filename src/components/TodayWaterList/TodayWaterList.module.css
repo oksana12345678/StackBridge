@@ -1,12 +1,10 @@
 .title {
+  font-family: var(--main-font);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--primary-black-color);
   margin-bottom: 8px;
-}
-
-@media (min-width: 768px) {
-  .title {
-    font-size: 26px;
-    margin-bottom: 24px;
-  }
 }
 
 .entries-container {
@@ -23,21 +21,9 @@
   margin-bottom: 152px;
 }
 
-@media (min-width: 768px) {
-  .empty {
-    margin-bottom: 156px;
-  }
-}
-
 .entries {
   max-height: 275px;
   margin-bottom: 12.5px;
-}
-
-@media (min-width: 768px) {
-  .entries {
-    max-height: 280px;
-  }
 }
 
 .list-entry {
@@ -65,17 +51,29 @@
   color: var(--orange-accent-color, #ff9d43);
 }
 
-@media (min-width: 768px) {
-  .btn-add {
-    font-size: 18px;
-  }
-}
-
 .plus {
   font-size: 16px;
 }
 
 @media (min-width: 768px) {
+  .title {
+    font-size: 26px;
+    margin-bottom: 24px;
+    line-height: 1.23;
+  }
+
+  .empty {
+    margin-bottom: 156px;
+  }
+
+  .entries {
+    max-height: 280px;
+  }
+
+  .btn-add {
+    font-size: 18px;
+  }
+
   .plus {
     font-size: 24px;
   }

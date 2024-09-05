@@ -27,7 +27,10 @@ export const TodayWaterList = () => {
     dispatch(getWaterForTodayThunk());
   }, [dispatch]);
 
-  const entries = useMemo(() => waterToday?.todayWaterList || [], [waterToday]);
+  const entries = useMemo(
+    () => waterToday?.todayWaterNotesList || [],
+    [waterToday]
+  );
 
   return (
     <div className={css["entries-container"]}>
