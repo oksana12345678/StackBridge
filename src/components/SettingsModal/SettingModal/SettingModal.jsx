@@ -8,7 +8,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import showToast from "../../showToast";
 import { useToggle } from "../../../hooks/useToggle";
-import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
 import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
@@ -17,8 +16,7 @@ import NameGroup from "./NameGroup";
 import EmailGroup from "./EmailGroup/EmailGroup";
 import OldPasswordGroup from "./OldPasswordGroup";
 import NewPasswordGroup from "./NewPasswordGroup";
-import Label from "./Label/Label";
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import RepeatPasswordGroup from "./RepeatPasswordGroup";
 import css from "./SettingModal.module.css";
 
 const SettingModal = () => {
@@ -38,7 +36,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const repeatPasswordInputId = useId();
 
   const userInfoValidationSchema = Yup.object({
     name: Yup.string()
@@ -193,53 +190,12 @@ const SettingModal = () => {
                     isError={errors.password}
                     isTouched={touched.password}
                   />
-
-                  {/* ===================================================== REPEAT NEW PASSWORD ============================================ */}
-                  <div className={css["password-sub-group"]}>
-                    <Label htmlFor={repeatPasswordInputId} type="thin">
-                      Repeat new password:
-                    </Label>
-                    <div>
-                      <div className={css["input-wrapper"]}>
-                        <Field
-                          className={clsx(css.input, {
-                            [css["error-input"]]:
-                              errors.repeatPassword && touched.repeatPassword,
-                          })}
-                          id={repeatPasswordInputId}
-                          type={state.repeatPassword ? "text" : "password"}
-                          name="repeatPassword"
-                          placeholder="Password"
-                        />
-                        {state.repeatPassword ? (
-                          <button
-                            class={css["eye-button"]}
-                            onClick={(event) => {
-                              event.preventDefault();
-                              toggle("repeatPassword");
-                            }}
-                          >
-                            <HiOutlineEye className={css["eye-icon"]} />
-                          </button>
-                        ) : (
-                          <button
-                            className={css["eye-button"]}
-                            onClick={(event) => {
-                              event.preventDefault();
-                              toggle("repeatPassword");
-                            }}
-                          >
-                            <HiOutlineEyeOff className={css["eye-icon"]} />
-                          </button>
-                        )}{" "}
-                        <ErrorMessage
-                          name="repeatPassword"
-                          component="div"
-                          className={css["error-message"]}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <RepeatPasswordGroup
+                    isHiddenPassword={state.repeatPassword}
+                    toggle={toggle}
+                    isError={errors.repeatPassword}
+                    isTouched={touched.repeatPassword}
+                  />
                 </div>
               </div>
             </div>
