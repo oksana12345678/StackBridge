@@ -7,6 +7,7 @@ import { updateAvatar, updateUser } from "../../../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import showToast from "../../showToast";
+import { useToggle } from "../../../hooks/useToggle";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
@@ -57,7 +58,7 @@ const SettingModal = () => {
     ),
   });
 
-  const [showPasswords, setShowPasswords] = useState([]);
+  const [state, toggle] = useToggle();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const handleShownPasswords = (type) => {
@@ -203,18 +204,16 @@ const SettingModal = () => {
                         autoComplete="off"
                         className={css.input}
                         id={oldPasswordInputId}
-                        type={
-                          showPasswords.includes("old") ? "text" : "password"
-                        }
+                        type={state.oldPassword ? "text" : "password"}
                         name="outdatedPassword"
                         placeholder="Password"
                       />
-                      {showPasswords.includes("old") ? (
+                      {state.oldPassword ? (
                         <button
                           className={css["eye-button"]}
                           onClick={(event) => {
                             event.preventDefault();
-                            handleShownPasswords("old");
+                            toggle("oldPassword");
                           }}
                         >
                           <HiOutlineEye className={css["eye-icon"]} />
@@ -224,12 +223,12 @@ const SettingModal = () => {
                           className={css["eye-button"]}
                           onClick={(event) => {
                             event.preventDefault();
-                            handleShownPasswords("old");
+                            toggle("oldPassword");
                           }}
                         >
                           <HiOutlineEyeOff className={css["eye-icon"]} />
                         </button>
-                      )}{" "}
+                      )}
                       <ErrorMessage
                         name="outdatedPassword"
                         component="div"
@@ -249,18 +248,16 @@ const SettingModal = () => {
                             errors.password && touched.password,
                         })}
                         id={passwordInputId}
-                        type={
-                          showPasswords.includes("new") ? "text" : "password"
-                        }
+                        type={state.password ? "text" : "password"}
                         name="password"
                         placeholder="Password"
                       />
-                      {showPasswords.includes("new") ? (
+                      {state.password ? (
                         <button
                           className={css["eye-button"]}
                           onClick={(event) => {
                             event.preventDefault();
-                            handleShownPasswords("new");
+                            toggle("password");
                           }}
                         >
                           <HiOutlineEye className={css["eye-icon"]} />
@@ -270,7 +267,7 @@ const SettingModal = () => {
                           className={css["eye-button"]}
                           onClick={(event) => {
                             event.preventDefault();
-                            handleShownPasswords("new");
+                            toggle("password");
                           }}
                         >
                           <HiOutlineEyeOff className={css["eye-icon"]} />
@@ -296,20 +293,16 @@ const SettingModal = () => {
                               errors.repeatPassword && touched.repeatPassword,
                           })}
                           id={repeatPasswordInputId}
-                          type={
-                            showPasswords.includes("repeat")
-                              ? "text"
-                              : "password"
-                          }
+                          type={state.repeatPassword ? "text" : "password"}
                           name="repeatPassword"
                           placeholder="Password"
                         />
-                        {showPasswords.includes("repeat") ? (
+                        {state.repeatPassword ? (
                           <button
                             class={css["eye-button"]}
                             onClick={(event) => {
                               event.preventDefault();
-                              handleShownPasswords("repeat");
+                              toggle("repeatPassword");
                             }}
                           >
                             <HiOutlineEye className={css["eye-icon"]} />
@@ -319,7 +312,7 @@ const SettingModal = () => {
                             className={css["eye-button"]}
                             onClick={(event) => {
                               event.preventDefault();
-                              handleShownPasswords("repeat");
+                              toggle("repeatPassword");
                             }}
                           >
                             <HiOutlineEyeOff className={css["eye-icon"]} />
