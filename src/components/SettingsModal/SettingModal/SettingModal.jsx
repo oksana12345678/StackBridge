@@ -1,10 +1,10 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../redux/modalWindow/slice";
 import { selectIsSettingModalOpen } from "../../../redux/modalWindow/selectors";
 import { selectUserEmail } from "../../../redux/auth/selectors";
 import { updateAvatar, updateUser } from "../../../redux/auth/operations";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import showToast from "../../showToast";
 import { useToggle } from "../../../hooks/useToggle";
@@ -35,7 +35,6 @@ const SettingModal = () => {
   };
 
   let patchedData = {};
-
 
   const userInfoValidationSchema = Yup.object({
     name: Yup.string()
@@ -183,6 +182,8 @@ const SettingModal = () => {
                   <OldPasswordGroup
                     isHiddenPassword={state.oldPassword}
                     toggle={toggle}
+                    isError={errors.outdatedPassword}
+                    isTouched={touched.outdatedPassword}
                   />
                   <NewPasswordGroup
                     isHiddenPassword={state.password}

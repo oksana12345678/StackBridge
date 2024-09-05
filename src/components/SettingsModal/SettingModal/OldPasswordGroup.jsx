@@ -2,9 +2,10 @@ import { useId } from "react";
 import { Field, ErrorMessage } from "formik";
 import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import clsx from "clsx";
 import css from "./SettingModal.module.css";
 
-const OldPasswordGroup = ({ isHiddenPassword, toggle }) => {
+const OldPasswordGroup = ({ isHiddenPassword, isError, isTouched, toggle }) => {
   const oldPasswordInputId = useId();
   return (
     <div className={css["password-sub-group"]}>
@@ -14,7 +15,9 @@ const OldPasswordGroup = ({ isHiddenPassword, toggle }) => {
       <div className={css["input-wrapper"]}>
         <Field
           autoComplete="off"
-          className={css.input}
+          className={clsx(css.input, {
+            [css["error-input"]]: isError && isTouched,
+          })}
           id={oldPasswordInputId}
           type={isHiddenPassword ? "text" : "password"}
           name="outdatedPassword"
