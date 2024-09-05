@@ -35,6 +35,7 @@ function App() {
   const { isRefreshing, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     if (token) {
       dispatch(refreshUser())

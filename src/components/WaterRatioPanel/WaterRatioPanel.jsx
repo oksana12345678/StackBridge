@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlusCircle as Plus } from "react-icons/hi2";
 
-import { selectWatersToday } from "../../redux/waterConsumption/selectors.js";
+import { selectWatersToday } from "../../redux/waterRequests/selectors.js";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice.js";
 
 import css from "./WaterRatioPanel.module.css";
@@ -10,6 +10,7 @@ const WaterRatioPanel = () => {
   const dispatch = useDispatch();
 
   const waterConsumption = useSelector(selectWatersToday);
+  console.log(waterConsumption);
 
   const progressValue = waterConsumption?.percentOfWaterRate || "0%";
 

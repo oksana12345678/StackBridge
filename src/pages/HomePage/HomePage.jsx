@@ -3,7 +3,7 @@ import { useEffect, useCallback } from "react";
 import css from "./HomePage.module.css";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { selectWaterError } from "../../redux/waterConsumption/selectors";
+import { selectWaterError } from "../../redux/waterRequests/selectors";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import { TodayWaterList } from "../../components/TodayWaterList/TodayWaterList";
