@@ -16,6 +16,7 @@ import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import NameGroup from "./NameGroup";
 import EmailGroup from "./EmailGroup/EmailGroup";
 import OldPasswordGroup from "./OldPasswordGroup";
+import NewPasswordGroup from "./NewPasswordGroup";
 import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
@@ -37,7 +38,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const passwordInputId = useId();
   const repeatPasswordInputId = useId();
 
   const userInfoValidationSchema = Yup.object({
@@ -60,15 +60,6 @@ const SettingModal = () => {
   const [state, toggle] = useToggle();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
-  const handleShownPasswords = (type) => {
-    setShowPasswords((prev) => {
-      if (prev.includes(type)) {
-        return prev.filter((item) => item !== type);
-      } else {
-        return [...prev, type];
-      }
-    });
-  };
   function areEqualWithNull(values, user) {
     for (let key in values) {
       const formValue = values[key];
@@ -196,50 +187,13 @@ const SettingModal = () => {
                     isHiddenPassword={state.oldPassword}
                     toggle={toggle}
                   />
+                  <NewPasswordGroup
+                    isHiddenPassword={state.password}
+                    toggle={toggle}
+                    isError={errors.password}
+                    isTouched={touched.password}
+                  />
 
-                  <div className={css["password-sub-group"]}>
-                    <Label htmlFor={passwordInputId} type="thin">
-                      New Password:
-                    </Label>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        className={clsx(css.input, {
-                          [css["error-input"]]:
-                            errors.password && touched.password,
-                        })}
-                        id={passwordInputId}
-                        type={state.password ? "text" : "password"}
-                        name="password"
-                        placeholder="Password"
-                      />
-                      {state.password ? (
-                        <button
-                          className={css["eye-button"]}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            toggle("password");
-                          }}
-                        >
-                          <HiOutlineEye className={css["eye-icon"]} />
-                        </button>
-                      ) : (
-                        <button
-                          className={css["eye-button"]}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            toggle("password");
-                          }}
-                        >
-                          <HiOutlineEyeOff className={css["eye-icon"]} />
-                        </button>
-                      )}
-                      <ErrorMessage
-                        name="password"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
                   {/* ===================================================== REPEAT NEW PASSWORD ============================================ */}
                   <div className={css["password-sub-group"]}>
                     <Label htmlFor={repeatPasswordInputId} type="thin">
