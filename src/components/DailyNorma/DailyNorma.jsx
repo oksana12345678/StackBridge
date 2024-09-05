@@ -3,27 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { Hourglass } from "react-loader-spinner";
 
 import {
-  selectError,
-  selectLoading,
+  selectErrorWaterRate,
+  selectLoadingWaterRate,
   selectWaterRate,
-} from "../../redux/dailyNormalModal/selectors.js";
-import { fetchUserData } from "../../redux/dailyNormalModal/operations.js";
+} from "../../redux/waterRequests/selectors.js";
 
 import showToast from "../showToast.js";
 
 import css from "./DailyNorma.module.css";
+import { fetchUserData } from "../../redux/waterRequests/operations.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
 
   const waterRate = useSelector(selectWaterRate);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const loading = useSelector(selectLoadingWaterRate);
+  const error = useSelector(selectErrorWaterRate);
 
+  console.log(waterRate);
   useEffect(() => {
     dispatch(fetchUserData());
   }, [dispatch]);
-
   useEffect(() => {
     if (error) {
       showToast("Error with loading your daily norma!", "error");
@@ -49,6 +49,7 @@ const DailyNorma = ({ handleOpenModal }) => {
         ) : (
           <div>{waterRate ? waterRate / 1000 : 2} L</div>
         )}
+
         <button className={css.editBtn} onClick={handleOpenModal}>
           Edit
         </button>

@@ -3,8 +3,8 @@ import { useEffect, useState, useMemo } from "react";
 import TodayWaterItem from "./TodayWaterItem";
 import css from "./TodayWaterList.module.css";
 import { FaPlus as Plus } from "react-icons/fa6";
-import { selectWatersToday } from "../../redux/waterConsumption/selectors";
-import { getWaterForTodayThunk } from "../../redux/waterConsumption/operations";
+import { selectWatersToday } from "../../redux/waterRequests/selectors";
+import { getWaterForToday } from "../../redux/waterRequests/operations";
 import TodayListModal from "../TodayListModal/TodayListModal";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice";
 
@@ -24,7 +24,7 @@ export const TodayWaterList = () => {
   const waterToday = useSelector(selectWatersToday);
 
   useEffect(() => {
-    dispatch(getWaterForTodayThunk());
+    dispatch(getWaterForToday());
   }, [dispatch]);
 
   const entries = useMemo(

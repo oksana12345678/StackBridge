@@ -12,10 +12,11 @@ import {
 } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import { modalReducer } from "./modalWindow/slice";
-import monthStatsReducer from "./monthStats/slice";
-import waterNotesReducer from "./water/slice";
-import { waterReducer as water2red } from "./waterConsumption/slice";
-import dailyNormalModalSlice from "./dailyNormalModal/slice";
+import {
+  monthStatsReducer,
+  waterRateReducer,
+  waterReducer,
+} from "./waterRequests/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -28,21 +29,13 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
     monthStats: monthStatsReducer,
-    waterNotes: waterNotesReducer,
-    waterNotes2: water2red,
-    dailyNormalModal: dailyNormalModalSlice,
+    water: waterReducer,
+    waterRate: waterRateReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          PURGE,
-          REGISTER,
-        ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });

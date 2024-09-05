@@ -14,7 +14,7 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
   return (
     <div className={css.signinPageWrapper}>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "", repeatPassword: "" }}
         validationSchema={contactsSchema}
         onSubmit={handleSubmit}
       >

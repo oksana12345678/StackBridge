@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import css from "./TodayWaterItem.module.css";
-
-import { deleteWaterEntryThunk } from "../../redux/waterConsumption/operations";
+import { deleteWaterEntry } from "../../redux/waterRequests/operations";
 import { HiOutlinePencilSquare as Edit } from "react-icons/hi2";
 import { HiOutlineTrash as Trash } from "react-icons/hi2";
 import GlassIcon from "./GlassIcon";
@@ -26,7 +25,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
 
   const handleDelete = () => {
     if (id) {
-      dispatch(deleteWaterEntryThunk(id));
+      dispatch(deleteWaterEntry(id));
       toggleModal("isModalDelete");
     }
   };
