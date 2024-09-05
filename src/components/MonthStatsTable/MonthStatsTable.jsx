@@ -50,7 +50,7 @@ const MonthStatsTable = () => {
 
   useEffect(() => {
     dispatch(getMonthWater({ year: yearString, month: monthString }));
-  }, [currentMonth, currentYear, dispatch]);
+  }, [currentMonth, currentYear, dispatch, yearString, monthString]);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
@@ -83,7 +83,7 @@ const MonthStatsTable = () => {
       <ul className={css.list}>
         {daysArray.map((day, index) => {
           const dayString = day.toString();
-          const dayStats = daysStats.find(stat => {
+          const dayStats = daysStats.find((stat) => {
             const statDay = stat.date.split(",")[0].trim();
             return statDay === dayString;
           });
