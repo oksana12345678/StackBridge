@@ -1,18 +1,26 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useEffect, useId, useState } from "react";
+import * as Yup from "yup";
+import showToast from "../showToast";
 import css from "./DailyNormaModal.module.css";
-import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
-import "react-toastify/ReactToastify.css";
+import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
+import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import {
   fetchUserData,
   updateWaterRate,
 } from "../../redux/dailyNormalModal/operations";
-import { useEffect, useState } from "react";
+
+const PlannedWaterIntakeSchema = Yup.object().shape({
+  plannedWaterIntake: Yup.number()
+    .min(0.1, "Min 0.1ml")
+    .max(15, "Max 15l")
+    .required("Required"),
+});
 
 const calculateWater = (gender, weight, activeTime) => {
-  if (weight === 0 || weight === 0) return "1.5";
+  if (weight === "" || weight === 0) return "2";
   if (gender === "man") {
     return (weight * 0.04 + activeTime * 0.6).toFixed(1);
   } else {
@@ -25,10 +33,12 @@ const DailyNormaModal = () => {
   const isModalOpen = useSelector(selectIsModalOpen);
   const [initialValues, setInitialValues] = useState({
     gender: "",
-    weight: 0,
-    activeTime: 0,
-    plannedWaterIntake: 0,
+    weight: "",
+    activeTime: "",
+    plannedWaterIntake: "",
   });
+
+  const namePlannedWaterIntakeId = useId();
 
   const handleCloseModal = () => {
     dispatch(closeModal());
@@ -41,9 +51,9 @@ const DailyNormaModal = () => {
           const { gender } = action.payload;
           setInitialValues({
             gender: gender || "",
-            weight: 0,
-            activeTime: 0,
-            plannedWaterIntake: 0,
+            weight: "",
+            activeTime: "",
+            plannedWaterIntake: "",
           });
         }
       });
@@ -52,11 +62,19 @@ const DailyNormaModal = () => {
 
   const handleSubmit = async (values, actions) => {
     const waterRate = values.plannedWaterIntake * 1000;
-    await dispatch(
-      updateWaterRate({ waterRate: waterRate })
-    );
-    actions.resetForm();
-    handleCloseModal();
+
+    try {
+      await dispatch(
+        updateWaterRate({ waterRate: waterRate })
+      ).unwrap();
+      actions.resetForm();
+      handleCloseModal();
+    } catch (error) {
+      showToast(
+        `Oops something went wrong! ${error}`,
+        "error"
+      );
+    }
   };
 
   return (
@@ -94,6 +112,7 @@ const DailyNormaModal = () => {
         <Formik
           enableReinitialize
           initialValues={initialValues}
+          validationSchema={PlannedWaterIntakeSchema}
           onSubmit={(values, actions) =>
             handleSubmit(values, actions, handleCloseModal)
           }
@@ -132,6 +151,7 @@ const DailyNormaModal = () => {
                 <Field
                   type="number"
                   name="weight"
+                  placeholder="0"
                   className={css.input}
                 />
               </label>
@@ -143,6 +163,7 @@ const DailyNormaModal = () => {
                 <Field
                   type="number"
                   name="activeTime"
+                  placeholder="0"
                   className={css.input}
                 />
               </label>
@@ -165,7 +186,14 @@ const DailyNormaModal = () => {
                 <Field
                   type="number"
                   name="plannedWaterIntake"
+                  placeholder="0.1 - 15"
+                  id={namePlannedWaterIntakeId}
                   className={css.inputSubmit}
+                />
+                <ErrorMessage
+                  name="plannedWaterIntake"
+                  component="span"
+                  className={css.errorMsg}
                 />
               </label>
 

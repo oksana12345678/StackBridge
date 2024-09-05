@@ -4,11 +4,11 @@ import {
   fetchUserData,
 } from "./operations";
 
-const slice = createSlice({
+const dailyNormalModalSlice = createSlice({
   name: "user",
   initialState: {
     gender: "",
-    waterRate: "",
+    waterRate: 2.0,
     loading: false,
     error: null,
   },
@@ -17,14 +17,14 @@ const slice = createSlice({
       .addCase(
         updateWaterRate.fulfilled,
         (state, action) => {
-          state.plannedWaterIntake =
-            action.payload.plannedWaterIntake;
+          state.waterRate = action.payload.waterRate;
+          state.error = null;
         }
       )
       .addCase(
         updateWaterRate.rejected,
         (state, action) => {
-          state.error = action.payload;
+          state.error = action.error.message;
         }
       )
       .addCase(fetchUserData.pending, (state) => {
@@ -38,9 +38,9 @@ const slice = createSlice({
       })
       .addCase(fetchUserData.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
 });
 
-export default slice.reducers;
+export default dailyNormalModalSlice.reducer;
