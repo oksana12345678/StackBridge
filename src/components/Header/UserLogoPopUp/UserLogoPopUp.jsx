@@ -12,7 +12,7 @@ import {
 } from "../../../redux/modalWindow/selectors";
 import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
 import UserLogoutModal from "../../UserLogoutModal/UserLogoutModal";
-import SettingModal from "../../SettingsModal/SettingModal/SettingModal";
+import SettingModal from "../../SettingsModal/SettingModal";
 
 const UserLogoPopUp = () => {
   const node = useRef();
