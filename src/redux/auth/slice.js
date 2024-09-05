@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, logOut, refreshUser, register, updateAvatar, updateUser } from "./operations";
+import {
+  logIn,
+  logOut,
+  refreshUser,
+  register,
+  updateAvatar,
+  updateUser,
+} from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -13,7 +20,11 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: {
+      name: "",
       email: "",
+      gender: "",
+      avatar: null,
+      waterRate: null,
     },
     token: null,
     isLoggedIn: false,
@@ -69,7 +80,6 @@ const authSlice = createSlice({
         state.user.avatar = action.payload.avatar;
       })
       .addCase(updateAvatar.rejected, handleRejected);
-      
   },
 });
 export const authReducer = authSlice.reducer;

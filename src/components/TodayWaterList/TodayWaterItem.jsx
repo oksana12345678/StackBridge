@@ -6,9 +6,10 @@ import { deleteWaterEntryThunk } from "../../redux/waterConsumption/operations";
 import { HiOutlinePencilSquare as Edit } from "react-icons/hi2";
 import { HiOutlineTrash as Trash } from "react-icons/hi2";
 import GlassIcon from "./GlassIcon";
-// import TodayListModal from "../../components/TodayListModal/TodayListModal";
+import TodayListModal from "../TodayListModal/TodayListModal";
+import { addWaterModalOpen } from "../../redux/modalWindow/slice";
 
-const TodayWaterItem = ({ id, amount, time }) => {
+const TodayWaterItem = ({ id, waterVolume, date }) => {
   const dispatch = useDispatch();
 
   const [modals, setModals] = useState({
@@ -34,11 +35,14 @@ const TodayWaterItem = ({ id, amount, time }) => {
     <li className={css.entryItem}>
       <div className={css.entryInfo}>
         <GlassIcon className={css.glass} />
-        <p className={css.amount}>{amount} ml</p>
-        <p className={css.time}>{time}</p>
+        <p className={css.amount}>{waterVolume} ml</p>
+        <p className={css.time}>{date}</p>
       </div>
       <div className={css.icons}>
-        <button className={css.edit} onClick={() => toggleModal("isModalEdit")}>
+        <button
+          className={css.edit}
+          onClick={() => dispatch(addWaterModalOpen())}
+        >
           <Edit className={css.edit} size={16} />
         </button>
         <button
@@ -48,6 +52,7 @@ const TodayWaterItem = ({ id, amount, time }) => {
           <Trash className={css.delete} size={16} />
         </button>
       </div>
+      <TodayListModal waterNote={{ id, waterVolume, date }} />
 
       {/* {modals.isModalEdit && <TodayListModal />} TODO */}
 

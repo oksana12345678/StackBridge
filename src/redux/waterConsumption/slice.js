@@ -31,7 +31,7 @@ const handleFulfilled = (state, action) => {
 };
 
 const waterSlice = createSlice({
-  name: "water",
+  name: "waterNotes",
   initialState,
   reducers: {
     clearWater: () => initialState,
