@@ -36,9 +36,22 @@ const SettingModal = () => {
 
   let patchedData = {};
 
+  const checkPasswordFieldsTest = (value, context) => {
+    const { outdatedPassword, password, repeatPassword } = context.parent;
+
+    if (outdatedPassword || password || repeatPassword) {
+      if (!outdatedPassword || !password || !repeatPassword) {
+        return context.createError({
+          message: "All password fields must be filled if any is filled",
+        });
+      }
+    }
+    return true;
+  };
+
   const userInfoValidationSchema = Yup.object({
     name: Yup.string()
-      .max(3, "Your name shouldn't exceed min 3 characters")
+      .min(3, "Your name shouldn't be less than 3 characters")
       .max(32, "Your name shouldn't exceed 32 characters"),
     email: Yup.string().email("Invalid email address"),
     outdatedPassword: Yup.string()
@@ -47,10 +60,13 @@ const SettingModal = () => {
     password: Yup.string()
       .min(8, "Your password should contain at least 8 characters")
       .max(64, "Your password shouldn't exceed 64 characters"),
-    repeatPassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "Passwords must match"
-    ),
+    repeatPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .test(
+        "checkPasswordFields",
+        "All password fields must be filled if any is filled",
+        checkPasswordFieldsTest
+      ),
   });
 
   const [state, toggle] = useToggle();
