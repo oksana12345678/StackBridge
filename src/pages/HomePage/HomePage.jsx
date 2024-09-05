@@ -11,6 +11,7 @@ import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { openModal } from "../../redux/modalWindow/slice";
 import DailyNormaModal from "../../components/DailyNormaModal/DailyNormaModal";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
+import HomePageWrapper from "../../components/HomePageWrapper/HomePageWrapper.jsx";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -45,25 +46,18 @@ const HomePage = () => {
         <title>Home page</title>
       </Helmet>
 
-      <section className={css.section}>
-        <div className={css.background}>
-          <div className={css.container}>
-            <div className={css.leftSection}>
-              <DailyNorma
-                handleOpenModal={handleOpenModal}
-              />
-              <WaterRatioPanel />
-            </div>
-
-            <div className={css.rightSectionWrapper}>
-              <div className={css.rightSection}>
-                <TodayWaterList />
-                <MonthStatsTable />
-              </div>
-            </div>
+      <HomePageWrapper>
+        <div className={css.homePageContainer}>
+          <div className={css.leftSideContainer}>
+            <DailyNorma handleOpenModal={handleOpenModal} />
+            <WaterRatioPanel />
+          </div>
+          <div className={css.rightSideContainer}>
+            <TodayWaterList />
+            <MonthStatsTable />
           </div>
         </div>
-      </section>
+      </HomePageWrapper>
       {modalIsOpen && <DailyNormaModal />}
     </>
   );

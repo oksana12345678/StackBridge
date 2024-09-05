@@ -1,7 +1,3 @@
-.homePageWrapper {
-  padding: 24px 20px;
-}
-
 .bottle {
   background-image: url("../../Images/home-bottles/Mobile-Bottle-home-screen@1x.png");
   background-repeat: no-repeat;
@@ -47,16 +43,10 @@
 }
 
 @media screen and (min-width: 768px) {
-  .homePageWrapper {
-    padding: 40px 32px;
-  }
-
   .bottle {
     background-image: url("../../Images/home-bottles/Tablet-Bottle-Home-Screen@1x.png");
     width: 518px;
     height: 386px;
-    left: 125px;
-    transform: translate(0);
     top: 104px;
   }
 
@@ -85,8 +75,10 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .homePageWrapper {
-    padding: 52px 112px;
+  .section {
+    width: 1440px;
+    margin: 0 auto;
+    position: relative;
   }
 
   .bottle {
@@ -94,7 +86,8 @@
     width: 738px;
     height: 548px;
     left: 38.67px;
-    top: 82px;
+    transform: translate(0);
+    top: 22px;
   }
 
   @media (min-device-pixel-ratio: 2),
@@ -109,7 +102,9 @@
     background-image: url("../../Images/main-bg/back_desktop@1x.png");
     width: 1404px;
     height: 582px;
-    top: 118px;
+    top: 59px;
+    left: 9px;
+    transform: translate(0);
   }
 
   @media (min-device-pixel-ratio: 2),

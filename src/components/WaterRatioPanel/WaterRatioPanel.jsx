@@ -10,6 +10,8 @@ const WaterRatioPanel = () => {
 
   const progressValue = waterConsumption?.percentOfWaterRate || "0%";
 
+  const numberProgressValue = parseFloat(progressValue);
+
   return (
     <div className={css.waterRatioPanelWrapper}>
       <div className={css.progressWrapper}>
@@ -22,33 +24,33 @@ const WaterRatioPanel = () => {
                 width: `${progressValue}`,
               }}
             ></div>
-            <div className={css.adjustmentWrapper}>
-              <div
-                className={css.progressSlider}
-                style={{
-                  left: `${progressValue}`,
-                }}
-              ></div>
-            </div>
+            <div
+              className={css.progressSlider}
+              style={{
+                left: `calc(${progressValue} - ${
+                  (numberProgressValue * 14) / 100
+                }px)`,
+              }}
+            ></div>
           </div>
           <div className={css.progressBarRangeScale}>
             <span
               className={`${css.scaleValue} ${
-                progressValue <= 0 ? css.activeScaleValue : ""
+                numberProgressValue <= 0 ? css.activeScaleValue : ""
               }`}
             >
               0%
             </span>
             <span
               className={`${css.scaleValue} ${
-                progressValue === 50 ? css.activeScaleValue : ""
+                numberProgressValue === 50 ? css.activeScaleValue : ""
               }`}
             >
               50%
             </span>
             <span
               className={`${css.scaleValue} ${
-                progressValue >= 100 ? css.activeScaleValue : ""
+                numberProgressValue >= 100 ? css.activeScaleValue : ""
               }`}
             >
               100%
