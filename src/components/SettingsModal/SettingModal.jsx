@@ -172,7 +172,7 @@ const SettingModal = () => {
             />
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
-                <GenderIdentityGroup labelLeft="Woman" labelRight="Man" />
+                <GenderIdentityGroup />
                 <NameGroup isError={errors.name} isTouched={touched.name} />
                 <EmailGroup isError={errors.email} isTouched={touched.email} />
               </div>

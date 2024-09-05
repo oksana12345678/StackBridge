@@ -1,4 +1,4 @@
-import RadioPair from "../RadioPair/RadioPair";
+import RadioPair from "../../common/RadioPair/RadioPair";
 import css from "../SettingModal.module.css";
 
 const GenderIdentityGroup = () => {
