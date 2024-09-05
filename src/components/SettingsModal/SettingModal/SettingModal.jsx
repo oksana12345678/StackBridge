@@ -10,10 +10,12 @@ import showToast from "../../showToast";
 import clsx from "clsx";
 import ModalWrapper from "../../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import RadioGroup from "./RadioGroup/RadioGroup";
-import Label from "./Label/Label";
-import { PiUploadSimple } from "react-icons/pi";
+import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
+import PhotoGroup from "./PhotoGroup/PhotoGroup";
+import NameGroup from "./NameGroup";
+import EmailGroup from "./EmailGroup/EmailGroup";
 
+import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
 
@@ -34,9 +36,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const nameInputId = useId();
-  const emailInputId = useId();
-  const fileInputId = useId();
   const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
@@ -178,98 +177,17 @@ const SettingModal = () => {
         validateOnBlur={true}
       >
         {({ errors, touched }) => (
-          <Form className={css["form-container"]}>
-            {/* ==================================================== PHOTO GROUP ============================================= */}
-            <div className={css["photo-group"]}>
-              <h3 className={css.subtitle}>Your photo</h3>
-              <div className={css["photo-flex"]}>
-                <div className={css["avatar-container"]}>
-                  <img className={css.avatar} src={user.avatar} alt="avatar" />
-                </div>
-                <div>
-                  <div className={css["upload-button"]} type="button">
-                    <label
-                      htmlFor={fileInputId}
-                      className={clsx(
-                        css["file-upload-label"],
-                        isSubmitBlocked && css["blocked-upload"]
-                      )}
-                    >
-                      <PiUploadSimple
-                        className={clsx(
-                          css["upload-icon"],
-                          isSubmitBlocked && css["blocked-upload"]
-                        )}
-                      />
-                      Upload a photo
-                    </label>
-                    <input
-                      disabled={isSubmitBlocked}
-                      id={fileInputId}
-                      type="file"
-                      className={css["file-input"]}
-                      accept=".jpg,.jpeg,.png,.gif"
-                      onChange={handleAvatarChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <Form className={css["form-container"]} autoComplete="off">
+            <PhotoGroup
+              avatar={user.avatar}
+              isSubmitBlocked={isSubmitBlocked}
+              handleAvatarChange={handleAvatarChange}
+            />
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
-                {/* ============================================== GENDER IDENTITY GROUP =========================================================*/}
-                <div className={css["gender-identity-group"]}>
-                  <h3 className={css.subtitle}>Your gender identity</h3>
-                  <RadioGroup labelLeft="Woman" labelRight="Man" />
-                </div>
-                {/* ==================================================== NAME-GROUP ================================================= */}
-                <div className={css["name-group"]}>
-                  <Label htmlFor={nameInputId} type="thick">
-                    Your name
-                  </Label>
-                  <div>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        className={clsx(css.input, {
-                          [css["error-input"]]: errors.name && touched.name,
-                        })}
-                        id={nameInputId}
-                        type="text"
-                        name="name"
-                        placeholder="name"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* ==================================================== EMAIL GROUP =========================================================*/}
-                <div className={css["email-group"]}>
-                  <Label htmlFor={emailInputId} type="thick">
-                    E-mail
-                  </Label>
-                  <div>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        className={clsx(css.input, {
-                          [css["error-input"]]: errors.email && touched.email,
-                        })}
-                        id={emailInputId}
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <GenderIdentityGroup labelLeft="Woman" labelRight="Man" />
+                <NameGroup isError={errors.name} isTouched={touched.name} />
+                <EmailGroup isError={errors.email} isTouched={touched.email} />
               </div>
               <div className={css["desktop-right"]}>
                 {/* ==================================================== PASSWORD GROUP ====================================================== */}
@@ -282,6 +200,7 @@ const SettingModal = () => {
                     </Label>
                     <div className={css["input-wrapper"]}>
                       <Field
+                        autoComplete="off"
                         className={css.input}
                         id={oldPasswordInputId}
                         type={

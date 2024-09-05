@@ -1,8 +1,8 @@
-import { useId } from "react";
 import { Field } from "formik";
-import css from "./RadioGroup.module.css";
+import { useId } from "react";
+import css from "./RadioPair.module.css";
 
-const RadioGroup = ({ labelLeft, labelRight }) => {
+const RadioPair = ({ labelLeft, labelRight }) => {
   const womanRadioId = useId();
   const manRadioId = useId();
 
@@ -34,4 +34,4 @@ const RadioGroup = ({ labelLeft, labelRight }) => {
   );
 };
 
-export default RadioGroup;
+export default RadioPair;
