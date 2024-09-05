@@ -16,6 +16,7 @@ const monthStatsSlice = createSlice({
     currentYear: new Date().getFullYear(),
     daysStats: [],
     selectedDay: null,
+    hoveredDay: null,
     error: null,
   },
   reducers: {
@@ -23,24 +24,24 @@ const monthStatsSlice = createSlice({
       if (state.currentMonth === 0) {
         state.currentMonth = 11;
         state.currentYear = state.currentYear - 1;
-        state.selectedDay = null;
       } else {
         state.currentMonth = state.currentMonth - 1;
-        state.selectedDay = null;
       }
     },
     nextMonth(state) {
       if (state.currentMonth === 11) {
         state.currentMonth = 0;
         state.currentYear = state.currentYear + 1;
-        state.selectedDay = null;
       } else {
         state.currentMonth = state.currentMonth + 1;
-        state.selectedDay = null;
       }
     },
-    toggleModal(state, action) {
-      state.selectedDay = action.payload || null;
+
+    hoverDayIndex(state, action) {
+      state.hoveredDay = action.payload;
+    },
+    selectDay(state, action) {
+      state.selectedDay = action.payload;
     },
   },
   extraReducers: builder => {
@@ -53,5 +54,6 @@ const monthStatsSlice = createSlice({
   },
 });
 
-export const { prevMonth, nextMonth, toggleModal } = monthStatsSlice.actions;
+export const { prevMonth, nextMonth, hoverDayIndex, selectDay } =
+  monthStatsSlice.actions;
 export default monthStatsSlice.reducer;

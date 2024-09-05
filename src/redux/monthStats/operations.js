@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://watertracker-app.onrender.com";
-
 export const getMonthWater = createAsyncThunk(
   "monthStats/getMonthWater",
   async ({ year, month }, thunkAPI) => {

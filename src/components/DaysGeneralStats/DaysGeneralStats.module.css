@@ -1,7 +1,6 @@
 .statsContainer {
   position: absolute;
-  top: -145px;
-  left: -8px;
+
   border-radius: 10px;
   padding: 24px 13px;
   width: 280px;
@@ -11,6 +10,30 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.statsModalFirstColumn {
+  bottom: 65px;
+  right: -240px;
+}
+
+.statsModalSecondColumn {
+  bottom: 65px;
+  right: -182px;
+}
+
+.statsModalThirdColumn {
+  bottom: 65px;
+}
+
+.statsModalFourthColumn {
+  bottom: 65px;
+  right: -66px;
+}
+
+.statsModalFifthColumn {
+  bottom: 65px;
+  right: -8px;
 }
 
 .statsInfoDate {
@@ -45,5 +68,15 @@
   .statsContainer {
     padding: 24px 16px;
     width: 292px;
+  }
+
+  .statsModalRight {
+    bottom: 100%;
+    left: 17px;
+  }
+
+  .statsModalLeft {
+    bottom: 100%;
+    right: 17px;
   }
 }

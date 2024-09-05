@@ -1,5 +1,4 @@
 .monthStateWrapper {
-  position: relative;
   max-width: 264px; /* исправить на 100%, когда будет в общем контейнере с тудушками*/
   height: 506px;
   margin: 0 auto;
@@ -24,7 +23,7 @@
 
 .paginationWrap {
   display: flex;
-  min-width: 150px; /*скачет из-за длины слова, поэтому увеличила ширину*/
+  min-width: 150px;
   height: 20px;
   justify-content: space-between;
 }
@@ -56,6 +55,7 @@
 }
 
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 32px;
