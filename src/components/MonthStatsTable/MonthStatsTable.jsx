@@ -2,21 +2,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { getMonthWater } from "../../redux/monthStats/operations";
+import { getWaterForMonth } from "../../redux/waterRequests/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
   selectDaysStats,
   selectSelectedDay,
   selectHoveredDay,
-} from "../../redux/monthStats/selectors";
+} from "../../redux/waterRequests/selectors";
 import { monthNames } from "../../data/monthNames";
 import {
   prevMonth,
   nextMonth,
   hoverDayIndex,
   selectDay,
-} from "../../redux/monthStats/slice";
+} from "../../redux/waterRequests/slice";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import css from "./MonthStatsTable.module.css";
 
@@ -49,7 +49,7 @@ const MonthStatsTable = () => {
   };
 
   useEffect(() => {
-    dispatch(getMonthWater({ year: yearString, month: monthString }));
+    dispatch(getWaterForMonth({ year: yearString, month: monthString }));
   }, [currentMonth, currentYear, dispatch]);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -83,7 +83,7 @@ const MonthStatsTable = () => {
       <ul className={css.list}>
         {daysArray.map((day, index) => {
           const dayString = day.toString();
-          const dayStats = daysStats.find(stat => {
+          const dayStats = daysStats.find((stat) => {
             const statDay = stat.date.split(",")[0].trim();
             return statDay === dayString;
           });

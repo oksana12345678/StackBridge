@@ -10,7 +10,7 @@ import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import {
   fetchUserData,
   updateWaterRate,
-} from "../../redux/dailyNormalModal/operations";
+} from "../../redux/waterRequests/operations";
 
 const PlannedWaterIntakeSchema = Yup.object().shape({
   plannedWaterIntake: Yup.number()
@@ -62,50 +62,36 @@ const DailyNormaModal = () => {
 
   const handleSubmit = async (values, actions) => {
     const waterRate = values.plannedWaterIntake * 1000;
-
+    console.log(waterRate);
     try {
-      await dispatch(
-        updateWaterRate({ waterRate: waterRate })
-      ).unwrap();
+      await dispatch(updateWaterRate({ waterRate: waterRate })).unwrap();
       actions.resetForm();
       handleCloseModal();
     } catch (error) {
-      showToast(
-        `Oops something went wrong! ${error}`,
-        "error"
-      );
+      showToast(`Oops something went wrong! ${error}`, "error");
     }
   };
 
   return (
-    <ModalWrapper
-      modalIsOpen={isModalOpen}
-      closeModal={handleCloseModal}
-    >
+    <ModalWrapper modalIsOpen={isModalOpen} closeModal={handleCloseModal}>
       <div className={css.container}>
         <div>
           <h2 className={css.title}>My daily norma</h2>
           <div className={css.formulasContainer}>
             <p className={css.formulas}>
               For woman:{" "}
-              <span className={css.formulasSpan}>
-                V=(M*0,03) + (T*0,4)
-              </span>
+              <span className={css.formulasSpan}>V=(M*0,03) + (T*0,4)</span>
             </p>
             <p className={css.formulas}>
               For man:{" "}
-              <span className={css.formulasSpan}>
-                V=(M*0,04) + (T*0,6)
-              </span>
+              <span className={css.formulasSpan}>V=(M*0,04) + (T*0,6)</span>
             </p>
           </div>
           <p className={css.formulaDescription}>
-            <span className={css.span}>*</span> V is the
-            volume of the water norm in liters per day, M is
-            your body weight, T is the time of active
-            sports, or another type of activity commensurate
-            in terms of loads (in the absence of these, you
-            must set 0)
+            <span className={css.span}>*</span> V is the volume of the water
+            norm in liters per day, M is your body weight, T is the time of
+            active sports, or another type of activity commensurate in terms of
+            loads (in the absence of these, you must set 0)
           </p>
         </div>
 
@@ -119,9 +105,7 @@ const DailyNormaModal = () => {
         >
           {({ values }) => (
             <Form className={css.form}>
-              <label className={css.labelTitle}>
-                Calculate your rate:
-              </label>
+              <label className={css.labelTitle}>Calculate your rate:</label>
               <div className={css.radioGroup}>
                 <label className={css.radioLabel}>
                   <Field
@@ -157,9 +141,8 @@ const DailyNormaModal = () => {
               </label>
 
               <label className={css.label}>
-                The time of active participation in sports
-                or other activities with a high physical
-                load in hours:
+                The time of active participation in sports or other activities
+                with a high physical load in hours:
                 <Field
                   type="number"
                   name="activeTime"
@@ -169,8 +152,7 @@ const DailyNormaModal = () => {
               </label>
 
               <label className={css.label}>
-                The required amount of water in liters per
-                day:{" "}
+                The required amount of water in liters per day:
                 <span className={css.labelSpam}>
                   {calculateWater(
                     values.gender,
