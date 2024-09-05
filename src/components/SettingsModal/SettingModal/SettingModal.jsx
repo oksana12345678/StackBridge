@@ -15,7 +15,7 @@ import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
 import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import NameGroup from "./NameGroup";
 import EmailGroup from "./EmailGroup/EmailGroup";
-
+import OldPasswordGroup from "./OldPasswordGroup";
 import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
@@ -37,7 +37,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const oldPasswordInputId = useId();
   const passwordInputId = useId();
   const repeatPasswordInputId = useId();
 
@@ -191,52 +190,13 @@ const SettingModal = () => {
                 <EmailGroup isError={errors.email} isTouched={touched.email} />
               </div>
               <div className={css["desktop-right"]}>
-                {/* ==================================================== PASSWORD GROUP ====================================================== */}
                 <h3 className={css.subtitle}>Password</h3>
                 <div className={css["password-group"]}>
-                  {/* ================================================== OLD PASSWORD ======================================================= */}
-                  <div className={css["password-sub-group"]}>
-                    <Label htmlFor={oldPasswordInputId} type="thin">
-                      Outdated password:
-                    </Label>
-                    <div className={css["input-wrapper"]}>
-                      <Field
-                        autoComplete="off"
-                        className={css.input}
-                        id={oldPasswordInputId}
-                        type={state.oldPassword ? "text" : "password"}
-                        name="outdatedPassword"
-                        placeholder="Password"
-                      />
-                      {state.oldPassword ? (
-                        <button
-                          className={css["eye-button"]}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            toggle("oldPassword");
-                          }}
-                        >
-                          <HiOutlineEye className={css["eye-icon"]} />
-                        </button>
-                      ) : (
-                        <button
-                          className={css["eye-button"]}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            toggle("oldPassword");
-                          }}
-                        >
-                          <HiOutlineEyeOff className={css["eye-icon"]} />
-                        </button>
-                      )}
-                      <ErrorMessage
-                        name="outdatedPassword"
-                        component="div"
-                        className={css["error-message"]}
-                      />
-                    </div>
-                  </div>
-                  {/* ====================================================== NEW PASSWORD ================================================= */}
+                  <OldPasswordGroup
+                    isHiddenPassword={state.oldPassword}
+                    toggle={toggle}
+                  />
+
                   <div className={css["password-sub-group"]}>
                     <Label htmlFor={passwordInputId} type="thin">
                       New Password:
