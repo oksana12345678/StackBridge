@@ -36,37 +36,78 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  const checkPasswordFieldsTest = (value, context) => {
-    const { outdatedPassword, password, repeatPassword } = context.parent;
-
-    if (outdatedPassword || password || repeatPassword) {
-      if (!outdatedPassword || !password || !repeatPassword) {
-        return context.createError({
-          message: "All password fields must be filled if any is filled",
-        });
-      }
-    }
-    return true;
-  };
+  // const userInfoValidationSchema = Yup.object({
+  //   name: Yup.string()
+  //     .max(3, "Your name shouldn't exceed min 3 characters")
+  //     .max(32, "Your name shouldn't exceed 32 characters"),
+  //   email: Yup.string().email("Invalid email address"),
+  //   outdatedPassword: Yup.string()
+  //     .min(8, "Your password should contain at least 8 characters")
+  //     .max(64, "Your password shouldn't exceed 64 characters"),
+  //   password: Yup.string()
+  //     .min(8, "Your password should contain at least 8 characters")
+  //     .max(64, "Your password shouldn't exceed 64 characters")
+  //     .notOneOf(
+  //       [Yup.ref("outdatedPassword")],
+  //       "New password shoud be different from the old one"
+  //     ),
+  //   repeatPassword: Yup.string().oneOf(
+  //     [Yup.ref("password")],
+  //     "Passwords must match"
+  //   ),
+  // });
 
   const userInfoValidationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Your name shouldn't be less than 3 characters")
       .max(32, "Your name shouldn't exceed 32 characters"),
+
     email: Yup.string().email("Invalid email address"),
+
     outdatedPassword: Yup.string()
       .min(8, "Your password should contain at least 8 characters")
       .max(64, "Your password shouldn't exceed 64 characters"),
+
     password: Yup.string()
       .min(8, "Your password should contain at least 8 characters")
-      .max(64, "Your password shouldn't exceed 64 characters"),
-    repeatPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .test(
-        "checkPasswordFields",
-        "All password fields must be filled if any is filled",
-        checkPasswordFieldsTest
+      .max(64, "Your password shouldn't exceed 64 characters")
+      .notOneOf(
+        [Yup.ref("outdatedPassword")],
+        "New password should be different from the old one"
       ),
+
+    repeatPassword: Yup.string().oneOf(
+      [Yup.ref("password")],
+      "Passwords must match"
+    ),
+  }).test("passwords-check", null, function (values) {
+    const { outdatedPassword, password, repeatPassword } = values;
+
+    const oneIsFilled = !!outdatedPassword || !!password || !!repeatPassword;
+    const allAreFilled = !!outdatedPassword && !!password && !!repeatPassword;
+
+    if (oneIsFilled && !allAreFilled) {
+      if (!outdatedPassword) {
+        return this.createError({
+          path: "outdatedPassword",
+          message: "All password fields must be filled if any one is provided",
+        });
+      }
+      if (!password) {
+        return this.createError({
+          path: "password",
+          message: "All password fields must be filled if any one is provided",
+        });
+      }
+      if (!repeatPassword) {
+        return this.createError({
+          path: "repeatPassword",
+          message: "All password fields must be filled if any one is provided",
+        });
+      }
+    }
+
+    return true;
   });
 
   const [state, toggle] = useToggle();
