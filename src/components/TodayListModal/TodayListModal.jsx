@@ -6,22 +6,23 @@ import { addWater, editWater } from "../../redux/water/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
-import { selectWatersToday } from "../../redux/waterConsumption/selectors";
-import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
-// для модалки
+// import { selectWatersToday } from "../../redux/waterConsumption/selectors";
 import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
+
+import { getMonthWater } from "../../redux/monthStats/operations";
+import {
+  selectCurrentMonth,
+  selectCurrentYear,
+} from "../../redux/monthStats/selectors";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
 import plus from "../../Icons/plus.svg";
 
 const WaterSchema = Yup.object().shape({
-  date: Yup.string()
-    .min(8, "Too Short! Min 8 symbols")
-    .max(50, "Too Long! Max 50 symbols")
-    .required("Required field!"),
+  date: Yup.string().required("Required field!"),
   waterVolume: Yup.number()
     .min(1, "Too little! Min 1 ml")
     .max(5000, "Too much! Max 5000 ml")
@@ -31,20 +32,30 @@ const WaterSchema = Yup.object().shape({
 export default function TodayListModal() {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
+
+  const currentMonth = useSelector(selectCurrentMonth); //TODO
+  const currentYear = useSelector(selectCurrentYear); //TODO
+
   const fieldId = useId();
 
-  const waterTodayList = useSelector(selectWatersToday); //масив записів про воду за сьогодні
+  // const waterTodayList = useSelector(selectWatersToday); //масив записів про воду за сьогодні
   // const sortedWaterTodayList = waterTodayList.sort((a, b) => {
   //   const dateA = new Date(a.date);
   //   const dateB = new Date(b.date);
   //   return dateA - dateB;
   // });
-  console.log(waterTodayList);
+
   // const lastWaterToday = sortedWaterTodayList[sortedWaterTodayList.length - 1];
-  const lastWaterToday = "";
+
+  const lastWaterToday = null;
 
   // Лічильник
-  const [amountOfWater, setAmountOfWater] = useState(0);
+  const [amountOfWater, setAmountOfWater] = useState(() => {
+    if (lastWaterToday) {
+      return lastWaterToday.waterVolume;
+    }
+    return 0;
+  });
   const [result, setResult] = useState(0);
 
   const incrementOfCounter = 50;
@@ -109,6 +120,8 @@ export default function TodayListModal() {
         showToast("Water add successful!", "success");
         actions.resetForm();
         dispatch(closeModal());
+        //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
+        dispatch(getMonthWater({ year: currentYear, month: currentMonth + 1 }));
       })
       .catch(() => {
         showToast("Water add failed!", "error");
@@ -143,7 +156,7 @@ export default function TodayListModal() {
       <Formik
         initialValues={{
           date: timeNow,
-          waterVolume: lastWaterToday.waterVolume,
+          waterVolume: lastWaterToday ? lastWaterToday.waterVolume : 0,
         }}
         onSubmit={handleAddWater}
         validationSchema={WaterSchema}
@@ -152,7 +165,7 @@ export default function TodayListModal() {
           <Form className={css.formContainer}>
             {/* <h2 className={css.title}>Edit the entered amount of water</h2> */}
             <h2 className={css.title}>Add water</h2>
-            {!lastWaterToday ? (
+            {/* {!lastWaterToday ? (
               <p className={css.textNoNotes}>No notes yet</p>
             ) : (
               <div>
@@ -175,8 +188,9 @@ export default function TodayListModal() {
                   </div>
                 </div>
               </div>
-            )}
-            <p className={css.text}>Correct entered data:</p>
+            )} */}
+            {/* <p className={css.text}>Correct entered data:</p> */}
+            <p className={css.text}>Choose a value:</p>
             <p className={css.textCounter}>Amount of water:</p>
             <div className={css.counterContainer}>
               <button
@@ -237,10 +251,24 @@ export default function TodayListModal() {
                 className={css.input}
                 name="waterVolume"
                 type="number"
+                min="0"
                 id={`${fieldId}-waterVolume`}
+                onFocus={(e) => {
+                  if (e.target.value === "0") {
+                    setFieldValue("waterVolume", "");
+                  }
+                }}
                 onBlur={(e) => {
                   setAmountOfWater(Number(e.target.value));
                   setResult(Number(e.target.value));
+                  if (e.target.value === "") {
+                    setFieldValue("waterVolume", "0");
+                  }
+                }}
+                onKeyPress={(e) => {
+                  if (!/[0-9]/.test(e.key)) {
+                    e.preventDefault();
+                  }
                 }}
               />
               <ErrorMessage
@@ -251,11 +279,9 @@ export default function TodayListModal() {
             </div>
             <div className={css.resultContainer}>
               <p className={css.textResult}>{result}ml</p>
-              {/* <WaveEffectButton> */}
               <button className={css.saveBtn} type="submit">
                 Save
               </button>
-              {/* </WaveEffectButton> */}
             </div>
           </Form>
         )}
