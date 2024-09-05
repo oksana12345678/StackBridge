@@ -12,7 +12,7 @@ const EmailGroup = ({ isError, isTouched }) => {
         E-mail
       </Label>
       <div>
-        <div className={["input-wrapper"]}>
+        <div className={css["input-wrapper"]}>
           <Field
             autoComplete="off"
             className={clsx(css.input, {
