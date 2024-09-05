@@ -38,15 +38,6 @@
   background: rgb(158, 187, 255);
 }
 
-.adjustmentWrapper {
-  background-color: transparent;
-  width: calc(100% - 14px);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .progressSlider {
   position: absolute;
   width: 14px;

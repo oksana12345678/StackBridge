@@ -83,6 +83,7 @@
   border: 1px solid rgb(215, 227, 255);
   width: 100%;
   margin-top: 8px;
+  outline: none;
 }
 
 .inputSubmit {
@@ -96,6 +97,25 @@
   border: 1px solid rgb(215, 227, 255);
   width: 100%;
   margin-top: 16px;
+  outline: none;
+}
+
+.inputSubmit::placeholder,
+.input::placeholder {
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #d7e3ff;
+}
+
+.inputSubmitError {
+  color: var(--red-accent-color);
+  border-color: var(--red-accent-color);
+}
+
+.errorMsg {
+  color: var(--red-accent-color);
 }
 
 .radioLabel {
@@ -149,6 +169,15 @@
   cursor: pointer;
   margin-top: 10px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.btn:active {
+  box-shadow: none;
 }
 
 @media screen and (max-width: 767px) {
