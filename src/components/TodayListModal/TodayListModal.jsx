@@ -15,11 +15,11 @@ import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 
-import { getMonthWater } from "../../redux/monthStats/operations";
+import { getWaterForMonth } from "../../redux/waterRequests/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
-} from "../../redux/monthStats/selectors";
+} from "../../redux/waterRequests/selectors";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
@@ -125,7 +125,9 @@ export default function TodayListModal() {
         actions.resetForm();
         dispatch(closeModal());
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
-        dispatch(getMonthWater({ year: currentYear, month: currentMonth + 1 }));
+        dispatch(
+          getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
+        );
       })
       .catch(() => {
         showToast("Water add failed!", "error");

@@ -64,10 +64,8 @@ export const getWaterForToday = createAsyncThunk(
   "water/getTodayWater",
   async (_, thunkAPI) => {
     try {
-      // Форматування дати в ISO-формат
       const date = formatDateISO(new Date());
 
-      // Виконання запиту з передачею дати в форматі ISO
       const response = await axios.get(
         `https://watertracker-app.onrender.com/waterNotes/today?date=${date}`
       );
