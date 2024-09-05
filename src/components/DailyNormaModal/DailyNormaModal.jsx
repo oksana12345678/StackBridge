@@ -3,6 +3,7 @@ import { useEffect, useId, useState } from "react";
 import * as Yup from "yup";
 import showToast from "../showToast";
 import css from "./DailyNormaModal.module.css";
+import RadioPair from "../common/RadioPair/RadioPair";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
@@ -20,11 +21,21 @@ const PlannedWaterIntakeSchema = Yup.object().shape({
 });
 
 const calculateWater = (gender, weight, activeTime) => {
-  if (weight === "" || weight === 0) return "2";
+  const numericWeight = Number(weight);
+  const numericActiveTime = Number(activeTime);
+
+  if (!numericWeight || numericWeight <= 0) return "2";
+
   if (gender === "man") {
-    return (weight * 0.04 + activeTime * 0.6).toFixed(1);
+    return (
+      numericWeight * 0.04 +
+      numericActiveTime * 0.6
+    ).toFixed(1);
   } else {
-    return (weight * 0.03 + activeTime * 0.4).toFixed(1);
+    return (
+      numericWeight * 0.03 +
+      numericActiveTime * 0.4
+    ).toFixed(1);
   }
 };
 
@@ -61,8 +72,11 @@ const DailyNormaModal = () => {
   }, [isModalOpen, dispatch]);
 
   const handleSubmit = async (values, actions) => {
-    const waterRate = values.plannedWaterIntake * 1000;
-    console.log(waterRate);
+
+    const waterRate =
+      Number(values.plannedWaterIntake) * 1000;
+
+
     try {
       await dispatch(updateWaterRate({ waterRate: waterRate })).unwrap();
       actions.resetForm();
@@ -103,10 +117,14 @@ const DailyNormaModal = () => {
             handleSubmit(values, actions, handleCloseModal)
           }
         >
-          {({ values }) => (
+          {({ values, errors, touched }) => (
             <Form className={css.form}>
-              <label className={css.labelTitle}>Calculate your rate:</label>
-              <div className={css.radioGroup}>
+
+              <label className={css.labelTitle}>
+                Calculate your rate:
+              </label>
+              {/* <div className={css.radioGroup}>
+
                 <label className={css.radioLabel}>
                   <Field
                     type="radio"
@@ -128,14 +146,20 @@ const DailyNormaModal = () => {
                   <span className={css.radioMark}></span>
                   For man
                 </label>
-              </div>
+              </div> */}
+
+              <RadioPair
+                labelLeft="For woman"
+                labelRight="For man"
+              />
 
               <label className={css.label}>
                 Your weight in kilograms:
                 <Field
-                  type="number"
+                  type="text"
                   name="weight"
                   placeholder="0"
+                  onInput={handleNumberInput}
                   className={css.input}
                 />
               </label>
@@ -144,8 +168,9 @@ const DailyNormaModal = () => {
                 The time of active participation in sports or other activities
                 with a high physical load in hours:
                 <Field
-                  type="number"
+                  type="text"
                   name="activeTime"
+                  onInput={handleNumberInput}
                   placeholder="0"
                   className={css.input}
                 />
@@ -166,11 +191,18 @@ const DailyNormaModal = () => {
               <label className={css.labelTitle}>
                 Write down how much water you will drink:
                 <Field
-                  type="number"
+                  type="text"
                   name="plannedWaterIntake"
                   placeholder="0.1 - 15"
+                  onInput={handleNumberInput}
                   id={namePlannedWaterIntakeId}
-                  className={css.inputSubmit}
+                  // className={css.inputSubmit}
+                  className={`${css.inputSubmit} ${
+                    errors.plannedWaterIntake &&
+                    touched.plannedWaterIntake
+                      ? css.inputSubmitError
+                      : ""
+                  }`}
                 />
                 <ErrorMessage
                   name="plannedWaterIntake"
@@ -191,3 +223,9 @@ const DailyNormaModal = () => {
 };
 
 export default DailyNormaModal;
+
+const handleNumberInput = (e) => {
+  const { value } = e.target;
+  const validValue = value.replace(/[^0-9.]/g, "");
+  e.target.value = validValue;
+};
