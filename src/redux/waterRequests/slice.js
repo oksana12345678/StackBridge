@@ -10,7 +10,7 @@ import {
 } from "./operations";
 
 // Початковий стан для кожного slice'у
-const initialUserState = {
+const initialWaterRateState = {
   gender: "",
   waterRate: "",
   loading: false,
@@ -52,7 +52,7 @@ const handleFulfilled = (state, action) => {
 // `waterRate Slice`
 const waterRateSlice = createSlice({
   name: "waterRate",
-  initialState: initialUserState,
+  initialState: initialWaterRateState,
   extraReducers: (builder) => {
     builder
       .addCase(updateWaterRate.fulfilled, (state, action) => {
