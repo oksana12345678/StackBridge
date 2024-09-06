@@ -149,7 +149,7 @@ const SettingModal = () => {
 
     patchedData = {};
   };
-  
+
   const handleAvatarChange = (e) => {
     setIsSubmitBlocked(true);
     setTimeout(() => {
@@ -170,7 +170,7 @@ const SettingModal = () => {
 
   const customStyles = {
     content: {
-      padding: window.innerWidth < 768 ? "32px 12px" : "32px 24px",
+      paddingTop: "32px",
     },
   };
 
