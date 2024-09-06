@@ -11,19 +11,22 @@ import {
 import showToast from "../showToast.js";
 
 import css from "./DailyNorma.module.css";
-import { fetchUserData } from "../../redux/waterRate/operations.js";
+import { selectWaterRateUpdate } from "../../redux/user/selectors.js";
+import { fetchUserData } from "../../redux/user/operations.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
+
+  const waterRateUpdate = useSelector(selectWaterRateUpdate);
 
   const waterRate = useSelector(selectWaterRate);
   const loading = useSelector(selectLoadingWaterRate);
   const error = useSelector(selectErrorWaterRate);
 
-  console.log(waterRate);
   useEffect(() => {
     dispatch(fetchUserData());
   }, [dispatch]);
+
   useEffect(() => {
     if (error) {
       showToast("Error with loading your daily norma!", "error");
@@ -47,7 +50,14 @@ const DailyNorma = ({ handleOpenModal }) => {
         ) : error ? (
           <div>2 L</div>
         ) : (
-          <div>{waterRate ? waterRate / 1000 : 2} L</div>
+          <div>
+            {waterRate
+              ? waterRate / 1000
+              : waterRateUpdate
+              ? waterRateUpdate / 1000
+              : "2"}
+            L
+          </div>
         )}
 
         <button className={css.editBtn} onClick={handleOpenModal}>

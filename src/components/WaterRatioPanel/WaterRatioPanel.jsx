@@ -10,7 +10,6 @@ const WaterRatioPanel = () => {
   const dispatch = useDispatch();
 
   const waterConsumption = useSelector(selectWatersToday);
-  console.log(waterConsumption);
 
   const progressValue = waterConsumption?.percentOfWaterRate || "0%";
 

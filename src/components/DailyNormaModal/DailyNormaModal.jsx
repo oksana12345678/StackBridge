@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
-import {
-  fetchUserData,
-  updateWaterRate,
-} from "../../redux/waterRate/operations";
+import { updateWaterRate } from "../../redux/waterRate/operations";
+import { fetchUserData } from "../../redux/user/operations";
 
 const PlannedWaterIntakeSchema = Yup.object().shape({
   plannedWaterIntake: Yup.number()

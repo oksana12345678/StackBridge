@@ -40,16 +40,14 @@ export const deleteWaterEntry = createAsyncThunk(
     }
   }
 );
-const formatDateISO = (date) => date.toISOString().split("T")[0];
 // Отримання води за сьогодні
 export const getWaterForToday = createAsyncThunk(
   "water/getTodayWater",
-
   async (_, thunkAPI) => {
     try {
-      const date = formatDateISO(new Date());
+      // const date = convertToLocalTime();
 
-      const response = await axios.get(`/waterNotes/today?date=${date}`);
+      const response = await axios.get("/waterNotes/today");
 
       return response.data;
     } catch (error) {

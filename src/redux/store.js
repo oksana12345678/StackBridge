@@ -15,6 +15,7 @@ import { modalReducer } from "./modalWindow/slice";
 import { waterReducer } from "./waterRequests/slice";
 import { monthStatsReducer } from "./monthStats/slice";
 import { waterRateReducer } from "./waterRate/slice";
+import { userReducer } from "./user/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -29,6 +30,7 @@ export const store = configureStore({
     monthStats: monthStatsReducer,
     water: waterReducer,
     waterRate: waterRateReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
