@@ -9,6 +9,7 @@ const modalSlice = createSlice({
     isUserLogoModalOpen: false,
     isDeleteEntryModalOpen: false,
     isAddWaterModalOpen: false,
+    idToDelete: "",
   },
   reducers: {
     openModal: (state) => {
@@ -31,8 +32,9 @@ const modalSlice = createSlice({
     userLogoModal: (state) => {
       state.isUserLogoModalOpen = true;
     },
-    deleteEntryModalOpen: (state) => {
+    deleteEntryModalOpen: (state, action) => {
       state.isDeleteEntryModalOpen = true;
+      state.idToDelete = action.payload;
     },
     addWaterModalOpen: (state) => {
       state.isAddWaterModalOpen = true;
