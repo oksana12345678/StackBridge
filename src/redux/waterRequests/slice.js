@@ -6,7 +6,7 @@ import {
   deleteWaterEntry,
 } from "./operations";
 
-// Початковий стан для кожного slice'у
+// Початковий стан
 
 const initialWaterState = {
   today: null,
@@ -24,12 +24,6 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-};
-
-const handleFulfilled = (state, action) => {
-  state.today = action.payload;
-  state.isLoading = false;
-  state.error = null;
 };
 
 // `Water Slice`
@@ -59,32 +53,23 @@ const waterSlice = createSlice({
         }
         state.isLoading = false;
       })
-
-      .addMatcher(
-        isAnyOf(
-          deleteWaterEntry.pending,
-          getWaterForToday.pending,
-          editWater.pending
-        ),
-        handlePending
-      )
-      .addMatcher(
-        isAnyOf(
-          deleteWaterEntry.rejected,
-          getWaterForToday.rejected,
-          editWater.rejected
-        ),
-        handleRejected
-      )
-      .addMatcher(
-        isAnyOf(
-          addWater.fulfilled,
-          deleteWaterEntry.fulfilled,
-          getWaterForToday.fulfilled,
-          editWater.fulfilled
-        ),
-        handleFulfilled
-      );
+      .addCase(getWaterForToday.pending, handlePending)
+      .addCase(getWaterForToday.fulfilled, (state, action) => {
+        state.today = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getWaterForToday.rejected, handleRejected)
+      .addCase(deleteWaterEntry.pending, handlePending)
+      .addCase(deleteWaterEntry.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (water) => water.id === action.payload
+        );
+        state.items.splice(index, 1);
+      })
+      .addCase(deleteWaterEntry.rejected, handleRejected);
   },
 });
 
