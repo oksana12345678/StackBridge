@@ -71,7 +71,6 @@ const SettingModal = () => {
         });
       }
     }
-
     return true;
   });
 
@@ -150,6 +149,7 @@ const SettingModal = () => {
 
     patchedData = {};
   };
+  
   const handleAvatarChange = (e) => {
     setIsSubmitBlocked(true);
     setTimeout(() => {
