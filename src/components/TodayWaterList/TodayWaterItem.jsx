@@ -19,7 +19,6 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
     isModalEdit: false,
   });
 
-
   const handleDelete = () => {
     dispatch(deleteEntryModalOpen(id));
   };
@@ -42,7 +41,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
           <Trash className={css.delete} size={16} />
         </button>
       </div>
-      {/* <TodayListModal waterNote={{ id, waterVolume, date }} /> */}
+      <TodayListModal waterNote={{ id, waterVolume, date }} />
 
       {/* {modals.isModalEdit && <TodayListModal />} TODO */}
 
