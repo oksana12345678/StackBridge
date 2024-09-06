@@ -6,12 +6,12 @@ import {
   selectErrorWaterRate,
   selectLoadingWaterRate,
   selectWaterRate,
-} from "../../redux/waterRequests/selectors.js";
+} from "../../redux/waterRateRequests/selectors.js";
 
 import showToast from "../showToast.js";
 
 import css from "./DailyNorma.module.css";
-import { fetchUserData } from "../../redux/waterRequests/operations.js";
+import { fetchUserData } from "../../redux/waterRateRequests/operations.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
   const dispatch = useDispatch();

@@ -15,7 +15,8 @@ import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 
-import { getWaterForMonth } from "../../redux/waterRequests/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations";
+
 import {
   selectCurrentMonth,
   selectCurrentYear,

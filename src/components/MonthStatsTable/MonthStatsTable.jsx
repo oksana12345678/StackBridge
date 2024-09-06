@@ -2,21 +2,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { getWaterForMonth } from "../../redux/waterRequests/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
   selectDaysStats,
   selectSelectedDay,
   selectHoveredDay,
-} from "../../redux/waterRequests/selectors";
+} from "../../redux/monthStats/selects";
 import { monthNames } from "../../data/monthNames";
 import {
   prevMonth,
   nextMonth,
   hoverDayIndex,
   selectDay,
-} from "../../redux/waterRequests/slice";
+} from "../../redux/monthStats/slice";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import css from "./MonthStatsTable.module.css";
 
