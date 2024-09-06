@@ -16,8 +16,8 @@
   }
   
   .radioMark {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: 1px solid var(--primary-blue-color);
     border-radius: 50%;
     position: relative;
@@ -26,8 +26,8 @@
   
   .radioInput:checked + .radioMark::after {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background-color: var(--primary-blue-color);
     border-radius: 50%;
     position: absolute;

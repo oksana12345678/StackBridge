@@ -10,10 +10,10 @@ import showToast from "../showToast";
 import { useToggle } from "../../hooks/useToggle";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
-import GenderIdentityGroup from "./GenderIdentityGroup/GenderIdentityGroup";
+import GenderIdentityGroup from "./GenderIdentityGroup";
 import PhotoGroup from "./PhotoGroup/PhotoGroup";
 import NameGroup from "./NameGroup";
-import EmailGroup from "./EmailGroup/EmailGroup";
+import EmailGroup from "./EmailGroup";
 import OldPasswordGroup from "./OldPasswordGroup";
 import NewPasswordGroup from "./NewPasswordGroup";
 import RepeatPasswordGroup from "./RepeatPasswordGroup";
@@ -40,17 +40,7 @@ const SettingModal = () => {
     name: Yup.string().min(3, "Too short").max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
     outdatedPassword: Yup.string().min(8, "Too short").max(64, "Too long"),
-    password: Yup.string()
-      .min(8, "Too short")
-      .max(64, "Too long")
-      .when("outdatedPassword", (outdatedPassword, schema) =>
-        outdatedPassword
-          ? schema.notOneOf(
-              [Yup.ref("outdatedPassword")],
-              "New password should be different"
-            )
-          : schema
-      ),
+    password: Yup.string().min(8, "Too short").max(64, "Too long"),
     repeatPassword: Yup.string().oneOf(
       [Yup.ref("password")],
       "Passwords must match"
@@ -58,8 +48,8 @@ const SettingModal = () => {
   }).test("passwords-check", null, function (values) {
     const { outdatedPassword, password, repeatPassword } = values;
 
-    const oneIsFilled = !!outdatedPassword || !!password || !!repeatPassword;
-    const allAreFilled = !!outdatedPassword && !!password && !!repeatPassword;
+    const oneIsFilled = outdatedPassword || password || repeatPassword;
+    const allAreFilled = outdatedPassword && password && repeatPassword;
 
     if (oneIsFilled && !allAreFilled) {
       if (!outdatedPassword) {
@@ -81,7 +71,6 @@ const SettingModal = () => {
         });
       }
     }
-
     return true;
   });
 
@@ -102,7 +91,7 @@ const SettingModal = () => {
     setIsSubmitBlocked(true);
     setTimeout(() => {
       setIsSubmitBlocked(false);
-    }, 6000);
+    }, 3000);
     const { password, outdatedPassword, repeatPassword } = values;
     delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
@@ -160,11 +149,12 @@ const SettingModal = () => {
 
     patchedData = {};
   };
+
   const handleAvatarChange = (e) => {
     setIsSubmitBlocked(true);
     setTimeout(() => {
       setIsSubmitBlocked(false);
-    }, 6000);
+    }, 3000);
     const file = e.target.files[0];
     if (file) {
       dispatch(updateAvatar({ avatar: file }))
@@ -177,23 +167,26 @@ const SettingModal = () => {
         });
     }
   };
+
+  const customStyles = {
+    content: {
+      paddingTop: "32px",
+      paddingBottom:"32px"
+    },
+  };
+
   return (
     <ModalWrapper
       modalIsOpen={isModalOpen}
       closeModal={() => dispatch(closeModal())}
-      customStyles={{
-        content: {
-          paddingTop: "32px",
-          paddingBottom: "32px",
-        },
-      }}
+      customStyles={customStyles}
+      buttonClassSettings
     >
       <FormTitle />
       <Formik
         initialValues={initialValues}
         validationSchema={userInfoValidationSchema}
         onSubmit={onSubmit}
-        validateOnBlur={true}
       >
         {({ errors, touched }) => (
           <Form className={css["form-container"]} autoComplete="off">
@@ -233,13 +226,13 @@ const SettingModal = () => {
               </div>
             </div>
             <div className={css["button-container"]}>
-              <button
-                className={css["submit-button"]}
-                type="submit"
-                disabled={isSubmitBlocked}
-              >
-                Save
-              </button>
+                <button
+                  className={css["submit-button"]}
+                  type="submit"
+                  disabled={isSubmitBlocked}
+                >
+                  Save
+                </button>
             </div>
           </Form>
         )}

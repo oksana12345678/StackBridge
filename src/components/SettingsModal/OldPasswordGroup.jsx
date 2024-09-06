@@ -21,7 +21,7 @@ const OldPasswordGroup = ({ isHiddenPassword, isError, isTouched, toggle }) => {
           id={oldPasswordInputId}
           type={isHiddenPassword ? "text" : "password"}
           name="outdatedPassword"
-          placeholder="Password"
+          placeholder="Enter old password"
         />
         {isHiddenPassword ? (
           <button
