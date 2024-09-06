@@ -65,7 +65,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.today.todayWaterNotesList.findIndex(
-          (water) => water.id === action.payload
+          (water) => water.id === action.payload.id
         );
         state.today.todayWaterNotesList.splice(index, 1);
       })
