@@ -31,7 +31,7 @@ export const TodayWaterList = () => {
     () => waterToday?.todayWaterNotesList || [],
     [waterToday]
   );
-
+  console.log(entries);
   return (
     <div className={css["entries-container"]}>
       <div className={css.entries}>

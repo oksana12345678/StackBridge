@@ -31,10 +31,10 @@ export const editWater = createAsyncThunk(
 // Видалення запису про воду
 export const deleteWaterEntry = createAsyncThunk(
   "water/deleteWater",
-  async (id, thunkAPI) => {
+  async (_id, thunkAPI) => {
     try {
-      const response = await axios.delete(`/waterNotes/${id}`);
-      return response.data;
+      const response = await axios.delete(`/waterNotes/${_id}`);
+      return _id;
     } catch (error) {
       return thunkAPI.rejectWithValue(handleError(error));
     }

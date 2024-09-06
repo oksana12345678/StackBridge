@@ -64,8 +64,20 @@ const waterSlice = createSlice({
       .addCase(deleteWaterEntry.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        console.log("Payload ID:", action.payload.todayWaterNotesList);
+        console.log("Payload:", action.payload.todayWaterNotesList);
+
+        console.log(
+          "Water Notes List (before):",
+          state.today.todayWaterNotesList
+        );
+        state.today.todayWaterNotesList.forEach((water, idx) => {
+          console.log(`Entry ${idx}:`, water._id);
+        });
+
+        console.log("Payload ID:", action.payload);
         const index = state.today.todayWaterNotesList.findIndex(
-          (water) => water.id === action.payload.id
+          (water) => water._id === action.payload._id
         );
         state.today.todayWaterNotesList.splice(index, 1);
       })
