@@ -171,7 +171,7 @@ const SettingModal = () => {
   const customStyles = {
     content: {
       paddingTop: "32px",
-      paddingBottom:"32px"
+      paddingBottom: "32px",
     },
   };
 
@@ -189,7 +189,7 @@ const SettingModal = () => {
         onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
-          <Form className={css["form-container"]} autoComplete="off">
+          <Form className={css["form-container"]} autoComplete="off" novalidate>
             <PhotoGroup
               avatar={user.avatar}
               isSubmitBlocked={isSubmitBlocked}
@@ -226,13 +226,13 @@ const SettingModal = () => {
               </div>
             </div>
             <div className={css["button-container"]}>
-                <button
-                  className={css["submit-button"]}
-                  type="submit"
-                  disabled={isSubmitBlocked}
-                >
-                  Save
-                </button>
+              <button
+                className={css["submit-button"]}
+                type="submit"
+                disabled={isSubmitBlocked}
+              >
+                Save
+              </button>
             </div>
           </Form>
         )}
