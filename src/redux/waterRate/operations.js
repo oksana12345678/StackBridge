@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // Оновлення норми води
 export const updateWaterRate = createAsyncThunk(

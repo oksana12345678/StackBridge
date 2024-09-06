@@ -2,7 +2,11 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater, editWater } from "../../redux/waterRequests/operations";
+import {
+  addWater,
+  editWater,
+  getWaterForToday,
+} from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
@@ -15,12 +19,12 @@ import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 
-import { getWaterForMonth } from "../../redux/monthStats/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations.js";
 
 import {
   selectCurrentMonth,
   selectCurrentYear,
-} from "../../redux/waterRequests/selectors";
+} from "../../redux/monthStats/selects.js";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
@@ -133,6 +137,7 @@ export default function TodayListModal() {
       .catch(() => {
         showToast("Water add failed!", "error");
       });
+    dispatch(getWaterForToday());
   };
 
   const handleEditWater = (values, actions) => {
