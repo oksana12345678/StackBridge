@@ -9,7 +9,7 @@ const RepeatPasswordGroup = ({
   isHiddenPassword,
   isError,
   isTouched,
-  toggle,
+  toggle
 }) => {
   const repeatPasswordInputId = useId();
 
