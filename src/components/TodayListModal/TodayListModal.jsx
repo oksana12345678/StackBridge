@@ -2,7 +2,7 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater, editWater } from "../../redux/waterRequests/operations";
+import { addWater, editWater, getWaterForToday } from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
@@ -130,6 +130,7 @@ export default function TodayListModal({ waterNote }) {
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
+        dispatch(getWaterForToday())
       })
       .catch(() => {
         showToast("Water add failed!", "error");

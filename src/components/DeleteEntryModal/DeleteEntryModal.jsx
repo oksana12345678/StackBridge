@@ -6,7 +6,13 @@ import {
   selectIdToDelete,
   selectIsDeleteEntryModalOpen,
 } from "../../redux/modalWindow/selectors";
-import { deleteWaterEntry } from "../../redux/waterRequests/operations";
+import { deleteWaterEntry, getWaterForToday } from "../../redux/waterRequests/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations";
+import {
+  selectCurrentMonth,
+  selectCurrentYear,
+} from "../../redux/monthStats/selects.js";
+
 const customStyles = {
   content: {
     padding: "32px 24px",
@@ -16,15 +22,22 @@ const customStyles = {
 export default function DeleteEntryModal() {
   const isDeleteModalOpen = useSelector(selectIsDeleteEntryModalOpen);
   const idToDelete = useSelector(selectIdToDelete);
-
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
+  
+  const dispatch = useDispatch();
   const handleDelete = () => {
-    console.log("Deleting entry with id:", idToDelete);
-
-    dispatch(deleteWaterEntry(idToDelete));
+    dispatch(deleteWaterEntry(idToDelete))
+    .unwrap()
+    .then(()=>{
+      dispatch(getWaterForToday());
+      dispatch(getWaterForMonth({ year: currentYear, month: currentMonth + 1 }));
+    })
+    .catch((err)=>console.log(err));
     dispatch(closeModal());
   };
-  // console.log(id);
-  const dispatch = useDispatch();
+
+
   return (
     <ModalWrapper
       modalIsOpen={isDeleteModalOpen}
