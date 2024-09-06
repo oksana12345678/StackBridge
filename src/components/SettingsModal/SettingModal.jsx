@@ -37,7 +37,7 @@ const SettingModal = () => {
   let patchedData = {};
 
   const userInfoValidationSchema = Yup.object({
-    name: Yup.string().min(3, "Too short").max(32, "Too long"),
+    name: Yup.string().max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
     outdatedPassword: Yup.string().min(8, "Too short").max(64, "Too long"),
     password: Yup.string().min(8, "Too short").max(64, "Too long"),
