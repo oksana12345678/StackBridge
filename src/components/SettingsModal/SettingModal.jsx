@@ -171,6 +171,7 @@ const SettingModal = () => {
   const customStyles = {
     content: {
       paddingTop: "32px",
+      paddingBottom:"32px"
     },
   };
 
