@@ -2,7 +2,10 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import css from "./DeleteEntryModal.module.css";
 import { closeModal } from "../../redux/modalWindow/slice";
-import { selectIsDeleteEntryModalOpen } from "../../redux/modalWindow/selectors";
+import {
+  selectIdToDelete,
+  selectIsDeleteEntryModalOpen,
+} from "../../redux/modalWindow/selectors";
 import { deleteWaterEntry } from "../../redux/waterRequests/operations";
 const customStyles = {
   content: {
@@ -10,14 +13,21 @@ const customStyles = {
   },
 };
 
-export default function DeleteEntryModal({ id }) {
-  console.log(id);
+export default function DeleteEntryModal() {
+  const isDeleteModalOpen = useSelector(selectIsDeleteEntryModalOpen);
+  const idToDelete = useSelector(selectIdToDelete);
 
+  const handleDelete = () => {
+    console.log("Deleting entry with id:", idToDelete);
+
+    dispatch(deleteWaterEntry(idToDelete));
+    dispatch(closeModal());
+  };
+  // console.log(id);
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsDeleteEntryModalOpen);
   return (
     <ModalWrapper
-      modalIsOpen={modalIsOpen}
+      modalIsOpen={isDeleteModalOpen}
       closeModal={() => dispatch(closeModal())}
       customStyles={customStyles}
       buttonClassLogout={true}
@@ -32,7 +42,9 @@ export default function DeleteEntryModal({ id }) {
           >
             Cancel
           </button>
-          <button className={css.buttonLogout}>Delete</button>
+          <button className={css.buttonLogout} onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </div>
     </ModalWrapper>
