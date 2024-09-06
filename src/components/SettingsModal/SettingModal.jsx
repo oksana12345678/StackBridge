@@ -36,27 +36,6 @@ const SettingModal = () => {
 
   let patchedData = {};
 
-  // const userInfoValidationSchema = Yup.object({
-  //   name: Yup.string()
-  //     .max(3, "Your name shouldn't exceed min 3 characters")
-  //     .max(32, "Your name shouldn't exceed 32 characters"),
-  //   email: Yup.string().email("Invalid email address"),
-  //   outdatedPassword: Yup.string()
-  //     .min(8, "Your password should contain at least 8 characters")
-  //     .max(64, "Your password shouldn't exceed 64 characters"),
-  //   password: Yup.string()
-  //     .min(8, "Your password should contain at least 8 characters")
-  //     .max(64, "Your password shouldn't exceed 64 characters")
-  //     .notOneOf(
-  //       [Yup.ref("outdatedPassword")],
-  //       "New password shoud be different from the old one"
-  //     ),
-  //   repeatPassword: Yup.string().oneOf(
-  //     [Yup.ref("password")],
-  //     "Passwords must match"
-  //   ),
-  // });
-
   const userInfoValidationSchema = Yup.object({
     name: Yup.string().min(3, "Too short").max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
