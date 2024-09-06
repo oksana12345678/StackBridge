@@ -2,23 +2,18 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addWater,
-  editWater,
-  getWaterForToday,
-} from "../../redux/waterRequests/operations";
+import { addWater, editWater } from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
 
-// import { selectWatersToday } from "../../redux/waterRequests/selectors";
 // import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
 // для модалки
 
 import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
-
+// import { selectWatersToday } from "../../redux/waterRequests/selectors";
 import { getWaterForMonth } from "../../redux/monthStats/operations.js";
 
 import {
@@ -38,7 +33,7 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function TodayListModal() {
+export default function TodayListModal({ waterNote }) {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
 
@@ -46,6 +41,9 @@ export default function TodayListModal() {
   const currentYear = useSelector(selectCurrentYear); //TODO
 
   const fieldId = useId();
+
+  // const waterToday = useSelector(selectWatersToday);
+  // console.log(waterToday);
 
   // const waterTodayList = useSelector(selectWatersToday); //масив записів про воду за сьогодні
   // const sortedWaterTodayList = waterTodayList.sort((a, b) => {
@@ -109,14 +107,12 @@ export default function TodayListModal() {
 
   // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    const formattedDate = new Date()
-      .toLocaleDateString("en-CA", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .replace(/\//g, "-");
-    return `${formattedDate} ${time}`;
+    const formattedDate = new Date().toLocaleDateString("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
   // Функція відправки даних на бекенд
@@ -129,6 +125,7 @@ export default function TodayListModal() {
         showToast("Water add successful!", "success");
         actions.resetForm();
         dispatch(closeModal());
+        setAmountOfWater(0);
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
