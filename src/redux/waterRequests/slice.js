@@ -40,16 +40,16 @@ const waterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.today.todayWaterNotesList.push(action.payload);
         state.isLoading = false;
       })
       .addCase(addWater.rejected, handleRejected)
       .addCase(editWater.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
+        const index = state.today.todayWaterNotesList.findIndex(
           (item) => item.id === action.payload.id
         );
         if (index !== -1) {
-          state.items[index] = action.payload;
+          state.today.todayWaterNotesList[index] = action.payload;
         }
         state.isLoading = false;
       })
@@ -64,10 +64,10 @@ const waterSlice = createSlice({
       .addCase(deleteWaterEntry.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(
+        const index = state.today.todayWaterNotesList.findIndex(
           (water) => water.id === action.payload
         );
-        state.items.splice(index, 1);
+        state.today.todayWaterNotesList.splice(index, 1);
       })
       .addCase(deleteWaterEntry.rejected, handleRejected);
   },

@@ -1,5 +1,5 @@
 .form-container {
-  user-select: none;
+  width: 256px;
 }
 
 @media screen and (min-width: 768px) {
@@ -84,7 +84,6 @@
 
 .input-wrapper {
   position: relative;
-  width: 256px;
 }
 
 @media screen and (min-width: 768px) {
@@ -96,6 +95,7 @@
 .input {
   width: 100%;
   padding: 12px 10px;
+  padding-right: 30px;
   border: 1px solid #d7e3ff;
   border-radius: 6px;
   background-color: transparent;
@@ -110,14 +110,6 @@
   cursor: pointer;
 }
 
-.error-input {
-  color: var(--red-accent-color);
-  border-color: var(--red-accent-color);
-}
-
-.error-input:focus::placeholder {
-  color: var(--red-accent-color);
-}
 
 .input::placeholder {
   color: var(--light-blue-text);
@@ -126,9 +118,13 @@
   line-height: 1.25;
 }
 
-.input:focus,
-.input:focus::placeholder {
-  color: var(--primary-blue-color);
+.error-input {
+  color: var(--red-accent-color);
+  border-color: var(--red-accent-color);
+}
+
+.error-input::placeholder {
+  color: var(--red-accent-color);
 }
 
 .error-message {
