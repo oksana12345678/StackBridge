@@ -14,7 +14,7 @@ import persistStore from "redux-persist/es/persistStore";
 import { modalReducer } from "./modalWindow/slice";
 import { waterReducer } from "./waterRequests/slice";
 import { monthStatsReducer } from "./monthStats/slice";
-import { waterRateReducer } from "./waterRateRequests/slice.js";
+import { waterRateReducer } from "./waterRate/slice";
 
 const authPersistConfig = {
   key: "auth",
