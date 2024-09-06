@@ -137,7 +137,6 @@ export default function TodayListModal() {
       .catch(() => {
         showToast("Water add failed!", "error");
       });
-    dispatch(getWaterForToday());
   };
 
   const handleEditWater = (values, actions) => {

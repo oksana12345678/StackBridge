@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserData, updateWaterRate } from "./operations";
+import { updateWaterRate } from "./operations";
 
 // `waterRate Slice`
 const initialWaterRateState = {
@@ -27,15 +27,7 @@ const waterRateSlice = createSlice({
       .addCase(updateWaterRate.fulfilled, (state, action) => {
         state.waterRate = action.payload.waterRate;
       })
-        .addCase(updateWaterRate.rejected, handleRejected)
-        
-      .addCase(fetchUserData.pending, handlePending)
-      .addCase(fetchUserData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.gender = action.payload.gender || "";
-        state.waterRate = action.payload.waterRate;
-      })
-      .addCase(fetchUserData.rejected, handleRejected);
+      .addCase(updateWaterRate.rejected, handleRejected);
   },
 });
 
