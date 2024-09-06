@@ -11,24 +11,22 @@ const EmailGroup = ({ isError, isTouched }) => {
       <Label htmlFor={emailInputId} type="thick">
         E-mail
       </Label>
-      <div>
-        <div className={css["input-wrapper"]}>
-          <Field
-            autoComplete="off"
-            className={clsx(css.input, {
-              [css["error-input"]]: isError && isTouched,
-            })}
-            id={emailInputId}
-            type="email"
-            name="email"
-            placeholder="email"
-          />
-          <ErrorMessage
-            name="email"
-            component="div"
-            className={css["error-message"]}
-          />
-        </div>
+      <div className={css["input-wrapper"]}>
+        <Field
+          autoComplete="off"
+          className={clsx(css.input, {
+            [css["error-input"]]: isError && isTouched,
+          })}
+          id={emailInputId}
+          type="email"
+          name="email"
+          placeholder="email"
+        />
+        <ErrorMessage
+          name="email"
+          component="div"
+          className={css["error-message"]}
+        />
       </div>
     </div>
   );
