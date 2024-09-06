@@ -116,7 +116,7 @@
   border-color: var(--red-accent-color);
 }
 
-.error-input:focus::placeholder {
+.error-input::placeholder {
   color: var(--red-accent-color);
 }
 
@@ -125,11 +125,6 @@
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-regular);
   line-height: 1.25;
-}
-
-.input:focus,
-.input:focus::placeholder {
-  color: var(--primary-blue-color);
 }
 
 .error-message {
