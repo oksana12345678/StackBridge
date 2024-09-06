@@ -20,7 +20,7 @@ const NewPasswordGroup = ({ isHiddenPassword, toggle, isError, isTouched }) => {
           id={passwordInputId}
           type={isHiddenPassword ? "text" : "password"}
           name="password"
-          placeholder="Password"
+          placeholder="Enter new password"
         />
         {isHiddenPassword ? (
           <button

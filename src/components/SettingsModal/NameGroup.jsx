@@ -22,7 +22,7 @@ const NameGroup = ({ isTouched, isError }) => {
             id={nameInputId}
             type="text"
             name="name"
-            placeholder="name"
+            placeholder="Enter your name"
           />
           <ErrorMessage
             name="name"

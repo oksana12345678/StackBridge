@@ -27,7 +27,7 @@ const RepeatPasswordGroup = ({
             id={repeatPasswordInputId}
             type={isHiddenPassword ? "text" : "password"}
             name="repeatPassword"
-            placeholder="Password"
+            placeholder="Repeat new password"
           />
           {isHiddenPassword ? (
             <button
