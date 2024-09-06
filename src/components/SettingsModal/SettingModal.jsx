@@ -58,24 +58,20 @@ const SettingModal = () => {
   // });
 
   const userInfoValidationSchema = Yup.object({
-    name: Yup.string()
-      .min(3, "Your name shouldn't be less than 3 characters")
-      .max(32, "Your name shouldn't exceed 32 characters"),
-
+    name: Yup.string().min(3, "Too short").max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
-
-    outdatedPassword: Yup.string()
-      .min(8, "Your password should contain at least 8 characters")
-      .max(64, "Your password shouldn't exceed 64 characters"),
-
+    outdatedPassword: Yup.string().min(8, "Too short").max(64, "Too long"),
     password: Yup.string()
-      .min(8, "Your password should contain at least 8 characters")
-      .max(64, "Your password shouldn't exceed 64 characters")
-      .notOneOf(
-        [Yup.ref("outdatedPassword")],
-        "New password should be different from the old one"
+      .min(8, "Too short")
+      .max(64, "Too long")
+      .when("outdatedPassword", (outdatedPassword, schema) =>
+        outdatedPassword
+          ? schema.notOneOf(
+              [Yup.ref("outdatedPassword")],
+              "New password should be different"
+            )
+          : schema
       ),
-
     repeatPassword: Yup.string().oneOf(
       [Yup.ref("password")],
       "Passwords must match"
@@ -90,19 +86,19 @@ const SettingModal = () => {
       if (!outdatedPassword) {
         return this.createError({
           path: "outdatedPassword",
-          message: "All password fields must be filled if any one is provided",
+          message: "All passwords should be filled",
         });
       }
       if (!password) {
         return this.createError({
           path: "password",
-          message: "All password fields must be filled if any one is provided",
+          message: "All passwords should be filled",
         });
       }
       if (!repeatPassword) {
         return this.createError({
           path: "repeatPassword",
-          message: "All password fields must be filled if any one is provided",
+          message: "All passwords should be filled",
         });
       }
     }
