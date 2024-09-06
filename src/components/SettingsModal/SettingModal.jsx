@@ -225,13 +225,13 @@ const SettingModal = () => {
               </div>
             </div>
             <div className={css["button-container"]}>
-              <button
-                className={css["submit-button"]}
-                type="submit"
-                disabled={isSubmitBlocked}
-              >
-                Save
-              </button>
+                <button
+                  className={css["submit-button"]}
+                  type="submit"
+                  disabled={isSubmitBlocked}
+                >
+                  Save
+                </button>
             </div>
           </Form>
         )}
