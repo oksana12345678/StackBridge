@@ -1,8 +1,8 @@
 import { useId } from "react";
 import { Field, ErrorMessage } from "formik";
 import clsx from "clsx";
-import Label from "../Label/Label";
-import css from "../SettingModal.module.css";
+import Label from "./Label/Label";
+import css from "./SettingModal.module.css";
 
 const EmailGroup = ({ isError, isTouched }) => {
   const emailInputId = useId();
