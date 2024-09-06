@@ -111,6 +111,14 @@
   cursor: pointer;
 }
 
+
+.input::placeholder {
+  color: var(--light-blue-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25;
+}
+
 .error-input {
   color: var(--red-accent-color);
   border-color: var(--red-accent-color);
@@ -118,13 +126,6 @@
 
 .error-input::placeholder {
   color: var(--red-accent-color);
-}
-
-.input::placeholder {
-  color: var(--light-blue-text);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.25;
 }
 
 .error-message {
