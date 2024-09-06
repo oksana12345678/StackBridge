@@ -177,16 +177,19 @@ const SettingModal = () => {
         });
     }
   };
+
+  const customStyles = {
+    content: {
+      padding: window.innerWidth < 768 ? "32px 12px" : "32px 24px",
+    },
+  };
+
   return (
     <ModalWrapper
       modalIsOpen={isModalOpen}
       closeModal={() => dispatch(closeModal())}
-      customStyles={{
-        content: {
-          paddingTop: "32px",
-          paddingBottom: "32px",
-        },
-      }}
+      customStyles={customStyles}
+      buttonClassSettings
     >
       <FormTitle />
       <Formik

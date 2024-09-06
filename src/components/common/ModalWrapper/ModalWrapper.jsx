@@ -5,8 +5,14 @@ import { useEffect } from "react";
 
 Modal.setAppElement(document.getElementById("root"));
 
-
-const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLogout=false, children }) => {
+const ModalWrapper = ({
+  modalIsOpen,
+  closeModal,
+  customStyles = {},
+  buttonClassLogout = false,
+  buttonClassSettings = false,
+  children,
+}) => {
   useEffect(() => {
     if (modalIsOpen) {
       document.body.classList.add(css["no-scroll"]);
@@ -18,7 +24,6 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
     };
   }, [modalIsOpen]);
 
-
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -28,25 +33,18 @@ const ModalWrapper = ({ modalIsOpen, closeModal, customStyles={}, buttonClassLog
       style={customStyles}
       className={css.modal}
       overlayClassName={css.backdrop}
-
     >
       {children}
-
-
-      <button className={clsx(css["close-button"],buttonClassLogout && css["button-class-logout"])} onClick={closeModal}>
-        <svg
-          className={css["close-icon"]}
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 32 32"
-        >
-          <path
-            fill="none"
-            stroke="#407bff"
-            strokeWidth="2"
-            d="M8 24l16-16M8 8l16 16"
-          />
+      <button
+        className={clsx(
+          css["close-button"],
+          buttonClassLogout && css["button-class-logout"],
+          buttonClassSettings && css["button-class-settings"]
+        )}
+        onClick={closeModal}
+      >
+        <svg className={css["close-icon"]} width="24" height="24">
+          <use href="/spriteFull.svg#icon-x-closed"></use>
         </svg>
       </button>
     </Modal>
