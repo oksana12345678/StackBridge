@@ -56,10 +56,10 @@ function App() {
     //   return;
     // }
 
-    if (token) {
+    if (token && isLoggedIn) {
       navigate("/home");
     }
-  }, [dispatch, token, navigate, error]);
+  }, [dispatch, isLoggedIn, token, navigate, error]);
 
   return isRefreshing ? (
     <b>
