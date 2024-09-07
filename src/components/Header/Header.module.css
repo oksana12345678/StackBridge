@@ -9,7 +9,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 320px;
+    /* min-width: 320px; */
+    width: 320px;
+    /* max-width: 320px; */
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
@@ -23,7 +25,8 @@
     /* margin: 0 auto; */
   }
   .container {
-    max-width: 744px;
+    /* max-width: 744px; */
+    width: 744px;
     /* padding-left: 32px;
     padding-right: 32px; */
   }

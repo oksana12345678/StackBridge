@@ -358,6 +358,7 @@
 } */
 
 /*TODO ============================================================== */
+
 .wrapper {
   position: relative;
 }
@@ -365,10 +366,16 @@
 @media screen and (max-width: 767px) {
   .background {
     position: absolute;
-    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-mob.png");
-    width: 320px;
-    height: 952px;
-    bottom: -20px;
+    /* background-image: url("../../Images/welcom-page-bg/bg-main-page1x-mob.png"); */
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageMob.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    /* min-width: 320px; */
+    /* height: 952px; */
+    /* bottom: 15px; */
   }
 }
 
@@ -609,10 +616,17 @@
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .background {
     position: absolute;
-    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-tab.png");
-    width: 768px;
+    /* background-image: url("../../Images/welcom-page-bg/bg-main-page1x-tab.png"); */
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageTab.svg");
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size: cover;
+    width: 100%;
+    /* height: 100%; */
+
+    /* min-width: 768px; */
     height: 800px;
-    bottom: -25px;
+    bottom: -20px;
   }
 }
 /* !==================== */
@@ -683,20 +697,23 @@
     margin: 0 auto;
   } */
 
-  /* .background {
+  .background {
     position: absolute;
-    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-des.png");
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageDesk.svg");
     background-repeat: no-repeat;
+    /* background-position: bottom; */
     background-size: cover;
-    width: 1440px;
-    height: 432px;
+    width: 100%;
+    height: 100%;
+    /* height: 432px; */
     left: 0;
-    bottom: -190px;
+    bottom: -310px;
+    /* bottom: -190px; */
 
     z-index: -2;
-  } */
+  }
 
-  .blueWave {
+  /* .blueWave {
     background-image: url("../../Images/welcome-page/blue-wave-desktop-1x.png");
     background-repeat: no-repeat;
     position: absolute;
@@ -704,34 +721,35 @@
     height: 288px;
     left: 0;
     bottom: -310px;
-    /* top: calc(100vh - 288px); */
     z-index: -2;
-  }
 
-  .whiteWave {
+    top: calc(100vh - 288px);
+  } */
+
+  /* .whiteWave {
     background-image: url("../../Images/welcome-page/white-wave-desktop-1x.png");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
     left: 0;
     bottom: -315px;
-    /* top: 10vw; */
-    /* width: 1440px; */
     width: 100%;
     height: 600px;
     z-index: -2;
-  }
 
-  .bottle {
+    top: 10vw;
+    width: 1440px;
+  } */
+
+  /* .bottle {
     background-image: url("../../Images/welcome-page/welcome-page-desktop-bottle-1x.png");
     background-repeat: no-repeat;
     width: 374px;
     height: 278px;
     position: absolute;
-
     right: 290px;
     bottom: -160px;
-  }
+  } */
 
   .bubble1,
   .bubble4,
