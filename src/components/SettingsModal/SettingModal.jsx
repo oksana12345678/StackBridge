@@ -44,7 +44,7 @@ const SettingModal = () => {
       .max(64, "Too long")
       .test(
         "outdated-password-filled",
-        "All passwords should be filled",
+        "Required",
         function (value) {
           const { password, repeatPassword } = this.parent;
           if ((password || repeatPassword) && !value) {
@@ -58,7 +58,7 @@ const SettingModal = () => {
       .max(64, "Too long")
       .test(
         "password-filled",
-        "All passwords should be filled",
+        "Required",
         function (value) {
           const { outdatedPassword, repeatPassword } = this.parent;
           if ((outdatedPassword || repeatPassword) && !value) {
@@ -71,7 +71,7 @@ const SettingModal = () => {
       .oneOf([Yup.ref("password")], "Passwords must match")
       .test(
         "repeat-password-filled",
-        "All passwords should be filled",
+        "Required",
         function (value) {
           const { outdatedPassword, password } = this.parent;
           if ((outdatedPassword || password) && !value) {
