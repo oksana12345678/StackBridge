@@ -10,8 +10,8 @@ import css from "./DailyNorma.module.css";
 import {
   selectLoadingUserData,
   selectWaterRateUpdate,
-} from "../../redux/user/selectors.js";
-import { fetchUserData } from "../../redux/user/operations.js";
+} from "../../redux/auth/selectors.js";
+import { refreshUser } from "../../redux/auth/operations.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
   const dispatch = useDispatch();
@@ -22,9 +22,9 @@ const DailyNorma = ({ handleOpenModal }) => {
   const loading = useSelector(selectLoadingUserData);
   const error = useSelector(selectErrorWaterRate);
 
-  useEffect(() => {
-    dispatch(fetchUserData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (error) {

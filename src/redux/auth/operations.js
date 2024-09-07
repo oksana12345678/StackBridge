@@ -40,7 +40,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post("https://watertracker-app.onrender.com/auth/logout");
+    await axios.post("/auth/logout");
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -59,22 +59,20 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get(
-        "https://watertracker-app.onrender.com/users/current"
-      );
+      const response = await axios.get("/users/current");
       return response.data;
     } catch (error) {
-      if(error.status==401){
+      if (error.status == 401) {
         clearAuthHeader();
-        let authData = localStorage.getItem('persist:auth');
+        let authData = localStorage.getItem("persist:auth");
         if (authData) {
           authData = JSON.parse(authData);
-      } else {
+        } else {
           console.error("Key 'persist:auth' not found in localStorage.");
-      }
-      authData.token = "null";
-      const updatedAuthData = JSON.stringify(authData);
-      localStorage.setItem('persist:auth', updatedAuthData);
+        }
+        authData.token = "null";
+        const updatedAuthData = JSON.stringify(authData);
+        localStorage.setItem("persist:auth", updatedAuthData);
       }
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -85,10 +83,7 @@ export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        "https://watertracker-app.onrender.com/users",
-        credentials
-      );
+      const response = await axios.patch("/users", credentials);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -100,15 +95,11 @@ export const updateAvatar = createAsyncThunk(
   "auth/updateAvatar",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        "https://watertracker-app.onrender.com/users/avatar",
-        credentials,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.patch("/users/avatar", credentials, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
