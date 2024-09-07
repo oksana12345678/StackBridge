@@ -1,5 +1,4 @@
 .link {
-  position: relative;
   font-size: 16px;
   line-height: calc(20 / 16);
   color: var(--primary-blue-color);
