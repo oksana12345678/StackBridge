@@ -46,8 +46,9 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, handleRejected)
       .addCase(editWater.fulfilled, (state, action) => {
         const index = state.today.todayWaterNotesList.findIndex(
-          (item) => String(item.id) === String(action.payload.id)
+          (item) => String(item._id) === String(action.payload)
         );
+
         if (index !== -1) {
           state.today.todayWaterNotesList[index] = action.payload;
         }
