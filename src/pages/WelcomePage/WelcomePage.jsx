@@ -10,7 +10,7 @@ const WelcomePage = () => {
         <Helmet>
           <title>Welcome page</title>
         </Helmet>
-        <div className={styles.backgroundElement}></div>
+        {/* <div className={styles.backgroundElement}></div> */}
         <div className={styles.welcomeContent}>
           <div className={styles.trackerSection}>
             <WaterConsumptionTracker />

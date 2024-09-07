@@ -1,4 +1,4 @@
-.blueWave {
+/* .blueWave {
   background-image: url("../../Images/welcome-page/blue-wave-mobile-1x.png");
   background-repeat: no-repeat;
   width: 2725px;
@@ -319,6 +319,418 @@
     left: 1016px;
     top: 492px;
     z-index: -2;
+  }
+
+  .bubble1,
+  .bubble4,
+  .bubble5,
+  .bubble6,
+  .bubble7 {
+    animation-duration: 30s;
+  }
+
+  .bubble2 {
+    animation-duration: 40s;
+  }
+
+  .bubble8 {
+    animation-duration: 20s;
+  }
+
+  @keyframes moveInRightTopCorner {
+    0% {
+      transform: translate(100vw, -5vh);
+    }
+    100% {
+      transform: translate(10vw, -50vh);
+    }
+  }
+
+  .bubble9 {
+    background-image: url("../../Images/bubbles/big-painted-bubble.png");
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px;
+    position: fixed;
+    z-index: -1;
+    animation: moveInRightTopCorner 10s linear infinite;
+  }
+} */
+
+/*TODO ============================================================== */
+.wrapper {
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .background {
+    position: absolute;
+    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-mob.png");
+    width: 320px;
+    height: 952px;
+    bottom: -20px;
+  }
+}
+
+/* .background {
+  position: absolute;
+  background-image: url("../../Images/welcom-page-bg/bg-main-page1x-mob.png");
+  width: 320px;
+  height: 952px;
+  bottom: -20px;
+} */
+
+/* .blueWave {
+  background-image: url("../../Images/welcome-page/blue-wave-mobile-1x.png");
+  background-repeat: no-repeat;
+  width: 2725px;
+  height: 658px;
+  position: absolute;
+  left: -785px;
+  bottom: 0;
+  z-index: -2;
+} */
+
+/* .whiteWave {
+  background-image: url("../../Images/welcome-page/white-wave-mobile-1x.png");
+  background-repeat: no-repeat;
+  width: 3271px;
+  height: 1134px;
+  position: absolute;
+  left: -870px;
+  bottom: 0;
+  z-index: -2;
+
+ 
+} */
+
+@keyframes moveDiagonal {
+  0% {
+    transform: translate(-112px, -112px);
+  }
+  100% {
+    transform: translate(100vw, 10vh);
+  }
+}
+
+@keyframes moveRandomly {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+  10% {
+    transform: translate(10vw, 5vh);
+  }
+  20% {
+    transform: translate(15vw, 15vh);
+  }
+  30% {
+    transform: translate(25vw, 20vh);
+  }
+  40% {
+    transform: translate(30vw, 30vh);
+  }
+  50% {
+    transform: translate(50vw, 55vh);
+  }
+  60% {
+    transform: translate(45vw, 30vh);
+  }
+  70% {
+    transform: translate(55vw, 20vh);
+  }
+  80% {
+    transform: translate(60vw, 15vh);
+  }
+  90% {
+    transform: translate(50vw, 5vh);
+  }
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+@keyframes circularMotion {
+  0% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+  }
+  25% {
+    transform: translate(calc(50vw + 30px - 25px), calc(50vh - 25px));
+  }
+  50% {
+    transform: translate(calc(50vw - 25px), calc(50vh + 25px - 25px));
+  }
+  75% {
+    transform: translate(calc(50vw - 30px - 25px), calc(50vh - 25px));
+  }
+  100% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+  }
+}
+
+@keyframes randomZigzag {
+  0%,
+  100% {
+    transform: translate(20vw, 20vh);
+  }
+  25% {
+    transform: translate(60vw, 30vh);
+  }
+  50% {
+    transform: translate(40vw, 70vh);
+  }
+  75% {
+    transform: translate(80vw, 50vh);
+  }
+}
+
+@keyframes randomCircular {
+  0%,
+  100% {
+    transform: translate(30vw, 50vh);
+  }
+  20% {
+    transform: translate(50vw, 30vh);
+  }
+  40% {
+    transform: translate(70vw, 60vh);
+  }
+  60% {
+    transform: translate(60vw, 80vh);
+  }
+  80% {
+    transform: translate(40vw, 60vh);
+  }
+}
+
+@keyframes randomBounce {
+  0%,
+  100% {
+    transform: translate(50vw, 50vh);
+  }
+  15% {
+    transform: translate(75vw, 20vh);
+  }
+  30% {
+    transform: translate(90vw, 80vh);
+  }
+  45% {
+    transform: translate(60vw, 60vh);
+  }
+  60% {
+    transform: translate(20vw, 70vh);
+  }
+  75% {
+    transform: translate(10vw, 30vh);
+  }
+  90% {
+    transform: translate(40vw, 20vh);
+  }
+}
+
+@keyframes moveDiagonal2 {
+  0% {
+    transform: translate(-112px, 100vh);
+  }
+  100% {
+    transform: translate(100vw, -20vh);
+  }
+}
+
+.bubble1 {
+  background-image: url("../../Images/bubbles/small-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  z-index: -1;
+  animation: moveDiagonal 10s linear infinite;
+}
+
+.bubble2 {
+  background-image: url("../../Images/bubbles/medium-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  position: fixed;
+  z-index: -1;
+  animation: moveRandomly 15s linear infinite;
+}
+
+.bubble3 {
+  background-image: url("../../Images/bubbles/big-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  z-index: -1;
+  animation: circularMotion 5s ease-in infinite;
+}
+
+.bubble4 {
+  background-image: url("../../Images/bubbles/small-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+  position: fixed;
+  z-index: -1;
+  animation: randomZigzag 10s linear infinite;
+}
+
+.bubble5 {
+  background-image: url("../../Images/bubbles/medium-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: randomCircular 10s linear infinite;
+}
+
+.bubble6 {
+  background-image: url("../../Images/bubbles/big-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: randomBounce 10s linear infinite;
+}
+
+.bubble7 {
+  background-image: url("../../Images/bubbles/medium-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: moveDiagonal2 10s linear infinite;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .background {
+    position: absolute;
+    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-tab.png");
+    width: 768px;
+    height: 800px;
+    bottom: -25px;
+  }
+}
+/* !==================== */
+@media screen and (min-width: 768px) {
+  /* .blueWave {
+    background-image: url("../../Images/welcome-page/blue-wave-tablet-1x.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 1922px;
+    height: 464px;
+    left: -465px;
+  } */
+
+  /* .whiteWave {
+    background-image: url("../../Images/welcome-page/white-wave-tablet-1x.png");
+    background-repeat: no-repeat;
+    width: 2307px;
+    height: 800px;
+    position: absolute;
+    left: -380px;
+  } */
+
+  /* .bottle {
+    background-image: url("../../Images/welcome-page/welcome-page-tablet-bottle-1x.png");
+    background-repeat: no-repeat;
+    width: 518px;
+    height: 386px;
+    position: absolute;
+    right: -140px;
+    bottom: 40px;
+    z-index: -2;
+  } */
+
+  .bubble1,
+  .bubble4,
+  .bubble5,
+  .bubble6,
+  .bubble7 {
+    animation-duration: 20s;
+  }
+
+  .bubble2 {
+    animation-duration: 30s;
+  }
+
+  @keyframes moveInLeftBottomCorner {
+    0% {
+      transform: translate(-112px, -112px);
+    }
+    100% {
+      transform: translate(10vw, 100vh);
+    }
+  }
+
+  .bubble8 {
+    background-image: url("../../Images/bubbles/big-unpainted-bubble.png");
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    z-index: -1;
+    animation: moveInLeftBottomCorner 10s linear infinite;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  /* .wrapper {
+    margin: 0 auto;
+  } */
+
+  /* .background {
+    position: absolute;
+    background-image: url("../../Images/welcom-page-bg/bg-main-page1x-des.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1440px;
+    height: 432px;
+    left: 0;
+    bottom: -190px;
+
+    z-index: -2;
+  } */
+
+  .blueWave {
+    background-image: url("../../Images/welcome-page/blue-wave-desktop-1x.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 1200px;
+    height: 288px;
+    left: 0;
+    bottom: -310px;
+    /* top: calc(100vh - 288px); */
+    z-index: -2;
+  }
+
+  .whiteWave {
+    background-image: url("../../Images/welcome-page/white-wave-desktop-1x.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    bottom: -315px;
+    /* top: 10vw; */
+    /* width: 1440px; */
+    width: 100%;
+    height: 600px;
+    z-index: -2;
+  }
+
+  .bottle {
+    background-image: url("../../Images/welcome-page/welcome-page-desktop-bottle-1x.png");
+    background-repeat: no-repeat;
+    width: 374px;
+    height: 278px;
+    position: absolute;
+
+    right: 290px;
+    bottom: -160px;
   }
 
   .bubble1,

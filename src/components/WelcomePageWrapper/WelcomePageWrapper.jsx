@@ -2,7 +2,8 @@ import css from "./WelcomePageWrapper.module.css";
 
 const WelcomePageWrapper = ({ children }) => {
   return (
-    <section>
+    <section className={css.wrapper}>
+      <div className={css.background}></div>
       <div className={css.blueWave}></div>
       <div className={css.whiteWave}></div>
       <div className={css.bottle}></div>

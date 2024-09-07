@@ -2,7 +2,11 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater, editWater } from "../../redux/waterRequests/operations";
+import {
+  addWater,
+  editWater,
+  getWaterForToday,
+} from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
@@ -19,6 +23,7 @@ import { getWaterForMonth } from "../../redux/waterRequests/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
+  selectWatersToday,
 } from "../../redux/waterRequests/selectors";
 
 import drink from "../../Icons/drink.svg";
@@ -259,19 +264,19 @@ export default function TodayListModal() {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onFocus={(e) => {
+                onFocus={e => {
                   if (e.target.value === "0") {
                     setFieldValue("waterVolume", "");
                   }
                 }}
-                onBlur={(e) => {
+                onBlur={e => {
                   setAmountOfWater(Number(e.target.value));
                   setResult(Number(e.target.value));
                   if (e.target.value === "") {
                     setFieldValue("waterVolume", "0");
                   }
                 }}
-                onKeyPress={(e) => {
+                onKeyPress={e => {
                   if (!/[0-9]/.test(e.key)) {
                     e.preventDefault();
                   }
