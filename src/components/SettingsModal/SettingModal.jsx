@@ -127,6 +127,7 @@ const SettingModal = () => {
             .then(() => {
               showToast("Successfully changed information.", "success");
             })
+            .then(() => dispatch(closeModal()))
             .catch((err) => {
               if (err == "Request failed with status code 401")
                 showToast("Incorrect outdated password", "error");
@@ -139,6 +140,7 @@ const SettingModal = () => {
           .then(() => {
             showToast("Successfully changed information.", "success");
           })
+          .then(() => dispatch(closeModal()))
           .catch(() => showToast("Error, try later!", "error"));
       }
     }
@@ -158,6 +160,7 @@ const SettingModal = () => {
         .then(() => {
           showToast("Avatar changed!", "success");
         })
+        .then(() => dispatch(closeModal()))
         .catch(() => {
           showToast("Error, try later!", "error");
         });

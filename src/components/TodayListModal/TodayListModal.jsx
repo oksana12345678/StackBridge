@@ -140,7 +140,7 @@ export default function TodayListModal({ waterVolume, date }) {
             <div>
               <div className={css.prevRecordContainer}>
                 <svg className={css.iconGlass} width={36} height={36}>
-                  <use href="../../../public/spriteFull.svg#icon-glass"></use>
+                  <use href="/spriteFull.svg#icon-glass"></use>
                 </svg>
                 <div className={css.prevInfoContainer}>
                   <div className={css.prevAmountWater}>{waterVolume} ml</div>
@@ -165,7 +165,7 @@ export default function TodayListModal({ waterVolume, date }) {
                 type="button"
               >
                 <svg className={css.iconMinus} width={24} height={24}>
-                  <use href="../../../public/spriteFull.svg#icon-minus"></use>
+                  <use href="/spriteFull.svg#icon-minus"></use>
                 </svg>
               </button>
               <div className={css.amountCounter}>{amountOfWater}ml</div>
@@ -181,7 +181,7 @@ export default function TodayListModal({ waterVolume, date }) {
                 type="button"
               >
                 <svg className={css.iconPlus} width={24} height={24}>
-                  <use href="../../../public/spriteFull.svg#icon-plus"></use>
+                  <use href="/spriteFull.svg#icon-plus"></use>
                 </svg>
               </button>
             </div>
