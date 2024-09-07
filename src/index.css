@@ -23,24 +23,7 @@
 }
 /* #root {
   height: 100vh;
-
-  min-width: 320px;
-  height: 100vh;
-  position: relative;
-  margin: 0 auto;
-}
-
-@media screen and (min-width: 768px) {
-  #root {
-    width: 768px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  #root {
-    width: 1440px;
-  }
-} */
+}*/
 
 h1,
 h2,
