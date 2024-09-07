@@ -64,6 +64,18 @@ export const refreshUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      if(error.status==401){
+        clearAuthHeader();
+        let authData = localStorage.getItem('persist:auth');
+        if (authData) {
+          authData = JSON.parse(authData);
+      } else {
+          console.error("Key 'persist:auth' not found in localStorage.");
+      }
+      authData.token = "null";
+      const updatedAuthData = JSON.stringify(authData);
+      localStorage.setItem('persist:auth', updatedAuthData);
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
