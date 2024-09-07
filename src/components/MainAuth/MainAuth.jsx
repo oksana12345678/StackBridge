@@ -52,21 +52,21 @@ const MainAuth = ({ children }) => {
 
         <div className={css.animationContainer}>
           <animated.svg style={bottleAnimation} className={css.bottleSvg}>
-            <use href="../../../public/spriteFull.svg#icon-Bottle-Of-Water"></use>
+            <use href="/spriteFull.svg#icon-Bottle-Of-Water"></use>
           </animated.svg>
 
           {/* SVG Shadow animation */}
           <animated.svg style={shadowAnimation} className={css.shadowSvg}>
-            <use href="../../../public/spriteFull.svg#icon-Shadow"></use>
+            <use href="/spriteFull.svg#icon-Shadow"></use>
           </animated.svg>
 
           {/* Splash animations */}
           <animated.svg style={splashAnimation1} className={css.splash1Svg}>
-            <use href="../../../public/spriteFull.svg#icon-Splash-1"></use>
+            <use href="/spriteFull.svg#icon-Splash-1"></use>
           </animated.svg>
 
           <animated.svg style={splashAnimation2} className={css.splash2Svg}>
-            <use href="../../../public/spriteFull.svg#icon-Splash-2"></use>
+            <use href="/spriteFull.svg#icon-Splash-2"></use>
           </animated.svg>
         </div>
       </div>
