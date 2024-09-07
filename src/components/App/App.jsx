@@ -59,7 +59,7 @@ function App() {
     if (token) {
       navigate("/home");
     }
-  }, [dispatch, isLoggedIn, token, navigate, error]);
+  }, [dispatch, token, navigate, error]);
 
   return isRefreshing ? (
     <b>
