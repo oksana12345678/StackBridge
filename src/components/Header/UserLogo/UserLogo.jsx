@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import clsx from "clsx";
 import css from "./UserLogo.module.css";
 import { userLogoModal } from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
@@ -12,11 +13,13 @@ export const UserLogo = () => {
   const buttonNode = useRef();
   const dispatch = useDispatch();
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
-  
+
   const name = userProfile?.name || "";
   const userAvatar = userProfile?.avatar;
   const email = userProfile?.email || "u";
-  const firstLetter = name ? name.charAt(0).toUpperCase() : email.charAt(0).toUpperCase();
+  const firstLetter = name
+    ? name.charAt(0).toUpperCase()
+    : email.charAt(0).toUpperCase();
 
   const onClickOpenUserLogoModal = () => {
     dispatch(userLogoModal());
@@ -29,8 +32,8 @@ export const UserLogo = () => {
     </>
   ) : (
     <>
-      <p className={css.name}>{name}</p>
-      <p className={css.letter}>{firstLetter}</p>
+      {name && <p className={css.name}>{name}</p>}
+      <p className={clsx(css.name, css["letter"])}>{firstLetter}</p>
     </>
   );
 
