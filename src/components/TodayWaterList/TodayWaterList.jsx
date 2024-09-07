@@ -15,10 +15,10 @@ const formatTime = (isoDateString) => {
     minute: "2-digit",
     hour12: true,
   };
-  // const userLocale = navigator.language;
-  // return new Intl.DateTimeFormat(userLocale, options).format(date);
+  const userLocale = navigator.language;
+  return new Intl.DateTimeFormat(userLocale, options).format(date);
 
-  return new Intl.DateTimeFormat("en-US", options).format(date);
+  // return new Intl.DateTimeFormat("en-US", options).format(date);
 };
 
 export const TodayWaterList = () => {
