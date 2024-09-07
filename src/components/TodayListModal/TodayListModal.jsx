@@ -214,7 +214,7 @@ export default function TodayListModal({ waterNote }) {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={(e) => {
+                onChange={e => {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}

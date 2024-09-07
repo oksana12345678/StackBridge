@@ -1,70 +1,68 @@
 .whyDrinkWater {
-    padding: 24px 16px;
-    margin-bottom: 40px;
-    background-color: var(--secondary-light-blue-color);
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    flex-basis: 48%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  padding: 24px 16px;
+  background-color: var(--secondary-light-blue-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  flex-basis: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
 }
 
 .whyDrinkWater h3 {
-    font-size: 18px;
-    font-weight: var(--font-weight-medium);
-    color: var(--primary-black-color);
-    padding-bottom: 12px;
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-black-color);
+  padding-bottom: 12px;
 }
 
 .whyDrinkWater ul {
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: space-between;
-
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 .whyDrinkWater li {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-regular);
-    color: var(--primary-black-color);
-    margin-bottom: 16px;
-    position: relative;
-    padding-left: 18px;
-    list-style: none;
-    line-height: 1.25;
-    display: flex;
-    align-items: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--primary-black-color);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 18px;
+  list-style: none;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
 }
 
 .whyDrinkWater li:before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--primary-blue-color);
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 36px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-right: 8px;
-    padding: 0;
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-blue-color);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 8px;
+  padding: 0;
 }
 .whyDrinkWater li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 768px) {
-    .whyDrinkWater{
-        max-width: 494px;
-    }
-
+  .whyDrinkWater {
+    max-width: 494px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .whyDrinkWater {
-        margin-bottom: 0;
-    }
+  .whyDrinkWater {
+    margin-bottom: 0;
+  }
 }

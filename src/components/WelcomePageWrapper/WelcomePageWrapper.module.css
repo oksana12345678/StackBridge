@@ -1,23 +1,17 @@
-.blueWave {
-  background-image: url("../../Images/welcome-page/blue-wave-mobile-1x.png");
-  background-repeat: no-repeat;
-  width: 2725px;
-  height: 658px;
-  position: fixed;
-  left: -747px;
-  top: 294px;
-  z-index: -2;
+.wrapper {
+  position: relative;
 }
 
-.whiteWave {
-  background-image: url("../../Images/welcome-page/white-wave-mobile-1x.png");
-  background-repeat: no-repeat;
-  width: 3271px;
-  height: 1134px;
-  position: fixed;
-  left: -882px;
-  top: -174px;
-  z-index: -2;
+@media screen and (max-width: 767px) {
+  .background {
+    position: absolute;
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageMob.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @keyframes moveDiagonal {
@@ -222,40 +216,19 @@
   animation: moveDiagonal2 10s linear infinite;
 }
 
-@media screen and (min-width: 768px) {
-  .blueWave {
-    background-image: url("../../Images/welcome-page/blue-wave-tablet-1x.png");
-    background-repeat: no-repeat;
-    position: fixed;
-    width: 1922px;
-    height: 464px;
-    left: -400px;
-    top: 336px;
-    z-index: -2;
-  }
-
-  .whiteWave {
-    background-image: url("../../Images/welcome-page/white-wave-tablet-1x.png");
-    background-repeat: no-repeat;
-    width: 2307px;
-    height: 800px;
-    position: fixed;
-    left: -400px;
-    top: 0px;
-    z-index: -2;
-  }
-
-  .bottle {
-    background-image: url("../../Images/welcome-page/welcome-page-tablet-bottle-1x.png");
-    background-repeat: no-repeat;
-    width: 518px;
-    height: 386px;
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .background {
     position: absolute;
-    left: 389px;
-    top: 364px;
-    z-index: -2;
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageTab.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 800px;
+    bottom: -20px;
   }
+}
 
+@media screen and (min-width: 768px) {
   .bubble1,
   .bubble4,
   .bubble5,
@@ -289,35 +262,16 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .blueWave {
-    background-image: url("../../Images/welcome-page/blue-wave-desktop-1x.png");
-    background-repeat: no-repeat;
-    position: fixed;
-    width: 1200px;
-    height: 288px;
-    left: 0;
-    top: calc(100vh - 288px);
-    z-index: -2;
-  }
-
-  .whiteWave {
-    background-image: url("../../Images/welcome-page/white-wave-desktop-1x.png");
+  .background {
+    position: absolute;
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageDesk.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    position: fixed;
-    left: 0px;
-    top: 10vw;
-    z-index: -2;
-  }
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: -310px;
 
-  .bottle {
-    background-image: url("../../Images/welcome-page/welcome-page-desktop-bottle-1x.png");
-    background-repeat: no-repeat;
-    width: 374px;
-    height: 278px;
-    position: absolute;
-    left: 1016px;
-    top: 492px;
     z-index: -2;
   }
 
