@@ -12,3 +12,4 @@ export const selectIsAddWaterModalOpen = (state) =>
 export const selectIdToDelete = (state) => state.modal.idToDelete;
 export const selectIsEditWaterModalOpen = (state) =>
   state.modal.isEditWaterModalOpen;
+export const selectIdToEdit = (state) => state.modal.idToEdit;
