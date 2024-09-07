@@ -32,7 +32,7 @@ export const UserLogo = () => {
     </>
   ) : (
     <>
-      <p className={css.name}>{name}</p>
+      {name && <p className={css.name}>{name}</p>}
       <p className={clsx(css.name, css["letter"])}>{firstLetter}</p>
     </>
   );
