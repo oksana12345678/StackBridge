@@ -1,8 +1,11 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater } from "../../redux/waterRequests/operations";
+import {
+  addWater,
+  getWaterForToday,
+} from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./AddWater.module.css";
@@ -15,9 +18,6 @@ import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
-
-import minus from "../../Icons/minus.svg";
-import plus from "../../Icons/plus.svg";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -87,6 +87,8 @@ export default function AddWater() {
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
+  useEffect(() => {}, []);
+
   // Функція відправки даних на бекенд
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
@@ -96,6 +98,7 @@ export default function AddWater() {
       .then(() => {
         showToast("Water add successful!", "success");
         actions.resetForm();
+        dispatch(getWaterForToday());
         dispatch(closeModal());
         setAmountOfWater(50);
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
@@ -145,7 +148,9 @@ export default function AddWater() {
                 }}
                 type="button"
               >
-                <img src={minus} alt="Minus" />
+                <svg className={css.iconMinus} width={24} height={24}>
+                  <use href="../../../public/spriteFull.svg#icon-minus"></use>
+                </svg>
               </button>
               <div className={css.amountCounter}>{amountOfWater}ml</div>
               <button
@@ -159,7 +164,9 @@ export default function AddWater() {
                 }}
                 type="button"
               >
-                <img src={plus} alt="Plus" />
+                <svg className={css.iconPlus} width={24} height={24}>
+                  <use href="../../../public/spriteFull.svg#icon-plus"></use>
+                </svg>
               </button>
             </div>
             <div className={css.timeContainer}>

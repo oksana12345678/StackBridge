@@ -12,6 +12,10 @@
   --light-blue-text: rgb(158, 187, 255);
   --secondary-light-blue: rgb(215, 227, 255);
 
+  --shadow-dark-blue: rgba(64, 123, 255, 0.2);
+  --shadow-secondary-dark-blue: rgba(64, 123, 255, 0.34);
+  --shadow-blue: rgba(64, 123, 255, 0.54);
+
   --font-size-base-sixteen: 16px;
   --font-size-base-eighteen: 18px;
   --font-size-base-fourteen: 14px;
@@ -25,7 +29,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 h1,
 h2,
