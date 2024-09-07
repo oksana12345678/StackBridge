@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 320px;
+    width: 320px;
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
@@ -20,7 +20,7 @@
     padding-top: 16px;
   }
   .container {
-    max-width: 744px;
+    width: 744px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -28,6 +28,6 @@
     padding-top: 12px;
   }
   .container {
-    max-width: 1256px;
+    width: 1256px;
   }
 }

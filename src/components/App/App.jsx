@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import { logOut, refreshUser } from "../../redux/auth/operations.js";
+import { refreshUser } from "../../redux/auth/operations.js";
 
 import SharedLayout from "../../components/SharedLayout/SharedLayout";
 import RestrictedRoute from "../../components/Route/RegisteredRoute/RegisteredRoute.jsx";
