@@ -94,9 +94,9 @@ export default function TodayListModal({ waterNote }) {
   console.log(waterNote);
   // Функція відправки даних на бекенд
   const handleEditWater = (values, actions) => {
-    const date = formatDateTime(values.time);
+    const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
-    dispatch(editWater({ _id: idToEdit, updates: { waterVolume, date } }))
+    dispatch(editWater({ _id: waterNote.id, updates: { waterVolume, date } }))
       .unwrap()
       .then(() => {
         showToast("Water edit successful!", "success");
@@ -106,6 +106,7 @@ export default function TodayListModal({ waterNote }) {
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
+        setAmountOfWater(waterVolume);
       })
       .catch(() => {
         showToast("Water edit failed!", "error");
