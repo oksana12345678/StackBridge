@@ -9,23 +9,16 @@ import {
   selectLoading,
   selectError,
 } from "../../redux/waterRequests/selectors.js";
-import { getWaterForToday } from "../../redux/waterRequests/operations.js";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice.js";
-
 import css from "./WaterRatioPanel.module.css";
-import { selectDaysStats } from "../../redux/monthStats/selects.js";
-
+import { selectWatersToday } from "../../redux/waterRequests/selectors.js";
 const WaterRatioPanel = () => {
   const dispatch = useDispatch();
 
-  const daysStats = useSelector(selectDaysStats);
-
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const water = useSelector(selectWatersToday)
 
-  useEffect(() => {
-    dispatch(getWaterForToday());
-  }, [dispatch]);
 
   useEffect(() => {
     if (error) {
@@ -37,7 +30,7 @@ const WaterRatioPanel = () => {
   }, [error]);
 
   const progressValue =
-    daysStats[daysStats.length - 1]?.percentOfWaterRate || "0%";
+  water?.percentOfWaterRate || "0%";
 
   const numberProgressValue =
     parseFloat(progressValue) > 100 ? 100 : parseFloat(progressValue);
