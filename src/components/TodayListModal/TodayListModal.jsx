@@ -3,7 +3,10 @@ import * as Yup from "yup";
 import { useId, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
-import { editWater } from "../../redux/waterRequests/operations";
+import {
+  editWater,
+  getWaterForToday,
+} from "../../redux/waterRequests/operations";
 import { getWaterForMonth } from "../../redux/monthStats/operations.js";
 import {
   selectIdToEdit,
@@ -17,10 +20,6 @@ import { closeModal } from "../../redux/modalWindow/slice";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
-
-import drink from "../../Icons/drink.svg";
-import minus from "../../Icons/minus.svg";
-import plus from "../../Icons/plus.svg";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -101,6 +100,7 @@ export default function TodayListModal({ waterVolume, date }) {
       .then(() => {
         showToast("Water edit successful!", "success");
         actions.resetForm();
+        dispatch(getWaterForToday());
         dispatch(closeModal());
         // TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
@@ -139,7 +139,9 @@ export default function TodayListModal({ waterVolume, date }) {
             <h2 className={css.title}>Edit the entered amount of water</h2>
             <div>
               <div className={css.prevRecordContainer}>
-                <img src={drink} alt="Glass of water" />
+                <svg className={css.iconGlass} width={36} height={36}>
+                  <use href="../../../public/spriteFull.svg#icon-glass"></use>
+                </svg>
                 <div className={css.prevInfoContainer}>
                   <div className={css.prevAmountWater}>{waterVolume} ml</div>
                   <div className={css.prevTime}>{date}</div>
@@ -162,7 +164,9 @@ export default function TodayListModal({ waterVolume, date }) {
                 }}
                 type="button"
               >
-                <img src={minus} alt="Minus" />
+                <svg className={css.iconMinus} width={24} height={24}>
+                  <use href="../../../public/spriteFull.svg#icon-minus"></use>
+                </svg>
               </button>
               <div className={css.amountCounter}>{amountOfWater}ml</div>
               <button
@@ -176,7 +180,9 @@ export default function TodayListModal({ waterVolume, date }) {
                 }}
                 type="button"
               >
-                <img src={plus} alt="Plus" />
+                <svg className={css.iconPlus} width={24} height={24}>
+                  <use href="../../../public/spriteFull.svg#icon-plus"></use>
+                </svg>
               </button>
             </div>
             <div className={css.timeContainer}>
