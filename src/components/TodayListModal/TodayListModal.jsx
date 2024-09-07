@@ -1,23 +1,22 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId, useState } from "react";
+import { useId, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editWater } from "../../redux/waterRequests/operations";
-import showToast from "../showToast";
-import "react-toastify/ReactToastify.css";
-import css from "./TodayListModal.module.css";
-
-// import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
-
-import { selectIsEditWaterModalOpen } from "../../redux/modalWindow/selectors";
-import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
+import { editWater } from "../../redux/waterRequests/operations";
 import { getWaterForMonth } from "../../redux/monthStats/operations.js";
-
+import {
+  selectIdToEdit,
+  selectIsEditWaterModalOpen,
+} from "../../redux/modalWindow/selectors";
 import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
+import { closeModal } from "../../redux/modalWindow/slice";
+import showToast from "../showToast";
+import "react-toastify/ReactToastify.css";
+import css from "./TodayListModal.module.css";
 
 import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
@@ -34,6 +33,7 @@ const WaterSchema = Yup.object().shape({
 export default function TodayListModal({ waterNote }) {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
+  const idToEdit = useSelector(selectIdToEdit);
   const currentMonth = useSelector(selectCurrentMonth); //TODO
   const currentYear = useSelector(selectCurrentYear); //TODO
 
@@ -91,7 +91,7 @@ export default function TodayListModal({ waterNote }) {
     });
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
-  console.log(waterNote);
+
   // Функція відправки даних на бекенд
   const handleEditWater = (values, actions) => {
     const date = formatDateTime(values.date);
@@ -106,12 +106,15 @@ export default function TodayListModal({ waterNote }) {
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
-        setAmountOfWater(waterVolume);
       })
       .catch(() => {
         showToast("Water edit failed!", "error");
       });
   };
+
+  useEffect(() => {
+    setAmountOfWater(waterNote.waterVolume);
+  }, [waterNote.waterVolume]);
 
   return (
     <ModalWrapper
@@ -125,7 +128,7 @@ export default function TodayListModal({ waterNote }) {
     >
       <Formik
         initialValues={{
-          date: timeNow,
+          date: waterNote.date,
           waterVolume: waterNote.waterVolume,
         }}
         onSubmit={handleEditWater}
