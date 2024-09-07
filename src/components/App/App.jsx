@@ -38,24 +38,25 @@ function App() {
   const error = useSelector(selectErrorAuth);
 
   useEffect(() => {
-    if (token && isLoggedIn) {
+    if (token) {
       dispatch(refreshUser())
         .unwrap()
         .catch((error) => {
           showToast(`Oops something went wrong! ${error} `, "error");
         });
-    }
-
-    if (!token && error === 401) {
-      dispatch(logOut())
-        .unwrap()
-        .catch((error) => {
-          showToast("Try logging in again!", "error");
-        });
       return;
     }
 
-    if (token && isLoggedIn) {
+    // if (error === 401) {
+    //   dispatch(logOut())
+    //     .unwrap()
+    //     .try(() => {
+    //       showToast("Try logging in again!", "error");
+    //     });
+    //   return;
+    // }
+
+    if (token) {
       navigate("/home");
     }
   }, [dispatch, isLoggedIn, token, navigate, error]);
