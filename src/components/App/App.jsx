@@ -38,7 +38,7 @@ function App() {
   const error = useSelector(selectErrorAuth);
 
   useEffect(() => {
-    if (token) {
+    if (token && isLoggedIn) {
       dispatch(refreshUser())
         .unwrap()
         .catch((error) => {
@@ -46,15 +46,6 @@ function App() {
         });
       return;
     }
-
-    // if (error === 401) {
-    //   dispatch(logOut())
-    //     .unwrap()
-    //     .try(() => {
-    //       showToast("Try logging in again!", "error");
-    //     });
-    //   return;
-    // }
 
     if (token && isLoggedIn) {
       navigate("/home");
