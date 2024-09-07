@@ -1,66 +1,95 @@
+import { useEffect } from "react";
+import { Hourglass } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlusCircle as Plus } from "react-icons/hi2";
 
-import { selectWatersToday } from "../../redux/waterRequests/selectors.js";
+import showToast from "../showToast.js";
+
+import {
+  selectLoading,
+  selectError,
+} from "../../redux/waterRequests/selectors.js";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice.js";
-
 import css from "./WaterRatioPanel.module.css";
-
+import { selectWatersToday } from "../../redux/waterRequests/selectors.js";
 const WaterRatioPanel = () => {
   const dispatch = useDispatch();
 
-  const waterConsumption = useSelector(selectWatersToday);
-  console.log(waterConsumption);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  const water = useSelector(selectWatersToday);
 
-  const progressValue = waterConsumption?.percentOfWaterRate || "0%";
+  useEffect(() => {
+    if (error) {
+      showToast(
+        "Error with loading percentage of your water consumption!",
+        "error"
+      );
+    }
+  }, [error]);
 
-  const numberProgressValue = parseFloat(progressValue);
+  const progressValue = water?.percentOfWaterRate || "0%";
+
+  const numberProgressValue =
+    parseFloat(progressValue) > 100 ? 100 : parseFloat(progressValue);
 
   return (
     <div className={css.waterRatioPanelWrapper}>
       <div className={css.progressWrapper}>
         <p className={css.progressTitle}>Today</p>
-        <div className={css.progressBarWrapper}>
-          <div className={css.progressTrack}>
-            <div
-              className={css.progressTrackValue}
-              style={{
-                width: `${progressValue}`,
-              }}
-            ></div>
-            <div
-              className={css.progressSlider}
-              style={{
-                left: `calc(${progressValue} - ${
-                  (numberProgressValue * 14) / 100
-                }px)`,
-              }}
-            ></div>
+        {loading ? (
+          <Hourglass
+            visible={true}
+            height="30"
+            width="30"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass={css.loader}
+            colors={["#306cce", "#72a1ed"]}
+          />
+        ) : (
+          <div className={css.progressBarWrapper}>
+            <div className={css.progressTrack}>
+              <div
+                className={css.progressTrackValue}
+                style={{
+                  width: `${numberProgressValue}%`,
+                }}
+              ></div>
+              <div
+                className={css.progressSlider}
+                style={{
+                  left: `calc(${numberProgressValue}% - ${
+                    (numberProgressValue * 14) / 100
+                  }px)`,
+                }}
+              ></div>
+            </div>
+            <div className={css.progressBarRangeScale}>
+              <span
+                className={`${css.scaleValue} ${
+                  numberProgressValue <= 0 ? css.activeScaleValue : ""
+                }`}
+              >
+                0%
+              </span>
+              <span
+                className={`${css.scaleValue} ${
+                  numberProgressValue === 50 ? css.activeScaleValue : ""
+                }`}
+              >
+                50%
+              </span>
+              <span
+                className={`${css.scaleValue} ${
+                  numberProgressValue >= 100 ? css.activeScaleValue : ""
+                }`}
+              >
+                100%
+              </span>
+            </div>
           </div>
-          <div className={css.progressBarRangeScale}>
-            <span
-              className={`${css.scaleValue} ${
-                numberProgressValue <= 0 ? css.activeScaleValue : ""
-              }`}
-            >
-              0%
-            </span>
-            <span
-              className={`${css.scaleValue} ${
-                numberProgressValue === 50 ? css.activeScaleValue : ""
-              }`}
-            >
-              50%
-            </span>
-            <span
-              className={`${css.scaleValue} ${
-                numberProgressValue >= 100 ? css.activeScaleValue : ""
-              }`}
-            >
-              100%
-            </span>
-          </div>
-        </div>
+        )}
       </div>
       <button
         type="button"

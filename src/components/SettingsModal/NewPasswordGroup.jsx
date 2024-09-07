@@ -5,7 +5,7 @@ import Label from "./Label/Label";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import css from "./SettingModal.module.css";
 
-const NewPasswordGroup = ({ isHiddenPassword, toggle, isError, isTouched }) => {
+const NewPasswordGroup = ({ isHiddenPassword, toggle, isError }) => {
   const passwordInputId = useId();
   return (
     <div className={css["password-sub-group"]}>
@@ -15,12 +15,12 @@ const NewPasswordGroup = ({ isHiddenPassword, toggle, isError, isTouched }) => {
       <div className={css["input-wrapper"]}>
         <Field
           className={clsx(css.input, {
-            [css["error-input"]]: isError && isTouched,
+            [css["error-input"]]: isError,
           })}
           id={passwordInputId}
           type={isHiddenPassword ? "text" : "password"}
           name="password"
-          placeholder="Password"
+          placeholder="Enter new password"
         />
         {isHiddenPassword ? (
           <button

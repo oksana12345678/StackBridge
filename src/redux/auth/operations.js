@@ -15,10 +15,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://watertracker-app.onrender.com/auth/signup",
-        credentials
-      );
+      const response = await axios.post("/auth/signup", credentials);
       setAuthHeader(response.data.token);
 
       return response.data;
@@ -32,10 +29,7 @@ export const logIn = createAsyncThunk(
   "auth/signin",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://watertracker-app.onrender.com/auth/signin",
-        credentials
-      );
+      const response = await axios.post("/auth/signin", credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -70,18 +64,31 @@ export const refreshUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      if(error.status==401){
+        clearAuthHeader();
+        let authData = localStorage.getItem('persist:auth');
+        if (authData) {
+          authData = JSON.parse(authData);
+      } else {
+          console.error("Key 'persist:auth' not found in localStorage.");
+      }
+      authData.token = "null";
+      const updatedAuthData = JSON.stringify(authData);
+      localStorage.setItem('persist:auth', updatedAuthData);
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-
-
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.patch("https://watertracker-app.onrender.com/users", credentials);
+      const response = await axios.patch(
+        "https://watertracker-app.onrender.com/users",
+        credentials
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -89,14 +96,19 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-
 export const updateAvatar = createAsyncThunk(
   "auth/updateAvatar",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.patch("https://watertracker-app.onrender.com/users/avatar", credentials,{headers: {
-          "Content-Type": "multipart/form-data",
-        }});
+      const response = await axios.patch(
+        "https://watertracker-app.onrender.com/users/avatar",
+        credentials,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

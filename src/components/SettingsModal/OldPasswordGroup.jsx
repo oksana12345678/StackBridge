@@ -5,7 +5,7 @@ import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import clsx from "clsx";
 import css from "./SettingModal.module.css";
 
-const OldPasswordGroup = ({ isHiddenPassword, isError, isTouched, toggle }) => {
+const OldPasswordGroup = ({ isHiddenPassword, isError, toggle }) => {
   const oldPasswordInputId = useId();
   return (
     <div className={css["password-sub-group"]}>
@@ -16,12 +16,12 @@ const OldPasswordGroup = ({ isHiddenPassword, isError, isTouched, toggle }) => {
         <Field
           autoComplete="off"
           className={clsx(css.input, {
-            [css["error-input"]]: isError && isTouched,
+            [css["error-input"]]: isError,
           })}
           id={oldPasswordInputId}
           type={isHiddenPassword ? "text" : "password"}
           name="outdatedPassword"
-          placeholder="Password"
+          placeholder="Enter old password"
         />
         {isHiddenPassword ? (
           <button

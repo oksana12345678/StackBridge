@@ -17,12 +17,12 @@
   background-color: #ffffff;
   overflow: auto;
   max-height: 95%;
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .modal::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -70,4 +70,9 @@
 .button-class-logout {
   top: 36px;
   right: 24px;
+}
+
+.button-class-settings {
+  top: 36px;
+  right: 12px;
 }

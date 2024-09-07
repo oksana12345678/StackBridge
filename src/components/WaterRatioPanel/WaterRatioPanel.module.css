@@ -1,3 +1,9 @@
+.loader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 .waterRatioPanelWrapper {
   margin: 0 auto;
   width: 280px;
@@ -6,6 +12,7 @@
 .progressWrapper {
   width: 100%;
   height: 82px;
+  position: relative;
 }
 
 .progressTitle {

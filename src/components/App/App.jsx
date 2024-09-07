@@ -1,10 +1,10 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import { refreshUser } from "../../redux/auth/operations.js";
+import { logOut, refreshUser } from "../../redux/auth/operations.js";
 
 import SharedLayout from "../../components/SharedLayout/SharedLayout";
 import RestrictedRoute from "../../components/Route/RegisteredRoute/RegisteredRoute.jsx";
@@ -13,6 +13,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
 import { ToastContainer } from "react-toastify";
 import showToast from "../showToast.js";
+import { selectErrorAuth } from "../../redux/auth/selectors.js";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -34,22 +35,31 @@ function App() {
   const dispatch = useDispatch();
   const { isRefreshing, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const error = useSelector(selectErrorAuth);
 
-  
   useEffect(() => {
     if (token) {
       dispatch(refreshUser())
         .unwrap()
-
         .catch((error) => {
           showToast(`Oops something went wrong! ${error} `, "error");
         });
+      return;
     }
+
+    // if (error === 401) {
+    //   dispatch(logOut())
+    //     .unwrap()
+    //     .try(() => {
+    //       showToast("Try logging in again!", "error");
+    //     });
+    //   return;
+    // }
 
     if (token) {
       navigate("/home");
     }
-  }, [dispatch, isLoggedIn, token, navigate]);
+  }, [dispatch, isLoggedIn, token, navigate, error]);
 
   return isRefreshing ? (
     <b>

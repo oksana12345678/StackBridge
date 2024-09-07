@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
-import {
-  fetchUserData,
-  updateWaterRate,
-} from "../../redux/waterRequests/operations";
+import { updateWaterRate } from "../../redux/waterRate/operations";
+import { fetchUserData } from "../../redux/user/operations";
 
 const PlannedWaterIntakeSchema = Yup.object().shape({
   plannedWaterIntake: Yup.number()
@@ -27,15 +25,9 @@ const calculateWater = (gender, weight, activeTime) => {
   if (!numericWeight || numericWeight <= 0) return "2";
 
   if (gender === "man") {
-    return (
-      numericWeight * 0.04 +
-      numericActiveTime * 0.6
-    ).toFixed(1);
+    return (numericWeight * 0.04 + numericActiveTime * 0.6).toFixed(1);
   } else {
-    return (
-      numericWeight * 0.03 +
-      numericActiveTime * 0.4
-    ).toFixed(1);
+    return (numericWeight * 0.03 + numericActiveTime * 0.4).toFixed(1);
   }
 };
 
@@ -72,10 +64,7 @@ const DailyNormaModal = () => {
   }, [isModalOpen, dispatch]);
 
   const handleSubmit = async (values, actions) => {
-
-    const waterRate =
-      Number(values.plannedWaterIntake) * 1000;
-
+    const waterRate = Number(values.plannedWaterIntake) * 1000;
 
     try {
       await dispatch(updateWaterRate({ waterRate: waterRate })).unwrap();
@@ -119,10 +108,7 @@ const DailyNormaModal = () => {
         >
           {({ values, errors, touched }) => (
             <Form className={css.form}>
-
-              <label className={css.labelTitle}>
-                Calculate your rate:
-              </label>
+              <label className={css.labelTitle}>Calculate your rate:</label>
               {/* <div className={css.radioGroup}>
 
                 <label className={css.radioLabel}>
@@ -148,10 +134,7 @@ const DailyNormaModal = () => {
                 </label>
               </div> */}
 
-              <RadioPair
-                labelLeft="For woman"
-                labelRight="For man"
-              />
+              <RadioPair labelLeft="For woman" labelRight="For man" />
 
               <label className={css.label}>
                 Your weight in kilograms:
@@ -198,8 +181,7 @@ const DailyNormaModal = () => {
                   id={namePlannedWaterIntakeId}
                   // className={css.inputSubmit}
                   className={`${css.inputSubmit} ${
-                    errors.plannedWaterIntake &&
-                    touched.plannedWaterIntake
+                    errors.plannedWaterIntake && touched.plannedWaterIntake
                       ? css.inputSubmitError
                       : ""
                   }`}

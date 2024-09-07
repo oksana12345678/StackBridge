@@ -2,22 +2,45 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import css from "./DeleteEntryModal.module.css";
 import { closeModal } from "../../redux/modalWindow/slice";
-import { selectIsDeleteEntryModalOpen } from "../../redux/modalWindow/selectors";
-import { deleteWaterEntry } from "../../redux/waterRequests/operations";
+import {
+  selectIdToDelete,
+  selectIsDeleteEntryModalOpen,
+} from "../../redux/modalWindow/selectors";
+import { deleteWaterEntry, getWaterForToday } from "../../redux/waterRequests/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations";
+import {
+  selectCurrentMonth,
+  selectCurrentYear,
+} from "../../redux/monthStats/selects.js";
+
 const customStyles = {
   content: {
     padding: "32px 24px",
   },
 };
 
-export default function DeleteEntryModal({ id }) {
-  console.log(id);
-
+export default function DeleteEntryModal() {
+  const isDeleteModalOpen = useSelector(selectIsDeleteEntryModalOpen);
+  const idToDelete = useSelector(selectIdToDelete);
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
+  
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsDeleteEntryModalOpen);
+  const handleDelete = () => {
+    dispatch(deleteWaterEntry(idToDelete))
+    .unwrap()
+    .then(()=>{
+      dispatch(getWaterForToday());
+      dispatch(getWaterForMonth({ year: currentYear, month: currentMonth + 1 }));
+    })
+    .catch((err)=>console.log(err));
+    dispatch(closeModal());
+  };
+
+
   return (
     <ModalWrapper
-      modalIsOpen={modalIsOpen}
+      modalIsOpen={isDeleteModalOpen}
       closeModal={() => dispatch(closeModal())}
       customStyles={customStyles}
       buttonClassLogout={true}
@@ -32,7 +55,9 @@ export default function DeleteEntryModal({ id }) {
           >
             Cancel
           </button>
-          <button className={css.buttonLogout}>Delete</button>
+          <button className={css.buttonLogout} onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </div>
     </ModalWrapper>
