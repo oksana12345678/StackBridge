@@ -83,14 +83,13 @@ function App() {
     if (token) {
       dispatch(refreshUser())
         .unwrap()
+        .then(() => {
+          navigate("/home");
+        })
         .catch((error) => {
           showToast(`Oops something went wrong! ${error} `, "error");
         });
       return;
-    }
-
-    if (token) {
-      navigate("/home");
     }
   }, [dispatch, token, navigate]);
 
