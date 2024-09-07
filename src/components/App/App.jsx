@@ -38,7 +38,7 @@ function App() {
   const error = useSelector(selectErrorAuth);
 
   useEffect(() => {
-    if (token && isLoggedIn) {
+    if (token) {
       dispatch(refreshUser())
         .unwrap()
         .catch((error) => {
@@ -47,10 +47,10 @@ function App() {
       return;
     }
 
-    if (token && isLoggedIn) {
+    if (token) {
       navigate("/home");
     }
-  }, [dispatch, isLoggedIn, token, navigate, error]);
+  }, [dispatch, token, navigate]);
 
   return isRefreshing ? (
     <b>
