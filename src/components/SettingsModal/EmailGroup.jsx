@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Label from "./Label/Label";
 import css from "./SettingModal.module.css";
 
-const EmailGroup = ({ isError, isTouched }) => {
+const EmailGroup = ({ isError }) => {
   const emailInputId = useId();
   return (
     <div className={css["email-group"]}>
@@ -15,7 +15,7 @@ const EmailGroup = ({ isError, isTouched }) => {
         <Field
           autoComplete="off"
           className={clsx(css.input, {
-            [css["error-input"]]: isError && isTouched,
+            [css["error-input"]]: isError,
           })}
           id={emailInputId}
           type="email"

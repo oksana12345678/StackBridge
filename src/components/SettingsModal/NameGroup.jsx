@@ -4,7 +4,7 @@ import { Field, ErrorMessage } from "formik";
 import Label from "./Label/Label";
 import css from "./SettingModal.module.css";
 
-const NameGroup = ({ isTouched, isError }) => {
+const NameGroup = ({ isError }) => {
   const nameInputId = useId();
 
   return (
@@ -15,7 +15,7 @@ const NameGroup = ({ isTouched, isError }) => {
       <div className={css["input-wrapper"]}>
         <Field
           className={clsx(css.input, {
-            [css["error-input"]]: isError && isTouched,
+            [css["error-input"]]: isError,
           })}
           id={nameInputId}
           type="text"

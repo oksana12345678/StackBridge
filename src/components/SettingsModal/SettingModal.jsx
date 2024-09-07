@@ -42,46 +42,33 @@ const SettingModal = () => {
     outdatedPassword: Yup.string()
       .min(8, "Too short")
       .max(64, "Too long")
-      .test(
-        "outdated-password-filled",
-        "Required",
-        function (value) {
-          const { password, repeatPassword } = this.parent;
-          if ((password || repeatPassword) && !value) {
-            return false;
-          }
-          return true;
+      .test("outdated-password-filled", "Required", function (value) {
+        const { password, repeatPassword } = this.parent;
+        if ((password || repeatPassword) && !value) {
+          return false;
         }
-      ),
+        return true;
+      }),
     password: Yup.string()
       .min(8, "Too short")
       .max(64, "Too long")
-      .test(
-        "password-filled",
-        "Required",
-        function (value) {
-          const { outdatedPassword, repeatPassword } = this.parent;
-          if ((outdatedPassword || repeatPassword) && !value) {
-            return false;
-          }
-          return true;
+      .test("password-filled", "Required", function (value) {
+        const { outdatedPassword, repeatPassword } = this.parent;
+        if ((outdatedPassword || repeatPassword) && !value) {
+          return false;
         }
-      ),
+        return true;
+      }),
     repeatPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match")
-      .test(
-        "repeat-password-filled",
-        "Required",
-        function (value) {
-          const { outdatedPassword, password } = this.parent;
-          if ((outdatedPassword || password) && !value) {
-            return false;
-          }
-          return true;
+      .test("repeat-password-filled", "Required", function (value) {
+        const { outdatedPassword, password } = this.parent;
+        if ((outdatedPassword || password) && !value) {
+          return false;
         }
-      ),
+        return true;
+      }),
   });
-
 
   const [state, toggle] = useToggle();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
@@ -207,8 +194,8 @@ const SettingModal = () => {
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
                 <GenderIdentityGroup />
-                <NameGroup isError={errors.name} isTouched={touched.name} />
-                <EmailGroup isError={errors.email} isTouched={touched.email} />
+                <NameGroup isError={errors.name && touched.name} />
+                <EmailGroup isError={errors.email && touched.email} />
               </div>
               <div className={css["desktop-right"]}>
                 <h3 className={css.subtitle}>Password</h3>
