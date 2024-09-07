@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import css from "./UserLogo.module.css";
-import { useDispatch } from "react-redux";
 import { userLogoModal } from "../../../redux/modalWindow/slice";
 import { selectIsUserLogoModalOpen } from "../../../redux/modalWindow/selectors";
 import UserLogoPopUp from "../UserLogoPopUp/UserLogoPopUp";
 import { useRef } from "react";
-import { IoIosArrowUp } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { selectUserEmail } from "../../../redux/auth/selectors";
 
 export const UserLogo = () => {
@@ -14,15 +12,27 @@ export const UserLogo = () => {
   const buttonNode = useRef();
   const dispatch = useDispatch();
   const isUserLogoModalOpen = useSelector(selectIsUserLogoModalOpen);
-  const defaultUserImage = "/userPic.png";
-  const defaultName = "User Name";
+  
+  const name = userProfile?.name || "";
+  const userAvatar = userProfile?.avatar;
+  const email = userProfile?.email || "u";
+  const firstLetter = name ? name.charAt(0).toUpperCase() : email.charAt(0).toUpperCase();
 
   const onClickOpenUserLogoModal = () => {
     dispatch(userLogoModal());
   };
 
-  const name = userProfile.name;
-  const userAvatar = userProfile.avatar;
+  const logoContent = userAvatar ? (
+    <>
+      <p className={css.name}>{name}</p>
+      <img className={css.userAvatar} src={userAvatar} alt="User Avatar" />
+    </>
+  ) : (
+    <>
+      <p className={css.name}>{name}</p>
+      <p className={css.letter}>{firstLetter}</p>
+    </>
+  );
 
   return (
     <div ref={buttonNode}>
@@ -31,13 +41,7 @@ export const UserLogo = () => {
         aria-label="User Logo"
         onClick={onClickOpenUserLogoModal}
       >
-        <p className={css.name}>{name ? name : defaultName}</p>
-
-        <img
-          className={css.userAvatar}
-          src={userAvatar ? userAvatar : defaultUserImage}
-        />
-
+        {logoContent}
         <div className={css.icon}>
           {isUserLogoModalOpen ? (
             <IoIosArrowUp className={css.icon} />
