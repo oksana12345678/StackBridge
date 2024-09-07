@@ -39,40 +39,49 @@ const SettingModal = () => {
   const userInfoValidationSchema = Yup.object({
     name: Yup.string().max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
-    outdatedPassword: Yup.string().min(8, "Too short").max(64, "Too long"),
-    password: Yup.string().min(8, "Too short").max(64, "Too long"),
-    repeatPassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "Passwords must match"
-    ),
-  }).test("passwords-check", null, function (values) {
-    const { outdatedPassword, password, repeatPassword } = values;
-
-    const oneIsFilled = outdatedPassword || password || repeatPassword;
-    const allAreFilled = outdatedPassword && password && repeatPassword;
-
-    if (oneIsFilled && !allAreFilled) {
-      if (!outdatedPassword) {
-        return this.createError({
-          path: "outdatedPassword",
-          message: "All passwords should be filled",
-        });
-      }
-      if (!password) {
-        return this.createError({
-          path: "password",
-          message: "All passwords should be filled",
-        });
-      }
-      if (!repeatPassword) {
-        return this.createError({
-          path: "repeatPassword",
-          message: "All passwords should be filled",
-        });
-      }
-    }
-    return true;
+    outdatedPassword: Yup.string()
+      .min(8, "Too short")
+      .max(64, "Too long")
+      .test(
+        "outdated-password-filled",
+        "All passwords should be filled",
+        function (value) {
+          const { password, repeatPassword } = this.parent;
+          if ((password || repeatPassword) && !value) {
+            return false;
+          }
+          return true;
+        }
+      ),
+    password: Yup.string()
+      .min(8, "Too short")
+      .max(64, "Too long")
+      .test(
+        "password-filled",
+        "All passwords should be filled",
+        function (value) {
+          const { outdatedPassword, repeatPassword } = this.parent;
+          if ((outdatedPassword || repeatPassword) && !value) {
+            return false;
+          }
+          return true;
+        }
+      ),
+    repeatPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .test(
+        "repeat-password-filled",
+        "All passwords should be filled",
+        function (value) {
+          const { outdatedPassword, password } = this.parent;
+          if ((outdatedPassword || password) && !value) {
+            return false;
+          }
+          return true;
+        }
+      ),
   });
+
 
   const [state, toggle] = useToggle();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
@@ -207,20 +216,19 @@ const SettingModal = () => {
                   <OldPasswordGroup
                     isHiddenPassword={state.oldPassword}
                     toggle={toggle}
-                    isError={errors.outdatedPassword}
-                    isTouched={touched.outdatedPassword}
+                    isError={
+                      touched.outdatedPassword && errors.outdatedPassword
+                    }
                   />
                   <NewPasswordGroup
                     isHiddenPassword={state.password}
                     toggle={toggle}
-                    isError={errors.password}
-                    isTouched={touched.password}
+                    isError={touched.password && errors.password}
                   />
                   <RepeatPasswordGroup
                     isHiddenPassword={state.repeatPassword}
                     toggle={toggle}
-                    isError={errors.repeatPassword}
-                    isTouched={touched.repeatPassword}
+                    isError={touched.repeatPassword && errors.repeatPassword}
                   />
                 </div>
               </div>
