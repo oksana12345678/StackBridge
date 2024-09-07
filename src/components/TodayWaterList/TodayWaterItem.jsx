@@ -7,7 +7,7 @@ import { HiOutlineTrash as Trash } from "react-icons/hi2";
 import GlassIcon from "./GlassIcon";
 import TodayListModal from "../TodayListModal/TodayListModal";
 import {
-  addWaterModalOpen,
+  editWaterModalOpen,
   deleteEntryModalOpen,
 } from "../../redux/modalWindow/slice";
 import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
@@ -33,7 +33,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
       <div className={css.icons}>
         <button
           className={css.edit}
-          onClick={() => dispatch(addWaterModalOpen())}
+          onClick={() => dispatch(editWaterModalOpen())}
         >
           <Edit className={css.edit} size={16} />
         </button>

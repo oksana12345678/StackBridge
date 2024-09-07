@@ -2,24 +2,20 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editWater } from "../../redux/waterRequests/operations";
+import { addWater } from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
-import css from "./TodayListModal.module.css";
+import css from "./AddWater.module.css";
 
-// import WaveEffectButton from "../WaveEffectButton/WaveEffectButton";
-
-import { selectIsEditWaterModalOpen } from "../../redux/modalWindow/selectors";
+import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
 import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { getWaterForMonth } from "../../redux/monthStats/operations.js";
-
 import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
 
-import drink from "../../Icons/drink.svg";
 import minus from "../../Icons/minus.svg";
 import plus from "../../Icons/plus.svg";
 
@@ -31,16 +27,15 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function TodayListModal({ waterNote }) {
+export default function AddWater() {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
+  const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
+
   const currentMonth = useSelector(selectCurrentMonth); //TODO
   const currentYear = useSelector(selectCurrentYear); //TODO
-
   const fieldId = useId();
 
-  // Лічильник
-  const [amountOfWater, setAmountOfWater] = useState(waterNote.waterVolume);
+  const [amountOfWater, setAmountOfWater] = useState(50);
 
   const incrementOfCounter = 50;
 
@@ -91,31 +86,35 @@ export default function TodayListModal({ waterNote }) {
     });
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
-  console.log(waterNote);
+
   // Функція відправки даних на бекенд
-  const handleEditWater = (values, actions) => {
-    const date = formatDateTime(values.time);
+  const handleAddWater = (values, actions) => {
+    const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
-    dispatch(editWater({ _id: idToEdit, updates: { waterVolume, date } }))
+    dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
-        showToast("Water edit successful!", "success");
+        showToast("Water add successful!", "success");
         actions.resetForm();
         dispatch(closeModal());
-        // TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
+        setAmountOfWater(50);
+        //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
       })
       .catch(() => {
-        showToast("Water edit failed!", "error");
+        showToast("Water add failed!", "error");
       });
   };
 
   return (
     <ModalWrapper
       modalIsOpen={modalIsOpen}
-      closeModal={() => dispatch(closeModal())}
+      closeModal={() => {
+        dispatch(closeModal());
+        setAmountOfWater(50);
+      }}
       customStyles={{
         content: {
           padding: "0",
@@ -123,28 +122,14 @@ export default function TodayListModal({ waterNote }) {
       }}
     >
       <Formik
-        initialValues={{
-          date: timeNow,
-          waterVolume: waterNote.waterVolume,
-        }}
-        onSubmit={handleEditWater}
+        initialValues={{ date: timeNow, waterVolume: 50 }}
+        onSubmit={handleAddWater}
         validationSchema={WaterSchema}
       >
         {({ setFieldValue }) => (
           <Form className={css.formContainer}>
-            <h2 className={css.title}>Edit the entered amount of water</h2>
-            <div>
-              <div className={css.prevRecordContainer}>
-                <img src={drink} alt="Glass of water" />
-                <div className={css.prevInfoContainer}>
-                  <div className={css.prevAmountWater}>
-                    {waterNote.waterVolume} ml
-                  </div>
-                  <div className={css.prevTime}>{waterNote.date}</div>
-                </div>
-              </div>
-            </div>
-            <p className={css.text}>Correct entered data:</p>
+            <h2 className={css.title}>Add water</h2>
+            <p className={css.text}>Choose a value:</p>
             <p className={css.textCounter}>Amount of water:</p>
             <div className={css.counterContainer}>
               <button
@@ -187,7 +172,7 @@ export default function TodayListModal({ waterNote }) {
                 className={css.input}
                 id={`${fieldId}-date`}
               >
-                <option value={waterNote.date}>{waterNote.date}</option>
+                <option value={timeNow}>{timeNow}</option>
                 {listOfTime.map((date, index) => (
                   <option key={index} value={date}>
                     {date}
