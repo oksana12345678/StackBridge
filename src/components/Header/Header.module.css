@@ -4,6 +4,7 @@
     padding-top: 8px;
   }
   .container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;

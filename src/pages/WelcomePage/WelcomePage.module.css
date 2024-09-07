@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-top: 24px;
-  padding-bottom: 40px; /*TODO =========== */
+  padding-bottom: 40px;
   background-color: transparent;
   max-width: 100%;
   position: relative;
@@ -44,10 +44,6 @@
     padding-top: 40px;
   }
 
-  /* .backgroundElement {
-    background-size: cover;
-  } */
-
   .welcomeContent {
     max-width: 100%;
     align-items: flex-start;
@@ -65,12 +61,8 @@
 @media screen and (min-width: 1440px) {
   .welcomeContainer {
     padding-top: 80px;
-    padding-bottom: 109px; /*TODO ============ */
+    padding-bottom: 109px;
   }
-  /* 
-  .backgroundElement {
-    background-size: cover;
-  } */
 
   .welcomeContent {
     min-width: 1256px;
