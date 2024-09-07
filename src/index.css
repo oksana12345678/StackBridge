@@ -12,7 +12,11 @@
   --light-blue-text: rgb(158, 187, 255);
   --secondary-light-blue: rgb(215, 227, 255);
 
-  --font-size-base: 16px;
+  --font-size-base-sixteen: 16px;
+  --font-size-base-eighteen: 18px;
+  --font-size-base-fourteen: 14px;
+  --font-size-base-twenty-six: 26px;
+
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
