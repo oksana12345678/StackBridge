@@ -11,6 +11,7 @@ const modalSlice = createSlice({
     isAddWaterModalOpen: false,
     idToDelete: "",
     isEditWaterModalOpen: false,
+    idToEdit: "",
   },
   reducers: {
     openModal: (state) => {
@@ -41,8 +42,9 @@ const modalSlice = createSlice({
     addWaterModalOpen: (state) => {
       state.isAddWaterModalOpen = true;
     },
-    editWaterModalOpen: (state) => {
+    editWaterModalOpen: (state, action) => {
       state.isEditWaterModalOpen = true;
+      state.idToEdit = action.payload;
     },
   },
 });
