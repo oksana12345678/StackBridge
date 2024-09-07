@@ -9,6 +9,15 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { selectUserEmail } from "../../../redux/auth/selectors";
 
+// -якщо аватар присутній - ім'я юзера та його аватар, як контентне зображення, +
+
+// -якщо автар відсутній - ім'я юзера та в якості аватару першу літеру імені юзера в апперкейсі,
+// -якщо відсутні ім'я та аватар - першу літеру  email користувача.
+// хедер
+// fix the style
+
+// my new email 9@gmail.com
+
 export const UserLogo = () => {
   const userProfile = useSelector(selectUserEmail);
   const buttonNode = useRef();
@@ -24,6 +33,30 @@ export const UserLogo = () => {
   const name = userProfile.name;
   const userAvatar = userProfile.avatar;
 
+  let logoContent;
+
+  if (userAvatar && name) {
+    logoContent = (
+      <>
+        <p className={css.name}>{name}</p>
+        <img className={css.userAvatar} src={userAvatar} />
+      </>
+    );
+  }
+
+  if (!userAvatar && name) {
+    logoContent = (
+      <>
+        <p className={css.name}>{name}</p>
+        <p className={css.letter}>{name.slice(0, 1)}</p>
+      </>
+    );
+  }
+
+  if (!userAvatar && !name) {
+    logoContent = <p>{useSelector(selectUserEmail).email.slice(0, 1)}</p>;
+  }
+
   return (
     <div ref={buttonNode}>
       <button
@@ -31,13 +64,7 @@ export const UserLogo = () => {
         aria-label="User Logo"
         onClick={onClickOpenUserLogoModal}
       >
-        <p className={css.name}>{name ? name : defaultName}</p>
-
-        <img
-          className={css.userAvatar}
-          src={userAvatar ? userAvatar : defaultUserImage}
-        />
-
+        {logoContent}
         <div className={css.icon}>
           {isUserLogoModalOpen ? (
             <IoIosArrowUp className={css.icon} />
