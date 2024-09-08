@@ -30,13 +30,6 @@
   -moz-osx-font-smoothing: grayscale;
 
   --transition-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-}
-
-#root {
-  height: 100vh;
-  position: relative;
-  margin: 0 auto;
 }
 
 h1,
