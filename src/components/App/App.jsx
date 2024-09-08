@@ -77,8 +77,6 @@ function App() {
     config: { duration: 350 },
   });
 
-  const error = useSelector(selectErrorAuth);
-
   useEffect(() => {
     if (token) {
       dispatch(refreshUser())
