@@ -54,11 +54,11 @@ export default function TodayListModal({ waterVolume, date }) {
   };
 
   // Генерування списку з часом
-  const timeNow = new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  // const timeNow = new Date().toLocaleTimeString("en-US", {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  //   hour12: true,
+  // });
 
   const generateListOfTime = () => {
     const options = [];
@@ -83,11 +83,12 @@ export default function TodayListModal({ waterVolume, date }) {
 
   // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    const formattedDate = new Date().toLocaleDateString("en-CA", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+    // const formattedDate = new Date().toLocaleDateString("en-CA", {
+    //   year: "numeric",
+    //   month: "2-digit",
+    //   day: "2-digit",
+    // });
+    const formattedDate = new Date().toISOString().split("T")[0];
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
