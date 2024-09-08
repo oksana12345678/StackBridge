@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
@@ -6,6 +5,7 @@ import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { useToggle } from "../../hooks/useToggle.js";
 
 import css from "./SignInSignUpWrapper.module.css";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton.jsx";
 
 export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
   const [showPassword, toggle] = useToggle();
@@ -130,10 +130,11 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
                 </div>
               </>
             )}
-
-            <button className={css.signinPageButton} type="submit">
-              Sign {pathname === "/signin" ? "in" : "up"}
-            </button>
+            <WaveEffectButton>
+              <button className={css.signinPageButton} type="submit">
+                Sign {pathname === "/signin" ? "in" : "up"}
+              </button>
+            </WaveEffectButton>
             {pathname === "/signin" ? (
               <NavLink className={css.signinPageLink} to={"/forgot-password"}>
                 Forgot password?
