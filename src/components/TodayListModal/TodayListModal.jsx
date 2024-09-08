@@ -83,12 +83,11 @@ export default function TodayListModal({ waterVolume, date }) {
 
   // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    // const formattedDate = new Date().toLocaleDateString("en-CA", {
-    //   year: "numeric",
-    //   month: "2-digit",
-    //   day: "2-digit",
-    // });
-    const formattedDate = new Date().toISOString().split("T")[0];
+    const formattedDate = new Date().toLocaleDateString("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
@@ -235,7 +234,11 @@ export default function TodayListModal({ waterVolume, date }) {
             </div>
             <div className={css.resultContainer}>
               <p className={css.textResult}>{amountOfWater}ml</p>
-              <button className={css.saveBtn} type="submit">
+              <button
+                className={css.saveBtn}
+                type="submit"
+                onTouchStart={handleEditWater}
+              >
                 Save
               </button>
             </div>
