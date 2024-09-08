@@ -1,16 +1,15 @@
 .wrapper {
   position: relative;
-  height: 100vh;
 }
 
-.background {
-  position: absolute;
+.wrapper {
+  /* position: absolute; */
   background-image: url("../../Images/welcom-page-bg/welcomeBgPageMob.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  bottom: 20px;
 }
 
 @keyframes moveDiagonal {
@@ -216,13 +215,12 @@
 }
 
 @media screen and (min-width: 768px) {
-  .background {
+  .wrapper {
     background-image: url("../../Images/welcom-page-bg/welcomeBgPageTab.svg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 800px;
-    bottom: 20px;
   }
 }
 
@@ -260,7 +258,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .background {
+  .wrapper {
     background-image: url("../../Images/welcom-page-bg/bottle-welcome.svg"),
       url("../../Images/welcom-page-bg/Group-welcome-line.svg");
     background-repeat: no-repeat;
