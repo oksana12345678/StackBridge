@@ -47,7 +47,7 @@
   .upload-icon {
     width: 16px;
     height: 16px;
-    fill: var(--primary-blue-color);
+    fill: transparent;
     stroke: var(--primary-blue-color);
     margin-right: 8px;
     margin-left: 0;

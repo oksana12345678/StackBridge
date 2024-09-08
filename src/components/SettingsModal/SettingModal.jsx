@@ -188,7 +188,7 @@ const SettingModal = () => {
         onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
-          <Form className={css["form-container"]} autoComplete="off" novalidate>
+          <Form className={css["form-container"]} autoComplete="off" noValidate>
             <PhotoGroup
               avatar={user.avatar}
               isSubmitBlocked={isSubmitBlocked}

@@ -1,8 +1,4 @@
 .wrapper {
-  position: relative;
-}
-
-.wrapper {
   /* position: absolute; */
   background-image: url("../../Images/welcom-page-bg/welcomeBgPageMob.svg");
   background-repeat: no-repeat;
