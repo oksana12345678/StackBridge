@@ -3,6 +3,7 @@
     width: 100%;
     padding-top: 8px;
   }
+
   .container {
     position: relative;
     display: flex;
@@ -12,6 +13,7 @@
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
+    z-index: 999;
   }
 }
 
@@ -19,14 +21,17 @@
   .header {
     padding-top: 16px;
   }
+
   .container {
     width: 744px;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .header {
     padding-top: 12px;
   }
+
   .container {
     width: 1256px;
   }

@@ -6,12 +6,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
 .link:hover {
   color: var(--orange-accent-color);
   transition: color 0.3s ease;
 }
+
 .link:before {
   content: "";
   position: absolute;
@@ -22,6 +24,7 @@
   background-color: var(--orange-accent-color);
   transition: width 0.3s ease;
 }
+
 .link:hover:before {
   width: 60%;
 }
@@ -31,6 +34,7 @@
   height: 20px;
   color: var(--primary-black-color);
 }
+
 .iconContainer {
   width: 28px;
   height: 28px;
