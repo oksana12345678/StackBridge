@@ -79,11 +79,13 @@ export default function AddWater() {
 
   // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    const formattedDate = new Date().toLocaleDateString("en-CA", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+    // const formattedDate = new Date().toLocaleDateString("en-CA", {
+    //   year: "numeric",
+    //   month: "2-digit",
+    //   day: "2-digit",
+    // });
+    const formattedDate = new Date().toISOString().split("T")[0];
+
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
