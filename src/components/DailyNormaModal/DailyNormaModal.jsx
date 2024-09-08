@@ -9,8 +9,7 @@ import { closeModal } from "../../redux/modalWindow/slice";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import { updateWaterRate } from "../../redux/waterRate/operations";
-// import { fetchUserData } from "../../redux/user/operations";
-import { selectUserGender } from "../../redux/user/selectors";
+import { selectUserGender } from "../../redux/auth/selectors";
 
 const PlannedWaterIntakeSchema = Yup.object().shape({
   plannedWaterIntake: Yup.number()
@@ -61,22 +60,6 @@ const DailyNormaModal = () => {
       gender: gender || "",
     }));
   }, [gender]);
-
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     dispatch(fetchUserData()).then((action) => {
-  //       if (fetchUserData.fulfilled.match(action)) {
-  //         const { gender } = action.payload;
-  //         setInitialValues({
-  //           gender: gender || "",
-  //           weight: "",
-  //           activeTime: "",
-  //           plannedWaterIntake: "",
-  //         });
-  //       }
-  //     });
-  //   }
-  // }, [isModalOpen, dispatch]);
 
   const handleSubmit = async (values, actions) => {
     const waterRate =
