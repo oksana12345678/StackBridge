@@ -8,7 +8,6 @@ import css from "./SettingModal.module.css";
 const RepeatPasswordGroup = ({
   isHiddenPassword,
   isError,
-  isTouched,
   toggle
 }) => {
   const repeatPasswordInputId = useId();
@@ -22,7 +21,7 @@ const RepeatPasswordGroup = ({
         <div className={css["input-wrapper"]}>
           <Field
             className={clsx(css.input, {
-              [css["error-input"]]: isError && isTouched,
+              [css["error-input"]]: isError,
             })}
             id={repeatPasswordInputId}
             type={isHiddenPassword ? "text" : "password"}

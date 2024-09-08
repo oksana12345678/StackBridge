@@ -10,6 +10,8 @@ const modalSlice = createSlice({
     isDeleteEntryModalOpen: false,
     isAddWaterModalOpen: false,
     idToDelete: "",
+    isEditWaterModalOpen: false,
+    idToEdit: "",
   },
   reducers: {
     openModal: (state) => {
@@ -22,6 +24,7 @@ const modalSlice = createSlice({
       state.isUserLogoModalOpen = false;
       state.isDeleteEntryModalOpen = false;
       state.isAddWaterModalOpen = false;
+      state.isEditWaterModalOpen = false;
     },
     settingModal: (state) => {
       state.isSettingModalOpen = true;
@@ -39,6 +42,10 @@ const modalSlice = createSlice({
     addWaterModalOpen: (state) => {
       state.isAddWaterModalOpen = true;
     },
+    editWaterModalOpen: (state, action) => {
+      state.isEditWaterModalOpen = true;
+      state.idToEdit = action.payload;
+    },
   },
 });
 
@@ -50,6 +57,7 @@ export const {
   userLogoModal,
   deleteEntryModalOpen,
   addWaterModalOpen,
+  editWaterModalOpen,
 } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

@@ -1,25 +1,23 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId, useState, useEffect } from "react";
+import { useEffect, useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import {
-  editWater,
+  addWater,
   getWaterForToday,
 } from "../../redux/waterRequests/operations";
+import showToast from "../showToast";
+import "react-toastify/ReactToastify.css";
+import css from "./AddWater.module.css";
+
+import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
+import { closeModal } from "../../redux/modalWindow/slice";
+import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { getWaterForMonth } from "../../redux/monthStats/operations.js";
-import {
-  selectIdToEdit,
-  selectIsEditWaterModalOpen,
-} from "../../redux/modalWindow/selectors";
 import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
-import { closeModal } from "../../redux/modalWindow/slice";
-import showToast from "../showToast";
-import "react-toastify/ReactToastify.css";
-import css from "./TodayListModal.module.css";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -29,17 +27,15 @@ const WaterSchema = Yup.object().shape({
     .required("Required field!"),
 });
 
-export default function TodayListModal({ waterVolume, date }) {
+export default function AddWater() {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
-  const idToEdit = useSelector(selectIdToEdit);
+  const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
+
   const currentMonth = useSelector(selectCurrentMonth); //TODO
   const currentYear = useSelector(selectCurrentYear); //TODO
-
   const fieldId = useId();
 
-  // Лічильник
-  const [amountOfWater, setAmountOfWater] = useState(waterVolume);
+  const [amountOfWater, setAmountOfWater] = useState(50);
 
   const incrementOfCounter = 50;
 
@@ -91,35 +87,37 @@ export default function TodayListModal({ waterVolume, date }) {
     return new Date(`${formattedDate} ${time}`).toISOString();
   }
 
+  useEffect(() => {}, []);
+
   // Функція відправки даних на бекенд
-  const handleEditWater = (values, actions) => {
+  const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
-    dispatch(editWater({ _id: idToEdit, updates: { waterVolume, date } }))
+    dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
-        showToast("Water edit successful!", "success");
+        showToast("Water add successful!", "success");
         actions.resetForm();
         dispatch(getWaterForToday());
         dispatch(closeModal());
-        // TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
+        setAmountOfWater(50);
+        //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
       })
       .catch(() => {
-        showToast("Water edit failed!", "error");
+        showToast("Water add failed!", "error");
       });
   };
-
-  useEffect(() => {
-    setAmountOfWater(waterVolume);
-  }, [waterVolume]);
 
   return (
     <ModalWrapper
       modalIsOpen={modalIsOpen}
-      closeModal={() => dispatch(closeModal())}
+      closeModal={() => {
+        dispatch(closeModal());
+        setAmountOfWater(50);
+      }}
       customStyles={{
         content: {
           padding: "0",
@@ -127,28 +125,14 @@ export default function TodayListModal({ waterVolume, date }) {
       }}
     >
       <Formik
-        initialValues={{
-          date: date,
-          waterVolume: waterVolume,
-        }}
-        onSubmit={handleEditWater}
+        initialValues={{ date: timeNow, waterVolume: 50 }}
+        onSubmit={handleAddWater}
         validationSchema={WaterSchema}
       >
         {({ setFieldValue }) => (
           <Form className={css.formContainer}>
-            <h2 className={css.title}>Edit the entered amount of water</h2>
-            <div>
-              <div className={css.prevRecordContainer}>
-                <svg className={css.iconGlass} width={36} height={36}>
-                  <use href="/spriteFull.svg#icon-glass"></use>
-                </svg>
-                <div className={css.prevInfoContainer}>
-                  <div className={css.prevAmountWater}>{waterVolume} ml</div>
-                  <div className={css.prevTime}>{date}</div>
-                </div>
-              </div>
-            </div>
-            <p className={css.text}>Correct entered data:</p>
+            <h2 className={css.title}>Add water</h2>
+            <p className={css.text}>Choose a value:</p>
             <p className={css.textCounter}>Amount of water:</p>
             <div className={css.counterContainer}>
               <button
@@ -195,7 +179,7 @@ export default function TodayListModal({ waterVolume, date }) {
                 className={css.input}
                 id={`${fieldId}-date`}
               >
-                <option value={date}>{date}</option>
+                <option value={timeNow}>{timeNow}</option>
                 {listOfTime.map((date, index) => (
                   <option key={index} value={date}>
                     {date}

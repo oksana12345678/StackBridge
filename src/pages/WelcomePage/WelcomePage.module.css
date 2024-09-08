@@ -3,12 +3,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
   padding-top: 24px;
+  padding-bottom: 40px;
   background-color: transparent;
-  min-height: 100vh;
-  margin: 0 auto;
   max-width: 100%;
   position: relative;
 }
@@ -28,9 +25,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  min-width: 320px;
+  padding: 0 20px;
   margin: 0 auto;
-  max-width: 100%;
-  width: 100%;
+  gap: 40px;
 }
 
 .trackerSection,
@@ -38,24 +36,18 @@
   flex-basis: 100%;
   flex: none;
   width: 100%;
-  margin: 0 0 40px 0;
 }
 
 @media screen and (min-width: 768px) {
   .welcomeContainer {
     max-width: 100%;
-    padding-left: 32px;
-    padding-right: 32px;
     padding-top: 40px;
-  }
-
-  .backgroundElement {
-    background-size: cover;
   }
 
   .welcomeContent {
     max-width: 100%;
     align-items: flex-start;
+    gap: 60px;
   }
 
   .trackerSection,
@@ -68,21 +60,17 @@
 
 @media screen and (min-width: 1440px) {
   .welcomeContainer {
-    padding-right: 210px;
-    padding-left: 210px;
     padding-top: 80px;
-  }
-
-  .backgroundElement {
-    background-size: cover;
+    padding-bottom: 109px;
   }
 
   .welcomeContent {
-    max-width: 1200px;
+    min-width: 1256px;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
     gap: 80px;
+    padding: 0 20px;
   }
 
   .trackerSection {

@@ -12,7 +12,15 @@
   --light-blue-text: rgb(158, 187, 255);
   --secondary-light-blue: rgb(215, 227, 255);
 
-  --font-size-base: 16px;
+  --shadow-dark-blue: rgba(64, 123, 255, 0.2);
+  --shadow-secondary-dark-blue: rgba(64, 123, 255, 0.34);
+  --shadow-blue: rgba(64, 123, 255, 0.54);
+
+  --font-size-base-sixteen: 16px;
+  --font-size-base-eighteen: 18px;
+  --font-size-base-fourteen: 14px;
+  --font-size-base-twenty-six: 26px;
+
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
@@ -20,9 +28,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --transition-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
+
 #root {
   height: 100vh;
+  position: relative;
+  margin: 0 auto;
 }
 
 h1,
@@ -52,11 +66,23 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
+/* прячит глазик при вводе пассворда */
 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-outer-spin-button {
+  display: none;
+}
 
 h1 {
   color: var(--primary-text-color);
@@ -75,6 +101,7 @@ button {
   transition: border-color 0.25s;
   padding: 0;
 }
+
 .modal {
   max-height: 95%;
   overflow: auto;
@@ -85,9 +112,11 @@ button {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }

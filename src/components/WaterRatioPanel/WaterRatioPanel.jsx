@@ -17,8 +17,7 @@ const WaterRatioPanel = () => {
 
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const water = useSelector(selectWatersToday)
-
+  const water = useSelector(selectWatersToday);
 
   useEffect(() => {
     if (error) {
@@ -29,8 +28,7 @@ const WaterRatioPanel = () => {
     }
   }, [error]);
 
-  const progressValue =
-  water?.percentOfWaterRate || "0%";
+  const progressValue = water?.percentOfWaterRate || "0%";
 
   const numberProgressValue =
     parseFloat(progressValue) > 100 ? 100 : parseFloat(progressValue);
@@ -55,13 +53,13 @@ const WaterRatioPanel = () => {
               <div
                 className={css.progressTrackValue}
                 style={{
-                  width: `${progressValue}`,
+                  width: `${numberProgressValue}%`,
                 }}
               ></div>
               <div
                 className={css.progressSlider}
                 style={{
-                  left: `calc(${progressValue} - ${
+                  left: `calc(${numberProgressValue}% - ${
                     (numberProgressValue * 14) / 100
                   }px)`,
                 }}

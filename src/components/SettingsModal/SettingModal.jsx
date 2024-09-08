@@ -39,39 +39,35 @@ const SettingModal = () => {
   const userInfoValidationSchema = Yup.object({
     name: Yup.string().max(32, "Too long"),
     email: Yup.string().email("Invalid email address"),
-    outdatedPassword: Yup.string().min(8, "Too short").max(64, "Too long"),
-    password: Yup.string().min(8, "Too short").max(64, "Too long"),
-    repeatPassword: Yup.string().oneOf(
-      [Yup.ref("password")],
-      "Passwords must match"
-    ),
-  }).test("passwords-check", null, function (values) {
-    const { outdatedPassword, password, repeatPassword } = values;
-
-    const oneIsFilled = outdatedPassword || password || repeatPassword;
-    const allAreFilled = outdatedPassword && password && repeatPassword;
-
-    if (oneIsFilled && !allAreFilled) {
-      if (!outdatedPassword) {
-        return this.createError({
-          path: "outdatedPassword",
-          message: "All passwords should be filled",
-        });
-      }
-      if (!password) {
-        return this.createError({
-          path: "password",
-          message: "All passwords should be filled",
-        });
-      }
-      if (!repeatPassword) {
-        return this.createError({
-          path: "repeatPassword",
-          message: "All passwords should be filled",
-        });
-      }
-    }
-    return true;
+    outdatedPassword: Yup.string()
+      .min(8, "Too short")
+      .max(64, "Too long")
+      .test("outdated-password-filled", "Required", function (value) {
+        const { password, repeatPassword } = this.parent;
+        if ((password || repeatPassword) && !value) {
+          return false;
+        }
+        return true;
+      }),
+    password: Yup.string()
+      .min(8, "Too short")
+      .max(64, "Too long")
+      .test("password-filled", "Required", function (value) {
+        const { outdatedPassword, repeatPassword } = this.parent;
+        if ((outdatedPassword || repeatPassword) && !value) {
+          return false;
+        }
+        return true;
+      }),
+    repeatPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .test("repeat-password-filled", "Required", function (value) {
+        const { outdatedPassword, password } = this.parent;
+        if ((outdatedPassword || password) && !value) {
+          return false;
+        }
+        return true;
+      }),
   });
 
   const [state, toggle] = useToggle();
@@ -131,6 +127,7 @@ const SettingModal = () => {
             .then(() => {
               showToast("Successfully changed information.", "success");
             })
+            .then(() => dispatch(closeModal()))
             .catch((err) => {
               if (err == "Request failed with status code 401")
                 showToast("Incorrect outdated password", "error");
@@ -143,6 +140,7 @@ const SettingModal = () => {
           .then(() => {
             showToast("Successfully changed information.", "success");
           })
+          .then(() => dispatch(closeModal()))
           .catch(() => showToast("Error, try later!", "error"));
       }
     }
@@ -162,6 +160,7 @@ const SettingModal = () => {
         .then(() => {
           showToast("Avatar changed!", "success");
         })
+        .then(() => dispatch(closeModal()))
         .catch(() => {
           showToast("Error, try later!", "error");
         });
@@ -198,8 +197,8 @@ const SettingModal = () => {
             <div className={css["desktop-flex"]}>
               <div className={css["desktop-left"]}>
                 <GenderIdentityGroup />
-                <NameGroup isError={errors.name} isTouched={touched.name} />
-                <EmailGroup isError={errors.email} isTouched={touched.email} />
+                <NameGroup isError={errors.name && touched.name} />
+                <EmailGroup isError={errors.email && touched.email} />
               </div>
               <div className={css["desktop-right"]}>
                 <h3 className={css.subtitle}>Password</h3>
@@ -207,20 +206,19 @@ const SettingModal = () => {
                   <OldPasswordGroup
                     isHiddenPassword={state.oldPassword}
                     toggle={toggle}
-                    isError={errors.outdatedPassword}
-                    isTouched={touched.outdatedPassword}
+                    isError={
+                      touched.outdatedPassword && errors.outdatedPassword
+                    }
                   />
                   <NewPasswordGroup
                     isHiddenPassword={state.password}
                     toggle={toggle}
-                    isError={errors.password}
-                    isTouched={touched.password}
+                    isError={touched.password && errors.password}
                   />
                   <RepeatPasswordGroup
                     isHiddenPassword={state.repeatPassword}
                     toggle={toggle}
-                    isError={errors.repeatPassword}
-                    isTouched={touched.repeatPassword}
+                    isError={touched.repeatPassword && errors.repeatPassword}
                   />
                 </div>
               </div>
