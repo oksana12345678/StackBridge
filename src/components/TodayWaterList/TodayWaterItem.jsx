@@ -8,18 +8,19 @@ import {
   editWaterModalOpen,
   deleteEntryModalOpen,
 } from "../../redux/modalWindow/slice";
+import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import { selectIdToEdit } from "../../redux/modalWindow/selectors";
 
-const TodayWaterItem = ({ id, waterVolume, date }) => {
+const TodayWaterItem = ({ id, waterVolume, date, waterNotes }) => {
   const dispatch = useDispatch();
   const idToEdit = useSelector(selectIdToEdit);
 
   const handleDelete = () => {
-    dispatch(deleteEntryModalOpen(id));
+    dispatch(deleteEntryModalOpen(id)); 
   };
 
   const handleEdit = () => {
-    dispatch(editWaterModalOpen(id));
+    dispatch(editWaterModalOpen(id)); 
   };
 
   return (
@@ -40,6 +41,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
       {idToEdit === id && (
         <TodayListModal waterVolume={waterVolume} date={date} />
       )}
+      <DeleteEntryModal /> 
     </li>
   );
 };
