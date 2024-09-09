@@ -95,6 +95,8 @@ export default function AddWater() {
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
+    console.log(date);
+    console.log(waterVolume);
     dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
