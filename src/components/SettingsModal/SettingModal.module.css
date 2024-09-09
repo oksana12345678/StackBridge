@@ -189,9 +189,9 @@
   box-shadow: none;
 }
 
-/* .submit-button:disabled {
+.submit-button:disabled {
   cursor: not-allowed;
   background-color: dimgrey;
   color: var(--primary-white-color);
   opacity: 1;
-} */
+}
