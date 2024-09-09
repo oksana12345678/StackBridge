@@ -87,16 +87,6 @@ export default function TodayListModal({ waterVolume, date }) {
   const listOfTime = generateListOfTime();
 
   // Форматування дати для відправки на бекенд
-  // function formatDateTime(time) {
-  //   const formattedDate = moment().format("YYYY-MM-DD"); // Ensure correct date format
-  //   const time24 = moment(time, "h:mm A").format("HH:mm"); // Convert time to 24-hour format
-
-  //   // Combine the date and time, then convert to ISO string
-  //   const combinedDateTime = `${formattedDate} ${time24}`;
-
-  //   // Return a valid ISO string using moment
-  //   return moment(combinedDateTime, "YYYY-MM-DD HH:mm").toISOString();
-  // }
 
   function formatDateTime(time) {
     if (!time || time === "undefined" || time.trim() === "") {
@@ -118,16 +108,16 @@ export default function TodayListModal({ waterVolume, date }) {
   }
 
   // Функція відправки даних на бекенд
-  const handleEditWater = (values) => {
+  const handleEditWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
     dispatch(editWater({ _id: idToEdit, updates: { waterVolume, date } }))
       .unwrap()
       .then(() => {
         showToast("Water edit successful!", "success");
-        // actions.reset();
         dispatch(getWaterForToday());
         dispatch(closeModal());
+        actions.resetForm();
 
         dispatch(getWaterForMonth({ year: yearString, month: monthString }));
       })
@@ -269,7 +259,7 @@ export default function TodayListModal({ waterVolume, date }) {
               <button
                 className={css.saveBtn}
                 type="submit"
-                onTouchStart={handleEditWater}
+                // onTouchStart={handleEditWater}
               >
                 Save
               </button>
