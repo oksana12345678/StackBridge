@@ -56,7 +56,6 @@
   .blocked-upload {
     cursor: not-allowed;
     color: dimgrey;
-    fill: dimgrey;
     stroke: dimgrey;
   }
   

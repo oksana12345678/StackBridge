@@ -1,6 +1,6 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addWater,
@@ -30,39 +30,39 @@ const WaterSchema = Yup.object().shape({
 
 export default function AddWater() {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
-
-  const currentMonth = useSelector(selectCurrentMonth); //TODO
-  const currentYear = useSelector(selectCurrentYear); //TODO
+  const modalIsOpen = useSelector(selectIsAddWaterModalOpen);
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
   const fieldId = useId();
 
   const [amountOfWater, setAmountOfWater] = useState(50);
 
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
+
   const incrementOfCounter = 50;
 
-  const addAmount = () => {
-    setAmountOfWater(amountOfWater + incrementOfCounter);
-  };
-
+  const addAmount = () => setAmountOfWater(amountOfWater + incrementOfCounter);
   const withdrawAmount = () => {
     if (amountOfWater >= incrementOfCounter) {
       setAmountOfWater(amountOfWater - incrementOfCounter);
     }
   };
 
-  // Генерування списку з часом
-  const timeNow = new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours() % 12 || 12;
+    const minutes = Math.floor(now.getMinutes() / 5) * 5;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const ampm = now.getHours() >= 12 ? "PM" : "AM";
+    return `${hours.toString().padStart(2, "0")}:${formattedMinutes} ${ampm}`;
+  };
+
+  const timeNow = getCurrentTime();
 
   const generateListOfTime = () => {
     const options = [];
-    const startHour = 0;
-    const endHour = 23;
-
-    for (let hour = startHour; hour <= endHour; hour += 1) {
+    for (let hour = 0; hour <= 23; hour++) {
       for (let minute = 0; minute < 60; minute += 5) {
         const ampm = hour >= 12 ? "PM" : "AM";
         const hour12 = hour % 12 || 12;
@@ -72,7 +72,6 @@ export default function AddWater() {
         options.push(time);
       }
     }
-
     return options;
   };
 
@@ -86,9 +85,8 @@ export default function AddWater() {
     return moment(`${formattedDate} ${time24}`).toISOString();
   }
 
-  useEffect(() => {}, []);
+  const initialTime = listOfTime.includes(timeNow) ? timeNow : listOfTime[0];
 
-  // Функція відправки даних на бекенд
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
@@ -100,10 +98,9 @@ export default function AddWater() {
         dispatch(getWaterForToday());
         dispatch(closeModal());
         setAmountOfWater(50);
+
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
-        dispatch(
-          getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
-        );
+        dispatch(getWaterForMonth({ year: yearString, month: monthString }));
       })
       .catch(() => {
         showToast("Water add failed!", "error");
@@ -124,7 +121,7 @@ export default function AddWater() {
       }}
     >
       <Formik
-        initialValues={{ date: timeNow, waterVolume: 50 }}
+        initialValues={{ date: initialTime, waterVolume: 50 }}
         onSubmit={handleAddWater}
         validationSchema={WaterSchema}
       >
@@ -178,10 +175,9 @@ export default function AddWater() {
                 className={css.input}
                 id={`${fieldId}-date`}
               >
-                <option value={timeNow}>{timeNow}</option>
-                {listOfTime.map((date, index) => (
-                  <option key={index} value={date}>
-                    {date}
+                {listOfTime.map((time, index) => (
+                  <option key={index} value={time}>
+                    {time}
                   </option>
                 ))}
               </Field>
