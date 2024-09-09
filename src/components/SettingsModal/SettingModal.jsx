@@ -84,10 +84,10 @@ const SettingModal = () => {
     return patchedData;
   }
   const onSubmit = (values) => {
-    setIsSubmitBlocked(true);
-    setTimeout(() => {
-      setIsSubmitBlocked(false);
-    }, 3000);
+    // setIsSubmitBlocked(true);
+    // setTimeout(() => {
+    //   setIsSubmitBlocked(false);
+    // }, 3000);
     const { password, outdatedPassword, repeatPassword } = values;
     delete values["avatar"];
     patchedData = areEqualWithNull(values, user);
@@ -149,10 +149,10 @@ const SettingModal = () => {
   };
 
   const handleAvatarChange = (e) => {
-    setIsSubmitBlocked(true);
-    setTimeout(() => {
-      setIsSubmitBlocked(false);
-    }, 3000);
+    // setIsSubmitBlocked(true);
+    // setTimeout(() => {
+    //   setIsSubmitBlocked(false);
+    // }, 3000);
     const file = e.target.files[0];
     if (file) {
       dispatch(updateAvatar({ avatar: file }))
