@@ -95,6 +95,8 @@ export default function AddWater() {
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
+    console.log(date);
+    console.log(waterVolume);
     dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
@@ -128,11 +130,11 @@ export default function AddWater() {
     >
       <Formik
         initialValues={{ date: timeNow, waterVolume: 50 }}
-        validationSchema={WaterSchema}
         onSubmit={handleAddWater}
+        validationSchema={WaterSchema}
       >
         {({ setFieldValue }) => (
-          <Form className={css.formContainer} onSubmit={handleAddWater}>
+          <Form className={css.formContainer}>
             <h2 className={css.title}>Add water</h2>
             <p className={css.text}>Choose a value:</p>
             <p className={css.textCounter}>Amount of water:</p>
