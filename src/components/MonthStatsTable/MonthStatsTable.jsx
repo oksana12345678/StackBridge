@@ -83,7 +83,7 @@ const MonthStatsTable = () => {
       <ul className={css.list}>
         {daysArray.map((day, index) => {
           const dayString = day.toString();
-          const dayStats = daysStats.find(stat => {
+          const dayStats = daysStats.find((stat) => {
             const statDay = stat.date.split(",")[0].trim();
             return statDay === dayString;
           });

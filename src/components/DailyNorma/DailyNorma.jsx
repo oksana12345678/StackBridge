@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { Hourglass } from "react-loader-spinner";
 import {
   selectErrorWaterRate,
@@ -11,10 +11,8 @@ import {
   selectLoadingUserData,
   selectWaterRateUpdate,
 } from "../../redux/auth/selectors.js";
-import { refreshUser } from "../../redux/auth/operations.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
-  const dispatch = useDispatch();
 
   const waterRateUpdate = useSelector(selectWaterRateUpdate);
 
@@ -22,9 +20,6 @@ const DailyNorma = ({ handleOpenModal }) => {
   const loading = useSelector(selectLoadingUserData);
   const error = useSelector(selectErrorWaterRate);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
 
   useEffect(() => {
     if (error) {

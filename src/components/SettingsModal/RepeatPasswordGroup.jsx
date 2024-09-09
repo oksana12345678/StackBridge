@@ -48,7 +48,7 @@ const RepeatPasswordGroup = ({
             >
               <HiOutlineEyeOff className={css["eye-icon"]} />
             </button>
-          )}{" "}
+          )}
           <ErrorMessage
             name="repeatPassword"
             component="div"

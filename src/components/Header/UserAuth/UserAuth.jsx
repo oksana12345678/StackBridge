@@ -1,5 +1,4 @@
 import css from "./UserAuth.module.css";
-// import user from "../../../Icons/Vector.svg";
 import { NavLink } from "react-router-dom";
 import { RxPerson } from "react-icons/rx";
 

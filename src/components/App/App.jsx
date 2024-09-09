@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Navigate,
   Route,
@@ -19,7 +19,6 @@ import { useAuth } from "../../hooks/userAuth.js";
 import { ToastContainer } from "react-toastify";
 import { useTransition, animated } from "@react-spring/web";
 import showToast from "../showToast.js";
-import { selectErrorAuth } from "../../redux/auth/selectors.js";
 import { useMedia } from "../../hooks/useMedia.jsx";
 
 const WelcomePage = lazy(() =>
@@ -39,7 +38,7 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
-  const { isRefreshing, token, isLoggedIn } = useAuth();
+  const { isRefreshing, token } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();

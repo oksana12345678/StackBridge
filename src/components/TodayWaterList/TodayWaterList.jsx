@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import TodayWaterItem from "./TodayWaterItem";
 import css from "./TodayWaterList.module.css";
 import { FaPlus as Plus } from "react-icons/fa6";

@@ -1,9 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useEffect, useCallback } from "react";
 import css from "./HomePage.module.css";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { selectWaterError } from "../../redux/waterRequests/selectors";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import { TodayWaterList } from "../../components/TodayWaterList/TodayWaterList";
@@ -21,24 +18,6 @@ const HomePage = () => {
   const handleOpenModal = () => {
     dispatch(openModal());
   };
-  // const error = useSelector(selectWaterError);
-
-  // const handleError = useCallback(() => {
-  //   const errorMessages = {
-  //     400: "Something went wrong. Please try again later.",
-  //     401: "Authorization failed. Please try again.",
-  //     500: "A server error occurred. Please try again later.",
-  //   };
-
-  //   const messageKey = errorMessages[error?.errorCode];
-  //   if (messageKey) {
-  //     toast.error(messageKey);
-  //   }
-  // }, [error]);
-
-  // useEffect(() => {
-  //   handleError();
-  // }, [handleError]);
 
   return (
     <>

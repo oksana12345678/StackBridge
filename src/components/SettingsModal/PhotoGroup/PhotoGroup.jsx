@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { useId } from "react";
-import { PiUploadSimple } from "react-icons/pi";
 import css from "./PhotoGroup.module.css";
 import settingsCoreCss from "../SettingModal.module.css";
 

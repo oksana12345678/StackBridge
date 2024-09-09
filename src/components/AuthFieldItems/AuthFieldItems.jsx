@@ -1,13 +1,11 @@
-import React from "react";
 import css from "./AuthFieldItems.module.css"
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { Field } from "formik";
 
 export const EyeToggle =({ showPassword, setShowPassword }) => {
   return (
     <button
       type="button"
-      className={css.eyebtn}
+      className={css.eyeBtn}
       width="44"
       height="44"
       onClick={() => setShowPassword(!showPassword)}
