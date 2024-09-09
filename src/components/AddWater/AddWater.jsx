@@ -200,11 +200,7 @@ export default function AddWater() {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={(e) => {
-                  setFieldValue("waterVolume", Number(e.target.value));
-                  setAmountOfWater(Number(e.target.value));
-                }}
-                onFocus={(e) => {
+                onFocus={() => {
                   setFieldValue("waterVolume", "");
                 }}
                 onBlur={(e) => {
