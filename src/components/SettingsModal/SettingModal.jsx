@@ -160,7 +160,6 @@ const SettingModal = () => {
         .then(() => {
           showToast("Avatar changed!", "success");
         })
-        .then(() => dispatch(closeModal()))
         .catch(() => {
           showToast("Error, try later!", "error");
         });
