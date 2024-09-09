@@ -128,11 +128,11 @@ export default function AddWater() {
     >
       <Formik
         initialValues={{ date: timeNow, waterVolume: 50 }}
-        onSubmit={handleAddWater}
         validationSchema={WaterSchema}
+        onSubmit={handleAddWater}
       >
         {({ setFieldValue }) => (
-          <Form className={css.formContainer}>
+          <Form className={css.formContainer} onSubmit={handleAddWater}>
             <h2 className={css.title}>Add water</h2>
             <p className={css.text}>Choose a value:</p>
             <p className={css.textCounter}>Amount of water:</p>
