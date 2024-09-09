@@ -37,6 +37,9 @@ export default function AddWater() {
 
   const [amountOfWater, setAmountOfWater] = useState(50);
 
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
+
   const incrementOfCounter = 50;
 
   const addAmount = () => {
@@ -106,9 +109,7 @@ export default function AddWater() {
         dispatch(closeModal());
         setAmountOfWater(50);
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
-        dispatch(
-          getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
-        );
+        dispatch(getWaterForMonth({ year: yearString, month: monthString }));
       })
       .catch(() => {
         showToast("Water add failed!", "error");
@@ -209,7 +210,7 @@ export default function AddWater() {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={(e) => {
+                onChange={e => {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}
