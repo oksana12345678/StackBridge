@@ -40,6 +40,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
       {idToEdit === id && (
         <TodayListModal waterVolume={waterVolume} date={date} />
       )}
+
     </li>
   );
 };

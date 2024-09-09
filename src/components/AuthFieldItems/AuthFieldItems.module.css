@@ -1,4 +1,4 @@
-.eyebtn {
+.eyeBtn {
   position: absolute;
   background-color: transparent;
   border: 0px solid transparent;
@@ -8,8 +8,8 @@
   right: 10px;
   top: 60px;
 }
-.eyebtn:focus,
-.eyebtn:active {
+.eyeBtn:focus,
+.eyeBtn:active {
   outline: none;
   box-shadow: none;
 }

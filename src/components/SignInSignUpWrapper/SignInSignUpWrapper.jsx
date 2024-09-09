@@ -90,7 +90,7 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
             </div>
             {pathname === "/signin" ? undefined : (
               <>
-                {" "}
+               
                 <div className={css.labelInputWrapper}>
                   <label className={css.label} htmlFor="repeatPassword">
                     Repeat password

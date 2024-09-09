@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { handleError } from "../service/apiErrorHandler";
 
 // Отримання води за місяць
 export const getWaterForMonth = createAsyncThunk(
