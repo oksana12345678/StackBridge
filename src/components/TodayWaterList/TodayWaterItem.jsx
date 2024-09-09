@@ -8,7 +8,6 @@ import {
   editWaterModalOpen,
   deleteEntryModalOpen,
 } from "../../redux/modalWindow/slice";
-import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import { selectIdToEdit } from "../../redux/modalWindow/selectors";
 
 const TodayWaterItem = ({ id, waterVolume, date }) => {
@@ -41,7 +40,7 @@ const TodayWaterItem = ({ id, waterVolume, date }) => {
       {idToEdit === id && (
         <TodayListModal waterVolume={waterVolume} date={date} />
       )}
-      <DeleteEntryModal />
+
     </li>
   );
 };

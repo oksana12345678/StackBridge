@@ -6,6 +6,7 @@ import { FaPlus as Plus } from "react-icons/fa6";
 import { selectWatersToday } from "../../redux/waterRequests/selectors";
 import { getWaterForToday } from "../../redux/waterRequests/operations";
 import AddWater from "../AddWater/AddWater";
+import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice";
 
 const formatTime = (isoDateString) => {
@@ -58,6 +59,7 @@ export const TodayWaterList = () => {
         <Plus className={css.plus} /> Add water
       </button>
       <AddWater />
+      <DeleteEntryModal /> 
     </div>
   );
 };
