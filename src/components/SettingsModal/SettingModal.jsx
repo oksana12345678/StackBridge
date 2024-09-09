@@ -71,7 +71,7 @@ const SettingModal = () => {
   });
 
   const [state, toggle] = useToggle();
-  const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
+  // const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   function areEqualWithNull(values, user) {
     for (let key in values) {
@@ -191,7 +191,7 @@ const SettingModal = () => {
           <Form className={css["form-container"]} autoComplete="off" noValidate>
             <PhotoGroup
               avatar={user.avatar}
-              isSubmitBlocked={isSubmitBlocked}
+              // isSubmitBlocked={isSubmitBlocked}
               handleAvatarChange={handleAvatarChange}
             />
             <div className={css["desktop-flex"]}>
@@ -227,7 +227,7 @@ const SettingModal = () => {
               <button
                 className={css["submit-button"]}
                 type="submit"
-                disabled={isSubmitBlocked}
+                // disabled={isSubmitBlocked}
               >
                 Save
               </button>
