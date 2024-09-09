@@ -33,10 +33,15 @@ export default function TodayListModal({ waterVolume, date }) {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
   const idToEdit = useSelector(selectIdToEdit);
-  const currentMonth = useSelector(selectCurrentMonth); //TODO
-  const currentYear = useSelector(selectCurrentYear); //TODO
+
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
+
 
   const fieldId = useId();
+
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
 
   // Лічильник
   const [amountOfWater, setAmountOfWater] = useState(waterVolume);
@@ -102,10 +107,9 @@ export default function TodayListModal({ waterVolume, date }) {
         actions.resetForm();
         dispatch(getWaterForToday());
         dispatch(closeModal());
-        // TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
-        dispatch(
-          getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
-        );
+
+        dispatch(getWaterForMonth({ year: yearString, month: monthString }));
+
       })
       .catch(() => {
         showToast("Water edit failed!", "error");
@@ -221,7 +225,7 @@ export default function TodayListModal({ waterVolume, date }) {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={(e) => {
+                onChange={e => {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}
