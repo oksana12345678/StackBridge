@@ -80,7 +80,7 @@
 .scaleValue::before {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%);
   content: "";
   width: 1px;
