@@ -209,7 +209,6 @@ export default function TodayListModal({ waterVolume, date }) {
                 className={css.input}
                 id={`${fieldId}-date`}
               >
-                <option value={date}>{date}</option>
                 {listOfTime.map((date, index) => (
                   <option key={index} value={date}>
                     {date}
