@@ -133,7 +133,10 @@ export default function TodayListModal({ waterVolume, date }) {
   return (
     <ModalWrapper
       modalIsOpen={modalIsOpen}
-      closeModal={() => dispatch(closeModal())}
+      closeModal={() => {
+        dispatch(closeModal());
+        setAmountOfWater(waterVolume);
+      }}
       customStyles={{
         content: {
           padding: "0",
