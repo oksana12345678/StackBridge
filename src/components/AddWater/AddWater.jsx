@@ -1,6 +1,6 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addWater,
@@ -31,8 +31,8 @@ export default function AddWater() {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsAddWaterModalOpen); //для модалки
 
-  const currentMonth = useSelector(selectCurrentMonth); //TODO
-  const currentYear = useSelector(selectCurrentYear); //TODO
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
   const fieldId = useId();
 
   const [amountOfWater, setAmountOfWater] = useState(50);
@@ -77,35 +77,46 @@ export default function AddWater() {
 
   const listOfTime = generateListOfTime();
 
-  // Форматування дати для відправки на бекенд
-  function formatDateTime(time) {
-    // const formattedDate = new Date().toLocaleDateString("en-CA", {
-    //   year: "numeric",
-    //   month: "2-digit",
-    //   day: "2-digit",
-    // });
-    const formattedDate = new Date().toISOString().split("T")[0];
+  //TODO Форматування дати для відправки на бекенд
+  function convertTo24Hour(time) {
+    const [timePart, modifier] = time.split(" ");
+    let [hours, minutes] = timePart.split(":");
 
-    return new Date(`${formattedDate} ${time}`).toISOString();
+    if (hours === "12") {
+      hours = "00";
+    }
+
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+
+    return `${hours}:${minutes}`;
   }
 
-  useEffect(() => {}, []);
+  function formatDateTime(time) {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    const time24 = convertTo24Hour(time);
 
-  // Функція відправки даних на бекенд
+    const dateTimeString = `${formattedDate}T${time24}:00.000Z`;
+    const dateTimeUTC = new Date(dateTimeString);
+
+    return dateTimeUTC.toISOString();
+  }
+
+  //TODO Функція відправки даних на бекенд
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
-    console.log(date);
-    console.log(waterVolume);
+
     dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
-        showToast("Water add successful!", "success");
+        showToast("Water added successfully!", "success");
         actions.resetForm();
         dispatch(getWaterForToday());
         dispatch(closeModal());
         setAmountOfWater(50);
-        //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );

@@ -33,8 +33,8 @@ export default function TodayListModal({ waterVolume, date }) {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsEditWaterModalOpen); //для модалки
   const idToEdit = useSelector(selectIdToEdit);
-  const currentMonth = useSelector(selectCurrentMonth); //TODO
-  const currentYear = useSelector(selectCurrentYear); //TODO
+  const currentMonth = useSelector(selectCurrentMonth); 
+  const currentYear = useSelector(selectCurrentYear);
 
   const fieldId = useId();
 
@@ -81,14 +81,33 @@ export default function TodayListModal({ waterVolume, date }) {
 
   const listOfTime = generateListOfTime();
 
-  // Форматування дати для відправки на бекенд
+  // Конвертація в 24-годинний формат
+  function convertTo24Hour(time) {
+    const [timePart, modifier] = time.split(" ");
+    let [hours, minutes] = timePart.split(":");
+
+    if (hours === "12") {
+      hours = "00";
+    }
+
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+
+    return `${hours}:${minutes}`;
+  }
+
+  //TODO Форматування дати для відправки на бекенд у форматі UTC
   function formatDateTime(time) {
-    const formattedDate = new Date().toLocaleDateString("en-CA", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    return new Date(`${formattedDate} ${time}`).toISOString();
+    const currentDate = new Date(); // Поточна дата
+    const formattedDate = currentDate.toISOString().split("T")[0]; // Дата у форматі YYYY-MM-DD
+    const time24 = convertTo24Hour(time); // Час у 24-годинному форматі
+
+    // Створюємо дату з часом і зоною часу UTC
+    const dateTimeString = `${formattedDate}T${time24}:00.000Z`;
+    const dateTimeUTC = new Date(dateTimeString);
+
+    return dateTimeUTC.toISOString(); // Повертаємо дату у форматі UTC
   }
 
   // Функція відправки даних на бекенд
@@ -102,7 +121,6 @@ export default function TodayListModal({ waterVolume, date }) {
         actions.resetForm();
         dispatch(getWaterForToday());
         dispatch(closeModal());
-        // TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(
           getWaterForMonth({ year: currentYear, month: currentMonth + 1 })
         );
