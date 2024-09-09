@@ -18,6 +18,7 @@ import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
+import moment from "moment";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -36,10 +37,8 @@ export default function AddWater() {
 
   const [amountOfWater, setAmountOfWater] = useState(50);
 
-
   const yearString = String(currentYear);
   const monthString = String(currentMonth + 1).padStart(2, "0");
-
 
   const incrementOfCounter = 50;
 
@@ -78,12 +77,15 @@ export default function AddWater() {
 
   const listOfTime = generateListOfTime();
 
-  const initialTime = listOfTime.includes(timeNow) ? timeNow : listOfTime[0];
+  // Форматування дати для відправки на бекенд
+  function formatDateTime(time) {
+    const formattedDate = moment().format("YYYY-MM-DD");
+    const time24 = moment(time, "h:mm A").format("HH:mm");
 
-  const formatDateTime = (time) => {
-    const today = new Date().toISOString().split("T")[0];
-    return new Date(`${today} ${time}`).toISOString();
-  };
+    return moment(`${formattedDate} ${time24}`).toISOString();
+  }
+
+  const initialTime = listOfTime.includes(timeNow) ? timeNow : listOfTime[0];
 
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
@@ -99,9 +101,8 @@ export default function AddWater() {
 
         //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
         dispatch(getWaterForMonth({ year: yearString, month: monthString }));
-
       })
-      .catch((error) => {
+      .catch(() => {
         showToast("Water add failed!", "error");
       });
   };
@@ -199,7 +200,7 @@ export default function AddWater() {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={e => {
+                onChange={(e) => {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}
