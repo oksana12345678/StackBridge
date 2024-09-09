@@ -20,6 +20,7 @@ import { closeModal } from "../../redux/modalWindow/slice";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./TodayListModal.module.css";
+import moment from "moment";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -36,7 +37,6 @@ export default function TodayListModal({ waterVolume, date }) {
 
   const currentMonth = useSelector(selectCurrentMonth);
   const currentYear = useSelector(selectCurrentYear);
-
 
   const fieldId = useId();
 
@@ -87,32 +87,52 @@ export default function TodayListModal({ waterVolume, date }) {
   const listOfTime = generateListOfTime();
 
   // Форматування дати для відправки на бекенд
+  // function formatDateTime(time) {
+  //   const formattedDate = moment().format("YYYY-MM-DD"); // Ensure correct date format
+  //   const time24 = moment(time, "h:mm A").format("HH:mm"); // Convert time to 24-hour format
+
+  //   // Combine the date and time, then convert to ISO string
+  //   const combinedDateTime = `${formattedDate} ${time24}`;
+
+  //   // Return a valid ISO string using moment
+  //   return moment(combinedDateTime, "YYYY-MM-DD HH:mm").toISOString();
+  // }
+
   function formatDateTime(time) {
-    const formattedDate = new Date().toLocaleDateString("en-CA", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    return new Date(`${formattedDate} ${time}`).toISOString();
+    if (!time || time === "undefined" || time.trim() === "") {
+      return moment().toISOString(); // Use the current date/time as a fallback
+    }
+
+    const formattedDate = moment().format("YYYY-MM-DD");
+
+    try {
+      const time24 = moment(time, "h:mm A").format("HH:mm");
+      return moment(
+        `${formattedDate} ${time24}`,
+        "YYYY-MM-DD HH:mm"
+      ).toISOString();
+    } catch (error) {
+      console.error("Error formatting time:", error);
+      return moment().toISOString();
+    }
   }
 
   // Функція відправки даних на бекенд
-  const handleEditWater = (values, actions) => {
+  const handleEditWater = (values) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
     dispatch(editWater({ _id: idToEdit, updates: { waterVolume, date } }))
       .unwrap()
       .then(() => {
         showToast("Water edit successful!", "success");
-        actions.resetForm();
+        // actions.reset();
         dispatch(getWaterForToday());
         dispatch(closeModal());
 
         dispatch(getWaterForMonth({ year: yearString, month: monthString }));
-
       })
-      .catch(() => {
-        showToast("Water edit failed!", "error");
+      .catch((error) => {
+        showToast(`Water edit failed! ${error}`, "error");
       });
   };
 
@@ -132,7 +152,7 @@ export default function TodayListModal({ waterVolume, date }) {
     >
       <Formik
         initialValues={{
-          date: date,
+          date: date || "",
           waterVolume: waterVolume,
         }}
         onSubmit={handleEditWater}
@@ -225,7 +245,7 @@ export default function TodayListModal({ waterVolume, date }) {
                 type="number"
                 min="0"
                 id={`${fieldId}-waterVolume`}
-                onChange={e => {
+                onChange={(e) => {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}

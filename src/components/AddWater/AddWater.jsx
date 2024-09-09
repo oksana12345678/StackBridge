@@ -18,6 +18,7 @@ import {
   selectCurrentMonth,
   selectCurrentYear,
 } from "../../redux/monthStats/selects.js";
+import moment from "moment";
 
 const WaterSchema = Yup.object().shape({
   date: Yup.string().required("Required field!"),
@@ -79,14 +80,10 @@ export default function AddWater() {
 
   // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    // const formattedDate = new Date().toLocaleDateString("en-CA", {
-    //   year: "numeric",
-    //   month: "2-digit",
-    //   day: "2-digit",
-    // });
-    const formattedDate = new Date().toISOString().split("T")[0];
+    const formattedDate = moment().format("YYYY-MM-DD");
+    const time24 = moment(time, "h:mm A").format("HH:mm");
 
-    return new Date(`${formattedDate} ${time}`).toISOString();
+    return moment(`${formattedDate} ${time24}`).toISOString();
   }
 
   useEffect(() => {}, []);
@@ -95,8 +92,6 @@ export default function AddWater() {
   const handleAddWater = (values, actions) => {
     const date = formatDateTime(values.date);
     const waterVolume = values.waterVolume;
-    console.log(date);
-    console.log(waterVolume);
     dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
