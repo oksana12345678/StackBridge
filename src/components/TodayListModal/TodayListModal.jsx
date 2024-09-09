@@ -238,6 +238,15 @@ export default function TodayListModal({ waterVolume, date }) {
                   setFieldValue("waterVolume", Number(e.target.value));
                   setAmountOfWater(Number(e.target.value));
                 }}
+                onFocus={(e) => {
+                  setFieldValue("waterVolume", "");
+                }}
+                onBlur={(e) => {
+                  setAmountOfWater(Number(e.target.value));
+                  if (e.target.value === "") {
+                    setFieldValue("waterVolume", "0");
+                  }
+                }}
               />
               <ErrorMessage
                 className={css.error}
