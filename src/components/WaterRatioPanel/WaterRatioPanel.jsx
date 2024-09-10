@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Hourglass } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlinePlusCircle as Plus } from "react-icons/hi2";
@@ -14,6 +14,15 @@ import css from "./WaterRatioPanel.module.css";
 import { selectWatersToday } from "../../redux/waterRequests/selectors.js";
 const WaterRatioPanel = () => {
   const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -48,7 +57,13 @@ const WaterRatioPanel = () => {
             colors={["#306cce", "#72a1ed"]}
           />
         ) : (
-          <div className={css.progressBarWrapper}>
+          <div
+            className={css.progressBarWrapper}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleMouseEnter}
+            onTouchEnd={handleMouseLeave}
+          >
             <div className={css.progressTrack}>
               <div
                 className={css.progressTrackValue}
@@ -63,7 +78,11 @@ const WaterRatioPanel = () => {
                     (numberProgressValue * 14) / 100
                   }px)`,
                 }}
-              ></div>
+              >
+                {isHovered && (
+                  <div className={css.currentValue}>{numberProgressValue}%</div>
+                )}
+              </div>
             </div>
             <div className={css.progressBarRangeScale}>
               <span
