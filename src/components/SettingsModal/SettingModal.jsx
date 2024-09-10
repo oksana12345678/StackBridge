@@ -8,7 +8,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import showToast from "../showToast";
 import { useToggle } from "../../hooks/useToggle";
-import Loader from "../Loader/Loader";
 import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import FormTitle from "./FormTitle/FormTitle";
 import GenderIdentityGroup from "./GenderIdentityGroup";
@@ -23,7 +22,6 @@ import css from "./SettingModal.module.css";
 const SettingModal = () => {
   const isModalOpen = useSelector(selectIsSettingModalOpen);
   const user = useSelector(selectUserEmail);
-  const isLoading = useSelector((state) => state.auth.isLoading);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -182,7 +180,6 @@ const SettingModal = () => {
       customStyles={customStyles}
       buttonClassSettings
     >
-      {isLoading && <Loader />}
       <FormTitle />
       <Formik
         initialValues={initialValues}
