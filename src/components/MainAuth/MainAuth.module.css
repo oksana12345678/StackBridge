@@ -5,19 +5,21 @@
 }
 
 .backgroundVisible {
-  background-image: url("../../Images/animation/BackgroundPage-desc.png");
-  background-size: 1404px, cover;
+  background-image: url("../../Images/animation/BackgroundPage-tabl.png");
+  background-size: 768px;
   background-repeat: no-repeat;
-  background-position: top left;
+  background-position: top 52px center;
 }
 
 @media (min-device-pixel-ratio: 2),
 (min-resolution: 192dpi),
 (min-resolution: 2dppx) {
   .backgroundVisible {
-    background-image: url("../../Images/animation/BackgroundPage-desc@2x.png");
+    background-image: url("../../Images/animation/BackgroundPage-tabl-2x.png");
   }
 }
+
+
 
 .container {
   width: 320px;
@@ -84,6 +86,19 @@
 }
 
 @media screen and (min-width: 768px) {
+  .backgroundVisible {
+    background-image: url("../../Images/animation/BackgroundPage-desc.png");
+    background-size: 1404px;
+    background-position: top center;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .backgroundVisible {
+      background-image: url("../../Images/animation/BackgroundPage-desc@2x.png");
+    }
+  }
 
   .bottleSvg {
     position: absolute;

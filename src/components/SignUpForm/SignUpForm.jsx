@@ -9,11 +9,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const validationControl = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address")
-      .min(8, "Too Short!")
-      .max(64, "Too Long!")
-      .required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
       .min(8, "Too short")
       .max(64, "Too long")

@@ -19,8 +19,7 @@ export default function UpdatePasswordForm() {
       .max(64, "Password must be at most 64 characters")
       .required("Required"),
     repeatPassword: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .max(64, "Password must be at most 64 characters")
+      .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Required"),
   });
 
@@ -53,7 +52,7 @@ export default function UpdatePasswordForm() {
       <Formik
         initialValues={{
           password: "",
-          passwordRepeat: "",
+          repeatPassword: "",
         }}
         validationSchema={UpdatePasswordSchema}
         onSubmit={handleSubmit}
