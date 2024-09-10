@@ -10,6 +10,12 @@ import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import { updateWaterRate } from "../../redux/waterRate/operations";
 import { selectUserGender } from "../../redux/auth/selectors";
+import { getWaterForMonth } from "../../redux/monthStats/operations.js";
+import {
+  selectCurrentMonth,
+  selectCurrentYear,
+} from "../../redux/monthStats/selects.js";
+import { getWaterForToday } from "../../redux/waterRequests/operations";
 
 const PlannedWaterIntakeSchema = Yup.object().shape({
   plannedWaterIntake: Yup.number()
@@ -35,6 +41,8 @@ const DailyNormaModal = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectIsModalOpen);
   const gender = useSelector(selectUserGender);
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
   const [initialValues, setInitialValues] = useState({
     gender: gender,
     weight: "",
@@ -44,12 +52,15 @@ const DailyNormaModal = () => {
 
   const namePlannedWaterIntakeId = useId();
 
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
+
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
 
   useEffect(() => {
-    setInitialValues((prevValues) => ({
+    setInitialValues(prevValues => ({
       ...prevValues,
       gender: gender || "",
     }));
@@ -61,12 +72,15 @@ const DailyNormaModal = () => {
       await dispatch(updateWaterRate({ waterRate: waterRate })).unwrap();
       actions.resetForm();
       handleCloseModal();
+
+      dispatch(getWaterForToday());
+      dispatch(getWaterForMonth({ year: yearString, month: monthString }));
     } catch (error) {
       showToast(`Oops something went wrong! ${error}`, "error");
     }
   };
 
-  const handleNumberInput = (e) => {
+  const handleNumberInput = e => {
     const { value } = e.target;
     const validValue = value.replace(/[^0-9.]/g, "");
     e.target.value = validValue;
