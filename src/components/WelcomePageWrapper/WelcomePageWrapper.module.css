@@ -210,7 +210,7 @@
   animation: moveDiagonal2 10s linear infinite;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .wrapper {
     background-image: url("../../Images/welcom-page-bg/welcomeBgPageTab.svg");
     background-repeat: no-repeat;
@@ -218,9 +218,17 @@
     width: 100%;
     height: 800px;
   }
-}
+} */
 
 @media screen and (min-width: 768px) {
+  .wrapper {
+    background-image: url("../../Images/welcom-page-bg/bgrd7501.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+  }
+/* }
+
+@media screen and (min-width: 768px) { */
   .bubble1,
   .bubble4,
   .bubble5,
