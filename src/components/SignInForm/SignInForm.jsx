@@ -1,12 +1,15 @@
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { logIn } from "../../redux/auth/operations.js";
 import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper.jsx";
 import showToast from "../showToast.js";
+import Loader from "../Loader/Loader.jsx";
+import { selectLoadingUserData } from "../../redux/auth/selectors.js";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUserData);
 
   const handleSubmit = (values, actions) => {
     const { email, password } = values;
@@ -35,10 +38,16 @@ const SignInForm = () => {
   });
 
   return (
-    <SignInSignUpWrapper
-      contactsSchema={contactsSchema}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SignInSignUpWrapper
+          contactsSchema={contactsSchema}
+          handleSubmit={handleSubmit}
+        />
+      )}
+    </>
   );
 };
 

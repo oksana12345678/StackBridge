@@ -9,9 +9,12 @@ import { openModal } from "../../redux/modalWindow/slice";
 import DailyNormaModal from "../../components/DailyNormaModal/DailyNormaModal";
 import { selectIsModalOpen } from "../../redux/modalWindow/selectors";
 import HomePageWrapper from "../../components/HomePageWrapper/HomePageWrapper.jsx";
+import { selectLoadingUserData } from "../../redux/auth/selectors.js";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUserData);
 
   const modalIsOpen = useSelector(selectIsModalOpen);
 
@@ -24,19 +27,22 @@ const HomePage = () => {
       <Helmet>
         <title>Home page</title>
       </Helmet>
-
-      <HomePageWrapper>
-        <div className={css.homePageContainer}>
-          <div className={css.leftSideContainer}>
-            <DailyNorma handleOpenModal={handleOpenModal} />
-            <WaterRatioPanel />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <HomePageWrapper>
+          <div className={css.homePageContainer}>
+            <div className={css.leftSideContainer}>
+              <DailyNorma handleOpenModal={handleOpenModal} />
+              <WaterRatioPanel />
+            </div>
+            <div className={css.rightSideContainer}>
+              <TodayWaterList />
+              <MonthStatsTable />
+            </div>
           </div>
-          <div className={css.rightSideContainer}>
-            <TodayWaterList />
-            <MonthStatsTable />
-          </div>
-        </div>
-      </HomePageWrapper>
+        </HomePageWrapper>
+      )}
       {modalIsOpen && <DailyNormaModal />}
     </>
   );

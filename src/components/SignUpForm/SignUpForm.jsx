@@ -1,15 +1,15 @@
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations.js";
 import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper.jsx";
 import showToast from "../showToast.js";
-import Loader from '../Loader/Loader.jsx'
-import { useState } from "react";
+import Loader from "../Loader/Loader.jsx";
+import { selectLoadingUserData } from "../../redux/auth/selectors.js";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  
+  const isLoading = useSelector(selectLoadingUserData);
+
   const validationControl = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
@@ -23,7 +23,6 @@ const SignUpForm = () => {
 
   const handleSubmit = (values) => {
     const { email, password } = values;
-    setIsLoading(true);
     dispatch(
       register({
         email,
@@ -36,9 +35,6 @@ const SignUpForm = () => {
       })
       .catch(() => {
         showToast("Incorrect login or password", "error");
-      })
-      .finally(() => {
-        setIsLoading(false); 
       });
   };
 

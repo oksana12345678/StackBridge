@@ -3,7 +3,6 @@ import css from "./WelcomePageWrapper.module.css";
 const WelcomePageWrapper = ({ children }) => {
   return (
     <section className={css.wrapper}>
-      <div className={css.background}></div>
       <div className={css.bubble1}></div>
       <div className={css.bubble2}></div>
       <div className={css.bubble3}></div>

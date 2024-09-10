@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
   useNavigate,
-  useLocation,
 } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,9 +16,8 @@ import PrivateRoute from "../../components/Route/PrivateRout/PrivateRout.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
 import { ToastContainer } from "react-toastify";
-import { useTransition, animated } from "@react-spring/web";
 import showToast from "../showToast.js";
-import { useMedia } from "../../hooks/useMedia.jsx";
+import PageTransition from "../PageTransition/PageTransition.jsx";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -41,40 +39,6 @@ function App() {
   const { isRefreshing, token } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const isMobil = useMedia("(max-width: 767px)");
-
-  const getTransform = (pathname, isMobil) => {
-    if (isMobil) {
-      return "translateY(-100%)";
-    }
-    switch (pathname) {
-      case "/welcome":
-      case "/signup":
-      case "/signin":
-      case "/home":
-      case "/forgot-password":
-      case "/update-password":
-        return "translateX(100%)";
-      default:
-        return "scale(0.8)";
-    }
-  };
-
-  const transitions = useTransition(location, {
-    from: {
-      opacity: 0,
-      transform: getTransform(location.pathname, isMobil),
-    },
-    enter: { opacity: 1, transform: "translateX(0%)" },
-    leave: {
-      opacity: 0,
-      transform: isMobil
-        ? "translateY(100%)"
-        : getTransform(location.pathname).replace("100%", "-100%"),
-    },
-    config: { duration: 350 },
-  });
 
   useEffect(() => {
     if (token) {
@@ -98,59 +62,41 @@ function App() {
     <>
       <Suspense fallback={<Loader />}>
         <ToastContainer />
-        {transitions((style, location) => (
-          <animated.div
-            style={{
-              ...style,
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <Routes location={location}>
-              <Route path="/" element={<SharedLayout />}>
-                <Route index element={<Navigate to="/welcome" />} />
-                <Route path="/welcome" element={<WelcomePage />} />
-                <Route
-                  path="/signup"
-                  element={
-                    <RestrictedRoute
-                      redirectTo="/home"
-                      component={<SignupPage />}
-                    />
-                  }
-                />
-                <Route
-                  path="/signin"
-                  element={
-                    <RestrictedRoute
-                      redirectTo="/home"
-                      component={<SigninPage />}
-                    />
-                  }
-                />
-                <Route
-                  path="/home"
-                  element={
-                    <PrivateRoute
-                      redirectTo="/signin"
-                      component={<HomePage />}
-                    />
-                  }
-                />
-                <Route
-                  path="/forgot-password"
-                  element={<ForgotPasswordPage />}
-                />
-                <Route
-                  path="/update-password"
-                  element={<UpdatePasswordPage />}
-                />
-                <Route path="*" element={<NotFoundPage />} />
-              </Route>
-            </Routes>
-          </animated.div>
-        ))}
+        <PageTransition>
+          <Routes location={location}>
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<Navigate to="/welcome" />} />
+              <Route path="/welcome" element={<WelcomePage />} />
+              <Route
+                path="/signup"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/home"
+                    component={<SignupPage />}
+                  />
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/home"
+                    component={<SigninPage />}
+                  />
+                }
+              />
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute redirectTo="/signin" component={<HomePage />} />
+                }
+              />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/update-password" element={<UpdatePasswordPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </PageTransition>
       </Suspense>
     </>
   );
