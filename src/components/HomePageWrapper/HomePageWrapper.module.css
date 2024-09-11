@@ -46,6 +46,34 @@
   z-index: -1;
 }
 
+@keyframes moveBottle {
+  0%,
+  100% {
+    transform: translate(-50%) rotate(0deg);
+  }
+  10%,
+  90% {
+    transform: translate(calc(-50% + 0.2vw)) rotate(1deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(-50%) rotate(-2deg);
+  }
+  30%,
+  70% {
+    transform: translate(calc(-50% + 0.4vw)) rotate(2deg);
+  }
+  50% {
+    transform: translate(calc(-50% + 0.6vw)) rotate(3deg);
+  }
+}
+
+.animateBottle {
+  animation: moveBottle 1500ms ease;
+}
+
 .bubbles {
   background-image: url("../../Images/home/home-backgrounds/mobile-home-background-1x.png");
   background-repeat: no-repeat;
@@ -154,6 +182,34 @@
     left: 298.55px;
     transform: translate(0);
     top: 70.26px;
+  }
+
+  @keyframes moveDesktopBottle {
+    0%,
+    100% {
+      transform: translate(0) rotate(0deg);
+    }
+    10%,
+    90% {
+      transform: translate(0.2vw) rotate(1deg);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translate(0) rotate(-2deg);
+    }
+    30%,
+    70% {
+      transform: translate(0.4vw) rotate(2deg);
+    }
+    50% {
+      transform: translate(0.6vw) rotate(3deg);
+    }
+  }
+
+  .animateBottle {
+    animation: moveDesktopBottle 1500ms ease;
   }
 
   .bubbles {
