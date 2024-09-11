@@ -1,27 +1,53 @@
-.bottle {
-  background-image: url("../../Images/home-bottles/Mobile-Bottle-home-screen@1x.png");
+.shadow {
+  background-image: url("../../Images/home/home-bottles/mobile/mobile-shadow-1x.png");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
   position: absolute;
-  width: 280px;
-  height: 208px;
+  width: 217.16px;
+  height: 12.64px;
   left: 50%;
   transform: translate(-50%);
-  top: 162px;
+  top: 357.36px;
   z-index: -1;
 }
 
-@media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  .bottle {
-    background-image: url("../../Images/home-bottles/Mobile-Bottle-home-screen@2x.png");
-  }
+.splash1 {
+  background-image: url("../../Images/home/home-bottles/mobile/mobile-splash1-1x.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 190.27px;
+  height: 62.79px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 302.79px;
+  z-index: -1;
+}
+
+.splash2 {
+  background-image: url("../../Images/home/home-bottles/mobile/mobile-splash2-1x.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 126.93px;
+  height: 97.91px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 262.73px;
+  z-index: -1;
+}
+
+.bottleOfWater {
+  background-image: url("../../Images/home/home-bottles/mobile/mobile-bottle-of-water-1x.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 81.12px;
+  height: 180.01px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 180.32px;
+  z-index: -1;
 }
 
 .bubbles {
-  background-image: url("../../Images/main-bg/back_mobile@1x.png");
+  background-image: url("../../Images/home/home-backgrounds/mobile-home-background-1x.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -38,28 +64,41 @@
   (min-resolution: 192dpi),
   (min-resolution: 2dppx) {
   .bubbles {
-    background-image: url("../../Images/main-bg/back_mobile@2x.png");
+    background-image: url("../../Images/home/home-backgrounds/mobile-home-background-2x.png");
   }
 }
 
 @media screen and (min-width: 768px) {
-  .bottle {
-    background-image: url("../../Images/home-bottles/Tablet-Bottle-Home-Screen@1x.png");
-    width: 518px;
-    height: 386px;
-    top: 104px;
+  .shadow {
+    background-image: url("../../Images/home/home-bottles/tablet/tablet-shadow-1x.png");
+    width: 401.74px;
+    height: 23.45px;
+    top: 466.55px;
   }
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .bottle {
-      background-image: url("../../Images/home-bottles/Tablet-Bottle-Home-Screen@2x.png");
-    }
+  .splash1 {
+    background-image: url("../../Images/home/home-bottles/tablet/tablet-splash1-1x.png");
+    width: 352.01px;
+    height: 116.53px;
+    top: 365.28px;
+  }
+
+  .splash2 {
+    background-image: url("../../Images/home/home-bottles/tablet/tablet-splash2-1x.png");
+    width: 234.82px;
+    height: 181.7px;
+    top: 290.93px;
+  }
+
+  .bottleOfWater {
+    background-image: url("../../Images/home/home-bottles/tablet/tablet-bottle-of-water-1x.png");
+    width: 150.07px;
+    height: 334.06px;
+    top: 137.99px;
   }
 
   .bubbles {
-    background-image: url("../../Images/main-bg/back_tablet@1x.png");
+    background-image: url("../../Images/home/home-backgrounds/tablet-home-background-1x.png");
     width: 768px;
     height: 1280px;
     top: 88px;
@@ -69,7 +108,7 @@
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bubbles {
-      background-image: url("../../Images/main-bg/back_tablet@2x.png");
+      background-image: url("../../Images/home/home-backgrounds/tablet-home-background-2x.png");
     }
   }
 }
@@ -81,25 +120,44 @@
     position: relative;
   }
 
-  .bottle {
-    background-image: url("../../Images/home-bottles/Desk-Botle-Home-screen@1x.png");
-    width: 738px;
-    height: 548px;
-    left: 38.67px;
+  .shadow {
+    background-image: url("../../Images/home/home-bottles/desktop/desktop-shadow-1x.png");
+    width: 572.36px;
+    height: 33.3px;
+    left: 121.49px;
     transform: translate(0);
-    top: 22px;
+    top: 536.7px;
   }
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .bottle {
-      background-image: url("../../Images/home-bottles/Desk-Botle-Home-screen@2x.png");
-    }
+  .splash1 {
+    background-image: url("../../Images/home/home-bottles/desktop/desktop-splash1-1x.png");
+    width: 501.51px;
+    height: 165.44px;
+    left: 151.57px;
+    transform: translate(0);
+    top: 392.94px;
+  }
+
+  .splash2 {
+    background-image: url("../../Images/home/home-bottles/desktop/desktop-splash2-1x.png");
+    width: 334.55px;
+    height: 297.96px;
+    left: 241.09px;
+    transform: translate(0);
+    top: 287.38px;
+  }
+
+  .bottleOfWater {
+    background-image: url("../../Images/home/home-bottles/desktop/desktop-bottle-of-water-1x.png");
+    width: 213.81px;
+    height: 474.26px;
+    left: 298.55px;
+    transform: translate(0);
+    top: 70.26px;
   }
 
   .bubbles {
-    background-image: url("../../Images/main-bg/back_desktop@1x.png");
+    background-image: url("../../Images/home/home-backgrounds/desktop-home-background-1x.png");
     width: 1404px;
     height: 582px;
     top: 59px;
@@ -111,7 +169,7 @@
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .bubbles {
-      background-image: url("../../Images/main-bg/back_desktop@2x.png");
+      background-image: url("../../Images/home/home-backgrounds/desktop-home-background-2x.png");
     }
   }
 }
