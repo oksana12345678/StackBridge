@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { requestResetPasswordEmail } from "./ForgotPasswordApi.js";
 import showToast from "../showToast.js";
 import css from "./ForgotPasswordForm.module.css";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton.jsx";
 
 export default function ForgotPasswordForm() {
   const ForgotPasswordFormSchema = Yup.object().shape({
@@ -55,9 +56,11 @@ export default function ForgotPasswordForm() {
                 component="span"
               />
             </div>
-            <button type="submit" className={css.btn}>
-              Send
-            </button>
+            <WaveEffectButton>
+              <button type="submit" className={css.btn}>
+                Send
+              </button>
+            </WaveEffectButton>
             <NavLink to={"/signin"} className={css.link}>
               Sign in
             </NavLink>
