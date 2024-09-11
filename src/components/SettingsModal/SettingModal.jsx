@@ -186,8 +186,18 @@ const SettingModal = () => {
         validationSchema={userInfoValidationSchema}
         onSubmit={onSubmit}
       >
-        {({ errors, touched }) => (
-          <Form className={css["form-container"]} autoComplete="off" noValidate>
+        {({ errors, touched, handleSubmit }) => (
+          <Form
+            className={css["form-container"]}
+            autoComplete="off"
+            noValidate
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSubmit();
+              }
+            }}
+          >
             <PhotoGroup
               avatar={user.avatar}
               isSubmitBlocked={isSubmitBlocked}
