@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
@@ -10,6 +11,9 @@ import WaveEffectButton from "../WaveEffectButton/WaveEffectButton.jsx";
 export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
   const [showPassword, toggle] = useToggle();
   const { pathname } = useLocation();
+
+  const signinFieldId = useId();
+  const signupFieldId = useId();
 
   return (
     <div
@@ -34,13 +38,24 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
             </h2>
 
             <div className={css.labelInputWrapper}>
-              <label className={css.label} htmlFor="email">
+              <label
+                className={css.label}
+                htmlFor={
+                  pathname === "/signin"
+                    ? `${signinFieldId}-email`
+                    : `${signupFieldId}-email`
+                }
+              >
                 Enter your email
               </label>
               <Field
                 type="email"
                 name="email"
-                id="email"
+                id={
+                  pathname === "/signin"
+                    ? `${signinFieldId}-email`
+                    : `${signupFieldId}-email`
+                }
                 placeholder="Enter your email"
                 className={`${css.input} ${
                   errors.email && touched.email ? css.inputError : ""
@@ -54,14 +69,25 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
             </div>
 
             <div className={css.labelInputWrapper}>
-              <label className={css.label} htmlFor="password">
+              <label
+                className={css.label}
+                htmlFor={
+                  pathname === "/signin"
+                    ? `${signinFieldId}-password`
+                    : `${signupFieldId}-password`
+                }
+              >
                 Enter your password
               </label>
               <div className={css.passwordWrapper}>
                 <Field
                   type={showPassword.password ? "text" : "password"}
                   name="password"
-                  id="password"
+                  id={
+                    pathname === "/signin"
+                      ? `${signinFieldId}-password`
+                      : `${signupFieldId}-password`
+                  }
                   placeholder="Enter your password"
                   className={`${css.input} ${
                     errors.password && touched.password ? css.inputError : ""
@@ -90,16 +116,18 @@ export const SignInSignUpWrapper = ({ contactsSchema, handleSubmit }) => {
             </div>
             {pathname === "/signin" ? undefined : (
               <>
-               
                 <div className={css.labelInputWrapper}>
-                  <label className={css.label} htmlFor="repeatPassword">
+                  <label
+                    className={css.label}
+                    htmlFor={`${signupFieldId}-repeatPassword`}
+                  >
                     Repeat password
                   </label>
                   <div className={css.passwordWrapper}>
                     <Field
                       type={showPassword.repeatPassword ? "text" : "password"}
                       name="repeatPassword"
-                      id="repeatPassword"
+                      id={`${signupFieldId}-repeatPassword`}
                       placeholder="Repeat your password"
                       className={`${css.input} ${
                         errors.repeatPassword && touched.repeatPassword
