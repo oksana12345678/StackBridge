@@ -43,6 +43,7 @@ export default function AddWater() {
   const incrementOfCounter = 50;
 
   const addAmount = () => setAmountOfWater(amountOfWater + incrementOfCounter);
+  
   const withdrawAmount = () => {
     if (amountOfWater >= incrementOfCounter) {
       setAmountOfWater(amountOfWater - incrementOfCounter);
