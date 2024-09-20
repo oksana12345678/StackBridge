@@ -10,48 +10,16 @@
   --red-accent-color: rgb(239, 80, 80);
   --orange-accent-color: rgb(255, 157, 67);
   --light-blue-text: rgb(158, 187, 255);
-  --secondary-light-blue: rgb(215, 227, 255);
 
-  --shadow-dark-blue: rgba(64, 123, 255, 0.2);
-  --shadow-secondary-dark-blue: rgba(64, 123, 255, 0.34);
-  --shadow-blue: rgba(64, 123, 255, 0.54);
-
-  --font-size-base-sixteen: 16px;
-  --font-size-base-eighteen: 18px;
-  --font-size-base-fourteen: 14px;
-  --font-size-base-twenty-six: 26px;
-
+  --font-size-base: 16px;
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
-  /* color-scheme: light dark; */
+
+  color-scheme: light dark;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --transition-timing-function: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
 }
 
 a {
@@ -59,45 +27,40 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
-
 a:hover {
   color: #535bf2;
 }
 
-/* прячит глазик при вводе пассворда */
-
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear {
-  display: none;
-}
-
-input[type="password"]::-webkit-clear-button,
-input[type="password"]::-webkit-inner-spin-button,
-input[type="password"]::-webkit-outer-spin-button {
-  display: none;
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 h1 {
-  color: var(--primary-text-color);
-  font-family: var(--main-font);
-  font-weight: var(--font-weight-bold);
+  color: primary-text-color;
+  font-family: --main-font;
+  font-weight: --font-weight-bold;
 }
 
 button {
-  font-family: var(--main-font);
+  font-family: --main-font;
   border-radius: 10px;
   border: 1px solid transparent;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  background-color: var(--bg-button-and-text-blue-color);
+  padding: 0.6em 1.2em;
+  font-size: 18px;
+  font-weight: --font-weight-medium;
+  font-family: inherit;
+  background-color: --bg-button-and-text-blue-color;
   cursor: pointer;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   transition: border-color 0.25s;
-  padding: 0;
 }
-
-.modal {
-  max-height: 95%;
-  overflow: auto;
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -105,11 +68,9 @@ button {
     color: #213547;
     background-color: #ffffff;
   }
-
   a:hover {
     color: #747bff;
   }
-
   button {
     background-color: #f9f9f9;
   }
