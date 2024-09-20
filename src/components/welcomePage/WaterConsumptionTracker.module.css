@@ -1,0 +1,119 @@
+.trackerWelcomeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-basis: 48%;
+  color: var(--primary-black-color);
+  background-color: transparent;
+}
+
+.trackerWelcomeTitle {
+  font-size: 26px;
+  padding-bottom: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.14;
+}
+
+.trackerWelcomeSecondTitle {
+  font-size: 24px;
+  padding-bottom: 24px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25;
+}
+
+.trackerWelcomeThirdTitle {
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.11;
+}
+
+.trackerBenefits {
+  margin-top: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #2b2b2b;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  color: var(--primary-black-color);
+  line-height: 1.25;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.trackerWelcomeContainer button {
+  width: 100%;
+  height: 36px;
+  background: var(--primary-blue-color);
+  border-radius: 10px;
+  color: var(--primary-white-color);
+  text-align: center;
+  line-height: 44px;
+  font-weight: var(--font-weight-medium);
+  padding: 8px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+}
+
+@media screen and (min-width: 768px) {
+  .trackerWelcomeTitle {
+    font-size: 36px;
+    line-height: 1.16;
+  }
+
+  .trackerWelcomeSecondTitle {
+    font-size: 26px;
+    line-height: 1.23;
+  }
+
+  .trackerBenefits {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .benefitItem {
+    width: 224px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .trackerWelcomeContainer button {
+    max-width: 336px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .trackerWelcomeContainer {
+    margin-bottom: 0;
+  }
+
+  .trackerBenefits {
+    flex-direction: column;
+  }
+
+  .trackerWelcomeContainer button {
+    max-width: 384px;
+  }
+}

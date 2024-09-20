@@ -1,0 +1,23 @@
+.eyeBtn {
+  position: absolute;
+  background-color: transparent;
+  border: 0px solid transparent;
+  color: #407bff;
+
+  padding: none;
+  right: 10px;
+  top: 60px;
+}
+.eyeBtn:focus,
+.eyeBtn:active {
+  outline: none;
+  box-shadow: none;
+}
+.eye {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #407bff;
+  outline-color: none;
+}

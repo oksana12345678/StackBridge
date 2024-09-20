@@ -1,0 +1,327 @@
+.wrapper {
+  /* position: absolute; */
+  background-image: url("../../Images/welcom-page-bg/welcomeBgPageMob.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  /* bottom: 20px; */
+}
+
+@keyframes moveDiagonal {
+  0% {
+    transform: translate(-112px, -112px);
+  }
+  100% {
+    transform: translate(100vw, 10vh);
+  }
+}
+
+@keyframes moveRandomly {
+  0% {
+    transform: translate(0vw, 0vh);
+  }
+  10% {
+    transform: translate(10vw, 5vh);
+  }
+  20% {
+    transform: translate(15vw, 15vh);
+  }
+  30% {
+    transform: translate(25vw, 20vh);
+  }
+  40% {
+    transform: translate(30vw, 30vh);
+  }
+  50% {
+    transform: translate(50vw, 55vh);
+  }
+  60% {
+    transform: translate(45vw, 30vh);
+  }
+  70% {
+    transform: translate(55vw, 20vh);
+  }
+  80% {
+    transform: translate(60vw, 15vh);
+  }
+  90% {
+    transform: translate(50vw, 5vh);
+  }
+  100% {
+    transform: translate(0vw, 0vh);
+  }
+}
+
+@keyframes circularMotion {
+  0% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+  }
+  25% {
+    transform: translate(calc(50vw + 30px - 25px), calc(50vh - 25px));
+  }
+  50% {
+    transform: translate(calc(50vw - 25px), calc(50vh + 25px - 25px));
+  }
+  75% {
+    transform: translate(calc(50vw - 30px - 25px), calc(50vh - 25px));
+  }
+  100% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+  }
+}
+
+@keyframes randomZigzag {
+  0%,
+  100% {
+    transform: translate(20vw, 20vh);
+  }
+  25% {
+    transform: translate(60vw, 30vh);
+  }
+  50% {
+    transform: translate(40vw, 70vh);
+  }
+  75% {
+    transform: translate(80vw, 50vh);
+  }
+}
+
+@keyframes randomCircular {
+  0%,
+  100% {
+    transform: translate(30vw, 50vh);
+  }
+  20% {
+    transform: translate(50vw, 30vh);
+  }
+  40% {
+    transform: translate(70vw, 60vh);
+  }
+  60% {
+    transform: translate(60vw, 80vh);
+  }
+  80% {
+    transform: translate(40vw, 60vh);
+  }
+}
+
+@keyframes randomBounce {
+  0%,
+  100% {
+    transform: translate(50vw, 50vh);
+  }
+  15% {
+    transform: translate(75vw, 20vh);
+  }
+  30% {
+    transform: translate(90vw, 80vh);
+  }
+  45% {
+    transform: translate(60vw, 60vh);
+  }
+  60% {
+    transform: translate(20vw, 70vh);
+  }
+  75% {
+    transform: translate(10vw, 30vh);
+  }
+  90% {
+    transform: translate(40vw, 20vh);
+  }
+}
+
+@keyframes moveDiagonal2 {
+  0% {
+    transform: translate(-112px, 100vh);
+  }
+  100% {
+    transform: translate(100vw, -20vh);
+  }
+}
+
+.bubble1 {
+  background-image: url("../../Images/bubbles/small-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  z-index: -1;
+  animation: moveDiagonal 10s linear infinite;
+}
+
+.bubble2 {
+  background-image: url("../../Images/bubbles/medium-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  position: fixed;
+  z-index: -1;
+  animation: moveRandomly 15s linear infinite;
+}
+
+.bubble3 {
+  background-image: url("../../Images/bubbles/big-unpainted-bubble.png");
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  z-index: -1;
+  animation: circularMotion 5s ease-in infinite;
+}
+
+.bubble4 {
+  background-image: url("../../Images/bubbles/small-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+  position: fixed;
+  z-index: -1;
+  animation: randomZigzag 10s linear infinite;
+}
+
+.bubble5 {
+  background-image: url("../../Images/bubbles/medium-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: randomCircular 10s linear infinite;
+}
+
+.bubble6 {
+  background-image: url("../../Images/bubbles/big-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: randomBounce 10s linear infinite;
+}
+
+.bubble7 {
+  background-image: url("../../Images/bubbles/medium-painted-bubble.png");
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  z-index: -1;
+  animation: moveDiagonal2 10s linear infinite;
+}
+
+/* @media screen and (min-width: 768px) {
+  .wrapper {
+    background-image: url("../../Images/welcom-page-bg/welcomeBgPageTab.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 800px;
+  }
+} */
+
+/* @media screen and (min-width: 768px) {
+  .wrapper {
+    background-image: url("../../Images/welcom-page-bg/bgrd7501.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+  }
+} */
+@media screen and (min-width: 768px) {
+  .wrapper {
+    background-image: url("../../Images/welcom-page-bg/bottle-tablet.svg"),
+      url("../../Images/welcom-page-bg/spleshTablet.svg");
+    background-repeat: no-repeat;
+    background-size: 500px, 136%;
+    background-position: right -130px bottom 26%, bottom;
+    max-width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -2;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bubble1,
+  .bubble4,
+  .bubble5,
+  .bubble6,
+  .bubble7 {
+    animation-duration: 20s;
+  }
+
+  .bubble2 {
+    animation-duration: 30s;
+  }
+
+  @keyframes moveInLeftBottomCorner {
+    0% {
+      transform: translate(-112px, -112px);
+    }
+    100% {
+      transform: translate(10vw, 100vh);
+    }
+  }
+
+  .bubble8 {
+    background-image: url("../../Images/bubbles/big-unpainted-bubble.png");
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    z-index: -1;
+    animation: moveInLeftBottomCorner 10s linear infinite;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    background-image: url("../../Images/welcom-page-bg/bottle-welcome.svg"),
+      url("../../Images/welcom-page-bg/Group-welcome-line.svg");
+    background-repeat: no-repeat;
+    background-size: 28%, 120%;
+    background-position: right 6% bottom 12%, bottom;
+    max-width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+
+    z-index: -2;
+  }
+
+  .bubble1,
+  .bubble4,
+  .bubble5,
+  .bubble6,
+  .bubble7 {
+    animation-duration: 30s;
+  }
+
+  .bubble2 {
+    animation-duration: 40s;
+  }
+
+  .bubble8 {
+    animation-duration: 20s;
+  }
+
+  @keyframes moveInRightTopCorner {
+    0% {
+      transform: translate(100vw, -5vh);
+    }
+    100% {
+      transform: translate(10vw, -50vh);
+    }
+  }
+
+  .bubble9 {
+    background-image: url("../../Images/bubbles/big-painted-bubble.png");
+    background-repeat: no-repeat;
+    width: 28px;
+    height: 28px;
+    position: fixed;
+    z-index: -1;
+    animation: moveInRightTopCorner 10s linear infinite;
+  }
+}

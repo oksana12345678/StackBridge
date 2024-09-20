@@ -1,0 +1,38 @@
+.radioLabel {
+    font-family: var(--main-font);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--primary-black-color);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+    position: relative;
+  }
+  
+  .radioInput {
+    display: none;
+  }
+  
+  .radioMark {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--primary-blue-color);
+    border-radius: 50%;
+    position: relative;
+    margin-right: 8px;
+  }
+  
+  .radioInput:checked + .radioMark::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-blue-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

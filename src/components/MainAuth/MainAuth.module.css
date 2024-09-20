@@ -1,0 +1,218 @@
+.bottle {
+  width: 100%;
+  height: 100%;
+  transition: background-image var(--transition-timing-function);
+}
+
+.backgroundVisible {
+  background-image: url("../../Images/animation/BackgroundPage-tabl.png");
+  background-size: 768px;
+  background-repeat: no-repeat;
+  background-position: top 52px center;
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+  .backgroundVisible {
+    background-image: url("../../Images/animation/BackgroundPage-tabl-2x.png");
+  }
+}
+
+
+
+.container {
+  width: 320px;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+.formContainer {
+  position: relative;
+  z-index: 100;
+}
+
+.animationContainer {
+  position: relative;
+  margin-top: -26px;
+  width: 280px;
+  height: 210px;
+  z-index: 0;
+}
+
+.hiddenBackground {
+  background-image: none;
+}
+
+@media screen and (max-width: 767px) {
+
+  .bottleSvg {
+    position: absolute;
+    top: 18px;
+    left: 99px;
+    width: 81px;
+    height: 182px;
+    z-index: 3;
+  }
+
+  .shadowSvg {
+    position: absolute;
+    top: 197px;
+    left: 31px;
+    width: 217px;
+    height: 13px;
+    z-index: 1;
+  }
+
+  .splash1Svg {
+    position: absolute;
+    top: 102px;
+    left: 77px;
+    width: 127px;
+    height: 99px;
+    z-index: 2;
+  }
+
+  .splash2Svg {
+    position: absolute;
+    top: 142px;
+    left: 43px;
+    width: 190px;
+    height: 63px;
+    z-index: 4;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .backgroundVisible {
+    background-image: url("../../Images/animation/BackgroundPage-desc.png");
+    background-size: 1404px;
+    background-position: top center;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .backgroundVisible {
+      background-image: url("../../Images/animation/BackgroundPage-desc@2x.png");
+    }
+  }
+
+  .bottleSvg {
+    position: absolute;
+    top: 48px;
+    left: 259px;
+    width: 213px;
+    height: 474px;
+    z-index: 3;
+  }
+
+  .shadowSvg {
+    position: absolute;
+    top: 515px;
+    left: 83px;
+    width: 571px;
+    height: 33px;
+    z-index: 1;
+  }
+
+  .splash1Svg {
+    position: absolute;
+    top: 265px;
+    left: 202px;
+    width: 334px;
+    height: 258px;
+    z-index: 2;
+  }
+
+  .splash2Svg {
+    position: absolute;
+    top: 371px;
+    left: 113px;
+    width: 500px;
+    height: 165px;
+    z-index: 4;
+  }
+
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 768px;
+    display: flex;
+  }
+
+  .formContainer {
+    position: static;
+  }
+
+  .animationContainer {
+    margin-top: 52px;
+    width: 736px;
+    height: 548px;
+    margin-left: -256px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .backgroundVisible {
+    background-position: top 49px center;
+  }
+
+  .container {
+    width: 1440px;
+    padding-left: 112px;
+    padding-right: 112px;
+    flex-direction: row-reverse;
+  }
+
+  .formContainer {
+    margin-right: 104px;
+    margin-left: -25px;
+  }
+
+  .animationContainer {
+    margin-top: 20px;
+    width: 916px;
+    margin-left: -163px;
+    height: 680px;
+  }
+
+  .bottleSvg {
+    position: absolute;
+    top: 60px;
+    left: 323px;
+    width: 265px;
+    height: 589px;
+    z-index: 3;
+  }
+
+  .shadowSvg {
+    position: absolute;
+    top: 639px;
+    left: 102px;
+    width: 710px;
+    height: 41px;
+    z-index: 1;
+  }
+
+  .splash1Svg {
+    position: absolute;
+    top: 329px;
+    left: 251px;
+    width: 415px;
+    height: 320px;
+    z-index: 2;
+  }
+
+  .splash2Svg {
+    position: absolute;
+    top: 460px;
+    left: 140px;
+    width: 622px;
+    height: 205px;
+    z-index: 4;
+  }
+}
