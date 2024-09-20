@@ -15,7 +15,10 @@ export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/signup", credentials);
+      const response = await axios.post(
+        "https://watertracker-app.onrender.com/auth/signup",
+        credentials
+      );
       setAuthHeader(response.data.token);
 
       return response.data;
@@ -29,7 +32,10 @@ export const logIn = createAsyncThunk(
   "auth/signin",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/signin", credentials);
+      const response = await axios.post(
+        "https://watertracker-app.onrender.com/auth/signin",
+        credentials
+      );
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -38,7 +44,7 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logOut = createAsyncThunk("/auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
     clearAuthHeader();
@@ -48,7 +54,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  "auth/refresh",
+  "/auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
