@@ -44,17 +44,20 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("/auth/logout", async (_, thunkAPI) => {
-  try {
-    await axios.post("/auth/logout");
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logOut = createAsyncThunk(
+  "https://watertracker-app.onrender.com/auth/logout",
+  async (_, thunkAPI) => {
+    try {
+      await axios.post("/auth/logout");
+      clearAuthHeader();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const refreshUser = createAsyncThunk(
-  "/auth/refresh",
+  "https://watertracker-app.onrender.com/auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
