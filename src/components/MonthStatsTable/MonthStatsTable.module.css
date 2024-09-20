@@ -1,6 +1,5 @@
 .monthStateWrapper {
-  position: relative;
-  max-width: 264px; /* исправить на 100%, когда будет в общем контейнере с тудушками*/
+  max-width: 264px;
   height: 506px;
   margin: 0 auto;
 }
@@ -24,7 +23,7 @@
 
 .paginationWrap {
   display: flex;
-  min-width: 150px; /*скачет из-за длины слова, поэтому увеличила ширину*/
+  min-width: 150px;
   height: 20px;
   justify-content: space-between;
 }
@@ -56,9 +55,11 @@
 }
 
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 32px;
+  height: 32px;
   gap: 4px;
   align-items: center;
   cursor: pointer;
@@ -82,12 +83,12 @@
   color: var(--primary-black-color);
   background-color: var(--primary-white-color);
   border-radius: 50%;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition-timing-function);
 }
 
 .day:hover,
 .day:focus {
-  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  box-shadow: 0 4px 4px 0 var(--shadow-secondary-dark-blue);
   transform: scale(1.1);
 }
 
@@ -135,6 +136,7 @@
 
   .item {
     width: 34px;
+    height: 34px;
     gap: 1px;
   }
 

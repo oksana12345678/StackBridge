@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useSearchParams } from "react-router-dom";
-import { useId, useState } from "react";
+import { useId } from "react";
 import * as Yup from "yup";
 import showToast from "../showToast.js";
 import css from "./UpdatePasswordForm.module.css";
@@ -18,9 +18,8 @@ export default function UpdatePasswordForm() {
       .min(8, "Password must be at least 8 characters")
       .max(64, "Password must be at most 64 characters")
       .required("Required"),
-    passwordRepeat: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .max(64, "Password must be at most 64 characters")
+    repeatPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Required"),
   });
 
@@ -28,7 +27,7 @@ export default function UpdatePasswordForm() {
   const PasswordRepeatFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    if (values.password !== values.passwordRepeat) {
+    if (values.password !== values.repeatPassword) {
       return showToast("Passwords don't match", "error");
     }
 
@@ -53,7 +52,7 @@ export default function UpdatePasswordForm() {
       <Formik
         initialValues={{
           password: "",
-          passwordRepeat: "",
+          repeatPassword: "",
         }}
         validationSchema={UpdatePasswordSchema}
         onSubmit={handleSubmit}
@@ -61,73 +60,72 @@ export default function UpdatePasswordForm() {
         {({ errors, touched }) => (
           <Form className={css.form} autoComplete="off">
             <h2 className={css.title}>Update password</h2>
+
             <div className={css.fieldStyle}>
               <label className={css.label} htmlFor={PasswordFieldId}>
                 Enter your password
               </label>
-              <div className={css.inputErrorContainer}>
-                <div className={css.passwordWrapper}>
-                  <Field
-                    type={showPassword.password ? "text" : "password"}
-                    name="password"
-                    id={PasswordFieldId}
-                    placeholder="Enter your password"
-                    className={`${css.input} ${
-                      errors.password && touched.password ? css.inputError : ""
-                    }`}
-                  />
-                  <button
-                    type="button"
-                    className={css.eyeBtn}
-                    onClick={() => toggle("password")}
-                  >
-                    {showPassword.password ? (
-                      <HiOutlineEye className={css.faEye} />
-                    ) : (
-                      <HiOutlineEyeOff className={css.faEye} />
-                    )}
-                  </button>
-                </div>
-                <ErrorMessage
-                  className={css.errorMsg}
+              <div className={css.passwordWrapper}>
+                <Field
+                  type={showPassword.password ? "text" : "password"}
                   name="password"
-                  component="span"
+                  id={PasswordFieldId}
+                  placeholder="Enter your password"
+                  className={`${css.input} ${
+                    errors.password && touched.password ? css.inputError : ""
+                  }`}
                 />
+                <button
+                  type="button"
+                  className={css.eyeBtn}
+                  onClick={() => toggle("password")}
+                >
+                  {showPassword.password ? (
+                    <HiOutlineEye className={css.faEye} />
+                  ) : (
+                    <HiOutlineEyeOff className={css.faEye} />
+                  )}
+                </button>
               </div>
+              <ErrorMessage
+                className={css.errorMsg}
+                name="password"
+                component="span"
+              />
             </div>
             <div className={css.fieldStyle}>
               <label className={css.label} htmlFor={PasswordRepeatFieldId}>
                 Repeat password
               </label>
-              <div className={css.inputErrorContainer}>
-                <div className={css.passwordWrapper}>
-                  <Field
-                    type={showPassword.repeatPassword ? "text" : "password"}
-                    name="passwordRepeat"
-                    id={PasswordRepeatFieldId}
-                    placeholder="Repeat your password"
-                    className={`${css.input} ${
-                      errors.password && touched.password ? css.inputError : ""
-                    }`}
-                  />
-                  <button
-                    type="button"
-                    className={css.eyeBtn}
-                    onClick={() => toggle("repeatPassword")}
-                  >
-                    {showPassword.repeatPassword ? (
-                      <HiOutlineEye className={css.faEye} />
-                    ) : (
-                      <HiOutlineEyeOff className={css.faEye} />
-                    )}
-                  </button>
-                </div>
-                <ErrorMessage
-                  className={css.errorMsg}
-                  name="passwordRepeat"
-                  component="span"
+              <div className={css.passwordWrapper}>
+                <Field
+                  type={showPassword.repeatPassword ? "text" : "password"}
+                  name="repeatPassword"
+                  id={PasswordRepeatFieldId}
+                  placeholder="Repeat your password"
+                  className={`${css.input} ${
+                    errors.repeatPassword && touched.repeatPassword
+                      ? css.inputError
+                      : ""
+                  }`}
                 />
+                <button
+                  type="button"
+                  className={css.eyeBtn}
+                  onClick={() => toggle("repeatPassword")}
+                >
+                  {showPassword.repeatPassword ? (
+                    <HiOutlineEye className={css.faEye} />
+                  ) : (
+                    <HiOutlineEyeOff className={css.faEye} />
+                  )}
+                </button>
               </div>
+              <ErrorMessage
+                className={css.errorMsg}
+                name="repeatPassword"
+                component="span"
+              />
             </div>
             <button type="submit" className={css.btn}>
               Sign Up

@@ -1,4 +1,6 @@
 .button {
+  position: relative;
+  z-index: 99;
   border: none;
   display: flex;
   gap: 8px;
@@ -38,4 +40,14 @@
   .name {
     line-height: 24px;
   }
+}
+
+.letter {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-blue-color);
+  border-radius: 50%;
 }

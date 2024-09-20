@@ -75,6 +75,7 @@
 .edit {
   stroke: var(--light-blue-text, #9ebbff);
   position: relative;
+  background-color: var(--secondary-light-blue-color);
 }
 
 .edit:hover::after {
@@ -90,6 +91,7 @@
 .delete {
   stroke: var(--red-accent-color, #ea1b1b);
   position: relative;
+  background-color: var(--secondary-light-blue-color);
 }
 
 .delete:hover::after {

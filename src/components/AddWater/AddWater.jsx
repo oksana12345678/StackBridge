@@ -2,21 +2,27 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addWater } from "../../redux/water/operations";
+import {
+  addWater,
+  getWaterForToday,
+} from "../../redux/waterRequests/operations";
 import showToast from "../showToast";
 import "react-toastify/ReactToastify.css";
 import css from "./AddWater.module.css";
 
-import minus from "../../Icons/minus.svg";
-import plus from "../../Icons/plus.svg";
-import close from "../../Icons/close.svg";
+import { selectIsAddWaterModalOpen } from "../../redux/modalWindow/selectors";
+import { closeModal } from "../../redux/modalWindow/slice";
+import ModalWrapper from "../common/ModalWrapper/ModalWrapper";
+import { getWaterForMonth } from "../../redux/monthStats/operations.js";
+import {
+  selectCurrentMonth,
+  selectCurrentYear,
+} from "../../redux/monthStats/selects.js";
+import moment from "moment";
 
 const WaterSchema = Yup.object().shape({
-  time: Yup.string()
-    .min(8, "Too Short! Min 8 symbols")
-    .max(50, "Too Long! Max 50 symbols")
-    .required("Required field!"),
-  amount: Yup.number()
+  date: Yup.string().required("Required field!"),
+  waterVolume: Yup.number()
     .min(1, "Too little! Min 1 ml")
     .max(5000, "Too much! Max 5000 ml")
     .required("Required field!"),
@@ -24,35 +30,39 @@ const WaterSchema = Yup.object().shape({
 
 export default function AddWater() {
   const dispatch = useDispatch();
-
-  const [amountOfWater, setAmountOfWater] = useState(0);
-  const [result, setResult] = useState(0);
+  const modalIsOpen = useSelector(selectIsAddWaterModalOpen);
+  const currentMonth = useSelector(selectCurrentMonth);
+  const currentYear = useSelector(selectCurrentYear);
   const fieldId = useId();
+
+  const [amountOfWater, setAmountOfWater] = useState(50);
+
+  const yearString = String(currentYear);
+  const monthString = String(currentMonth + 1).padStart(2, "0");
+
   const incrementOfCounter = 50;
 
-  const addAmount = () => {
-    setAmountOfWater(amountOfWater + incrementOfCounter);
-  };
-
+  const addAmount = () => setAmountOfWater(amountOfWater + incrementOfCounter);
   const withdrawAmount = () => {
     if (amountOfWater >= incrementOfCounter) {
       setAmountOfWater(amountOfWater - incrementOfCounter);
     }
   };
 
-  /////// About TIME
-  const timeNow = new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours() % 12 || 12;
+    const minutes = Math.floor(now.getMinutes() / 5) * 5;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const ampm = now.getHours() >= 12 ? "PM" : "AM";
+    return `${hours.toString().padStart(2, "0")}:${formattedMinutes} ${ampm}`;
+  };
+
+  const timeNow = getCurrentTime();
 
   const generateListOfTime = () => {
     const options = [];
-    const startHour = 0;
-    const endHour = 23;
-
-    for (let hour = startHour; hour <= endHour; hour += 1) {
+    for (let hour = 0; hour <= 23; hour++) {
       for (let minute = 0; minute < 60; minute += 5) {
         const ampm = hour >= 12 ? "PM" : "AM";
         const hour12 = hour % 12 || 12;
@@ -62,33 +72,35 @@ export default function AddWater() {
         options.push(time);
       }
     }
-
     return options;
   };
 
   const listOfTime = generateListOfTime();
 
-  /////// Форматування дати для відправки на бекенд
+  // Форматування дати для відправки на бекенд
   function formatDateTime(time) {
-    const formattedDate = new Date()
-      .toLocaleDateString("en-CA", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
-      .replace(/\//g, "-");
-    return `${formattedDate} ${time}`;
+    const formattedDate = moment().format("YYYY-MM-DD");
+    const time24 = moment(time, "h:mm A").format("HH:mm");
+
+    return moment(`${formattedDate} ${time24}`).toISOString();
   }
 
-  /////// Функція відправки даних на бекенд
+  const initialTime = listOfTime.includes(timeNow) ? timeNow : listOfTime[0];
+
   const handleAddWater = (values, actions) => {
-    const time = formatDateTime(values.time);
-    const amount = values.amount;
-    dispatch(addWater({ amount, time }))
+    const date = formatDateTime(values.date);
+    const waterVolume = values.waterVolume;
+    dispatch(addWater({ waterVolume, date }))
       .unwrap()
       .then(() => {
         showToast("Water add successful!", "success");
         actions.resetForm();
+        dispatch(getWaterForToday());
+        dispatch(closeModal());
+        setAmountOfWater(50);
+
+        //TODO Обновляем данные за текущий месяц в компоненте MonthStatsTable
+        dispatch(getWaterForMonth({ year: yearString, month: monthString }));
       })
       .catch(() => {
         showToast("Water add failed!", "error");
@@ -96,95 +108,123 @@ export default function AddWater() {
   };
 
   return (
-    <Formik
-      initialValues={{ time: timeNow, amount: 0 }}
-      onSubmit={handleAddWater}
-      validationSchema={WaterSchema}
+    <ModalWrapper
+      modalIsOpen={modalIsOpen}
+      closeModal={() => {
+        dispatch(closeModal());
+        setAmountOfWater(50);
+      }}
+      customStyles={{
+        content: {
+          padding: "0",
+        },
+      }}
     >
-      {({ setFieldValue }) => (
-        <Form className={css.formContainer}>
-          <h2 className={css.title}>Add water</h2>
-          <p className={css.text}>Choose a value:</p>
-          <p className={css.textCounter}>Amount of water:</p>
-          <div className={css.counterContainer}>
-            <button
-              className={css.amountBtn}
-              onClick={withdrawAmount}
-              type="button"
-              onBlur={() => {
-                setFieldValue("amount", amountOfWater);
-                setResult(amountOfWater);
-              }}
-            >
-              <img src={minus} alt="Minus" />
-            </button>
-            <div className={css.amountCounter}>{amountOfWater}ml</div>
-            <button
-              className={css.amountBtn}
-              onClick={addAmount}
-              type="button"
-              onBlur={() => {
-                setFieldValue("amount", amountOfWater);
-                setResult(amountOfWater);
-              }}
-            >
-              <img src={plus} alt="Plus" />
-            </button>
-          </div>
-          <div className={css.timeContainer}>
-            <label className={css.labelTime} htmlFor={`${fieldId}-time`}>
-              Recording time:
-            </label>
-            <Field
-              as="select"
-              name="time"
-              className={css.input}
-              id={`${fieldId}-time`}
-            >
-              <option value={timeNow}>{timeNow}</option>
-              {listOfTime.map((time, index) => (
-                <option key={index} value={time}>
-                  {time}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage className={css.error} name="time" component="span" />
-          </div>
-          <div className={css.enterValueContainer}>
-            <label
-              className={css.enterValueLabel}
-              htmlFor={`${fieldId}-amount`}
-            >
-              Enter the value of the water used:
-            </label>
-            <Field
-              className={css.input}
-              name="amount"
-              type="number"
-              id={`${fieldId}-amount`}
-              onBlur={(e) => {
-                setAmountOfWater(Number(e.target.value));
-                setResult(Number(e.target.value));
-              }}
-            />
-            <ErrorMessage
-              className={css.error}
-              name="amount"
-              component="span"
-            />
-          </div>
-          <div className={css.resultContainer}>
-            <p className={css.textResult}>{result}ml</p>
-            <button className={css.saveBtn} type="submit">
-              Save
-            </button>
-          </div>
-
-          <button className={css.closeBtn} type="button">
-            <img src={close} alt="Close cross" />
-          </button>
-        </Form>
-      )}
-    </Formik>
+      <Formik
+        initialValues={{ date: initialTime, waterVolume: 50 }}
+        onSubmit={handleAddWater}
+        validationSchema={WaterSchema}
+      >
+        {({ setFieldValue }) => (
+          <Form className={css.formContainer}>
+            <h2 className={css.title}>Add water</h2>
+            <p className={css.text}>Choose a value:</p>
+            <p className={css.textCounter}>Amount of water:</p>
+            <div className={css.counterContainer}>
+              <button
+                className={css.amountBtn}
+                onClick={() => {
+                  withdrawAmount();
+                  if (amountOfWater > 0) {
+                    setFieldValue(
+                      "waterVolume",
+                      amountOfWater - incrementOfCounter
+                    );
+                  }
+                }}
+                type="button"
+              >
+                <svg className={css.iconMinus} width={24} height={24}>
+                  <use href="/spriteFull.svg#icon-minus"></use>
+                </svg>
+              </button>
+              <div className={css.amountCounter}>{amountOfWater}ml</div>
+              <button
+                className={css.amountBtn}
+                onClick={() => {
+                  addAmount();
+                  setFieldValue(
+                    "waterVolume",
+                    amountOfWater + incrementOfCounter
+                  );
+                }}
+                type="button"
+              >
+                <svg className={css.iconPlus} width={24} height={24}>
+                  <use href="/spriteFull.svg#icon-plus"></use>
+                </svg>
+              </button>
+            </div>
+            <div className={css.timeContainer}>
+              <label className={css.labelTime} htmlFor={`${fieldId}-date`}>
+                Recording time:
+              </label>
+              <Field
+                as="select"
+                name="date"
+                className={css.input}
+                id={`${fieldId}-date`}
+              >
+                {listOfTime.map((time, index) => (
+                  <option key={index} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage
+                className={css.error}
+                name="date"
+                component="span"
+              />
+            </div>
+            <div className={css.enterValueContainer}>
+              <label
+                className={css.enterValueLabel}
+                htmlFor={`${fieldId}-waterVolume`}
+              >
+                Enter the value of the water used:
+              </label>
+              <Field
+                className={css.input}
+                name="waterVolume"
+                type="number"
+                min="0"
+                id={`${fieldId}-waterVolume`}
+                onFocus={() => {
+                  setFieldValue("waterVolume", "");
+                }}
+                onBlur={(e) => {
+                  setAmountOfWater(Number(e.target.value));
+                  if (e.target.value === "") {
+                    setFieldValue("waterVolume", "0");
+                  }
+                }}
+              />
+              <ErrorMessage
+                className={css.error}
+                name="waterVolume"
+                component="span"
+              />
+            </div>
+            <div className={css.resultContainer}>
+              <p className={css.textResult}>{amountOfWater}ml</p>
+              <button className={css.saveBtn} type="submit">
+                Save
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </ModalWrapper>
   );
 }

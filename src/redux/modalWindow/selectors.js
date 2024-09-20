@@ -8,3 +8,8 @@ export const selectIsDeleteEntryModalOpen = (state) =>
   state.modal.isDeleteEntryModalOpen;
 export const selectIsAddWaterModalOpen = (state) =>
   state.modal.isAddWaterModalOpen;
+
+export const selectIdToDelete = (state) => state.modal.idToDelete;
+export const selectIsEditWaterModalOpen = (state) =>
+  state.modal.isEditWaterModalOpen;
+export const selectIdToEdit = (state) => state.modal.idToEdit;

@@ -2,18 +2,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { getMonthWater } from "../../redux/monthStats/operations";
+import { getWaterForMonth } from "../../redux/monthStats/operations";
 import {
   selectCurrentMonth,
   selectCurrentYear,
   selectDaysStats,
   selectSelectedDay,
-} from "../../redux/monthStats/selectors";
+  selectHoveredDay,
+} from "../../redux/monthStats/selects";
 import { monthNames } from "../../data/monthNames";
 import {
   prevMonth,
   nextMonth,
-  toggleModal,
+  hoverDayIndex,
+  selectDay,
 } from "../../redux/monthStats/slice";
 import DaysGeneralStats from "../DaysGeneralStats/DaysGeneralStats";
 import css from "./MonthStatsTable.module.css";
@@ -23,14 +25,11 @@ const MonthStatsTable = () => {
   const currentYear = useSelector(selectCurrentYear);
   const daysStats = useSelector(selectDaysStats);
   const selectedDay = useSelector(selectSelectedDay);
+  const hoveredDay = useSelector(selectHoveredDay);
   const dispatch = useDispatch();
 
   const yearString = String(currentYear);
   const monthString = String(currentMonth + 1).padStart(2, "0");
-
-  useEffect(() => {
-    dispatch(getMonthWater({ year: yearString, month: monthString }));
-  }, [currentMonth, currentYear, dispatch]);
 
   const handlePrevMonth = () => {
     dispatch(prevMonth());
@@ -40,19 +39,18 @@ const MonthStatsTable = () => {
     dispatch(nextMonth());
   };
 
-  const handleDayClick = dayStats => {
-    dispatch(toggleModal(dayStats));
+  const handleMouseEnter = (dayStats, index) => {
+    dispatch(hoverDayIndex(index));
+    dispatch(selectDay(dayStats));
+  };
+
+  const handleMouseLeave = () => {
+    dispatch(hoverDayIndex(null));
   };
 
   useEffect(() => {
-    if (selectedDay !== null) {
-      const timer = setTimeout(() => {
-        dispatch(toggleModal(null));
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [selectedDay, dispatch]);
+    dispatch(getWaterForMonth({ year: yearString, month: monthString }));
+  }, [monthString, yearString, dispatch]);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
@@ -83,7 +81,7 @@ const MonthStatsTable = () => {
       </div>
 
       <ul className={css.list}>
-        {daysArray.map(day => {
+        {daysArray.map((day, index) => {
           const dayString = day.toString();
           const dayStats = daysStats.find(stat => {
             const statDay = stat.date.split(",")[0].trim();
@@ -96,7 +94,8 @@ const MonthStatsTable = () => {
             <li
               className={css.item}
               key={day}
-              onClick={() => handleDayClick(dayStats)}
+              onMouseEnter={() => handleMouseEnter(dayStats, index)}
+              onMouseLeave={handleMouseLeave}
             >
               <span
                 className={clsx(css.day, {
@@ -106,19 +105,22 @@ const MonthStatsTable = () => {
                 {day}
               </span>
               <span className={css.dailyNorma}>{fulfilled}</span>
+
+              {hoveredDay === index && (
+                <DaysGeneralStats
+                  date={
+                    selectedDay?.date || `${day}, ${monthNames[currentMonth]}`
+                  }
+                  dailyNorma={selectedDay?.waterRate}
+                  percentageOfFulfillment={selectedDay?.percentOfWaterRate}
+                  servingsAmount={selectedDay?.amountOfRecords}
+                  index={index}
+                />
+              )}
             </li>
           );
         })}
       </ul>
-
-      {selectedDay !== null && (
-        <DaysGeneralStats
-          date={selectedDay?.date}
-          dailyNorma={selectedDay?.waterRate}
-          percentageOfFulfillment={selectedDay?.percentOfWaterRate}
-          servingsAmount={selectedDay?.amountOfRecords}
-        />
-      )}
     </div>
   );
 };

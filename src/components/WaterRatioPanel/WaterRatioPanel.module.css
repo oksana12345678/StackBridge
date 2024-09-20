@@ -1,3 +1,9 @@
+.loader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 .waterRatioPanelWrapper {
   margin: 0 auto;
   width: 280px;
@@ -6,6 +12,7 @@
 .progressWrapper {
   width: 100%;
   height: 82px;
+  position: relative;
 }
 
 .progressTitle {
@@ -38,15 +45,6 @@
   background: rgb(158, 187, 255);
 }
 
-.adjustmentWrapper {
-  background-color: transparent;
-  width: calc(100% - 14px);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .progressSlider {
   position: absolute;
   width: 14px;
@@ -56,6 +54,16 @@
   border-radius: 50%;
   border: 1px solid rgb(64, 123, 255);
   background: rgb(255, 255, 255);
+}
+
+.currentValue {
+  color: var(--primary-blue-color);
+  font-family: var(--main-font);
+  font-size: 12px;
+  line-height: 1.33;
+  position: absolute;
+  top: -15px;
+  left: 0;
 }
 
 .progressBarRangeScale {
@@ -82,7 +90,7 @@
 .scaleValue::before {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%);
   content: "";
   width: 1px;

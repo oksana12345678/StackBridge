@@ -1,57 +1,68 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMonthWater } from "./operations";
+import { getWaterForMonth } from "./operations";
 
-const handlePending = state => {
+const initialMonthStatsState = {
+  currentMonth: new Date().getMonth(),
+  currentYear: new Date().getFullYear(),
+  daysStats: [],
+  selectedDay: null,
+  hoveredDay: null,
+  error: null,
+};
+
+// Xендлери для стану
+
+const handlePending = (state) => {
+  state.isLoading = true;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
+  state.isLoading = false;
   state.error = action.payload;
 };
 
+// `Month Stats Slice`
 const monthStatsSlice = createSlice({
   name: "monthStats",
-  initialState: {
-    currentMonth: new Date().getMonth(),
-    currentYear: new Date().getFullYear(),
-    daysStats: [],
-    selectedDay: null,
-    error: null,
-  },
+  initialState: initialMonthStatsState,
   reducers: {
     prevMonth(state) {
       if (state.currentMonth === 0) {
         state.currentMonth = 11;
-        state.currentYear = state.currentYear - 1;
-        state.selectedDay = null;
+        state.currentYear -= 1;
       } else {
-        state.currentMonth = state.currentMonth - 1;
-        state.selectedDay = null;
+        state.currentMonth -= 1;
       }
+      state.selectedDay = null;
     },
     nextMonth(state) {
       if (state.currentMonth === 11) {
         state.currentMonth = 0;
-        state.currentYear = state.currentYear + 1;
-        state.selectedDay = null;
+        state.currentYear += 1;
       } else {
-        state.currentMonth = state.currentMonth + 1;
-        state.selectedDay = null;
+        state.currentMonth += 1;
       }
+      state.selectedDay = null;
     },
-    toggleModal(state, action) {
-      state.selectedDay = action.payload || null;
+    hoverDayIndex(state, action) {
+      state.hoveredDay = action.payload;
+    },
+    selectDay(state, action) {
+      state.selectedDay = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(getMonthWater.pending, handlePending)
-      .addCase(getMonthWater.fulfilled, (state, action) => {
+      .addCase(getWaterForMonth.pending, handlePending)
+      .addCase(getWaterForMonth.fulfilled, (state, action) => {
         state.daysStats = action.payload;
       })
-      .addCase(getMonthWater.rejected, handleRejected);
+      .addCase(getWaterForMonth.rejected, handleRejected);
   },
 });
 
-export const { prevMonth, nextMonth, toggleModal } = monthStatsSlice.actions;
-export default monthStatsSlice.reducer;
+export const { prevMonth, nextMonth, hoverDayIndex, selectDay } =
+  monthStatsSlice.actions;
+
+export const monthStatsReducer = monthStatsSlice.reducer;

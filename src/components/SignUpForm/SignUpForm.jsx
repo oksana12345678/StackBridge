@@ -1,19 +1,17 @@
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations.js";
 import { SignInSignUpWrapper } from "../SignInSignUpWrapper/SignInSignUpWrapper.jsx";
 import showToast from "../showToast.js";
+import Loader from "../Loader/Loader.jsx";
+import { selectLoadingUserData } from "../../redux/auth/selectors.js";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUserData);
 
   const validationControl = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email address")
-      .min(8, "Too Short!")
-      .max(64, "Too Long!")
-      .required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
       .min(8, "Too short")
       .max(64, "Too long")
@@ -41,10 +39,16 @@ const SignUpForm = () => {
   };
 
   return (
-    <SignInSignUpWrapper
-      contactsSchema={validationControl}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SignInSignUpWrapper
+          contactsSchema={validationControl}
+          handleSubmit={handleSubmit}
+        />
+      )}
+    </>
   );
 };
 

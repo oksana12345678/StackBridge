@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { requestResetPasswordEmail } from "./ForgotPasswordApi.js";
 import showToast from "../showToast.js";
 import css from "./ForgotPasswordForm.module.css";
+import WaveEffectButton from "../WaveEffectButton/WaveEffectButton.jsx";
 
 export default function ForgotPasswordForm() {
   const ForgotPasswordFormSchema = Yup.object().shape({
@@ -40,26 +41,26 @@ export default function ForgotPasswordForm() {
               <label className={css.label} htmlFor={emailFieldId}>
                 Enter your email
               </label>
-              <div className={css.inputErrorContainer}>
-                <Field
-                  type="email"
-                  name="email"
-                  id={emailFieldId}
-                  placeholder="Enter your email"
-                  className={`${css.input} ${
-                    errors.email && touched.email ? css.inputError : ""
-                  }`}
-                />
-                <ErrorMessage
-                  className={css.errorMsg}
-                  name="email"
-                  component="span"
-                />
-              </div>
+              <Field
+                type="email"
+                name="email"
+                id={emailFieldId}
+                placeholder="Enter your email"
+                className={`${css.input} ${
+                  errors.email && touched.email ? css.inputError : ""
+                }`}
+              />
+              <ErrorMessage
+                className={css.errorMsg}
+                name="email"
+                component="span"
+              />
             </div>
-            <button type="submit" className={css.btn}>
-              Send
-            </button>
+            <WaveEffectButton>
+              <button type="submit" className={css.btn}>
+                Send
+              </button>
+            </WaveEffectButton>
             <NavLink to={"/signin"} className={css.link}>
               Sign in
             </NavLink>

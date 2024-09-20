@@ -1,7 +1,11 @@
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-
+import {
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import { refreshUser } from "../../redux/auth/operations.js";
@@ -13,6 +17,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 import { useAuth } from "../../hooks/userAuth.js";
 import { ToastContainer } from "react-toastify";
 import showToast from "../showToast.js";
+import PageTransition from "../PageTransition/PageTransition.jsx";
 
 const WelcomePage = lazy(() =>
   import("../../pages/WelcomePage/WelcomePage.jsx")
@@ -31,24 +36,23 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
+  const { isRefreshing, token } = useAuth();
   const dispatch = useDispatch();
-  const { isRefreshing, token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
       dispatch(refreshUser())
         .unwrap()
-
+        .then(() => {
+          navigate("/home");
+        })
         .catch((error) => {
           showToast(`Oops something went wrong! ${error} `, "error");
         });
+      return;
     }
-
-    if (token) {
-      navigate("/home");
-    }
-  }, [dispatch, isLoggedIn, token, navigate]);
+  }, [dispatch, token, navigate]);
 
   return isRefreshing ? (
     <b>
@@ -58,40 +62,41 @@ function App() {
     <>
       <Suspense fallback={<Loader />}>
         <ToastContainer />
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Navigate to="/welcome" />} />
-            <Route path="/welcome" element={<WelcomePage />} />
-            <Route
-              path="/signup"
-              element={
-                <RestrictedRoute
-                  redirectTo="/home"
-                  component={<SignupPage />}
-                />
-              }
-            />
-            <Route
-              path="/signin"
-              element={
-                <RestrictedRoute
-                  redirectTo="/home"
-                  component={<SigninPage />}
-                />
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute redirectTo="/signin" component={<HomePage />} />
-              }
-            />
-
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/update-password" element={<UpdatePasswordPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
+        <PageTransition>
+          <Routes location={location}>
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<Navigate to="/welcome" />} />
+              <Route path="/welcome" element={<WelcomePage />} />
+              <Route
+                path="/signup"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/home"
+                    component={<SignupPage />}
+                  />
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/home"
+                    component={<SigninPage />}
+                  />
+                }
+              />
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute redirectTo="/signin" component={<HomePage />} />
+                }
+              />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/update-password" element={<UpdatePasswordPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </PageTransition>
       </Suspense>
     </>
   );

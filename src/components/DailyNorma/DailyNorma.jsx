@@ -1,16 +1,69 @@
-import { useSelector } from "react-redux";
-
+import { useEffect } from "react";
+import {  useSelector } from "react-redux";
+import { Hourglass } from "react-loader-spinner";
+import {
+  selectErrorWaterRate,
+  selectWaterRate,
+} from "../../redux/waterRate/selectors.js";
+import showToast from "../showToast.js";
 import css from "./DailyNorma.module.css";
+import {
+  selectLoadingUserData,
+  selectWaterRateUpdate,
+} from "../../redux/auth/selectors.js";
 
 const DailyNorma = ({ handleOpenModal }) => {
-  const dailyNorma = 2;
-  // const dailyNorma = useSelector((state) => state.dailyNormalModal.waterRate);
+
+  const waterRateUpdate = useSelector(selectWaterRateUpdate);
+
+  const waterRate = useSelector(selectWaterRate);
+  const loading = useSelector(selectLoadingUserData);
+  const error = useSelector(selectErrorWaterRate);
+
+
+  useEffect(() => {
+    if (error) {
+      showToast("Error with loading your daily norma!", "error");
+    }
+  }, [error]);
 
   return (
     <div className={css.dailyNormaContainer}>
       <div className={css.title}>My daily norma</div>
       <div className={css.infoContainer}>
-        {dailyNorma ? dailyNorma / 1000 : 2} L{" "}
+        {loading ? (
+          <Hourglass
+            visible={true}
+            height="20"
+            width="20"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            colors={["#306cce", "#72a1ed"]}
+          />
+        ) : error ? (
+          <div>2 L</div>
+        ) : (
+          <div>
+            {waterRate ? (
+              waterRate / 1000
+            ) : waterRateUpdate ? (
+              waterRateUpdate / 1000
+            ) : (
+              <Hourglass
+                visible={true}
+                height="20"
+                width="20"
+                ariaLabel="hourglass-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                colors={["#306cce", "#72a1ed"]}
+              />
+            )}
+            L
+          </div>
+        )}
+
         <button className={css.editBtn} onClick={handleOpenModal}>
           Edit
         </button>

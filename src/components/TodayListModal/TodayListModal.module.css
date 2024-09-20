@@ -1,6 +1,9 @@
 .error {
-  color: red;
-  font-size: 14px;
+  color: var(--red-accent-color);
+  font-size: var(--font-size-base-fourteen);
+  position: absolute;
+  top: 102px;
+  left: 0;
 }
 
 .formContainer {
@@ -8,19 +11,18 @@
   padding: 24px 12px;
   width: 280px;
   height: 648px;
-  background-color: #fff;
+  background-color: var(--primary-white-color);
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid lightblue;
 }
 
 .title {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 26px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base-twenty-six);
   line-height: 1.23077;
-  color: #2f2f2f;
+  color: var(--primary-black-color);
   margin-bottom: 24px;
 }
 
@@ -62,21 +64,21 @@
 }
 
 .text {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base-eighteen);
   line-height: 1.11111;
-  color: #2f2f2f;
+  color: var(--primary-black-color);
   margin-bottom: 16px;
 }
 
 .textCounter,
 .labelTime {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
   line-height: 1.25;
-  color: #2f2f2f;
+  color: var(--primary-black-color);
 }
 
 .counterContainer {
@@ -88,21 +90,29 @@
 }
 
 .amountBtn {
-  border: 1px solid #9ebbff;
+  border: 1px solid var(--light-blue-text);
   border-radius: 30px;
   padding: 10px;
   width: 44px;
   height: 44px;
-  box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.2);
-  background: #fff;
+  box-shadow: 0 2px 4px 0 var(--shadow-dark-blue);
+  background: var(--primary-white-color);
 }
 
 .amountBtn:hover {
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  box-shadow: 0 4px 14px 0 var(--shadow-blue);
 }
 
 .amountBtn:active {
   box-shadow: none;
+}
+
+.iconMinus {
+  fill: var(--primary-blue-color);
+}
+
+.iconPlus {
+  stroke: var(--primary-blue-color);
 }
 
 .amountCounter {
@@ -110,13 +120,13 @@
   padding: 6px 10px;
   width: 92px;
   height: 36px;
-  background: #d7e3ff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  background: var(--secondary-light-blue);
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base-eighteen);
   line-height: 1.33333;
   text-align: center;
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .timeContainer {
@@ -127,30 +137,31 @@
 }
 
 .input {
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-light-blue);
   border-radius: 6px;
   padding: 12px 10px;
   width: 256px;
   height: 44px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
   line-height: 1.25;
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .enterValueLabel {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base-eighteen);
   line-height: 1.11111;
-  color: #2f2f2f;
+  color: var(--primary-black-color);
 }
 
 .enterValueContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
 }
 
 .resultContainer {
@@ -162,12 +173,12 @@
 }
 
 .textResult {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base-eighteen);
   line-height: 1.33333;
   text-align: center;
-  color: #407bff;
+  color: var(--primary-blue-color);
 }
 
 .saveBtn {
@@ -176,30 +187,37 @@
   padding: 8px 30px;
   width: 256px;
   height: 36px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background-color: #407bff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  box-shadow: 0 4px 8px 0 var(--shadow-secondary-dark-blue);
+  background-color: var(--primary-blue-color);
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
   line-height: 1.25;
   text-align: center;
-  color: #fff;
+  color: var(--primary-white-color);
 }
 
 .saveBtn:hover {
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  box-shadow: 0 4px 14px 0 var(--shadow-blue);
 }
 
 .saveBtn:active {
   box-shadow: none;
 }
 
-.closeBtn {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 12px;
-  top: 24px;
+::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--secondary-light-blue);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-blue-text);
+  border-radius: 12px;
 }
 
 /* Tablet styles 768px */
@@ -232,13 +250,12 @@
     padding: 10px 30px;
     width: 160px;
     height: 44px;
-    font-size: 18px;
+    font-size: var(--font-size-base-eighteen);
     line-height: 1.33333;
   }
 
-  .closeBtn {
-    right: 24px;
-    top: 36px;
+  .error {
+    top: 85px;
   }
 }
 /* Desktop styles 1440px */

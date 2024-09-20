@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import TodayWaterItem from "./TodayWaterItem";
 import css from "./TodayWaterList.module.css";
 import { FaPlus as Plus } from "react-icons/fa6";
-import { selectWatersToday } from "../../redux/waterConsumption/selectors";
-import { getWaterForTodayThunk } from "../../redux/waterConsumption/operations";
-// import TodayListModal from "../../components/TodayListModal/TodayListModal";
+import { selectWatersToday } from "../../redux/waterRequests/selectors";
+import { getWaterForToday } from "../../redux/waterRequests/operations";
+import AddWater from "../AddWater/AddWater";
+import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import { addWaterModalOpen } from "../../redux/modalWindow/slice";
 
 const formatTime = (isoDateString) => {
@@ -24,10 +25,13 @@ export const TodayWaterList = () => {
   const waterToday = useSelector(selectWatersToday);
 
   useEffect(() => {
-    dispatch(getWaterForTodayThunk());
+    dispatch(getWaterForToday());
   }, [dispatch]);
 
-  const entries = useMemo(() => waterToday?.todayWaterList || [], [waterToday]);
+  const entries = useMemo(
+    () => waterToday?.todayWaterNotesList || [],
+    [waterToday]
+  );
 
   return (
     <div className={css["entries-container"]}>
@@ -37,12 +41,12 @@ export const TodayWaterList = () => {
           <p className={css.empty}>No notes yet</p>
         ) : (
           <ul className={css["list-entry"]}>
-            {entries.map(({ _id, amount, time }) => (
+            {entries.map(({ _id, waterVolume, date }) => (
               <TodayWaterItem
                 key={_id}
                 id={_id}
-                amount={amount}
-                time={formatTime(time)}
+                waterVolume={waterVolume}
+                date={formatTime(date)}
               />
             ))}
           </ul>
@@ -54,7 +58,8 @@ export const TodayWaterList = () => {
       >
         <Plus className={css.plus} /> Add water
       </button>
-      {/* <TodayListModal /> */}
+      <AddWater />
+      <DeleteEntryModal /> 
     </div>
   );
 };
