@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post(
-        "https://watertracker-app.onrender.com/auth/signup",
+        "/auth/signup",
         credentials
       );
       setAuthHeader(response.data.token);
@@ -33,7 +33,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post(
-        "https://watertracker-app.onrender.com/auth/signin",
+        "/auth/signin",
         credentials
       );
       setAuthHeader(response.data.token);
